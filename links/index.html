@@ -10,7 +10,7 @@
     
     <title>
         
-            flex布局 | 
+            links | 
         
         cheesekun
     </title>
@@ -48,7 +48,7 @@
     <!-- The Open Graph protocol -->
     <meta property="og:url" content="https://cheesekun.github.io">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="flex布局 | cheesekun">
+    <meta property="og:title" content="links | cheesekun">
     <meta property="og:description" content="web,前端,html,css,javascript,nodejs,cheesekun,芝士君">
 
     <!--[if lte IE 9]>
@@ -202,275 +202,115 @@
 
                     <!-- Post TOC -->
 
-    
-    <!-- Back Button -->
-    <!--
-    <div class="material-back" id="backhome-div" tabindex="0">
-        <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"
-           href="#" onclick="window.history.back();return false;"
-           target="_self"
-           role="button"
-           data-upgraded=",MaterialButton,MaterialRipple">
-            <i class="material-icons" role="presentation">arrow_back</i>
-            <span class="mdl-button__ripple-container">
-                <span class="mdl-ripple"></span>
-            </span>
-        </a>
-    </div>
-    -->
-
-    <!-- Left aligned menu below button -->
-    <button id="post-toc-trigger-btn"
-        class="mdl-button mdl-js-button mdl-button--icon">
-        <i class="material-icons">format_list_numbered</i>
-    </button>
-
-    <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn">
-        
-
-        <!--
-        <li class="mdl-menu__item">
-            Some Action
-        </li>
-        -->
-    </ul>
-
-
-
 
 <!-- Layouts -->
 
-    <!-- Post Module -->
-    <div class="material-post_container">
+    <!-- Single Links Page -->
+    <style>
+    .md-links {
+        min-height: calc(100% - 120px - 5pc - 6em);
+        text-align: center;
+        overflow: auto;
+        padding: 0;
+        margin: 0 auto;
+        max-width: 320px;
+    }
 
-        <div class="material-post mdl-grid">
-            <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
+    @media screen and (min-width: 640px) {
+        .md-links {
+            max-width: 640px;
+        }
+    }
 
-                <!-- Post Header(Thumbnail & Title) -->
-                
-    <!-- Paradox Post Header -->
+    @media screen and (min-width: 960px) {
+        .md-links {
+            max-width: 960px;
+        }
+    }
+
+    @media screen and (min-width: 1280px) {
+        .md-links {
+            max-width: 1280px;
+        }
+    }
+
+    @media screen and (min-width: 1600px) {
+        .md-links {
+            max-width: 1600px;
+        }
+    }
+
+    @media screen and (max-width: 480px) {
+        .md-links {
+            min-height: calc(100% - 200px - 5pc - 6em);
+            margin-top: 6em;
+        }
+    }
+
+    .md-links-item {
+        background: #fff;
+        box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 3px 1px -2px rgba(0, 0, 0, .2), 0 1px 5px 0 rgba(0, 0, 0, .12);
+        height: 72px;
+        line-height: 15px;
+        margin: 20px 10px;
+        padding: 0px 0px;
+        transition: box-shadow 0.25s;
+    }
+
+    .md-links a {
+        color: #333;
+        text-decoration: none;
+    }
+
+    .md-links li {
+        width: 300px;
+        float: left;
+        list-style: none;
+    }
+
+    .md-links-item img {
+        float: left;
+        box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 3px 11px -2px rgba(0, 0, 0, .2), 0 1px 5px 0 rgba(0, 0, 0, .12);
+    }
+
+    .md-links-item:hover {
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .md-links-item a:hover{
+        cursor: pointer;
+    }
+
+    .md-links-title {
+        font-size: 20px;
+        line-height: 50px;
+    }
+
+    #scheme-Paradox .mdl-mini-footer{
+        clear: left;
+    }
+    #bottom{
+        position: relative;
+    }
+</style>
+
+<ul class="md-links">
     
-        
-            <!-- Random Thumbnail -->
-            <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
-            <script>
-    var randomNum = Math.floor(Math.random() * 19 + 1);
+</ul>
 
-    $('.post_thumbnail-random').css('background-image', 'url(' + '/img/random/material-' + randomNum + '.png' + ')');
+<script>
+    var adjustFooter = function() {
+        if( ($('#bottom').offset().top + $('#bottom').outerHeight() )<$(window).height() ) {
+            var footerBottom = $(window).height() - $('#bottom').outerHeight() - $('#bottom').offset().top;
+            $('#bottom').css('bottom', '-' + footerBottom + 'px');
+        }
+    };
+    $(document).ready(function() {
+        adjustFooter();
+    });
 </script>
 
-        
-    
-            <p class="article-headline-p">
-                flex布局
-            </p>
-        </div>
 
-
-
-
-
-                
-                    <!-- Paradox Post Info -->
-                    <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
-
-    <!-- Author Avatar -->
-    <div id="author-avatar">
-        <img src="/img/avatar.png" width="44px" height="44px" alt="Author Avatar"/>
-    </div>
-    <!-- Author Name & Date -->
-    <div>
-        <strong>cheesekun</strong>
-        <span>2月 21, 2017</span>
-    </div>
-
-    <div class="section-spacer"></div>
-
-    <!-- Favorite -->
-    <!--
-        <button id="article-functions-like-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon btn-like">
-            <i class="material-icons" role="presentation">favorite</i>
-            <span class="visuallyhidden">favorites</span>
-        </button>
-    -->
-
-    <!-- Qrcode -->
-    
-
-    <!-- Tags (bookmark) -->
-    
-    <button id="article-functions-viewtags-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
-        <i class="material-icons" role="presentation">bookmark</i>
-        <span class="visuallyhidden">bookmark</span>
-    </button>
-    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
-        <li class="mdl-menu__item">
-        
-    </ul>
-    
-
-    <!-- Share -->
-    <button id="article-fuctions-share-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
-    <i class="material-icons" role="presentation">share</i>
-    <span class="visuallyhidden">share</span>
-</button>
-<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-fuctions-share-button">
-    
-
-    
-
-    <!-- Share Weibo -->
-    
-        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=flex布局&url=https://cheesekun.github.io//2017/02/21/flex/index.html&pic=&searchPic=false&style=simple" target="_blank">
-            <li class="mdl-menu__item">
-                分享到微博
-            </li>
-        </a>
-    
-
-    <!-- Share Twitter -->
-    
-        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=flex布局&url=https://cheesekun.github.io//2017/02/21/flex/index.html&via=cheesekun" target="_blank">
-            <li class="mdl-menu__item">
-                分享到 Twitter
-            </li>
-        </a>
-    
-
-    <!-- Share Facebook -->
-    
-        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=https://cheesekun.github.io//2017/02/21/flex/index.html" target="_blank">
-            <li class="mdl-menu__item">
-                分享到 Facebook
-            </li>
-        </a>
-    
-
-    <!-- Share Google+ -->
-    
-        <a class="post_share-link" href="https://plus.google.com/share?url=https://cheesekun.github.io//2017/02/21/flex/index.html" target="_blank">
-            <li class="mdl-menu__item">
-                分享到 Google+
-            </li>
-        </a>
-    
-
-    <!-- Share LinkedIn -->
-    
-
-    <!-- Share QQ -->
-    
-
-    <!-- Share Telegram -->
-    
-</ul>
-
-</div>
-
-                
-
-                <!-- Post Content -->
-                <div id="post-content" class="markdown-Github mdl-color-text--grey-700 mdl-card__supporting-text fade out">
-    
-        <p>实现 flex 布局需要先指定一个容器，任何一个容器都可以被置顶为 flex 布局，<br>这样容器内部的元素就可以使用 flex 来进行布局。<br> <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">.container &#123;</div><div class="line">   display: flex | inline-flex;     //可以有两种取值</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>分别生成一个块状或行内的 flex 容器盒子。简单说来，如果你使用块元素如 div，你就可以使用 flex，而如果你使用行内元素，你可以使用 inline-flex。<br><strong>当设置 flex 布局之后，子元素的 float、clear、vertical-align 的属性将会失效。</strong></p>
-<ul>
-<li><p>属性介绍</p>
-<ul>
-<li>对父属性<ul>
-<li>flex-direction<blockquote>
-<p>定义主轴方向<br>row<br>row-reverse<br>column<br>column-reverse</p>
-</blockquote>
-</li>
-<li>flex-wrap<blockquote>
-<p>定义flex元素单行还是多行显示<br>nowrap<br>wrap<br>wrap-reverse</p>
-</blockquote>
-</li>
-<li>flex-flow<blockquote>
-<p>flex-direction 和 flex-wrap 缩写</p>
-</blockquote>
-</li>
-<li>justify-content<blockquote>
-<p>将flex元素与主轴对齐<br>flex-start<br>flex-end<br>center<br>space-around    （每个项目两侧的间隔相等，所以项目之间的间隔比项目与边缘的间隔大一倍）<br>space-between （两端对齐，项目之间的间隔相等，即剩余空间等分成间隙）</p>
-</blockquote>
-</li>
-<li>align-items<blockquote>
-<p>在交叉轴上对齐多个元素<br>stretch （默认值，如果项目未设置高度或者设为 auto，将占满整个容器的高度）<br>flex-start<br>flex-end<br>center<br>baseline （项目的第一行文字的基线对齐 也就是对齐各个flex元素第一行文字的基线）</p>
-</blockquote>
-</li>
-<li>align-content<blockquote>
-<p>当交叉轴有多余空间时，对齐容器内的轴线<br>stretch<br>flex-start<br>flex-end<br>center<br>space-between<br>space-around</p>
-</blockquote>
-</li>
-</ul>
-</li>
-<li><p>对子属性</p>
-<ul>
-<li>align-self<blockquote>
-<p>在交叉轴上对齐一个元素,覆盖align-items所设的值<br>flex-start<br>flex-end<br>center<br>baseline<br>stretch</p>
-</blockquote>
-</li>
-<li>order<blockquote>
-<p>决定flex元素的顺序<br>0</p>
-</blockquote>
-</li>
-<li>flex-basis<blockquote>
-<p>定义了在分配多余空间之前，项目占据的主轴空间，浏览器根据这个属性，计算主轴是否有多余空间<br><strong>当主轴为水平方向的时候，当设置了 flex-basis</strong><br><strong>flex-basis 需要跟 flex-grow 和 flex-shrink 配合使用才能发挥效果。</strong></p>
-</blockquote>
-</li>
-<li>flex-grow<blockquote>
-<p>定义flex元素的放大比例<br>默认值为 0，即如果存在剩余空间，也不放大<br>当所有的项目都以 flex-basis 的值进行排列后，仍有剩余空间，那么这时候 flex-grow 就会发挥作用了<br>如果所有项目的 flex-grow 属性都为 1，则它们将等分剩余空间。(如果有的话)<br>如果一个项目的 flex-grow 属性为 2，其他项目都为 1，则前者占据的剩余空间将比其他项多一倍。</p>
-</blockquote>
-</li>
-<li>flex-shrink<blockquote>
-<p>定义了项目的缩小比例<br>默认值: 1，即如果空间不足，该项目将缩小，负值对该属性无效。<br>如果所有项目的 flex-shrink 属性都为 1，当空间不足时，都将等比例缩小。<br>如果一个项目的 flex-shrink 属性为 0，其他项目都为 1，则空间不足时，前者不缩小。</p>
-</blockquote>
-</li>
-<li><p>flex</p>
-<blockquote>
-<p>flex-grow, flex-shrink 和 flex-basis的简写</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">.item&#123;</div><div class="line">  flex: none | [ &lt;&apos;flex-grow&apos;&gt; &lt;&apos;flex-shrink&apos;&gt;? || &lt;&apos;flex-basis&apos;&gt; ]</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>默认值：0 1 auto， 即不放大，可缩小，大小与 width、height<br>建议优先使用这个属性，而不是单独写三个分离的属性。</p>
-</blockquote>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>小实例<br>  <a href="http://codepen.io/cheesekun/pen/EZqKVm" target="_blank" rel="external">codepen杂实例</a></li>
-</ul>
-
-    
-
-    
-</div>
-
-
-                
-
-                <!-- Post Comments -->
-                
-                    
-
-
-
-                
-            </div>
-
-            <!-- Post Prev & Next Nav -->
-            <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
-    <!-- Prev Nav -->
-    
-
-    <!-- Section Spacer -->
-    <div class="section-spacer"></div>
-
-    <!-- Next Nav -->
-    
-</nav>
-
-        </div>
-    </div>
 
 
 
@@ -634,14 +474,6 @@ It will not impact the appearance and can give developers a lot of support :)
 </aside>
 
                     
-
-                    
-                        <!-- Footer Top Button -->
-                        <div class="toTop-wrap">
-    <a href="#top" class="toTop">
-        <i class="material-icons footer_top-i">expand_less</i>
-    </a>
-</div>
 
                     
 
