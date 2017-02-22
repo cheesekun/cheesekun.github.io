@@ -55,7 +55,8 @@ body {
     -moz-osx-font-smoothing: grayscale
 }
 a {
-    font-weight: 300
+	text-decoration: none;
+    font-weight: 300;
 }
 .mdl-button {
     font-family: Roboto, "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif
