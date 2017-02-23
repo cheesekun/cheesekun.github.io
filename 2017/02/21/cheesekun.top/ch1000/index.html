@@ -10,7 +10,7 @@
     
     <title>
         
-            分类: 前端 | 
+            终究到 hexo | 
         
         cheesekun | just 涨芝士
     </title>
@@ -48,7 +48,7 @@
     <!-- The Open Graph protocol -->
     <meta property="og:url" content="https://cheesekun.github.io">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="分类: 前端 | cheesekun | just 涨芝士">
+    <meta property="og:title" content="终究到 hexo | cheesekun | just 涨芝士">
     <meta property="og:description" content="喜欢动漫，热爱日剧，自学前端，这是芝士君的小屋，欢迎米娜桑的到来。比心">
 
     <!--[if lte IE 9]>
@@ -200,93 +200,290 @@
                         </button>
                     
 
-                    <!-- Index Module -->
-<div class="material-index mdl-grid">
-    
-    <div class="locate-thumbnail-symbol"></div>
+                    <!-- Post TOC -->
 
     
+    <!-- Back Button -->
+    <!--
+    <div class="material-back" id="backhome-div" tabindex="0">
+        <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"
+           href="#" onclick="window.history.back();return false;"
+           target="_self"
+           role="button"
+           data-upgraded=",MaterialButton,MaterialRipple">
+            <i class="material-icons" role="presentation">arrow_back</i>
+            <span class="mdl-button__ripple-container">
+                <span class="mdl-ripple"></span>
+            </span>
+        </a>
+    </div>
+    -->
+
+    <!-- Left aligned menu below button -->
+    <button id="post-toc-trigger-btn"
+        class="mdl-button mdl-js-button mdl-button--icon">
+        <i class="material-icons">format_list_numbered</i>
+    </button>
+
+    <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn">
         
-            <!-- Paradox Thumbnail -->
-            <div class="post_entry-module mdl-card mdl-cell mdl-cell--12-col fade out">
-    <!-- Post Thumbnail -->
+
+        <!--
+        <li class="mdl-menu__item">
+            Some Action
+        </li>
+        -->
+    </ul>
+
+
+
+
+<!-- Layouts -->
+
+    <!-- Post Module -->
+    <div class="material-post_container">
+
+        <div class="material-post mdl-grid">
+            <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
+
+                <!-- Post Header(Thumbnail & Title) -->
+                
+    <!-- Paradox Post Header -->
     
         
             <!-- Random Thumbnail -->
             <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
-        
-    
+            <script>
+    var randomNum = Math.floor(Math.random() * 19 + 1);
 
-        <!-- Post Title -->
-        <p class="article-headline-p"><a href="/2017/02/22/cheesekun.top/ch1003/">flex布局</a></p>
-    </div>
-
-    <!-- Post Excerpt -->
-    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
-        
-            使用flex布局特别方便，虽然兼容性问题还是需要解决下面参考了
-        
-        &nbsp;&nbsp;&nbsp;
-        <span>
-            <a href="/2017/02/22/cheesekun.top/ch1003/" target="_self">继续阅读</a>
-        </span>
-    </div>
-    <!-- Post_entry Info-->
-    <div id="post_entry-info">
-        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
-            <!-- Author Avatar -->
-            <div id="author-avatar">
-                <img src="/img/avatar.png" width="44px" height="44px" alt="芝士君's avatar">
-            </div>
-            <div>
-                <strong>芝士君</strong>
-                <span>2月 22, 2017</span>
-            </div>
-        </div>
-        <div id="post_entry-right-info">
-            <!-- Category -->
-            <span class="post_entry-category">
-                <a class="post_category-link" href="/categories/前端/">前端</a>
-            </span>
-
-            
-                <!-- Comment Number -->
-                &nbsp;|&nbsp;
-                <span class="post_entry-comment" >
-                        <span class="ds-thread-count" data-thread-key="" data-count-type="comments"></span>
-                </span>
-            
-
-            <!-- Post Views -->
-            <span class="post_entry-views">
-            </span>
-        </div>
-    </div>
-</div>
-
-        
-        
-    
-
-    
-
-    
-        <script>
-    var randomNum;
-
-    var locatePost = $('.locate-thumbnail-symbol').next();
-    for(var i = 0; i < 10; i++) {
-        randomNum = Math.floor(Math.random() * 19 + 1);
-
-        locatePost.children('.post_thumbnail-random').attr('id', 'random_thumbnail-'+randomNum);
-        locatePost.children('.post_thumbnail-random').css('background-image', 'url(' + '/img/random/material-' + randomNum + '.png' + ')')
-
-        locatePost = locatePost.next();
-    }
+    $('.post_thumbnail-random').css('background-image', 'url(' + '/img/random/material-' + randomNum + '.png' + ')');
 </script>
 
+        
+    
+            <p class="article-headline-p">
+                终究到 hexo
+            </p>
+        </div>
+
+
+
+
+
+                
+                    <!-- Paradox Post Info -->
+                    <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
+
+    <!-- Author Avatar -->
+    <div id="author-avatar">
+        <img src="/img/avatar.png" width="44px" height="44px" alt="Author Avatar"/>
+    </div>
+    <!-- Author Name & Date -->
+    <div>
+        <strong>芝士君</strong>
+        <span>2月 21, 2017</span>
+    </div>
+
+    <div class="section-spacer"></div>
+
+    <!-- Favorite -->
+    <!--
+        <button id="article-functions-like-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon btn-like">
+            <i class="material-icons" role="presentation">favorite</i>
+            <span class="visuallyhidden">favorites</span>
+        </button>
+    -->
+
+    <!-- Qrcode -->
+    
+        <button id="article-functions-qrcode-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+            <i class="material-icons" role="presentation">devices other</i>
+            <span class="visuallyhidden">devices other</span>
+        </button>
+        <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-qrcode-button">
+            <li class="mdl-menu__item">在其它设备中阅读本文章</li>
+            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPYAAAD2CAAAAADAeSUUAAAC20lEQVR42u3aQZLiMBAEQP7/6dkHbOCoapkZI6VPBBa2Uhwq1K3Xz5HXCxsbGxsbGxsbG/uR7Fd8vX1cPDJ5wv/fJ29M5oyNjY29NzuZVj7m3s/5clyPwcbGxj6B/S4Arse8G3/9nOSbhF28CxsbGxs7Dpt7l7L9LTY2Njb27DXXgbSy8VhZbmxsbOzT2HnBKP/V9QLl25XrMR+vpWFjY2M/nr2yDfirz7/a38bGxsZ+MHt2vKYt7rdNhZ8PXNjY2Ni7stsm7vWWY6XwtNLcjeaJjY2NvSn7+kF52WgWb/nd2RhsbGzsE9iz7UF+QCcvUeV/QH4XGxsb+xx21CiNtxYtaf2wzm39bWxsbOwvZM8CKYfNju/k1KVGLzY2NvZG7HzqK0EyC6r8m6X+NjY2NvbXsmeBNFuIeyOtLoRhY2NjH8BuJ52H36ypvLKxKQIMGxsb+8vZ7UGcvAHcFvrzIlH7GRsbG3tv9nVpZhZCeUS14Tfb2GBjY2PvzZ49LlmOvLg/a9y2C4eNjY29K7s9lNNuXZKAnLV42+jFxsbG3pU9i7H8IM6Ml7+rWGJsbGzsrdntFqKdSr6NyWOsbkJjY2Njb8qeHZSctWyTAlA7cunwJTY2NvbW7FlUtEd52iOeEQ8bGxv7YHa+nbi32NS2e9tIw8bGxj6BfVcL9q5waqM0Go+NjY19ALuNk1nYtE2IttlQBxg2Njb2dux8IfLGbbJAeYgmv60DDBsbG3tTdtuUnbWKZ23dOiaxsbGxN2W3V1tsajcebckpjzFsbGzsXdkrZaBZCLVRt1L8wsbGxj6HnbdUVw7irAdnW3jCxsbGPo3dhke7Jcjf9auHL7GxsbGPZ+fHa/Koa+Mqmic2NjY2djyhvHiUbznypsWf5TY2Njb2A9izgs5KUSm5m/wNUTsZGxsbe2t2W7ipm6yjg5vtcZ8P9rexsbGxH8w+58LGxsbGxsbGxsZ+zPUP8DzilUM/4EoAAAAASUVORK5CYII=">
+        </ul>
+    
+
+    <!-- Tags (bookmark) -->
+    
+    <button id="article-functions-viewtags-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+        <i class="material-icons" role="presentation">bookmark</i>
+        <span class="visuallyhidden">bookmark</span>
+    </button>
+    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
+        <li class="mdl-menu__item">
+        <a class="post_tag-link" href="/tags/git/">git</a></li><li class="mdl-menu__item"><a class="post_tag-link" href="/tags/hexo/">hexo</a></li><li class="mdl-menu__item"><a class="post_tag-link" href="/tags/markdown/">markdown</a>
+    </ul>
+    
+
+    <!-- Share -->
+    <button id="article-fuctions-share-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+    <i class="material-icons" role="presentation">share</i>
+    <span class="visuallyhidden">share</span>
+</button>
+<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-fuctions-share-button">
+    
+    <!-- Leancloud Views -->
+        <a class="post_share-link" href="#">
+            <li class="mdl-menu__item">
+                <span id="/2017/02/21/cheesekun.top/ch1000/" class="leancloud-views_num" data-flag-title="终究到 hexo">
+     &nbsp;浏览量
+</span>
+
+            </li>
+        </a>
+    
+
+    
+        
+            <!-- Busuanzi Views -->
+            <a class="post_share-link" href="#">
+                <li class="mdl-menu__item">
+                    <span id="busuanzi_container_page_pv">
+                        <span id="busuanzi_value_page_pv"></span>&nbsp;浏览量
+                    </span>
+                </li>
+            </a>
+        
+    
+
+    <!-- Share Weibo -->
+    
+        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=终究到 hexo&url=https://cheesekun.github.io//2017/02/21/cheesekun.top/ch1000/index.html&pic=&searchPic=false&style=simple" target="_blank">
+            <li class="mdl-menu__item">
+                分享到微博
+            </li>
+        </a>
+    
+
+    <!-- Share Twitter -->
+    
+
+    <!-- Share Facebook -->
+    
+        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=https://cheesekun.github.io//2017/02/21/cheesekun.top/ch1000/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Facebook
+            </li>
+        </a>
+    
+
+    <!-- Share Google+ -->
+    
+        <a class="post_share-link" href="https://plus.google.com/share?url=https://cheesekun.github.io//2017/02/21/cheesekun.top/ch1000/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Google+
+            </li>
+        </a>
+    
+
+    <!-- Share LinkedIn -->
+    
+
+    <!-- Share QQ -->
+    
+
+    <!-- Share Telegram -->
+    
+</ul>
+
+</div>
+
+                
+
+                <!-- Post Content -->
+                <div id="post-content" class="markdown-Github mdl-color-text--grey-700 mdl-card__supporting-text fade out">
+    
+        <p>一开始在使用wordpress写博客还是hexo写博客上纠结了很久<br>然而拗不过wordpress是世界上使用人数最多的博客系统，所以就强行用了<br>然而对于有强迫症的我来说，wordpress的文字排版要我命<br>经常性得为一篇文章进行各种修改，orz受不了<br>后来接触了markdown，用它来写东西简直爽到飞起<br>完全不需要care排版，可以专心写东西<br>并且更巧的是，hexo的博文都是需要用markdown模式来写！！！<br>美滋滋。。<br>因此，放弃了使用几个月的wordpress，现在专心使用hexo。<br>并且，<br>现在不用交那万恶的服务器费用啦。<br>hhhhhhh…..(ﾉﾟ▽ﾟ)ﾉ</p>
+<hr>
+<p>下面来写几条hexo比较常使用的git:</p>
+<ul>
+<li>生成静态文件<blockquote>
+<p>$ hexo generate</p>
+</blockquote>
+</li>
+<li>运行hexo本地服务器<blockquote>
+<p>$ hexo server<br><a href="http://localhost:4000/" target="_blank" rel="external">http://localhost:4000/</a></p>
+</blockquote>
+</li>
+<li>安装主题<blockquote>
+<p>cd/hexo/themes<br>git clone <a href="https://主题下载链接" target="_blank" rel="external">https://主题下载链接</a><br>cd ./主题目录、<br>git pull<br>然后修改/hexo/config.yml, 将其中的theme改为主题名称<br>重新运行 $ hexo generate $ hexo server</p>
+</blockquote>
+</li>
+<li>上传hexo到github<blockquote>
+<p>hexo generate<br>hexo deploy<br>简写合并如下<br>hexo d -g</p>
+</blockquote>
+</li>
+</ul>
+<hr>
+<p>。<br>。<br>。<br>大概就这样，水完第一篇<br>。<br>(ﾉﾟ▽ﾟ)ﾉ</p>
+
+    
+
     
 </div>
+
+
+                
+
+                <!-- Post Comments -->
+                
+                    
+    <!-- 使用多说评论 -->
+    <link rel="stylesheet" href="/css/duoshuo.min.css">
+<style>
+    #ds-thread #ds-reset .ds-post-button{
+        background-color: #0097A7 !important;
+    }
+    #ds-wrapper #ds-reset .ds-icons-32{
+        background-color: #0097A7 !important;
+    }
+    #ds-reset .ds-highlight {
+        color: #0097A7 !important;
+    }
+</style>
+<div id="comments">
+    <!-- 多说评论框 start -->
+    <div class="ds-thread"
+        data-thread-key=""
+        data-url="https://cheesekun.github.io/2017/02/21/cheesekun.top/ch1000/"
+        data-title="终究到 hexo">
+    </div>
+    <!-- 多说评论框 end -->
+</div>
+
+
+
+
+
+                
+            </div>
+
+            <!-- Post Prev & Next Nav -->
+            <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
+    <!-- Prev Nav -->
+    
+        <a href="/2017/02/22/cheesekun.top/ch1001/" id="post_nav-newer" class="prev-content">
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_back</i>
+            </button>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            新篇
+        </a>
+    
+
+    <!-- Section Spacer -->
+    <div class="section-spacer"></div>
+
+    <!-- Next Nav -->
+    
+</nav>
+
+        </div>
+    </div>
+
 
 
                     

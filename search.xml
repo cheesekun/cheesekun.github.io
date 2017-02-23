@@ -5,7 +5,7 @@
     
     <entry>
       <title><![CDATA[flex布局]]></title>
-      <url>https://cheesekun.github.io/2017/02/22/flex/</url>
+      <url>https://cheesekun.github.io/2017/02/22/cheesekun.top/ch1003/</url>
       <content type="html"><![CDATA[<p>使用flex布局特别方便，虽然兼容性问题还是需要解决<br>下面参考了<a href="https://zhuanlan.zhihu.com/p/25303493" target="_blank" rel="external">30分钟学会flex布局</a><br>简化了很多，帮助记忆。<br>。<br>。<br>实现 flex 布局需要先指定一个容器，任何一个容器都可以被置顶为 flex 布局，<br>这样容器内部的元素就可以使用 flex 来进行布局。<br> <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">.container &#123;</div><div class="line">   display: flex | inline-flex;     //可以有两种取值</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>分别生成一个块状或行内的 flex 容器盒子。简单说来，如果你使用块元素如 div，你就可以使用 flex，而如果你使用行内元素，你可以使用 inline-flex。<br><strong>当设置 flex 布局之后，子元素的 float、clear、vertical-align 的属性将会失效。</strong></p>
 <h2 id="属性介绍"><a href="#属性介绍" class="headerlink" title="属性介绍"></a>属性介绍</h2><ul>
@@ -92,7 +92,7 @@
     
     <entry>
       <title><![CDATA[「标日·初1-1」李さんは　中国人です]]></title>
-      <url>https://cheesekun.github.io/2017/02/22/%E6%9D%8E%E3%81%95%E3%82%93%E3%81%AF%E3%80%80%E4%B8%AD%E5%9B%BD%E4%BA%BA%E3%81%A7%E3%81%99/</url>
+      <url>https://cheesekun.github.io/2017/02/22/cheesekun.top/ch1002/</url>
       <content type="html"><![CDATA[<h2 id="词汇"><a href="#词汇" class="headerlink" title="词汇"></a>词汇</h2><ul>
 <li>先生 (せんせい)   老师<blockquote>
 <p>老师，医生和律师<br>大学の先生　-&gt; 大学老师</p>
@@ -179,7 +179,7 @@
     
     <entry>
       <title><![CDATA[教练,我要学日语]]></title>
-      <url>https://cheesekun.github.io/2017/02/22/%E6%88%91%E8%A6%81%E5%AD%A6%E6%97%A5%E8%AF%AD/</url>
+      <url>https://cheesekun.github.io/2017/02/22/cheesekun.top/ch1001/</url>
       <content type="html"><![CDATA[<p>从小以来一直在看动漫<br>大学又喜欢上日剧<br>耳濡目染<br>对日语产生了很大兴趣<br>大学4年想花些时间学好它<br>以后去日本才能去勾搭穿校服的日本妹子<br>没错，日漫里，女孩子说</p>
 <blockquote>
 <p>ね。。。xx君</p>
@@ -197,6 +197,53 @@
         <tags>
             
             <tag> 日语 </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[终究到 hexo]]></title>
+      <url>https://cheesekun.github.io/2017/02/21/cheesekun.top/ch1000/</url>
+      <content type="html"><![CDATA[<p>一开始在使用wordpress写博客还是hexo写博客上纠结了很久<br>然而拗不过wordpress是世界上使用人数最多的博客系统，所以就强行用了<br>然而对于有强迫症的我来说，wordpress的文字排版要我命<br>经常性得为一篇文章进行各种修改，orz受不了<br>后来接触了markdown，用它来写东西简直爽到飞起<br>完全不需要care排版，可以专心写东西<br>并且更巧的是，hexo的博文都是需要用markdown模式来写！！！<br>美滋滋。。<br>因此，放弃了使用几个月的wordpress，现在专心使用hexo。<br>并且，<br>现在不用交那万恶的服务器费用啦。<br>hhhhhhh…..(ﾉﾟ▽ﾟ)ﾉ</p>
+<hr>
+<p>下面来写几条hexo比较常使用的git:</p>
+<ul>
+<li>生成静态文件<blockquote>
+<p>$ hexo generate</p>
+</blockquote>
+</li>
+<li>运行hexo本地服务器<blockquote>
+<p>$ hexo server<br><a href="http://localhost:4000/" target="_blank" rel="external">http://localhost:4000/</a></p>
+</blockquote>
+</li>
+<li>安装主题<blockquote>
+<p>cd/hexo/themes<br>git clone <a href="https://主题下载链接" target="_blank" rel="external">https://主题下载链接</a><br>cd ./主题目录、<br>git pull<br>然后修改/hexo/config.yml, 将其中的theme改为主题名称<br>重新运行 $ hexo generate $ hexo server</p>
+</blockquote>
+</li>
+<li>上传hexo到github<blockquote>
+<p>hexo generate<br>hexo deploy<br>简写合并如下<br>hexo d -g</p>
+</blockquote>
+</li>
+</ul>
+<hr>
+<p>。<br>。<br>。<br>大概就这样，水完第一篇<br>。<br>(ﾉﾟ▽ﾟ)ﾉ</p>
+]]></content>
+      
+        <categories>
+            
+            <category> 博客 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> markdown </tag>
+            
+            <tag> hexo </tag>
+            
+            <tag> git </tag>
             
         </tags>
         
