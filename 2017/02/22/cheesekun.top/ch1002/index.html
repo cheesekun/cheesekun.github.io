@@ -677,10 +677,13 @@
             <span class="sidebar-badge">4</span>
         </a>
     </li>
+    <li>
+        <!-- site time -->
+        <a>
+            <span id="showsectime"></span>
+        </a>
+    </li>
 </ul>
-
-<!-- site time -->
-<span id="showsectime">555</span>
 
 
         <!-- Sidebar Divider -->
@@ -737,8 +740,113 @@
 
                     
 
-                    <!--Footer-->
-<footer class="mdl-mini-footer" id="bottom">
+                    <footer class="mdl-mini-footer" id="bottom">
+<!--Footer-->
+<script>
+function NewDate(str) { 
+str = str.split('-'); 
+var date = new Date(); 
+date.setUTCFullYear(str[0], str[1] - 1, str[2]); 
+date.setUTCHours(9, 0, 0, 0); 
+return date; 
+} 
+function showsectime() {
+var birthDay =NewDate("2017-2-20");
+var today=new Date();
+var timeold=today.getTime()-birthDay.getTime();
+
+var sectimeold=timeold/1000;
+var secondsold=Math.floor(sectimeold);
+var msPerDay=24*60*60*1000;
+
+var e_daysold=timeold/msPerDay;
+var daysold=Math.floor(e_daysold);
+var e_hrsold=(daysold-e_daysold)*-24;
+var hrsold=Math.floor(e_hrsold);
+var e_minsold=(hrsold-e_hrsold)*-60;
+var minsold=Math.floor((hrsold-e_hrsold)*-60);
+
+var seconds=Math.floor((minsold-e_minsold)*-60).toString();
+document.getElementById("showsectime").innerHTML = "此站已运行 "+daysold+"天"+hrsold+"小时"+minsold+"分"+seconds+"秒";
+setTimeout(showsectime, 1000);
+}
+
+showsectime();
+
+
+/*jshint -W030 */
+! function() {
+  function attr(node, attr, default_value) {
+    return Number(node.getAttribute(attr)) || default_value;
+  }
+
+  // get user config
+  var scripts = document.getElementsByTagName('script'),
+    script = scripts[scripts.length - 1]; // 当前加载的script
+  config = {
+    z: attr(script, "zIndex", -1), // z-index
+    a: attr(script, "alpha", 0.6), // alpha
+    s: attr(script, "size", 90), // size
+  };
+
+  var canvas = document.createElement('canvas'),
+    g2d = canvas.getContext('2d'),
+    pr = window.devicePixelRatio || 1,
+    width = window.innerWidth,
+    height = window.innerHeight,
+    f = config.s,
+    q, t,
+    m = Math,
+    r = 0,
+    pi = m.PI*2,
+    cos = m.cos,
+    random = m.random;
+  canvas.width = width * pr;
+  canvas.height = height * pr;
+  g2d.scale(pr, pr);
+  g2d.globalAlpha = config.a;
+
+  canvas.style.cssText = 'position:fixed;top:0;left:0;z-index: ' + config.z + ';width:100%;height:100%;pointer-events:none;';
+  // create canvas
+  document.getElementsByTagName('body')[0].appendChild(canvas);
+
+  function redraw() {
+    g2d.clearRect(0, 0, width, height);
+    q = [{x: 0, y: height * 0.7 + f}, {x: 0, y: height * 0.7 - f}];
+    while(q[1].x < width + f) draw(q[0], q[1]);
+  }
+  function draw(i, j) {   
+    g2d.beginPath();
+    g2d.moveTo(i.x, i.y);
+    g2d.lineTo(j.x, j.y);
+    var k = j.x + (random()*2-0.25)*f, n = line(j.y);
+    g2d.lineTo(k, n);
+    g2d.closePath();
+    r -= pi / -50;
+    g2d.fillStyle = '#'+(cos(r)*127+128<<16 | cos(r+pi/3)*127+128<<8 | cos(r+pi/3*2)*127+128).toString(16);
+    g2d.fill();
+    q[0] = q[1];
+    q[1] = {x: k, y: n};
+  }
+  function line(p){
+    t = p + (random() * 2 - 1.1) * f;
+    return (t > height || t < 0) ? line(p) : t;
+  }
+
+  document.onclick = redraw;
+  document.ontouchstart = redraw;
+  redraw();
+}();
+</script>
+
+<script>
+(function(){
+    var bp = document.createElement('script');
+    bp.src = '//push.zhanzhang.baidu.com/push.js';
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
     
         <!-- Paradox Footer Left Section -->
         <div class="mdl-mini-footer--left-section sns-list">
@@ -812,14 +920,6 @@
         </div>
 
         <!-- Paradox Footer Right Section -->
-
-        <!--
-        I am glad you use this theme, the development is no so easy, I hope you can keep the copyright.
-        It will not impact the appearance and can give developers a lot of support :)
-
-        很高兴您使用该主题，开发不易，希望您可以保留一下版权声明。
-        它不会影响美观并可以给开发者很大的支持。 :)
-        -->
 
         <div class="mdl-mini-footer--right-section">
             <div>
