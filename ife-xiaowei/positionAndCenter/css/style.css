@@ -1,0 +1,70 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.main {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 400px;
+  height: 200px;
+  background: #ccc;
+}
+
+.top {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  border-radius: 0 0 100% 0;
+  background: #fc0;
+}
+
+.bottom {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 50px;
+  height: 50px;
+  border-radius: 100% 0 0 0;
+  background: #fc0;
+}
+
+
+
+/* ----------sass------- */
+/* 
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.main {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 400px;
+  height: 200px;
+  background: #ccc;
+}
+
+.top {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  border-radius: 0 0 100% 0;
+  background: #fc0;
+}
+
+.bottom {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 50px;
+  height: 50px;
+  border-radius: 100% 0 0 0;
+  background: #fc0;
+}
+ */

@@ -1,0 +1,34 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+#menu {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 80px;
+  height: 162px;
+  border: 1px solid #000;
+  texct-align: center;
+}
+
+li {
+  padding: 5px 0;
+  text-align: center;
+  width: 100%;
+  border-bottom: 1px solid #999;
+  list-style: none;
+  cursor: pointer;
+}
+
+li:nth-child(5) {
+  border-bottom: none;
+}
+
+li:hover {
+  background: #ccc;
+}
+
+

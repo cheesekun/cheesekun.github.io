@@ -1,0 +1,107 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+main {
+  margin: 20px;
+  padding: 20px;
+  background: #eee;
+  border: 1px solid #999;
+}
+main.clearfix {
+  overflow: auto;
+}
+main .left {
+  float: left;
+  padding: 20px;
+  width: 160px;
+  background: #fff;
+  border: 1px solid #999;
+  overflow: auto;
+}
+main .left img {
+  width: 80px;
+}
+main .center {
+  width: auto;
+  margin-left: 220px;
+  margin-right: 140px;
+  padding: 20px;
+  background-color: #fff;
+  border: #999 1px solid;
+}
+main .right {
+  background: #fff;
+  padding: 20px;
+  float: right;
+  width: 80px;
+  border: 1px solid #999;
+}
+main .right img {
+  width: 80px;
+  margin: 0 auto;
+}
+
+.container {
+  margin: 20px;
+  padding: 20px;
+  background-color: #eee;
+  border: #999 1px solid;
+}
+
+
+/* ----------------scss -------------*/
+/* 
+* {
+  margin: 0;
+  padding: 0;
+}
+
+main {
+  margin: 20px;
+  padding: 20px;
+  background: #eee;
+  border: 1px solid #999;
+  &.clearfix {
+    overflow: auto;
+  }
+  .left {
+    float: left;
+    padding: 20px;
+    width: 160px;
+    background: #fff;
+    border: 1px solid #999;
+    overflow: auto;
+    img {
+      width: 80px;
+    }
+  }
+  .center {
+    width: auto;
+    margin-left: 220px;
+    margin-right: 140px;
+    padding: 20px;
+    background-color: #fff;
+    border: #999 1px solid;
+  }
+  .right {
+    background: #fff;
+    padding: 20px;
+    float: right;
+    width: 80px;
+    border: 1px solid #999;
+    img {
+      width: 80px;
+      margin: 0 auto;
+    }
+  }
+}
+
+.container {
+  margin: 20px;
+  padding: 20px;
+  background-color: #eee;
+  border: #999 1px solid;
+}
+ */

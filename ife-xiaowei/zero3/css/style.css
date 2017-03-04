@@ -1,0 +1,231 @@
+/*css reset*/
+*{
+    margin:0;
+    padding:0;
+}
+body{
+    font-size:14px;
+    font-family:"Microsoft YaHei";
+    background:#DEDEDE;
+}
+.clearfix:after{
+    content:'.';
+    display:block;
+    height:0;
+    clear:both;
+    overflow:hidden;
+    visibility:hidden;
+}
+
+/* header */
+header {
+  position: relative;
+  width: 100%;
+  height: 60px;
+  background: #222;
+}
+header img {
+  position: absolute;
+  top: 10px;
+  left: 30px;
+}
+header nav {
+  position: absolute;
+  right: 0;
+  height: 100%;
+}
+header nav ul li {
+  display: inline-block;
+  height: 100%;
+  color: #fff;
+  font: 12px/60px 微软雅黑;
+}
+header nav ul li:hover {
+  background: #999;
+}
+
+/*container*/
+.container{
+    width:100%;
+    position:relative;
+}
+
+/*main*/
+.main{
+    margin-right:384px;
+}
+
+/*article*/
+article{
+    margin:20px 20px 0;
+    padding:42px 20px;
+    background:#fff;
+    box-shadow:1px 2px 3px #848484;
+}
+article h2{
+    margin-bottom:20px;
+    font-size:20px;
+}
+article h3{
+    margin-bottom:20px;
+    font-size:16px;
+    color:#746E70;
+}
+article .author{
+    margin-bottom:14px;
+    line-height:12px;
+    font-size:12px;
+    color:#838182;
+}
+article p{
+    font-size:14px;
+    font-weight:500;
+    line-height:26px;
+    text-indent:2em;
+}
+article a{
+    color:#5200DD;
+}
+article img{
+    width:30%;
+    margin:23px 0;
+}
+.noListStyle{
+    margin-left:20px;
+    list-style:none;
+}
+
+/*imgArea*/
+.imgArea div{
+    width:120px;
+    display: inline-block;
+    margin:0 0 15px 38px;
+    padding-top:10px;
+    border:1px solid #CBCBCB;
+    text-align:center;
+    font-size:12px;
+}
+.imgArea img{
+    width:100px;
+    margin:10px;
+    padding:0;
+}
+
+/*table*/
+.table{
+    padding-bottom:20px;
+}
+.ranking{
+    margin-left:42px;
+    margin-bottom:24px;
+    font-weight:bold;
+    line-height:26px;
+}
+table{
+    width:100%;
+    border-left:1px solid #CECECE;
+}
+thead{
+    font-size:12px;
+    font-weight:bold;
+    color:#fff;
+    background:#333333;
+}
+td{
+    height:24px;
+    line-height:24px;
+    padding-left:6px;
+    border-bottom:1px solid #CECECE;
+    border-right:1px solid #CECECE;
+}
+tfoot{
+    font-weight:bold;
+    background:#CCCCCC;
+}
+
+/* aside form*/
+aside{
+    position:absolute;
+    top:0px;
+    right:20px;
+    width:323px;
+    padding:20px;
+    background:#fff;
+    box-shadow:1px 2px 3px #848484;
+}
+.form h2{
+    height:38px;
+    line-height:38px;
+    padding-left:10px;
+    margin-bottom:10px;
+    border-left:3px solid #CCCCCC;
+    font-size:16px;
+}
+form{
+    font-size:12px;
+    line-height:20px;
+}
+form span{
+    display:inline-block;
+    width:86px;
+    margin-left:12px;
+    margin-right:12px;
+    text-align:right;
+}
+form input,
+form select,
+form textarea{
+    margin-bottom:12px;
+    font-size:12px;
+}
+form input[type="email"],
+form input[type="password"]{
+    height:20px;
+    width:120px;
+    padding:0 3px;
+    font-size:10px;
+    border:1px solid #CDCDCD;
+}
+form input[type="radio"]{
+    margin-right:3px;
+}
+form input[type="checkbox"]{
+    vertical-align:sub;
+}
+form textarea{
+    width:207px;
+    height:97px;
+    vertical-align:sub;
+    font-size:16px;
+    font-weight:bold;
+    border:1px solid #747474;
+}
+form input[type="submit"]{
+    width:100%;
+    height:38px;
+    font-size:16px;
+    font-weight:bold;
+    border:1px solid #C3CFCF;
+    border-radius:8px;
+    background:#3355D0;
+    color:#fff;
+}
+form p{
+    margin-left:112px;
+    margin-bottom:22px;
+    font-size:12px;
+    line-height:12px;
+    text-indent:0;
+    color:#B6A0AC;
+}
+
+/*footer*/
+footer{
+    height:50px;
+    margin-top:20px;
+    padding-top:20px;
+    text-align:center;
+    color:#fff;
+    font-size:12px;
+    background:#000;
+}

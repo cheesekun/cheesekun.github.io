@@ -1,0 +1,100 @@
+ body {
+        font: 25px/100px 微软雅黑;
+        margin: 0;
+        padding: 0;
+    }
+    #one_image, #no_images {
+        border: 5px solid #159;
+        border-radius: 10px;
+        width: 400px;
+        height: 500px;
+        margin: 50px;
+        float: left;
+        padding: 0 50px;
+    }
+    #one_image {
+        margin-left: 120px;
+    }
+    input[type="radio"], input[type="checkbox"]{
+        display: none;
+    }
+    label {
+        margin-left: 10px;
+    }
+    h3 {
+        text-align: center;
+    }
+    /*-----------------背景图实现--------------------*/
+    #checkbox_1 + i, #checkbox_2 + i, #radio_1 + i, #radio_2 + i {
+        display: inline-block;
+        background: url("/img/img.png");
+        height:25px;
+        width:25px;
+        margin-left: 5px;
+        margin-bottom: -5px;
+    }
+    #checkbox_1 + i {
+        background-position: 0 -25px;
+    }
+    #checkbox_2 + i {
+        background-position: 0 -25px;
+    }
+    #radio_1 + i {
+        background-position: 0 -50px;
+    }
+    #radio_2 + i {
+        background-position: 0 -50px;
+    }
+    #checkbox_1:checked + i {
+        background-position: 0 0;
+    }
+    #checkbox_2:checked + i {
+        background-position: 0 0;
+    }
+    #radio_1:checked + i {
+        background-position: 0 -75px;
+    }
+    #radio_2:checked + i {
+        background-position: 0 -75px;
+    }
+    /*---------------------使用伪元素实现--------------------------*/
+
+    #checkbox_3 + i, #checkbox_4 + i, #radio_3 + i, #radio_4 + i {
+        width: 20px;
+        height: 20px;
+        border: 2px solid #cccccc;
+        margin-left: 8px;
+        margin-bottom: -5px;
+        display: inline-block;
+        position: relative;
+    }
+    #radio_3 + i, #radio_4 + i {
+        border-radius: 50%;
+    }
+    #checkbox_3:checked + i, #checkbox_4:checked + i, #radio_3:checked + i, #radio_4:checked +i  {
+        border-color: palegreen;
+    }
+    #checkbox_3:checked+i::after, #checkbox_4:checked+i::after {
+        content: '';
+        position: absolute;
+        left: 6px;
+        top: 0;
+        width: 5px;
+        height: 15px;
+        border-bottom: 2px solid palegreen;
+        border-right: 2px solid palegreen;
+        display: inline-block;
+        transform: rotate(45deg)
+    }
+    #radio_3:checked+i::after, #radio_4:checked+i::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-left: -8px;
+        margin-top: -8px;
+        width: 16px;
+        height: 16px;
+        background: palegreen;
+        border-radius: 50%;
+    }

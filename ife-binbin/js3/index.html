@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>零基础JavaScript编码（三）</title>
+</head>
+<body>
+<ul id="source">
+  <li>北京空气质量：<b>90</b></li>
+  <li>上海空气质量：<b>70</b></li>
+  <li>天津空气质量：<b>80</b></li>
+  <li>广州空气质量：<b>50</b></li>
+  <li>深圳空气质量：<b>40</b></li>
+  <li>福州空气质量：<b>32</b></li>
+  <li>成都空气质量：<b>90</b></li>
+</ul>
+
+<ul id="resort">
+
+</ul>
+
+<button id="sort-btn">排序</button>
+<script>
+window.onload = function() {
+  var soUl = document.getElementById("source"),
+    reUl = document.getElementById("resort"),
+    soLi = soUl.getElementsByTagName("li"),
+    reLi = reUl.getElementsByTagName("li");
+
+  init();
+
+  /* 获取空气质量数据 */
+  function getData() {
+    var data = [];
+    for (var i = 0; i < soLi.length; i++) {
+      var data1 = [];
+      data1.push(soLi[i].innerText.substr(0, 2));
+      data1.push(soLi[i].innerText.substr(7, 8));
+      data.push(data1);
+
+    }
+
+    return data;
+
+  }
+
+  /* 以天气质量排序 */
+  function sortAqiData(data) {
+    data.sort(function(a, b) {
+      return b[1] - a[1];
+    });
+    return data;
+  }
+
+  /* 打印出排序完的城市排名 */
+  function render(data) {
+    var fragment = document.createDocumentFragment();
+    var num = ["一", "二", "三", "四", "五", "六", "七", "八", "九"];
+
+    for (var i = 0; i < soLi.length; i++) {
+
+      var oLi = document.createElement("li");
+
+      oLi.innerHTML = "第" + num[i] + "名：" + data[i][0] + "空气质量：" + "<b>" + data[i][1] + "</b>";
+
+      fragment.appendChild(oLi);
+    }
+
+    reUl.appendChild(fragment);
+  }
+
+  /* 触发各函数 */
+  function btnHandle() {
+    var aqiData = getData();
+    aqiData = sortAqiData(aqiData);
+    render(aqiData);
+  }
+
+  /* 初始化并绑定按钮 */
+  function init() {
+    var btn = document.getElementById("sort-btn");
+    // 在这下面给sort-btn绑定一个点击事件，点击时触发btnHandle函数
+    btn.addEventListener("click", function() {
+      btnHandle();
+
+    })
+
+  }
+}
+</script>	
+</body>
+</html>

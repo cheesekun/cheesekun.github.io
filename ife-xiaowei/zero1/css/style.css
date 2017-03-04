@@ -1,0 +1,323 @@
+@charset "UTF-8";
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: #aaa;
+}
+
+ul {
+  list-style: none;
+}
+
+/* header */
+header {
+  position: relative;
+  width: 100%;
+  height: 60px;
+  background: #222;
+}
+header img {
+  position: absolute;
+  top: 10px;
+  left: 30px;
+}
+header nav {
+  position: absolute;
+  right: 0;
+  height: 100%;
+}
+header nav ul li {
+  display: inline-block;
+  height: 100%;
+  color: #fff;
+  font: 12px/60px 微软雅黑;
+}
+header nav ul li:hover {
+  background: #999;
+}
+
+/* main */
+main {
+  /* 图片廊 */
+  /* aside */
+}
+main .current {
+  width: 90%;
+  margin: 20px auto;
+  padding: 30px 20px;
+  background: #fff;
+}
+main .h1 {
+  font: 800 20px 微软雅黑;
+  margin-bottom: 10px;
+}
+main span {
+  font: 300 10px 微软雅黑;
+}
+main .h2 {
+  font: 300 15px 微软雅黑;
+  margin-bottom: 10px;
+}
+main article img {
+  width: 300px;
+}
+main article p {
+  text-indent: 35px;
+  margin: 10px 0;
+}
+main article ul {
+  margin: 10px;
+}
+main .photoshow figure {
+  padding: 5px;
+  margin: 10px 0 10px 30px;
+  width: 120px;
+  text-align: center;
+  border: 1px solid #999;
+}
+main .photoshow figure figcaption {
+  font: 200 12px/12px 微软雅黑;
+  margin: 5px auto;
+}
+main .photoshow figure img {
+  width: 100px;
+}
+main .lastAct table {
+  width: 100%;
+}
+main .lastAct table th {
+  width: 33.33%;
+  background: #333;
+  color: #fff;
+  text-align: left;
+}
+main .lastAct table .count {
+  background: #999;
+}
+main aside h1 {
+  border-left: 5px solid #aaa;
+}
+main aside .web_register {
+  padding: 0 20px;
+  padding-top: 10px;
+}
+main aside .web_register label {
+  width: 400px;
+  display: block;
+  text-align: right;
+  float: left;
+}
+main aside .web_register input {
+  text-align: left;
+  margin: 5px 10px;
+  vertical-align: top;
+}
+main aside .web_register p {
+  padding-left: 410px;
+  color: #A9A6A6;
+  text-indent: 0em;
+  font-size: 14px;
+  padding-bottom: 20px;
+}
+main aside .web_register select {
+  margin: 5px 10px;
+  width: 70px;
+}
+main aside .web_register textarea {
+  margin: 5px 10px;
+  width: 400px;
+  height: 100px;
+}
+main aside .web_register input[type="submit"] {
+  width: 100%;
+  text-align: center;
+  border-radius: 6px;
+  background: #3355D0;
+  border: solid 1px #335500;
+  color: #fff;
+  padding: 5px;
+  margin: 5px 0;
+}
+
+footer {
+  width: 100%;
+  padding: 30px;
+  background: #000;
+  color: #fff;
+  text-align: center;
+}
+footer a {
+  color: #951;
+}
+
+/* scss */
+/* 
+
+  * {
+    margin: 0;
+    padding: 0;
+  }
+  
+  body {
+    background: #aaa;
+  }
+  
+  ul {
+    list-style: none;
+  }
+  // header 
+  
+  header {
+    position: relative;
+    width: 100%;
+    height: 60px;
+    background: #222;
+    img {
+      position: absolute;
+      top: 10px;
+      left: 30px;
+    }
+    nav {
+      position: absolute;
+      right: 0;
+      height: 100%;
+      ul {
+        li {
+          display: inline-block;
+          height: 100%;
+          color: #fff;
+          font: 12px/60px 微软雅黑;
+          &:hover {
+            background: #999;
+          }
+        }
+      }
+    }
+  }
+  // main 
+  
+  main {
+    .current {
+      width: 90%;
+      margin: 20px auto;
+      padding: 30px 20px;
+      background: #fff;
+    }
+    .h1 {
+      font: 800 20px 微软雅黑;
+      margin-bottom: 10px;
+    }
+    span {
+      font: 300 10px 微软雅黑;
+    }
+    .h2 {
+      font: 300 15px 微软雅黑;
+      margin-bottom: 10px;
+    }
+    article {
+      img {
+        width: 300px;
+      }
+      p {
+        text-indent: 35px;
+        margin: 10px 0;
+      }
+      ul {
+        margin: 10px;
+      }
+    }
+    // 图片廊
+    .photoshow {
+      figure {
+        padding: 5px;
+        margin: 10px 0 10px 30px;
+        width: 120px;
+        text-align: center;
+        border: 1px solid #999;
+        figcaption {
+          font: 200 12px/12px 微软雅黑;
+          margin: 5px auto;
+        }
+        img {
+          width: 100px
+        }
+      }
+    }
+    .lastAct {
+      table {
+        width: 100%;
+        th {
+          width: 33.33%;
+          background: #333;
+          color: #fff;
+          text-align: left;
+        }
+        .count {
+          background: #999;
+        }
+      }
+    }
+    // aside 
+    aside {
+      h1 {
+        border-left: 5px solid #aaa;
+      }
+      .web_register {
+        padding: 0 20px;
+        padding-top: 10px;
+        label {
+          width: 400px;
+          display: block;
+          text-align: right;
+          float: left;
+        }
+        input {
+          text-align: left;
+          margin: 5px 10px;
+          vertical-align: top;
+        }
+        p {
+          padding-left: 410px;
+          color: #A9A6A6;
+          text-indent: 0em;
+          font-size: 14px;
+          padding-bottom: 20px;
+        }
+        select {
+          margin: 5px 10px;
+          width: 70px;
+        }
+        textarea {
+          margin: 5px 10px;
+          width: 400px;
+          height: 100px;
+        }
+        input[type="submit"] {
+          width: 100%;
+          text-align: center;
+          border-radius: 6px;
+          background: #3355D0;
+          border: solid 1px #335500;
+          color: #fff;
+          padding: 5px;
+          margin: 5px 0;
+        }
+      }
+    }
+  }
+  
+  footer {
+    width: 100%;
+    padding: 30px;
+    background: #000;
+    color: #fff;
+    text-align: center;
+    a {
+      color: #951;
+    }
+  }
+
+ */
