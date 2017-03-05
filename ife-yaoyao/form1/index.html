@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>表单（一）单个表单项的检验</title>
+<style>
+@charset "UTF-8";
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+input {
+  line-height: 65px;
+  box-sizing: border-box;
+  padding: 15px;
+  border: 2px solid #999;
+  border-radius: 10px;
+  font: 25px 微软雅黑;
+  outline: none;
+}
+
+form {
+  margin: 20px auto;
+}
+form #name {
+  width: 780px;
+  height: 110px;
+  margin: 0 auto;
+  background: #fff;
+}
+form #name label span {
+  margin-right: 50px;
+  font: 25px 微软雅黑;
+}
+form #name label input[type="text"] {
+  width: 530px;
+  color: #777;
+}
+form #name input[type="button"] {
+  float: right;
+  cursor: point;
+  width: 110px;
+  color: #fff;
+  background: #159;
+}
+form #name p {
+  font-size: 20px;
+  color: #999;
+  margin: 5px 0 0 100px;
+}
+
+</style>
+</head>
+<body>
+<form action="">
+  <div id="name">
+    <label><span>名称</span><input type="text" /></label><input type="button" value="验证" />
+    <p></p>
+  </div>
+</form>
+
+<script>
+//获取ID
+var $ = function(id) {
+  return typeof id === "string" ? document.getElementById(id) : id;
+};
+
+//获取tagName
+var $$ = function(tagName, oParent) {
+  return (oParent || document).getElementsByTagName(tagName);
+};
+
+var oName = $("name"),
+  oText = $$("input", oName)[0],
+  oBtn = $$("input", oName)[1],
+  oP = $$("p", oName)[0];
+
+function verify(value) {
+
+  if (value === "") {
+    oText.style.borderColor = "red";
+    oP.innerHTML = "姓名不能为空";
+    oP.style.color = "red";
+  } else if (/^([\s\S]){4,16}$/.test(value)) {
+    oText.style.borderColor = "green";
+    oP.innerHTML = "名字格式正确";
+    oP.style.color = "green";
+  }
+}
+
+oText.addEventListener("focus", function() {
+  oText.style.borderColor = "#999";
+  oP.style.color = "#999";
+  oP.innerHTML = "必填，长度为4~16个字符";
+})
+
+oText.addEventListener("blur", function() {
+  oP.innerHTML = "";
+})
+
+oBtn.addEventListener("click", function() {
+  var value = oText.value;
+  verify(value);
+})
+</script>	
+</body>
+</html>
