@@ -78,12 +78,15 @@ var oName = $("name"),
   oP = $$("p", oName)[0];
 
 function verify(value) {
-
+var count = value.replace(/[\u0391-\uFFE5]/g,'xx').length;
+        
   if (value === "") {
     oText.style.borderColor = "red";
     oP.innerHTML = "姓名不能为空";
     oP.style.color = "red";
-  } else if (/^([\s\S]){4,16}$/.test(value)) {
+  } else if (count >=4&&count<=16){
+    //不验证中文字符的话
+    //(/^([\s\S]){4,16}$/.test(value)) {
     oText.style.borderColor = "green";
     oP.innerHTML = "名字格式正确";
     oP.style.color = "green";
