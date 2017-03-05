@@ -1,5 +1,3 @@
-/* scss见css文件夹 */
-
 @charset "UTF-8";
 * {
   height: auto;
@@ -532,6 +530,7 @@ header .introduce ul li .line.line_no {
   margin: 5px;
   font-size: 14px;
   padding-left: 10px;
+  resize: none;
 }
 
 /* footer */
