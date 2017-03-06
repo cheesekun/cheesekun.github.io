@@ -160,7 +160,7 @@
 
     <script src="/js/jquery.min.js"></script>
 
-    <link rel="stylesheet" href="/css/highlight/solarized-white.css">
+    <link rel="stylesheet" href="/css/highlight/undefined.css">
 
     <!-- UC Browser Compatible-->
     <script>
@@ -545,20 +545,6 @@
     <li class="dropdown">
         <ul id="settings-dropdown" class="dropdown-menu">
             
-                <li>
-                    <a href="huanshengweng@gmail.com" target="_blank" title="Email Me">
-                        <i class="material-icons sidebar-material-icons sidebar-indent-left1pc-element">email</i>
-                        Email Me
-                    </a>
-                </li>
-            
-                <li>
-                    <a href="/img/wechat.jpg" target="_blank" title="Wechat??">
-                        <i class="material-icons sidebar-material-icons sidebar-indent-left1pc-element">chat</i>
-                        Wechat??
-                    </a>
-                </li>
-            
         </ul>
     </li>
 
@@ -595,60 +581,12 @@
 
     <!-- Categories  -->
     
-        <li class="dropdown">
-            <a href="#" class="ripple-effect dropdown-toggle" data-toggle="dropdown">
-                <i class="material-icons sidebar-material-icons">chrome_reader_mode</i>
-                分类
-                <b class="caret"></b>
-            </a>
-            <ul class="dropdown-menu">
-                <li>
-                <a class="sidebar_archives-link" href="/categories/前端/">前端<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/博客/">博客<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/日语/">日语<span class="sidebar_archives-count">4</span></a>
-            </ul>
-        </li>
-    
 
     <!-- Divider -->
     <li class="divider"></li>
 
 
     <!-- Pages  -->
-  	
-        <li>
-            <a href="/gallery" title="映像">
-                
-                    <i class="material-icons sidebar-material-icons">photo</i>
-                
-                映像
-            </a>
-        </li>
-  	
-        <li>
-            <a href="/tags" title="标签云">
-                
-                    <i class="material-icons sidebar-material-icons">cloud</i>
-                
-                标签云
-            </a>
-        </li>
-  	
-        <li>
-            <a href="/links" title="小伙伴">
-                
-                    <i class="material-icons sidebar-material-icons">people</i>
-                
-                小伙伴
-            </a>
-        </li>
-  	
-        <li>
-            <a href="/about" title="ME!">
-                
-                    <i class="material-icons sidebar-material-icons">person</i>
-                
-                ME!
-            </a>
-        </li>
   	
 
     <!-- Article Numebr  -->
@@ -885,91 +823,6 @@ showsectime();
 
 
 
-
-
-    <!-- Leancloud -->
-    <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
-    <script>
-        AV.initialize("dtnsYG6FMMH8o5LFp6SAuveW-gzGzoHsz", "fckj1LxrLNk5eAq26lMOXgSU");
-    </script>
-    <script>
-    function showTime(Counter) {
-        var query = new AV.Query(Counter);
-        $('.leancloud-views_num').each(function() {
-            var url = $(this).attr('id').trim();
-            query.equalTo('url', url);
-            query.find({
-                success: function(results) {
-                    if (results.length === 0) {
-                        var content = '0 ' + $(document.getElementById(url)).text();
-                        $(document.getElementById(url)).text(content);
-                        return;
-                    }
-                    for (var i = 0; i < results.length; i++) {
-                        var object = results[i];
-                        var content = object.get('time') + ' ' + $(document.getElementById(url)).text();
-                        $(document.getElementById(url)).text(content);
-                    }
-                },
-                error: function(object, error) {
-                    console.log('Error: ' + error.code + ' ' + error.message);
-                }
-            });
-        });
-    }
-
-    function addCount(Counter) {
-      var Counter = AV.Object.extend('Counter');
-      url = $('.leancloud-views_num').attr('id').trim();
-      title = $('.leancloud-views_num').attr('data-flag-title').trim();
-      var query = new AV.Query(Counter);
-      query.equalTo('url', url);
-      query.find({
-          success: function(results) {
-            if (results.length > 0) {
-                var counter = results[0];
-                counter.fetchWhenSave(true);
-                counter.increment('time');
-                counter.save(null, {
-                    success: function(counter) {
-                        var content =  counter.get('time') + ' ' + $(document.getElementById(url)).text();
-                        $(document.getElementById(url)).text(content);
-                    },
-                    error: function(counter, error) {
-                        console.log('Failed to save Visitor num, with error message: ' + error.message);
-                    }
-                });
-            } else {
-              var newcounter = new Counter();
-              newcounter.set('title', title);
-              newcounter.set('url', url);
-              newcounter.set('time', 1);
-              newcounter.save(null, {
-                  success: function(newcounter) {
-                      console.log('newcounter.get(\'time\')='+newcounter.get('time'));
-                      var content = newcounter.get('time') + ' ' + $(document.getElementById(url)).text();
-                      $(document.getElementById(url)).text(content);
-                  },
-                  error: function(newcounter, error) {
-                      console.log('Failed to create');
-                  }
-              });
-            }
-        },
-        error: function(error) {
-            console.log('Error:' + error.code + ' ' + error.message);
-        }
-      });
-    }
-    $(function() {
-        var Counter = AV.Object.extend('Counter');
-        if ($('.leancloud-views_num').length === 1) {
-            addCount(Counter);
-        } else if ($('.post-title-link').length > 1) {
-            showTime(Counter);
-        }
-    });
-</script>
 
 
 
