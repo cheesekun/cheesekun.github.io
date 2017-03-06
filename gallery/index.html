@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh">
     <head>
     
     <title>
@@ -180,6 +180,7 @@
         <!-- Single Gallery Page -->
         <link rel="stylesheet" href="/css/gallery.min.css">
 
+
 <body>
     <!-- Wrapper -->
     <div id="wrapper">
@@ -205,20 +206,19 @@
             
                 
                     <article class="thumb">
-                        <a href="http://oghi29b7h.bkt.clouddn.com/gallery/photo%20girl.jpg.jpg" class="image"><img src="http://oghi29b7h.bkt.clouddn.com/gallery/photo%20girl.jpg.jpg" alt="photo &amp; girl" /></a>
+                        <a href="http://oghi29b7h.bkt.clouddn.com/gallery/photo%20girl.jpg.jpg" class="image lazy" data-original="http://oghi29b7h.bkt.clouddn.com/gallery/photo%20girl.jpg.jpg"><img class="lazy" data-original="http://oghi29b7h.bkt.clouddn.com/gallery/photo%20girl.jpg.jpg" alt="photo &amp; girl" /></a>
                         <h2>photo &amp; girl</h2>
                         <p>那时我也会陷入回忆吧</p>
                     </article>
                 
                     <article class="thumb">
-                        <a href="http://oghi29b7h.bkt.clouddn.com/gallery/xiamen.jpg" class="image"><img src="http://oghi29b7h.bkt.clouddn.com/gallery/xiamen.jpg" alt="厦门 | 周" /></a>
+                        <a href="http://oghi29b7h.bkt.clouddn.com/gallery/xiamen.jpg" class="image lazy" data-original="http://oghi29b7h.bkt.clouddn.com/gallery/xiamen.jpg"><img class="lazy" data-original="http://oghi29b7h.bkt.clouddn.com/gallery/xiamen.jpg" alt="厦门 | 周" /></a>
                         <h2>厦门 | 周</h2>
                         <p>2017 1 17 厦门</p>
                     </article>
                 
             
         </div>
-
         <!-- Footer -->
         <!--
         <footer id="footer" class="panel">
@@ -276,6 +276,17 @@
     <script src="/js/gallery/skel.min.js"></script>
     <script src="/js/gallery/util.min.js"></script>
     <script src="/js/gallery/main.min.js"></script>
+    <script src="/js/gallery/jquery.scrollstop.min.js"></script>
+    <script src="/js/lazyload.min.js"></script>
+
+    <script type="text/javascript">
+        queue.offer(function(){
+            $('.lazy').lazyload({
+              effect: 'fadeIn',
+              event: 'scrollstop'
+            });
+        })
+    </script>
 </body>
 
     
