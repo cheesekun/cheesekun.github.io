@@ -244,12 +244,6 @@
             </span>
 
             
-                <!-- Comment Number -->
-                &nbsp;|&nbsp;
-                <span class="post_entry-comment" >
-                        <span class="ds-thread-count" data-thread-key="" data-count-type="comments"></span>
-                </span>
-            
 
             <!-- Post Views -->
             <span class="post_entry-views">
@@ -269,7 +263,7 @@
     var randomNum;
 
     var locatePost = $('.locate-thumbnail-symbol').next();
-    for(var i = 0; i < 10; i++) {
+    for(var i = 0; i < 5; i++) {
         randomNum = Math.floor(Math.random() * 19 + 1);
 
         locatePost.children('.post_thumbnail-random').attr('id', 'random_thumbnail-'+randomNum);
@@ -744,23 +738,6 @@ showsectime();
     <script src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
 
-
-    <!-- 多说公共 js 代码 start -->
-    <script type="text/javascript">
-        var duoshuoQuery = {
-            short_name: 'cheesekun'
-        };
-        (function() {
-            var ds = document.createElement('script');
-            ds.type = 'text/javascript';
-            ds.async = true;
-            ds.src = 'https://static.duoshuo.com/embed.js';
-            ds.charset = 'UTF-8';
-            (document.getElementsByTagName('head')[0]
-             || document.getElementsByTagName('body')[0]).appendChild(ds);
-        })();
-    </script>
-    <!-- 多说公共 js 代码 end -->
 
 
 
