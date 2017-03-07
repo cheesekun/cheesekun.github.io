@@ -35,16 +35,23 @@ function numIn() {
 
 function numOut() {
   $("left-out").addEventListener('click', function() {
+  	if (!($$("span").length)) {
+    	alert("nothing can be out");
+    	return;
+  }
     $("num-area").removeChild($$("span")[0]);
   });
 
   $("right-out").addEventListener('click', function() {
+  	if (!($$("span").length)) {
+    	alert("nothing can be out");
+    	return;
+  }
     var len = $$("span").length - 1;
     $("num-area").removeChild($$("span")[len]);
   });
 }
 window.onload = function() {
-  createSpan();
   numOut();
   numIn();
 }
