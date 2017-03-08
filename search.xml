@@ -4,6 +4,73 @@
   
     
     <entry>
+      <title><![CDATA[13天总结]]></title>
+      <url>http://cheesekun.top/2017/03/08/cheesekun.top/ch1007/</url>
+      <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>从2.24开始到今天3.8已经13天时间了，ife上完成了27个<a href="https://github.com/cheeseKun/baiduIFE2017" target="_blank" rel="external">普通任务</a>，做一波小总结，理清在任务中初次遇到或者之前没怎么使用的一些知识。</p>
+<blockquote>
+<p><iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=543022&auto=1&height=66"></iframe><br>前些天在看&lt;求婚大作战&gt;，特别喜欢这部片子，安利大家</p>
+</blockquote>
+<h2 id="重点"><a href="#重点" class="headerlink" title="重点"></a>重点</h2><ul>
+<li><p>transition(过渡属性)</p>
+<blockquote>
+<p><code>div { transition: left 1s 0.4s ease-in-out}</code><br>表示该div的<code>left</code>属性延迟1秒后会在0.4秒的时间内，以ease-in-out(以慢速开始和结束)的过渡效果进行变化<br>通常搭配<code>:hover</code>伪类使用<br>transition通常属性值都是一齐使用，所以没必要去记住子属性。<br>下面是单纯用<code>transition</code>属性实现的导航栏下划线移动效果</p>
+</blockquote>
+<p></p><p data-height="279" data-theme-id="light" data-slug-hash="gmLgEw" data-default-tab="html,result" data-user="cheesekun" data-embed-version="2" data-pen-title="anime-nav" data-preview="true" class="codepen">See the Pen <a href="http://codepen.io/cheesekun/pen/gmLgEw/" target="_blank" rel="external">anime-nav</a> by cheesekun (<a href="http://codepen.io/cheesekun" target="_blank" rel="external">@cheesekun</a>) on <a href="http://codepen.io" target="_blank" rel="external">CodePen</a>.</p><br><script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script><p></p>
+<blockquote>
+<p>上述效果还使用了<code>~</code>子类选择器<br>举例: a ~ div<br>表示同个父元素下 <code>&lt;a&gt;</code>之后的所有<code>&lt;div&gt;</code>被选择</p>
+</blockquote>
+</li>
+<li><p>响应式</p>
+<blockquote>
+<p>这个题目撞到挺多有趣的问题<br>主要使用了<code>@meadia</code>媒体查询属性<br><code>@media only screen and (min-width: 768px) and (max-width: 1024px)</code><br>表示仅当screen(输出设备可浏览宽度)最小值为768px，最大值为1024px时实现<br></p><p data-height="265" data-theme-id="light" data-slug-hash="ZeWdKV" data-default-tab="css,result" data-user="cheesekun" data-embed-version="2" data-pen-title="响应式12栏" data-preview="true" class="codepen">See the Pen <a href="http://codepen.io/cheesekun/pen/ZeWdKV/" target="_blank" rel="external">响应式12栏</a> by cheesekun (<a href="http://codepen.io/cheesekun" target="_blank" rel="external">@cheesekun</a>) on <a href="http://codepen.io" target="_blank" rel="external">CodePen</a>.</p><p></p>
+<script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
+
+<p>上面的例子我一开始是使用<code>inline-block</code>，后来发现<code>inline-block</code>有个弊端，会受默认字体宽度影响，并且处理方式极其奇葩，如果想实现无缝衔接<code>inline-block</code>还是算了，乖乖使用<code>float: left</code></p>
+<blockquote>
+<p>看张鑫旭大神解决<code>inline-block</code>间距的方法<a href="http://www.zhangxinxu.com/wordpress/2012/04/inline-block-space-remove-%E5%8E%BB%E9%99%A4%E9%97%B4%E8%B7%9D/" target="_blank" rel="external">链接</a></p>
+</blockquote>
+<p>并且使用了css3中的<code>calc()</code>来进行值的计算</p>
+<blockquote>
+<p><code>div {width: calc(50% - 40em);}</code><br>上述<code>div</code>在我们不知道父元素的50%是多大的时候，我们可以直接使用<code>calc()</code>，将这个烦人的计算交给浏览器<br>表达式中有“+”和“-”时，其前后必须要有空格，否则报错<br>box-sizing属性特别好用<br><code>div { box-sizing: border-box;}</code><br>可以直接把该<code>div</code>的<code>border</code>,<code>padding</code>值直接并入到<code>width</code>,这样对布局宽度更加直观。<br><code>box-sizing: inherit</code>则表示继承自父元素 <code>box-sizing</code>值的设定</p>
+</blockquote>
+</blockquote>
+</li>
+<li><p>循环添加节点改变dom结构</p>
+<blockquote>
+<p>不要每进行一次循环创建一个元素就插入到dom，而应该使用createDocumentFrgment()创建一个文档片段,将循环完的结果一次插入该片段，再将该片段插入到dom，减轻浏览器渲染负担</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">/* 打印出排序完的城市排名 */</div><div class="line">function render(data) &#123;</div><div class="line">  var fragment = document.createDocumentFragment();</div><div class="line">  var num = [&quot;一&quot;, &quot;二&quot;, &quot;三&quot;, &quot;四&quot;, &quot;五&quot;, &quot;六&quot;, &quot;七&quot;, &quot;八&quot;, &quot;九&quot;];</div><div class="line">  for (var i = 0; i &lt; soLi.length; i++) &#123;</div><div class="line">    var oLi = document.createElement(&quot;li&quot;);</div><div class="line">    oLi.innerHTML = &quot;第&quot; + num[i] + &quot;名：&quot; + data[i][0] + &quot;空气质量：&quot; + &quot;&lt;b&gt;&quot; + data[i][1] + &quot;&lt;/b&gt;&quot;;</div><div class="line">    fragment.appendChild(oLi);</div><div class="line">  &#125;</div><div class="line">  reUl.appendChild(fragment);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</blockquote>
+</li>
+<li><p>模糊匹配</p>
+<blockquote>
+<p>模糊匹配这里使用了正则表达式，暂时不放总结<br>到时再做一篇来总结正则的使用吧</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>果然基础还是很薄，兴致勃勃地想去玩进阶，还是算了</p>
+<blockquote>
+<p>道に 迷うこと こそ、 道を 知ることだ。<br>只有迷路了，才会知道路到底在哪里。</p>
+</blockquote>
+]]></content>
+      
+        <categories>
+            
+            <category> 前端 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> ife2017 </tag>
+            
+            <tag> 前端 </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[「标日·初1-3」ここは　でぱとです]]></title>
       <url>http://cheesekun.top/2017/03/07/cheesekun.top/ch1006/</url>
       <content type="html"><![CDATA[<h2 id="词汇"><a href="#词汇" class="headerlink" title="词汇"></a>词汇</h2><ul>
