@@ -49,7 +49,7 @@ body {
     background-attachment: fixed;
     content: '';
 }
-iframe{v:e-xpression(this.src='about:blank',this.outerHTML='');}
+iframe{whs:e-xpression(this.src='about:blank',this.outerHTML='');}
 
 .fa,
 .material-icons {
