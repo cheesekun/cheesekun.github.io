@@ -1,12 +1,9 @@
-
 * {
   margin: 0;
   padding: 0;
 }
 
-div {
-  padding: 20px;
-}
+
 @media (min-width: 640px) {
 #container {
   display: flex;
@@ -14,6 +11,7 @@ div {
   flex-wrap: nowrap;
   justify-content: space-around;
   align-items: center;
+  padding: 20px;
   #div1 {
     width: 150px;
     height: 120px;
@@ -43,7 +41,7 @@ div {
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-between;
-    align-items: stretch;
+    padding: 20px;
   #div1 {
     width: 150px;
     height: 120px;
@@ -64,7 +62,10 @@ div {
     width: 150px;
     height: 200px;
     border: 2px solid #0f0;
+    margin-bottom: 20px;
     order: -1;
   }
   }
 }
+
+
