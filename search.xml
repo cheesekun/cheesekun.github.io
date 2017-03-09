@@ -37,7 +37,7 @@
 </li>
 <li><p>循环添加节点改变dom结构</p>
 <blockquote>
-<p>不要每进行一次循环创建一个元素就插入到dom，而应该使用createDocumentFrgment()创建一个文档片段,将循环完的结果一次插入该片段，再将该片段插入到dom，减轻浏览器渲染负担</p>
+<p>不要每进行一次循环创建一个元素就插入到dom，而应该使用createDocumentFrgment()创建一个文档片段,将循环的结果一个一个插入该片段，再将该片段一次插入到dom，减轻浏览器渲染负担</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">/* 打印出排序完的城市排名 */</div><div class="line">function render(data) &#123;</div><div class="line">  var fragment = document.createDocumentFragment();</div><div class="line">  var num = [&quot;一&quot;, &quot;二&quot;, &quot;三&quot;, &quot;四&quot;, &quot;五&quot;, &quot;六&quot;, &quot;七&quot;, &quot;八&quot;, &quot;九&quot;];</div><div class="line">  for (var i = 0; i &lt; soLi.length; i++) &#123;</div><div class="line">    var oLi = document.createElement(&quot;li&quot;);</div><div class="line">    oLi.innerHTML = &quot;第&quot; + num[i] + &quot;名：&quot; + data[i][0] + &quot;空气质量：&quot; + &quot;&lt;b&gt;&quot; + data[i][1] + &quot;&lt;/b&gt;&quot;;</div><div class="line">    fragment.appendChild(oLi);</div><div class="line">  &#125;</div><div class="line">  reUl.appendChild(fragment);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 </blockquote>
 </li>
@@ -173,7 +173,7 @@
       <url>http://cheesekun.top/2017/03/01/cheesekun.top/ch1005/</url>
       <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p><img src="http://om2b9s612.bkt.clouddn.com/ife.png" alt=""></p>
 <p>期待已久的<a href="http://ife.baidu.com/" target="_blank" rel="external">百度前端技术学院(ife)</a>，2017年春季班终于来了<br>很遗憾去年那一次错过了，失去了涨芝士的时机。<br>今年赶上好时机，闷声发大财，努力提高芝士水平，(扶眼镜)(ノ<em>゜▽゜</em>)<br>从最基础的任务开始做起，我会持续将任务代码提交到<a href="https://github.com/cheeseKun" target="_blank" rel="external">github</a>上去<br>有兴趣的可以去看下,然后随手star是美德，(｡･ω･｡)ﾉ♡</p>
-<h2 id="重点"><a href="#重点" class="headerlink" title="重点"></a>重点</h2><p>我在每个任务下面都写上README，上面有代码的demo链接和任务描述<br>所以记得点README<br>下面po上个学院的快捷链接,点击即可</p>
+<h2 id="重点"><a href="#重点" class="headerlink" title="重点"></a>重点</h2><p>我在每个任务下面都写上README，上面有代码的demo链接和任务描述<br>所以记得点README<br>下面po上每个学院的快捷链接,点击即可</p>
 <ul>
 <li><p>勇士级任务</p>
 <ul>
