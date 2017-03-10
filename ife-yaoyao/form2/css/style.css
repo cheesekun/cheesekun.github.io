@@ -1,0 +1,49 @@
+@charset "UTF-8";
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+input {
+  line-height: 65px;
+  box-sizing: border-box;
+  padding: 15px;
+  border: 2px solid #999;
+  border-radius: 10px;
+  font: 25px 微软雅黑;
+  outline: none;
+}
+
+form {
+  margin: 20px auto;
+  width: 700px;
+}
+form div {
+  width: 780px;
+  margin: 0 auto;
+}
+form div label span {
+  display: inline-block;
+  width: 120px;
+  text-align: right;
+  font: 25px 微软雅黑;
+}
+form div label input[type="text"],
+form div label input[type="password"] {
+  width: 530px;
+  margin-left: 50px;
+  color: #777;
+}
+form div p {
+  font-size: 20px;
+  color: #999;
+  margin: 5px 0 30px 170px;
+}
+form input[type="button"] {
+  float: right;
+  cursor: pointer;
+  width: 110px;
+  color: #fff;
+  background: #159;
+}
