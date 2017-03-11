@@ -4,6 +4,223 @@
   
     
     <entry>
+      <title><![CDATA[一波正则表达式]]></title>
+      <url>http://cheesekun.top/2017/03/11/cheesekun.top/ch1008/</url>
+      <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>基本上是个语言就会有正则表达式吧。虽然只是单单一个语法知识，内容杂到都有专门讲它的书了。<br>虽然正则看起来很复杂，但是对于前端来说，必学吧。<br>毕竟表单处理还是需要用到的，不会写也要看懂。<br>下面就总结了下js正则表达式的用法<br>例子都是用<strong>cheesekun</strong></p>
+<blockquote>
+<p>では。始めましょう<br>那么，开始吧</p>
+</blockquote>
+<h2 id="创建正则表达式"><a href="#创建正则表达式" class="headerlink" title="创建正则表达式"></a>创建正则表达式</h2><p>首先，创建正则表达式有两种方法，一种是正则表达式字面量，一种是使用RegExp对象的构造函数</p>
+<ul>
+<li>字面量<pre class="line-numbers language-javascript"><code class="language-javascript"><span class="token keyword">const</span> regex <span class="token operator">=</span> <span class="token regex">/chee+kun/</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> regex <span class="token operator">=</span> <span class="token regex">/chee+kun/g</span><span class="token punctuation">;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<blockquote>
+<p>通常使用这种，性能较好</p>
+</blockquote>
+</li>
+<li>使用RexExp对象<code>new RegExp(patten, flags)</code><pre class="line-numbers language-javascript"><code class="language-javascript"><span class="token keyword">let</span> regex <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">RegExp</span><span class="token punctuation">(</span><span class="token string">"chee+sekun"</span><span class="token punctuation">)</span>
+<span class="token keyword">let</span> regex <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">RegExp</span><span class="token punctuation">(</span><span class="token string">"chee+sekun"</span><span class="token punctuation">,</span> <span class="token string">"g"</span><span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<blockquote>
+<p>这种用法主要用在无法事先确定模式，只能在运行的时候以字符串形式创建，性能较低</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="编写正则表达式模式"><a href="#编写正则表达式模式" class="headerlink" title="编写正则表达式模式"></a>编写正则表达式模式</h2><ul>
+<li>不使用特殊符号<blockquote>
+<p>/kun/ 即可匹配到”hi，cheesekun，what’s ur name” 和 “what words include ‘kun’”</p>
+</blockquote>
+</li>
+<li>使用特殊符号<blockquote>
+<p>举个小例子<br>/chee+sekun/ 可匹配到”cheesekun”，”cheeeeesekun”但不可以匹配”chesekun”</p>
+<blockquote>
+<p>其中的+，匹配前面一个表达式（也就是前面的”e”）1次或者多次。等价于 {1,}</p>
+</blockquote>
+</blockquote>
+</li>
+</ul>
+<h2 id="常用特殊符号"><a href="#常用特殊符号" class="headerlink" title="常用特殊符号"></a>常用特殊符号</h2><ul>
+<li>\<blockquote>
+<p>转义字符。如/chee+sekun/ 将 + 转义，只能匹配 “cheese+kun”<br>放在非特殊字符前，则表示下一个字符是特殊的，如\b，是一个字符边界，下面会说</p>
+</blockquote>
+</li>
+<li>^<blockquote>
+<p>匹配输入的开始<br>如/^cheesekun/可匹配”cheesekun hi”，但不能匹配”hi cheesekun”</p>
+</blockquote>
+</li>
+<li>$<blockquote>
+<p>匹配输入的结束<br>如/cheesekun$/可匹配”hi cheesekun”，但不能匹配”cheesekun hi”</p>
+</blockquote>
+</li>
+<li>*<blockquote>
+<p>匹配前一个表达式0次或多次。等价于 {0,}<br>如/chee*sekun/可匹配”chesekun”,也可以匹配”cheeeeeeeesekun”</p>
+</blockquote>
+</li>
+<li>+<blockquote>
+<p>匹配前一个表达式1次或多次。等价于 {1,}<br>如/chee+sekun/可匹配”cheesekun”,也可以匹配”cheeeeeeeesekun”</p>
+</blockquote>
+</li>
+<li>?<blockquote>
+<p>匹配前一个表达式0次或者1次。等价于 {0,1}<br>如/chee?sekun/可匹配”chesekun”,也可以匹配”cheesekun”</p>
+</blockquote>
+</li>
+<li>.<blockquote>
+<p>匹配除换行符之外的任何单个字符<br>如/che.sekun/可匹配”cheesekun”,也可以匹配”che♂sekun”</p>
+</blockquote>
+</li>
+<li>(x)<blockquote>
+<p>匹配 ‘x’ 并且记住匹配项<br>在正则表达式的匹配环节，要使用 \1, \2, \n 这样的语法<br>如<code>/(cheesekun)(kun)\1\2/</code> 等价于 <code>/cheesekuncheesekun/</code><br>在正则表达式的<a href="#1">替换环节</a>，则要使用像 $1、$2、$n 这样的语法<br>如<code>&quot;cheesekun&quot;.replace(/(cheese)(kun)/,&#39;$2$1&#39;)</code>,会返回 “kuncheese”</p>
+</blockquote>
+</li>
+<li>(?:x)<blockquote>
+<p>匹配 ‘x’ 但是不记住匹配项<br>/cheese{1,2}kun/ {1,2}只能对 e 起作用<br>/(?:cheese){1,2}kun/ {1,2}则对cheesekun 起作用，可匹配 “cheesecheesekun”，而不记录匹配项，则不能使用 \1或者 $1<br>如<code>&quot;cheesekun&quot;.replace(/(cheese)(kun)/,&#39;$2$1&#39;)</code>,会返回 “$2kun”</p>
+</blockquote>
+</li>
+<li><p>x(?=y)</p>
+<blockquote>
+<p>匹配’x’仅仅当’x’后面跟着’y’<br>如/cheese(？=kun)/ 会匹配”cheesekun”,也匹配”cheesekun123”<br>但只会返回匹配的”cheese”</p>
+</blockquote>
+<pre class="line-numbers language-javascript"><code class="language-javascript"><span class="token regex">/cheese(?=kun)/</span><span class="token punctuation">.</span><span class="token function">exec</span><span class="token punctuation">(</span><span class="token string">"cheesekun123"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">//["cheese"]</span>
+<span class="token regex">/cheese(kun)/</span><span class="token punctuation">.</span><span class="token function">exec</span><span class="token punctuation">(</span><span class="token string">"cheesekun123"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">//["cheesekun", "kun"]</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+</li>
+<li>x(?!y)<blockquote>
+<p>匹配’x’仅仅当’x’后面不跟着’y’<br>如/cheese(？!kun)/ 会匹配”cheese123”,但不能匹配”cheesekun”</p>
+</blockquote>
+</li>
+<li>x|y<blockquote>
+<p>匹配’x’或者’y’<br>如/cheese|kun/ 会匹配”cheese hi”,也可以匹配”kun hi”</p>
+</blockquote>
+</li>
+<li>{n},{n,m}<blockquote>
+<p>1.表示匹配前一个表达式n次<br>2.表示匹配前一个表达式n到m次<br>如/chee{3}sekun/,匹配”cheeeesekun”或者”cheeeesekun123”<br>/chee{3,5}sekun/,匹配”cheeeesekun”或者”cheeeeeesekun123”</p>
+</blockquote>
+</li>
+<li>[xyz]<blockquote>
+<p>一个字符集合。匹配方括号的中任意字符，包括转义序列<br>如/cheese[kun]/,可匹配”cheesek”,”cheeseku”,”cheesen”<br>可以使用破折号 - 来指定一个字符范围<br>如/cheese[a-j]/,可匹配”cheesec”,”cheeseg”,不可以匹配”cheese1”</p>
+</blockquote>
+</li>
+<li>[^xyz]<blockquote>
+<p>一个反向字符集。匹配任何没有包含在方括号中的字符<br>如/cheese[^kun]/,可匹配”cheesea”,”cheeseab”,”cheesecd”</p>
+</blockquote>
+</li>
+<li>\b<blockquote>
+<p>匹配一个词的边界,可认为是 ^ 和 $ 的集合<br>如/cheese\b/ 可匹配”kuncheese”<br>/\bcheese/ 可匹配”cheesekun”</p>
+</blockquote>
+</li>
+<li>\d 匹配一个数字，等价于[0-9]</li>
+<li>\D 匹配一个非数字，等价于[^0-9]</li>
+<li>\w 匹配一个单字字符（字母、数字或者下划线）,等价于[A-Za-z0-9_]</li>
+<li>\W 匹配一个非单字字符（字母、数字或者下划线）,等价于[^A-Za-z0-9_]</li>
+<li>\s 匹配一个空白字符，包括空格、制表符、换页符和换行符</li>
+<li>\S 匹配一个空白字符，包括空格、制表符、换页符和换行符</li>
+<li>\f 匹配一个换页符 (U+000C)</li>
+<li>\n 匹配一个换行符 (U+000A)</li>
+<li>\r 匹配一个回车符 (U+000D)</li>
+</ul>
+<h2 id="正则表达式方法"><a href="#正则表达式方法" class="headerlink" title="正则表达式方法"></a>正则表达式方法</h2><ul>
+<li><p>RegExp 方法</p>
+<ul>
+<li><p>test </p>
+<blockquote>
+<p>在字符串中测试是否匹配的RegExp方法，它返回true或false</p>
+</blockquote>
+<pre class="line-numbers language-javascript"><code class="language-javascript"><span class="token regex">/che+sekun/</span><span class="token punctuation">.</span><span class="token function">test</span><span class="token punctuation">(</span><span class="token string">"cheeeeesekun"</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// true</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+<li><p>exec</p>
+<blockquote>
+<p>在字符串中执行查找匹配的RegExp方法，它返回一个数组（未匹配到则返回null）<br>如果模式使用了匹配项，则匹配项也会一同传入数组</p>
+</blockquote>
+<pre class="line-numbers language-javascript"><code class="language-javascript"><span class="token regex">/che+sekun/</span><span class="token punctuation">.</span><span class="token function">exec</span><span class="token punctuation">(</span><span class="token string">"cheeeesekun123"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">// ["cheeeesekun"]</span>
+<span class="token regex">/ch(e+se)(kun)/</span><span class="token punctuation">.</span><span class="token function">exec</span><span class="token punctuation">(</span><span class="token string">"cheeeesekun123"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">// ["cheeeesekun","eeeese","kun"]</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+</li>
+</ul>
+</li>
+<li><p>String 方法</p>
+<ul>
+<li><p>replace</p>
+<blockquote>
+<p>在字符串中执行查找匹配的String方法，并且使用替换字符串替换掉匹配到的子字符串</p>
+</blockquote>
+<pre class="line-numbers language-javascript"><code class="language-javascript"><span class="token string">"cheesekun hi"</span><span class="token punctuation">.</span><span class="token function">replace</span><span class="token punctuation">(</span><span class="token regex">/hi/</span><span class="token punctuation">,</span><span class="token string">"hello"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">// "cheesekun hello"</span>
+<span class="token string">"cheesekun"</span><span class="token punctuation">.</span><span class="token function">replace</span><span class="token punctuation">(</span><span class="token regex">/(cheese)(kun)/</span><span class="token punctuation">,</span><span class="token string">'$2$1'</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// "kuncheese"</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+</li>
+<li><p>search</p>
+<blockquote>
+<p>在字符串中测试匹配，它返回匹配到的位置索引，或者在失败时返回-1</p>
+</blockquote>
+<pre class="line-numbers language-javascript"><code class="language-javascript"><span class="token string">"cheesekun"</span><span class="token punctuation">.</span><span class="token function">search</span><span class="token punctuation">(</span><span class="token regex">/eese/</span><span class="token punctuation">)</span>  <span class="token comment" spellcheck="true">// 2</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+<li><p>match</p>
+<blockquote>
+<p>在字符串中执行查找匹配，它返回一个数组或者在未匹配到时返回null</p>
+</blockquote>
+<pre class="line-numbers language-javascript"><code class="language-javascript"><span class="token string">"cheeeeeseeekun"</span><span class="token punctuation">.</span><span class="token function">match</span><span class="token punctuation">(</span><span class="token regex">/ee*/</span><span class="token punctuation">)</span>  <span class="token comment" spellcheck="true">// ["eeeee"]</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+<li><p>split</p>
+<blockquote>
+<p>使用正则表达式或者一个固定字符串分隔一个字符串，并将分隔后的子字符串存储到数组中</p>
+</blockquote>
+<pre class="line-numbers language-javascript"><code class="language-javascript"><span class="token string">"cheesekun"</span><span class="token punctuation">.</span><span class="token function">split</span><span class="token punctuation">(</span><span class="token regex">/e/</span><span class="token punctuation">)</span>  <span class="token comment" spellcheck="true">// ["ch", "", "s", "kun"]</span>
+<span class="token string">"cheesekun"</span><span class="token punctuation">.</span><span class="token function">split</span><span class="token punctuation">(</span><span class="token regex">/ee/</span><span class="token punctuation">)</span>  <span class="token comment" spellcheck="true">// ["ch", "sekun"]</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="正则表达式标志"><a href="#正则表达式标志" class="headerlink" title="正则表达式标志"></a>正则表达式标志</h2><ul>
+<li>g 全局搜索。也就是找到所有匹配<pre class="line-numbers language-javascript"><code class="language-javascript"><span class="token string">"cheeeeeseeekun"</span><span class="token punctuation">.</span><span class="token function">match</span><span class="token punctuation">(</span><span class="token regex">/ee*/</span><span class="token punctuation">)</span>  <span class="token comment" spellcheck="true">// ["eeeee"]</span>
+<span class="token string">"cheeeeeseeekun"</span><span class="token punctuation">.</span><span class="token function">match</span><span class="token punctuation">(</span><span class="token regex">/ee*/g</span><span class="token punctuation">)</span>  <span class="token comment" spellcheck="true">// ["eeeee","eee"]</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+</li>
+<li>i 不区分大小写搜索。<pre class="line-numbers language-javascript"><code class="language-javascript"><span class="token string">"chEEseeekun"</span><span class="token punctuation">.</span><span class="token function">match</span><span class="token punctuation">(</span><span class="token regex">/ee*/</span><span class="token punctuation">)</span>  <span class="token comment" spellcheck="true">// ["eee"]</span>
+<span class="token string">"chEEseeekun"</span><span class="token punctuation">.</span><span class="token function">match</span><span class="token punctuation">(</span><span class="token regex">/ee*/i</span><span class="token punctuation">)</span>  <span class="token comment" spellcheck="true">// ["EE"]</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+</li>
+<li>m 多行搜索。将\n,\r当作换行<pre class="line-numbers language-javascript"><code class="language-javascript"><span class="token keyword">var</span> str <span class="token operator">=</span> <span class="token string">"cheese kun\n hi\r do you\f love\t me"</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> patt <span class="token operator">=</span> <span class="token regex">/(\w+)$/gm</span>
+str<span class="token punctuation">.</span><span class="token function">match</span><span class="token punctuation">(</span>patt<span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token comment" spellcheck="true">// ["kun", "hi", "me"]</span>
+<span class="token keyword">var</span> str2 <span class="token operator">=</span> <span class="token string">"cheese kun\n hi\rdo you\nlove\t me"</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> patt2 <span class="token operator">=</span> <span class="token regex">/^(\w+)/gm</span>
+str2<span class="token punctuation">.</span><span class="token function">match</span><span class="token punctuation">(</span>patt2<span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">// ["cheese", "do", "love"]</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+</ul>
+<h2 id="常用正则表达式"><a href="#常用正则表达式" class="headerlink" title="常用正则表达式"></a>常用正则表达式</h2><pre class="line-numbers language-javascript"><code class="language-javascript">用户名    <span class="token regex">/^[a-z0-9_-]{6,16}$/</span>
+密码        <span class="token regex">/^[a-z0-9_-]{6,18}$/</span>
+电子邮箱    <span class="token regex">/^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/</span>
+手机号   <span class="token regex">/^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1}))+\d{8})$/</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>上面内容以<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Regular_Expressions#special-non-word" target="_blank" rel="external">MDN文档</a>为参考<br>加入了自己写的例子和一些实践后的解释<br>都test过，就当作一份js正则表达式文档给自己或他人参考吧</p>
+<blockquote>
+<p>大胆になれ。一番になれ。　独自になれ<br>大胆一点。成为第一。独立一点。</p>
+</blockquote>
+]]></content>
+      
+        <categories>
+            
+            <category> 前端 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> 正则表达式 </tag>
+            
+            <tag> javascript </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[13天总结]]></title>
       <url>http://cheesekun.top/2017/03/08/cheesekun.top/ch1007/</url>
       <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>从2.24开始到今天3.8已经13天时间了，ife上完成了17个<a href="https://github.com/cheeseKun/baiduIFE2017" target="_blank" rel="external">普通任务</a>，做一波小总结，理清在任务中初次遇到或者之前没怎么使用的一些知识。</p>
@@ -12,8 +229,10 @@
 </blockquote>
 <h2 id="重点"><a href="#重点" class="headerlink" title="重点"></a>重点</h2><ul>
 <li><p>transition(过渡属性)</p>
+<pre class="line-numbers language-css"><code class="language-css"><span class="token selector">div </span><span class="token punctuation">{</span> <span class="token property">transition</span><span class="token punctuation">:</span> left <span class="token number">1</span>s <span class="token number">0.4</span>s ease-in-out<span class="token punctuation">}</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <blockquote>
-<p><code>div { transition: left 1s 0.4s ease-in-out}</code><br>表示该div的<code>left</code>属性延迟1秒后会在0.4秒的时间内，以ease-in-out(以慢速开始和结束)的过渡效果进行变化<br>通常搭配<code>:hover</code>伪类使用<br>transition通常属性值都是一齐使用，所以没必要去记住子属性。<br>下面是单纯用<code>transition</code>属性实现的导航栏下划线移动效果</p>
+<p>表示该div的<code>left</code>属性延迟1秒后会在0.4秒的时间内，以ease-in-out(以慢速开始和结束)的过渡效果进行变化<br>通常搭配<code>:hover</code>伪类使用<br>transition通常属性值都是一齐使用，所以没必要去记住子属性。<br>下面是单纯用<code>transition</code>属性实现的导航栏下划线移动效果</p>
 </blockquote>
 <p></p><p data-height="279" data-theme-id="light" data-slug-hash="gmLgEw" data-default-tab="html,result" data-user="cheesekun" data-embed-version="2" data-pen-title="anime-nav" data-preview="true" class="codepen">See the Pen <a href="http://codepen.io/cheesekun/pen/gmLgEw/" target="_blank" rel="external">anime-nav</a> by cheesekun (<a href="http://codepen.io/cheesekun" target="_blank" rel="external">@cheesekun</a>) on <a href="http://codepen.io" target="_blank" rel="external">CodePen</a>.</p><br><script async src="http://production-assets.codepen.io/assets/embed/ei.js"></script><p></p>
 <blockquote>
@@ -22,7 +241,12 @@
 </li>
 <li><p>响应式</p>
 <blockquote>
-<p>这个题目撞到挺多有趣的问题<br>主要使用了<code>@meadia</code>媒体查询属性<br><code>@media only screen and (min-width: 768px) and (max-width: 1024px)</code><br>表示仅当screen(输出设备可浏览宽度)最小值为768px，最大值为1024px时实现<br></p><p data-height="265" data-theme-id="light" data-slug-hash="ZeWdKV" data-default-tab="css,result" data-user="cheesekun" data-embed-version="2" data-pen-title="响应式12栏" data-preview="true" class="codepen">See the Pen <a href="http://codepen.io/cheesekun/pen/ZeWdKV/" target="_blank" rel="external">响应式12栏</a> by cheesekun (<a href="http://codepen.io/cheesekun" target="_blank" rel="external">@cheesekun</a>) on <a href="http://codepen.io" target="_blank" rel="external">CodePen</a>.</p><p></p>
+<p>这个题目撞到挺多有趣的问题<br>主要使用了<code>@meadia</code>媒体查询属性</p>
+</blockquote>
+<pre class="line-numbers language-css"><code class="language-css">@media only screen and <span class="token punctuation">(</span><span class="token property">min-width</span><span class="token punctuation">:</span> <span class="token number">768</span>px<span class="token punctuation">)</span> and <span class="token punctuation">(</span><span class="token property">max-width</span><span class="token punctuation">:</span> <span class="token number">1024</span>px<span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<blockquote>
+<p>表示仅当screen(输出设备可浏览宽度)最小值为768px，最大值为1024px时实现<br></p><p data-height="265" data-theme-id="light" data-slug-hash="ZeWdKV" data-default-tab="css,result" data-user="cheesekun" data-embed-version="2" data-pen-title="响应式12栏" data-preview="true" class="codepen">See the Pen <a href="http://codepen.io/cheesekun/pen/ZeWdKV/" target="_blank" rel="external">响应式12栏</a> by cheesekun (<a href="http://codepen.io/cheesekun" target="_blank" rel="external">@cheesekun</a>) on <a href="http://codepen.io" target="_blank" rel="external">CodePen</a>.</p><p></p>
 <script async src="http://production-assets.codepen.io/assets/embed/ei.js"></script>
 
 <p>上面的例子我一开始是使用<code>inline-block</code>，后来发现<code>inline-block</code>有个弊端，会受默认字体宽度影响，并且处理方式极其奇葩，如果想实现无缝衔接<code>inline-block</code>还是算了，乖乖使用<code>float: left</code></p>
@@ -30,19 +254,40 @@
 <p>看张鑫旭大神解决<code>inline-block</code>间距的方法<a href="http://www.zhangxinxu.com/wordpress/2012/04/inline-block-space-remove-%E5%8E%BB%E9%99%A4%E9%97%B4%E8%B7%9D/" target="_blank" rel="external">链接</a></p>
 </blockquote>
 <p>并且使用了css3中的<code>calc()</code>来进行值的计算</p>
+</blockquote>
+<pre class="line-numbers language-css"><code class="language-css"><span class="token selector">div </span><span class="token punctuation">{</span><span class="token property">width</span><span class="token punctuation">:</span> <span class="token function">calc</span><span class="token punctuation">(</span><span class="token number">50%</span> - <span class="token number">40</span>em<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">}</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <blockquote>
-<p><code>div {width: calc(50% - 40em);}</code><br>上述<code>div</code>在我们不知道父元素的50%是多大的时候，我们可以直接使用<code>calc()</code>，将这个烦人的计算交给浏览器<br>表达式中有“+”和“-”时，其前后必须要有空格，否则报错<br>box-sizing属性特别好用<br><code>div { box-sizing: border-box;}</code><br>可以直接把该<code>div</code>的<code>border</code>,<code>padding</code>值直接并入到<code>width</code>,这样对布局宽度更加直观。<br><code>box-sizing: inherit</code>则表示继承自父元素 <code>box-sizing</code>值的设定</p>
+<blockquote>
+<p>上述<code>div</code>在我们不知道父元素的50%是多大的时候，我们可以直接使用<code>calc()</code>，将这个烦人的计算交给浏览器<br>表达式中有“+”和“-”时，其前后必须要有空格，否则报错<br>box-sizing属性特别好用</p>
+</blockquote>
+</blockquote>
+<pre class="line-numbers language-css"><code class="language-css"><span class="token punctuation">{</span> <span class="token property">box-sizing</span><span class="token punctuation">:</span> border-box<span class="token punctuation">;</span><span class="token punctuation">}</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<blockquote>
+<blockquote>
+<p>可以直接把该<code>div</code>的<code>border</code>,<code>padding</code>值直接并入到<code>width</code>,这样对布局宽度更加直观。<br><code>box-sizing: inherit</code>则表示继承自父元素 <code>box-sizing</code>值的设定</p>
 </blockquote>
 </blockquote>
 </li>
 <li><p>循环添加节点改变dom结构</p>
 <blockquote>
 <p>不要每进行一次循环创建一个元素就插入到dom，而应该使用createDocumentFrgment()创建一个文档片段,将循环的结果一个一个插入该片段，再将该片段一次插入到dom，减轻浏览器渲染负担</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">/* 打印出排序完的城市排名 */</div><div class="line">function render(data) &#123;</div><div class="line">  var fragment = document.createDocumentFragment();</div><div class="line">  var num = [&quot;一&quot;, &quot;二&quot;, &quot;三&quot;, &quot;四&quot;, &quot;五&quot;, &quot;六&quot;, &quot;七&quot;, &quot;八&quot;, &quot;九&quot;];</div><div class="line">  for (var i = 0; i &lt; soLi.length; i++) &#123;</div><div class="line">    var oLi = document.createElement(&quot;li&quot;);</div><div class="line">    oLi.innerHTML = &quot;第&quot; + num[i] + &quot;名：&quot; + data[i][0] + &quot;空气质量：&quot; + &quot;&lt;b&gt;&quot; + data[i][1] + &quot;&lt;/b&gt;&quot;;</div><div class="line">    fragment.appendChild(oLi);</div><div class="line">  &#125;</div><div class="line">  reUl.appendChild(fragment);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 </blockquote>
+<pre class="line-numbers language-javascript"><code class="language-javascript"><span class="token comment" spellcheck="true">/* 打印出排序完的城市排名 */</span>
+<span class="token keyword">function</span> <span class="token function">render</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">var</span> fragment <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">createDocumentFragment</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">var</span> num <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">"一"</span><span class="token punctuation">,</span> <span class="token string">"二"</span><span class="token punctuation">,</span> <span class="token string">"三"</span><span class="token punctuation">,</span> <span class="token string">"四"</span><span class="token punctuation">,</span> <span class="token string">"五"</span><span class="token punctuation">,</span> <span class="token string">"六"</span><span class="token punctuation">,</span> <span class="token string">"七"</span><span class="token punctuation">,</span> <span class="token string">"八"</span><span class="token punctuation">,</span> <span class="token string">"九"</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+  <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">var</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> soLi<span class="token punctuation">.</span>length<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">var</span> oLi <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">createElement</span><span class="token punctuation">(</span><span class="token string">"li"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    oLi<span class="token punctuation">.</span>innerHTML <span class="token operator">=</span> <span class="token string">"第"</span> <span class="token operator">+</span> num<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">+</span> <span class="token string">"名："</span> <span class="token operator">+</span> data<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">+</span> <span class="token string">"空气质量："</span> <span class="token operator">+</span> <span class="token string">"&lt;b>"</span> <span class="token operator">+</span> data<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">+</span> <span class="token string">"&lt;/b>"</span><span class="token punctuation">;</span>
+    fragment<span class="token punctuation">.</span><span class="token function">appendChild</span><span class="token punctuation">(</span>oLi<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  reUl<span class="token punctuation">.</span><span class="token function">appendChild</span><span class="token punctuation">(</span>fragment<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 </li>
-<li><p>模糊匹配</p>
-<blockquote>
+<li>模糊匹配<blockquote>
 <p>模糊匹配这里使用了正则表达式，暂时不放总结<br>到时再做一篇来总结正则的使用吧</p>
 </blockquote>
 </li>
@@ -313,7 +558,11 @@
     <entry>
       <title><![CDATA[flex布局]]></title>
       <url>http://cheesekun.top/2017/02/24/cheesekun.top/ch1003/</url>
-      <content type="html"><![CDATA[<p>使用flex布局特别方便，虽然兼容性问题还是需要解决<br>下面参考了<a href="https://zhuanlan.zhihu.com/p/25303493" target="_blank" rel="external">30分钟学会flex布局</a><br>简化了很多，帮助记忆。<br>。<br>。<br>实现 flex 布局需要先指定一个容器，任何一个容器都可以被置顶为 flex 布局，<br>这样容器内部的元素就可以使用 flex 来进行布局。<br> <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">.container &#123;</div><div class="line">   display: flex | inline-flex;     //可以有两种取值</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+      <content type="html"><![CDATA[<p>使用flex布局特别方便，虽然兼容性问题还是需要解决<br>下面参考了<a href="https://zhuanlan.zhihu.com/p/25303493" target="_blank" rel="external">30分钟学会flex布局</a><br>简化了很多，帮助记忆。<br>。<br>。<br>实现 flex 布局需要先指定一个容器，任何一个容器都可以被置顶为 flex 布局，<br>这样容器内部的元素就可以使用 flex 来进行布局。</p>
+<pre class="line-numbers language-css"><code class="language-css"><span class="token selector"><span class="token class">.container</span> </span><span class="token punctuation">{</span>
+   <span class="token property">display</span><span class="token punctuation">:</span> flex | inline-flex<span class="token punctuation">;</span>     //可以有两种取值
+<span class="token punctuation">}</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 <p>分别生成一个块状或行内的 flex 容器盒子。简单说来，如果你使用块元素如 div，你就可以使用 flex，而如果你使用行内元素，你可以使用 inline-flex。<br><strong>当设置 flex 布局之后，子元素的 float、clear、vertical-align 的属性将会失效。</strong></p>
 <h2 id="属性介绍"><a href="#属性介绍" class="headerlink" title="属性介绍"></a>属性介绍</h2><ul>
 <li>对父属性<ul>
@@ -368,7 +617,12 @@
 <li><p>flex</p>
 <blockquote>
 <p>flex-grow, flex-shrink 和 flex-basis的简写</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">.item&#123;</div><div class="line">  flex: none | [ &lt;&apos;flex-grow&apos;&gt; &lt;&apos;flex-shrink&apos;&gt;? || &lt;&apos;flex-basis&apos;&gt; ]</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</blockquote>
+<pre class="line-numbers language-css"><code class="language-css"><span class="token selector"><span class="token class">.item</span></span><span class="token punctuation">{</span>
+   <span class="token property">flex</span><span class="token punctuation">:</span> none | [ &lt;<span class="token string">'flex-grow'</span>> &lt;<span class="token string">'flex-shrink'</span>>? || &lt;<span class="token string">'flex-basis'</span>> ]
+<span class="token punctuation">}</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<blockquote>
 <p>默认值：0 1 auto， 即不放大，可缩小，大小与 width、height<br>建议优先使用这个属性，而不是单独写三个分离的属性。</p>
 </blockquote>
 </li>
@@ -516,25 +770,29 @@
 <hr>
 <p>下面来写几条hexo比较常使用的git:</p>
 <ul>
-<li>生成静态文件<blockquote>
-<p>$ hexo generate</p>
+<li>生成静态文件<pre class="line-numbers language-git"><code class="language-git">$ hexo generate
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+<li>运行hexo本地服务器<pre class="line-numbers language-git"><code class="language-git">$ hexo server
+[http://localhost:4000/](http://localhost:4000/)
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+</li>
+<li>安装主题<pre class="line-numbers language-git"><code class="language-git">cd/hexo/themes
+git clone https://主题下载链接
+cd ./主题目录、
+git pull
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<blockquote>
+<p>然后修改/hexo/config.yml, 将其中的theme改为主题名称<br>重新运行 $ hexo generate $ hexo server</p>
 </blockquote>
 </li>
-<li>运行hexo本地服务器<blockquote>
-<p>$ hexo server<br><a href="http://localhost:4000/" target="_blank" rel="external">http://localhost:4000/</a></p>
-</blockquote>
-</li>
-<li>安装主题<blockquote>
-<p>cd/hexo/themes<br>git clone <a href="https://主题下载链接" target="_blank" rel="external">https://主题下载链接</a><br>cd ./主题目录、<br>git pull<br>然后修改/hexo/config.yml, 将其中的theme改为主题名称<br>重新运行 $ hexo generate $ hexo server</p>
-</blockquote>
-</li>
-<li>上传hexo到github<blockquote>
-<p>hexo generate<br>hexo deploy<br>简写合并如下<br>hexo d -g</p>
-</blockquote>
-</li>
+<li>上传hexo到github<pre class="line-numbers language-git"><code class="language-git">hexo generate
+hexo deploy
+//简写合并如下
+hexo d -g
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+。<br>。<br>。<br>大概就这样，水完第一篇<br>。<br>(ﾉﾟ▽ﾟ)ﾉ</li>
 </ul>
-<hr>
-<p>。<br>。<br>。<br>大概就这样，水完第一篇<br>。<br>(ﾉﾟ▽ﾟ)ﾉ</p>
 ]]></content>
       
         <categories>

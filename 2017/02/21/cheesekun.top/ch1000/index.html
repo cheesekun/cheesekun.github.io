@@ -160,7 +160,7 @@
 
     <script src="/js/jquery.min.js"></script>
 
-    <link rel="stylesheet" href="/css/highlight/solarized-white.css">
+    <link rel="stylesheet" href="/css/highlight/dark.css">
 
     <!-- UC Browser Compatible-->
     <script>
@@ -175,7 +175,8 @@
     <style> 
     iframe{whs:expression(this.src='about:blank',this.outerHTML='');} 
     </style> 
-</head>
+<link rel="stylesheet" href="/css/prism-solarizedlight.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
 
 
     
@@ -386,25 +387,29 @@
 <hr>
 <p>下面来写几条hexo比较常使用的git:</p>
 <ul>
-<li>生成静态文件<blockquote>
-<p>$ hexo generate</p>
+<li>生成静态文件<pre class="line-numbers language-git"><code class="language-git">$ hexo generate
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+<li>运行hexo本地服务器<pre class="line-numbers language-git"><code class="language-git">$ hexo server
+[http://localhost:4000/](http://localhost:4000/)
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+</li>
+<li>安装主题<pre class="line-numbers language-git"><code class="language-git">cd/hexo/themes
+git clone https://主题下载链接
+cd ./主题目录、
+git pull
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<blockquote>
+<p>然后修改/hexo/config.yml, 将其中的theme改为主题名称<br>重新运行 $ hexo generate $ hexo server</p>
 </blockquote>
 </li>
-<li>运行hexo本地服务器<blockquote>
-<p>$ hexo server<br><a href="http://localhost:4000/" target="_blank" rel="external">http://localhost:4000/</a></p>
-</blockquote>
-</li>
-<li>安装主题<blockquote>
-<p>cd/hexo/themes<br>git clone <a href="https://主题下载链接" target="_blank" rel="external">https://主题下载链接</a><br>cd ./主题目录、<br>git pull<br>然后修改/hexo/config.yml, 将其中的theme改为主题名称<br>重新运行 $ hexo generate $ hexo server</p>
-</blockquote>
-</li>
-<li>上传hexo到github<blockquote>
-<p>hexo generate<br>hexo deploy<br>简写合并如下<br>hexo d -g</p>
-</blockquote>
-</li>
+<li>上传hexo到github<pre class="line-numbers language-git"><code class="language-git">hexo generate
+hexo deploy
+//简写合并如下
+hexo d -g
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+。<br>。<br>。<br>大概就这样，水完第一篇<br>。<br>(ﾉﾟ▽ﾟ)ﾉ</li>
 </ul>
-<hr>
-<p>。<br>。<br>。<br>大概就这样，水完第一篇<br>。<br>(ﾉﾟ▽ﾟ)ﾉ</p>
 
     
 
@@ -608,7 +613,7 @@
         </a>
         <ul class="dropdown-menu">
             <li>
-            <a class="sidebar_archives-link" href="/archives/2017/03/">三月 2017<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/02/">二月 2017<span class="sidebar_archives-count">5</span></a>
+            <a class="sidebar_archives-link" href="/archives/2017/03/">三月 2017<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/02/">二月 2017<span class="sidebar_archives-count">5</span></a>
         </ul>
     </li>
 
@@ -622,7 +627,7 @@
             </a>
             <ul class="dropdown-menu">
                 <li>
-                <a class="sidebar_archives-link" href="/categories/前端/">前端<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/categories/博客/">博客<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/日语/">日语<span class="sidebar_archives-count">4</span></a>
+                <a class="sidebar_archives-link" href="/categories/前端/">前端<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/categories/博客/">博客<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/日语/">日语<span class="sidebar_archives-count">4</span></a>
             </ul>
         </li>
     
@@ -674,7 +679,7 @@
     <li>
         <a href="/archives">
             文章总数
-            <span class="sidebar-badge">8</span>
+            <span class="sidebar-badge">9</span>
         </a>
     </li>
     <li style="background:#eee;">
