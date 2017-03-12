@@ -4,6 +4,208 @@
   
     
     <entry>
+      <title><![CDATA[web存储---Storage]]></title>
+      <url>http://cheesekun.top/2017/03/13/cheesekun.top/ch1010/</url>
+      <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><blockquote>
+<p>作为 Web Storage API 的接口，Storage 提供了访问特定域名下的会话存储（session storage）或本地存储（local storage）的功能，例如，可以添加、修改或删除存储的数据项。<br>如果你想要操作一个域名的会话存储（session storage），可以使用 <code>Window.sessionStorage</code>；如果想要操作一个域名的本地存储（local storage），可以使用 <code>Window.localStorage</code>。<br>— — &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; FROM &nbsp;&nbsp;<a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Storage" target="_blank" rel="external">MDN</a></p>
+</blockquote>
+<p>不同的浏览器是不共享Storage的<br>总之，这两个功能都是用来存储浏览器一些数据(如<strong>一些HTML5的游戏数据或者是天猫京东购物车信息之类的</strong>)，并且他们的属性和方法是一样的，除了存储时长和作用域不同:</p>
+<blockquote>
+<p>sessionStorage(一旦标签被关闭了，sessionStorage存储的数据也会被删除掉。不同标签页的同一个页面拥有各自的sessionStorage，数据不能共享。)<br>localStorage(长期存在，除非手动清除，并且存储在浏览器中)</p>
+<blockquote>
+<p>(如果是隐私浏览模式的话，会重新创建数据库存储localStorage的数据，并且在关闭浏览器时，清除所有数据)</p>
+</blockquote>
+</blockquote>
+<p>所以只用localStorage举例就行了<br>其实localStorage相当于一个数据库，我们就以数据库的增删改查来看<br>并且<br>因为是HTNL5的新特性，所以先看浏览器支不支持先</p>
+<pre class="line-numbers language-javascript"><code class="language-javascript"><span class="token keyword">if</span><span class="token punctuation">(</span>！window<span class="token punctuation">.</span>localStorage<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token function">alert</span><span class="token punctuation">(</span><span class="token string">"该浏览器不支持localstorage"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span> <span class="token keyword">else</span><span class="token punctuation">{</span>
+        <span class="token operator">...</span>
+<span class="token punctuation">}</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="增"><a href="#增" class="headerlink" title="增"></a>增</h2><p>有3种方法</p>
+<pre class="line-numbers language-javascript"><code class="language-javascript"><span class="token keyword">var</span> storage <span class="token operator">=</span> window<span class="token punctuation">.</span>localStorage<span class="token punctuation">;</span>
+storage<span class="token punctuation">[</span><span class="token string">"a"</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+storage<span class="token punctuation">.</span>b <span class="token operator">=</span> <span class="token number">2</span><span class="token punctuation">;</span>
+storage<span class="token punctuation">.</span><span class="token function">setItem</span><span class="token punctuation">(</span><span class="token string">"c"</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token keyword">typeof</span> storage<span class="token punctuation">[</span><span class="token string">"a"</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">//string</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token keyword">typeof</span> storage<span class="token punctuation">[</span><span class="token string">"b"</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">//string</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token keyword">typeof</span> storage<span class="token punctuation">[</span><span class="token string">"c"</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">//string</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>由于localStorage只能存储字符串，所以当你传入非字符串类型的值时，会被转化为string类型</p>
+<h2 id="查"><a href="#查" class="headerlink" title="查"></a>查</h2><p>同样3种方法</p>
+<pre class="line-numbers language-javascript"><code class="language-javascript">storage<span class="token punctuation">.</span>a<span class="token punctuation">;</span>   <span class="token comment" spellcheck="true">//"1"</span>
+storage<span class="token punctuation">[</span><span class="token string">"b"</span><span class="token punctuation">]</span><span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">//"2" </span>
+storage<span class="token punctuation">.</span><span class="token function">getItem</span><span class="token punctuation">(</span><span class="token string">"c"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">//"3"</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<blockquote>
+<p>其实增查的前两种方法和对象值的获取类似，不过官方推荐使用setItem()/getItem()</p>
+</blockquote>
+<h2 id="删"><a href="#删" class="headerlink" title="删"></a>删</h2><blockquote>
+<p>删除某个键</p>
+</blockquote>
+<pre class="line-numbers language-javascript"><code class="language-javascript"> console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>storage<span class="token punctuation">.</span><span class="token function">getItem</span><span class="token punctuation">(</span><span class="token string">"a"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">//"1"</span>
+ storage<span class="token punctuation">.</span><span class="token function">removeItem</span><span class="token punctuation">(</span><span class="token string">"a"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+ console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>storage<span class="token punctuation">.</span><span class="token function">getItem</span><span class="token punctuation">(</span><span class="token string">"a"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">//null</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<blockquote>
+<p>删除localStorage的所有内容</p>
+</blockquote>
+<pre class="line-numbers language-javascript"><code class="language-javascript"> console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>localStorage<span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">//[object Storage] {b: "2", c: "3"}</span>
+ storage<span class="token punctuation">.</span><span class="token function">clear</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+ console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>storage<span class="token punctuation">.</span><span class="token function">getItem</span><span class="token punctuation">(</span><span class="token string">"c"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">//null</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<h2 id="改"><a href="#改" class="headerlink" title="改"></a>改</h2><blockquote>
+<p>直接对值进行修改即可</p>
+</blockquote>
+<pre class="line-numbers language-javascript"><code class="language-javascript"> storage<span class="token punctuation">.</span>b <span class="token operator">=</span> <span class="token number">5</span><span class="token punctuation">;</span>
+ console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>storage<span class="token punctuation">.</span>b<span class="token punctuation">)</span><span class="token punctuation">;</span>
+ storage<span class="token punctuation">.</span><span class="token function">setItem</span><span class="token punctuation">(</span><span class="token string">"c"</span><span class="token punctuation">,</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+ console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>storage<span class="token punctuation">.</span>c<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="获取键名"><a href="#获取键名" class="headerlink" title="获取键名"></a>获取键名</h2><pre class="line-numbers language-javascript"><code class="language-javascript"> storage<span class="token punctuation">.</span><span class="token function">clear</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">//先清除之前的所有数据</span>
+ storage<span class="token punctuation">.</span><span class="token function">setItem</span><span class="token punctuation">(</span><span class="token string">"name"</span><span class="token punctuation">,</span><span class="token string">"cheesekun"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+ console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>storage<span class="token punctuation">.</span><span class="token function">key</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">//"name"</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<h2 id="json格式存储"><a href="#json格式存储" class="headerlink" title="json格式存储"></a>json格式存储</h2><p>由于storage只能存储字符串，所以我们需要先存储json字符串，<br>使用时再把json字符串转化为json对象，再获取键值</p>
+<ul>
+<li><p>json小介绍</p>
+<ul>
+<li><p>json对象</p>
+<blockquote>
+<p><code>var str1 = { &quot;name&quot;: &quot;cheesekun&quot;, &quot;age&quot;: 19 }</code>;<br>转化为json字符串: <code>var obj = JSON.stringify(str1);</code></p>
+</blockquote>
+</li>
+<li><p>json字符串</p>
+<blockquote>
+<p><code>var str2 = &#39;{ &quot;name&quot;: &quot;cheesekun&quot;, &quot;age&quot;: 19 }&#39;</code>;<br>转化为json对象: <code>var obj = JSON.parse(str2);</code></p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+<pre class="line-numbers language-javascript"><code class="language-javascript"><span class="token keyword">var</span> storage<span class="token operator">=</span>window<span class="token punctuation">.</span>localStorage<span class="token punctuation">;</span>
+<span class="token keyword">var</span> me <span class="token operator">=</span> <span class="token punctuation">{</span>
+  name<span class="token punctuation">:</span> <span class="token string">'cheesekun'</span><span class="token punctuation">,</span>
+  age<span class="token punctuation">:</span> <span class="token number">19</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> meStr <span class="token operator">=</span> JSON<span class="token punctuation">.</span><span class="token function">stringify</span><span class="token punctuation">(</span>me<span class="token punctuation">)</span><span class="token punctuation">;</span>
+storage<span class="token punctuation">.</span><span class="token function">setItem</span><span class="token punctuation">(</span><span class="token string">"data"</span><span class="token punctuation">,</span> meStr<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//将json字符串传入localStorage</span>
+<span class="token keyword">var</span> json<span class="token operator">=</span>storage<span class="token punctuation">.</span><span class="token function">getItem</span><span class="token punctuation">(</span><span class="token string">"data"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+<span class="token keyword">var</span> meObj<span class="token operator">=</span>JSON<span class="token punctuation">.</span><span class="token function">parse</span><span class="token punctuation">(</span>json<span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">//将json字符串转换成为JSON对象输出</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>meObj<span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">//Object { age: 19, name: "cheesekun"}</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>meObj<span class="token punctuation">.</span>name<span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">//"cheesekun"</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="Web-Storage-存储事件"><a href="#Web-Storage-存储事件" class="headerlink" title="Web Storage 存储事件"></a>Web Storage 存储事件</h2><p>当localStorage或者sessionStorage的数据发生变化的时候，浏览器都会在其他对该数据可见的窗口对象上触发storage事件（本窗口除外）。</p>
+<p>重要：<strong>只有当存储数据真正发生变化时才会触发存储事件，比如给一个item重新设置一个和原来一样的value，或者是删除一个不存在的item是不会触发存储事件的。</strong></p>
+<ul>
+<li>StorageEvent的几个属性：<blockquote>
+<p>key：item的key，没有则为null<br>newValue: item的新值，没有则为null<br>oldValue: item的旧值，没有则为null<br>storageArea: sessionStorage或者localStorage<br>url: 触发存储事件的脚本所在文档的url</p>
+</blockquote>
+</li>
+</ul>
+<pre class="line-numbers language-javascript"><code class="language-javascript">window<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'storage'</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>e<span class="token punctuation">.</span>key<span class="token punctuation">,</span> e<span class="token punctuation">.</span>oldValue<span class="token punctuation">,</span> e<span class="token punctuation">.</span>newValue<span class="token punctuation">,</span> e<span class="token punctuation">.</span>storageArea<span class="token punctuation">,</span> e<span class="token punctuation">.</span>url<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<h2 id="localStorage小例子"><a href="#localStorage小例子" class="headerlink" title="localStorage小例子"></a>localStorage小例子</h2><blockquote>
+<p>输入内容，save<br>然后刷新页面<br>surprise！！！ 它是不是还在(｡･ω･｡)ﾉ♡<br>关闭页面，再打开<br>surprise！！！ sessionStorage是不是消失了(ﾉﾟ▽ﾟ)ﾉ</p>
+</blockquote>
+<p><ul id="previous"></ul><div><label for="session" style="margin-left:20px;">sessionStorage： </label><input type="text" name="session" value="" id="session"></div><div><label for="local" style="margin-left:20px;">localStorage： </label><input type="text" name="local" value="" id="local" style="margin-left:20px;"></div><input type="button" id="save" value="Save storage" style="margin-left:20px;"><input type="button" id="clear" value="Clear storage" style="margin-left:20px;"></p>
+<script>
+  var addEvent = (function () {
+      if (document.addEventListener) {
+        return function (el, type, fn) {
+          if (el && el.nodeName || el === window) {
+            el.addEventListener(type, fn, false);
+          } else if (el && el.length) {
+            for (var i = 0; i < el.length; i++) {
+              addEvent(el[i], type, fn);
+            }
+          }
+        };
+      } else {
+        return function (el, type, fn) {
+          if (el && el.nodeName || el === window) {
+            el.attachEvent('on' + type, function () { return fn.call(el, window.event); });
+          } else if (el && el.length) {
+            for (var i = 0; i < el.length; i++) {
+              addEvent(el[i], type, fn);
+            }
+          }
+        };
+      }
+    })();
+
+    function getStorage(type) {
+      var storage = window[type + 'Storage'],
+        delta = 0,
+        li = document.createElement('li');
+      if (!window[type + 'Storage']) return;
+
+      if (storage.getItem('value')) {
+        delta = ((new Date()).getTime() - (new Date()).setTime(storage.getItem('timestamp'))) / 1000;   
+        li.innerHTML = type + 'Storage: ' + storage.getItem('value') + ' (存活时长: ' + delta + 's ago)';
+      } else {
+        li.innerHTML = type + '： 我gg了';
+      }
+      document.querySelector('#previous').appendChild(li);
+    }
+
+    getStorage('session');
+    getStorage('local');
+
+    addEvent(document.querySelector('#save'), 'click', function() {
+      var session = document.querySelector('#session');
+      var local = document.querySelector('#local');
+      sessionStorage.setItem('value', session.value);
+      sessionStorage.setItem('timestamp', (new Date()).getTime());
+      localStorage.setItem('value', local.value);
+      localStorage.setItem('timestamp', (new Date()).getTime());
+      getStorage('session');
+    getStorage('local');
+    });  
+
+    addEvent(document.querySelector('#clear'), 'click', function () {
+      sessionStorage.clear();
+      localStorage.clear();
+
+      document.querySelector('#previous').innerHTML = '';
+      getStorage('local');
+      getStorage('session');
+    });
+</script>
+
+<hr>
+<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>花了一整天研究这玩意，还有个<code>Cookie</code>没去了解，有机会再看吧</p>
+<blockquote>
+<p>　苦しい時でも、とにかく笑っている<br>　再难熬的日子，也要笑对人生</p>
+</blockquote>
+<p>参考文献: </p>
+<blockquote>
+<p><a href="https://aximario.github.io/2016/12/15/web-storage/?utm_source=caibaojian.com" target="_blank" rel="external">https://aximario.github.io/2016/12/15/web-storage/?utm_source=caibaojian.com</a><br><a href="http://www.cnblogs.com/st-leslie/p/5617130.html" target="_blank" rel="external">http://www.cnblogs.com/st-leslie/p/5617130.html</a><br><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Storage" target="_blank" rel="external">https://developer.mozilla.org/zh-CN/docs/Web/API/Storage</a></p>
+</blockquote>
+]]></content>
+      
+        <categories>
+            
+            <category> 前端 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> 前端 </tag>
+            
+            <tag> web存储 </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[「标日·初1-4」部屋に　机と　いすが　あります]]></title>
       <url>http://cheesekun.top/2017/03/12/cheesekun.top/ch1009/</url>
       <content type="html"><![CDATA[<h2 id="词汇"><a href="#词汇" class="headerlink" title="词汇"></a>词汇</h2><ul>
