@@ -408,7 +408,7 @@
 </blockquote>
 </li>
 <li>使用特殊符号<blockquote>
-<p>举个小例子<br>/chee+sekun/ 可匹配到”cheesekun”，”cheeeeesekun”但不可以匹配”chesekun”</p>
+<p>举个小例子<br><code>/chee+sekun/</code> 可匹配到”cheesekun”，”cheeeeesekun”但不可以匹配”chesekun”</p>
 <blockquote>
 <p>其中的+，匹配前面一个表达式（也就是前面的”e”）1次或者多次。等价于 {1,}</p>
 </blockquote>
@@ -421,27 +421,27 @@
 </blockquote>
 </li>
 <li>^<blockquote>
-<p>匹配输入的开始<br>如/^cheesekun/可匹配”cheesekun hi”，但不能匹配”hi cheesekun”</p>
+<p>匹配输入的开始<br>如<code>/^cheesekun/</code>可匹配”cheesekun hi”，但不能匹配”hi cheesekun”</p>
 </blockquote>
 </li>
 <li>$<blockquote>
-<p>匹配输入的结束<br>如/cheesekun$/可匹配”hi cheesekun”，但不能匹配”cheesekun hi”</p>
+<p>匹配输入的结束<br>如<code>/cheesekun$/</code>可匹配”hi cheesekun”，但不能匹配”cheesekun hi”</p>
 </blockquote>
 </li>
 <li>*<blockquote>
-<p>匹配前一个表达式0次或多次。等价于 {0,}<br>如/chee*sekun/可匹配”chesekun”,也可以匹配”cheeeeeeeesekun”</p>
+<p>匹配前一个表达式0次或多次。等价于 {0,}<br>如<code>/chee*sekun/</code>可匹配”chesekun”,也可以匹配”cheeeeeeeesekun”</p>
 </blockquote>
 </li>
 <li>+<blockquote>
-<p>匹配前一个表达式1次或多次。等价于 {1,}<br>如/chee+sekun/可匹配”cheesekun”,也可以匹配”cheeeeeeeesekun”</p>
+<p>匹配前一个表达式1次或多次。等价于 {1,}<br>如<code>/chee+sekun/</code>可匹配”cheesekun”,也可以匹配”cheeeeeeeesekun”</p>
 </blockquote>
 </li>
 <li>?<blockquote>
-<p>匹配前一个表达式0次或者1次。等价于 {0,1}<br>如/chee?sekun/可匹配”chesekun”,也可以匹配”cheesekun”</p>
+<p>匹配前一个表达式0次或者1次。等价于 {0,1}<br>如<code>/chee?sekun/</code>可匹配”chesekun”,也可以匹配”cheesekun”</p>
 </blockquote>
 </li>
 <li>.<blockquote>
-<p>匹配除换行符之外的任何单个字符<br>如/che.sekun/可匹配”cheesekun”,也可以匹配”che♂sekun”</p>
+<p>匹配除换行符之外的任何单个字符<br>如<code>/che.sekun/</code>可匹配”cheesekun”,也可以匹配”che♂sekun”</p>
 </blockquote>
 </li>
 <li>(x)<blockquote>
@@ -449,19 +449,19 @@
 </blockquote>
 </li>
 <li>(?:x)<blockquote>
-<p>匹配 ‘x’ 但是不记住匹配项<br>/cheese{1,2}kun/ {1,2}只能对 e 起作用<br>/(?:cheese){1,2}kun/ {1,2}则对cheesekun 起作用，可匹配 “cheesecheesekun”，而不记录匹配项，则不能使用 \1或者 $1<br>如<code>&quot;cheesekun&quot;.replace(/(cheese)(kun)/,&#39;$2$1&#39;)</code>,会返回 “$2kun”</p>
+<p>匹配 ‘x’ 但是不记住匹配项<br><code>/cheese{1,2}kun/ {1,2}</code>只能对 e 起作用<br><code>/(?:cheese){1,2}kun/</code> {1,2}则对cheesekun 起作用，可匹配 “cheesecheesekun”，而不记录匹配项，则不能使用 \1或者 $1<br>如<code>&quot;cheesekun&quot;.replace(/(cheese)(kun)/,&#39;$2$1&#39;)</code>,会返回 “$2kun”</p>
 </blockquote>
 </li>
 <li><p>x(?=y)</p>
 <blockquote>
-<p>匹配’x’仅仅当’x’后面跟着’y’<br>如/cheese(？=kun)/ 会匹配”cheesekun”,也匹配”cheesekun123”<br>但只会返回匹配的”cheese”</p>
+<p>匹配’x’仅仅当’x’后面跟着’y’<br>如<code>/cheese(？=kun)/</code> 会匹配”cheesekun”,也匹配”cheesekun123”<br>但只会返回匹配的”cheese”</p>
 </blockquote>
 <pre class="line-numbers language-javascript"><code class="language-javascript"><span class="token regex">/cheese(?=kun)/</span><span class="token punctuation">.</span><span class="token function">exec</span><span class="token punctuation">(</span><span class="token string">"cheesekun123"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">//["cheese"]</span>
 <span class="token regex">/cheese(kun)/</span><span class="token punctuation">.</span><span class="token function">exec</span><span class="token punctuation">(</span><span class="token string">"cheesekun123"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">//["cheesekun", "kun"]</span>
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 </li>
 <li>x(?!y)<blockquote>
-<p>匹配’x’仅仅当’x’后面不跟着’y’<br>如/cheese(？!kun)/ 会匹配”cheese123”,但不能匹配”cheesekun”</p>
+<p>匹配’x’仅仅当’x’后面不跟着’y’<br>如<code>/cheese(？!kun)/</code> 会匹配”cheese123”,但不能匹配”cheesekun”</p>
 </blockquote>
 </li>
 <li>x|y<blockquote>
@@ -469,19 +469,19 @@
 </blockquote>
 </li>
 <li>{n},{n,m}<blockquote>
-<p>1.表示匹配前一个表达式n次<br>2.表示匹配前一个表达式n到m次<br>如/chee{3}sekun/,匹配”cheeeesekun”或者”cheeeesekun123”<br>/chee{3,5}sekun/,匹配”cheeeesekun”或者”cheeeeeesekun123”</p>
+<p>1.表示匹配前一个表达式n次<br>2.表示匹配前一个表达式n到m次<br>如<code>/chee{3}sekun/</code>,匹配”cheeeesekun”或者”cheeeesekun123”<br><code>/chee{3,5}sekun/</code>,匹配”cheeeesekun”或者”cheeeeeesekun123”</p>
 </blockquote>
 </li>
 <li>[xyz]<blockquote>
-<p>一个字符集合。匹配方括号的中任意字符，包括转义序列<br>如/cheese[kun]/,可匹配”cheesek”,”cheeseku”,”cheesen”<br>可以使用破折号 - 来指定一个字符范围<br>如/cheese[a-j]/,可匹配”cheesec”,”cheeseg”,不可以匹配”cheese1”</p>
+<p>一个字符集合。匹配方括号的中任意字符，包括转义序列<br>如<code>/cheese[kun]/</code>,可匹配”cheesek”,”cheeseku”,”cheesen”<br>可以使用破折号 - 来指定一个字符范围<br>如<code>/cheese[a-j]/</code>,可匹配”cheesec”,”cheeseg”,不可以匹配”cheese1”</p>
 </blockquote>
 </li>
 <li>[^xyz]<blockquote>
-<p>一个反向字符集。匹配任何没有包含在方括号中的字符<br>如/cheese[^kun]/,可匹配”cheesea”,”cheeseab”,”cheesecd”</p>
+<p>一个反向字符集。匹配任何没有包含在方括号中的字符<br>如<code>/cheese[^kun]/</code>,可匹配”cheesea”,”cheeseab”,”cheesecd”</p>
 </blockquote>
 </li>
 <li>\b<blockquote>
-<p>匹配一个词的边界,可认为是 ^ 和 $ 的集合<br>如/cheese\b/ 可匹配”kuncheese”<br>/\bcheese/ 可匹配”cheesekun”</p>
+<p>匹配一个词的边界,可认为是 ^ 和 $ 的集合<br>如<code>/cheese\b/</code> 可匹配”kuncheese”<br><code>/\bcheese/</code> 可匹配”cheesekun”</p>
 </blockquote>
 </li>
 <li>\d 匹配一个数字，等价于[0-9]</li>
@@ -674,6 +674,14 @@ str2<span class="token punctuation">.</span><span class="token function">match</
             <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
     <!-- Prev Nav -->
     
+        <a href="/2017/03/12/cheesekun.top/ch1009/" id="post_nav-newer" class="prev-content">
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_back</i>
+            </button>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            新篇
+        </a>
+    
 
     <!-- Section Spacer -->
     <div class="section-spacer"></div>
@@ -779,7 +787,7 @@ str2<span class="token punctuation">.</span><span class="token function">match</
         </a>
         <ul class="dropdown-menu">
             <li>
-            <a class="sidebar_archives-link" href="/archives/2017/03/">三月 2017<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/02/">二月 2017<span class="sidebar_archives-count">5</span></a>
+            <a class="sidebar_archives-link" href="/archives/2017/03/">三月 2017<span class="sidebar_archives-count">5</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/02/">二月 2017<span class="sidebar_archives-count">5</span></a>
         </ul>
     </li>
 
@@ -793,7 +801,7 @@ str2<span class="token punctuation">.</span><span class="token function">match</
             </a>
             <ul class="dropdown-menu">
                 <li>
-                <a class="sidebar_archives-link" href="/categories/前端/">前端<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/categories/博客/">博客<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/日语/">日语<span class="sidebar_archives-count">4</span></a>
+                <a class="sidebar_archives-link" href="/categories/前端/">前端<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/categories/博客/">博客<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/日语/">日语<span class="sidebar_archives-count">5</span></a>
             </ul>
         </li>
     
@@ -845,7 +853,7 @@ str2<span class="token punctuation">.</span><span class="token function">match</
     <li>
         <a href="/archives">
             文章总数
-            <span class="sidebar-badge">9</span>
+            <span class="sidebar-badge">10</span>
         </a>
     </li>
     <li style="background:#eee;">
