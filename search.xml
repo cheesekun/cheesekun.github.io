@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title><![CDATA[突然失落]]></title>
+      <url>http://cheesekun.top/2017/03/15/cheesekun.top/ch1012/</url>
+      <content type="html"><![CDATA[<p>突然失落<br>突然低沉<br>突然只想躺着<br>一动不动<br>把什么都放空</p>
+<p>97的大孩子<br>再过几个月20<br>想了好多好多<br>感觉什么都没做<br>但是好累</p>
+<p>好像知道想要什么<br>也一直恐惧害怕着<br>好像有付出过什么<br>好像什么都没得到过</p>
+<p>突然低迷<br>突然难过<br>找不到人倾诉这些<br>听起来很中二，很颓唐的话</p>
+<p>就写下来吧<br>谁会看到<br>20不到的人生<br>2017.3.15 很茫<br>2027的此时，又有何想。</p>
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=33469232&auto=0&height=66"></iframe>
+
+]]></content>
+      
+        <categories>
+            
+            <category> 生活 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> 心情 </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[Java实现图片水印]]></title>
       <url>http://cheesekun.top/2017/03/14/cheesekun.top/ch1011/</url>
       <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>这个星期一一言不合轮到我们小组做java的小知识点介绍，要录个几分钟的视频，<br>啊。。。一直没看java，一言不合就要录视频尼玛。<br>刚好之前想用前端弄个网页p图，<br>所以这次视频就讲下怎么用简单地用java给图片添加水印吧。。。。。</p>
@@ -65,7 +92,7 @@
 
     <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>  
         <span class="token comment" spellcheck="true">//以相框左上角为原点，距离x轴200px; y轴800px; 透明度0.5</span>
-        AddMark<span class="token punctuation">.</span><span class="token function">pressImage</span><span class="token punctuation">(</span><span class="token string">"F:/imageTest/ac.png"</span><span class="token punctuation">,</span> <span class="token string">"F:/imageTest/acLogo.git"</span><span class="token punctuation">,</span> <span class="token string">"F:/imageTest/ac111.png"</span><span class="token punctuation">,</span> <span class="token number">200</span><span class="token punctuation">,</span> <span class="token number">800</span><span class="token punctuation">,</span> <span class="token number">0.5f</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        AddMark<span class="token punctuation">.</span><span class="token function">pressImage</span><span class="token punctuation">(</span><span class="token string">"F:/imageTest/ac.png"</span><span class="token punctuation">,</span> <span class="token string">"F:/imageTest/acLogo.png"</span><span class="token punctuation">,</span> <span class="token string">"F:/imageTest/ac111.png"</span><span class="token punctuation">,</span> <span class="token number">200</span><span class="token punctuation">,</span> <span class="token number">800</span><span class="token punctuation">,</span> <span class="token number">0.5f</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>     
 
 <span class="token punctuation">}</span>
