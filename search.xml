@@ -44,12 +44,11 @@
             <span class="token comment" spellcheck="true">//TYPE_INT_RGB常量是把底图设置为没有透明通道的图片，也就是说如果图片是半透明图片的话，会被透明部分会被填充</span>
             BufferedImage image <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">BufferedImage</span><span class="token punctuation">(</span>width<span class="token punctuation">,</span> height<span class="token punctuation">,</span> BufferedImage<span class="token punctuation">.</span>TYPE_INT_RGB<span class="token punctuation">)</span><span class="token punctuation">;</span>  
 
-            <span class="token comment" spellcheck="true">//再创建一个Graphics2D对象，可以对图片图形或者颜色之类进行操作，相当于有一支画笔啦</span>
-            Graphics2D g <span class="token operator">=</span> image<span class="token punctuation">.</span><span class="token function">createGraphics</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+            Graphics2D g <span class="token operator">=</span> image<span class="token punctuation">.</span><span class="token function">createGraphics</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">//再创建一个Graphics2D对象，可以对图片图形或者颜色之类进行操作，相当于有一支画笔</span>
 
-            <span class="token comment" spellcheck="true">//将原图放进相框中,500,500表示图片偏移相框x轴500px，y轴500px</span>
-            <span class="token comment" spellcheck="true">//null用于在构造 Image 时，接收有关 Image 信息通知的异步更新接口。</span>
-            g<span class="token punctuation">.</span><span class="token function">drawImage</span><span class="token punctuation">(</span>src<span class="token punctuation">,</span> <span class="token number">500</span><span class="token punctuation">,</span><span class="token number">500</span><span class="token punctuation">,</span> width<span class="token punctuation">,</span> height<span class="token punctuation">,</span> null<span class="token punctuation">)</span><span class="token punctuation">;</span>    
+            <span class="token comment" spellcheck="true">//将原图放进相框中,0,0表示图片偏移相框x轴0px，y轴0px,也就是说原图相对相框位置不改变</span>
+            <span class="token comment" spellcheck="true">//null用于在构造 Image 时，接收有关 Image 信息通知的异步更新接口，没有就写null</span>
+            g<span class="token punctuation">.</span><span class="token function">drawImage</span><span class="token punctuation">(</span>src<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> width<span class="token punctuation">,</span> height<span class="token punctuation">,</span> null<span class="token punctuation">)</span><span class="token punctuation">;</span>    
 
             <span class="token comment" spellcheck="true">// 水印添加</span>
             Image src_mark <span class="token operator">=</span> ImageIO<span class="token punctuation">.</span><span class="token function">read</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">File</span><span class="token punctuation">(</span>markImg<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -70,7 +69,12 @@
     <span class="token punctuation">}</span>     
 
 <span class="token punctuation">}</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="效果"><a href="#效果" class="headerlink" title="效果"></a>效果</h2><p>原图&amp;水印</p>
+<blockquote>
+<p>这下面是两张图，背景色一样gg (ノ<em>゜▽゜</em>)</p>
+</blockquote>
+<p><img src="http://oksbjk6b9.bkt.clouddn.com/ac.png" alt=""><img src="http://oksbjk6b9.bkt.clouddn.com/acLogo.png" alt=""><br>水印图<br><img src="http://oksbjk6b9.bkt.clouddn.com/ac111.png" alt=""></p>
 <blockquote>
 <p><code>Graphics2D</code> 也就是之前说的画笔，这个类有很多方法，如图片旋转，放大缩小，文字水印都有，查下api就可以用啦</p>
 </blockquote>
