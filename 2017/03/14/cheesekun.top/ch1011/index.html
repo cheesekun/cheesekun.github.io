@@ -4,7 +4,7 @@
     
     <title>
         
-            13天总结 | 
+            Java实现图片水印 | 
         
         cheesekun | just 涨芝士
     </title>
@@ -42,7 +42,7 @@
     <!-- The Open Graph protocol -->
     <meta property="og:url" content="http://cheesekun.top">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="13天总结 | cheesekun | just 涨芝士">
+    <meta property="og:title" content="Java实现图片水印 | cheesekun | just 涨芝士">
     <meta property="og:description" content="喜欢动漫，热爱日剧，自学前端，这是芝士君的小屋，欢迎米娜桑的到来。比心">
 
     <!--[if lte IE 9]>
@@ -221,7 +221,7 @@
     </button>
 
     <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn">
-        <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#前言"><span class="post-toc-number">1.</span> <span class="post-toc-text">前言</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#重点"><span class="post-toc-number">2.</span> <span class="post-toc-text">重点</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#结语"><span class="post-toc-number">3.</span> <span class="post-toc-text">结语</span></a></li></ol>
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#前言"><span class="post-toc-number">1.</span> <span class="post-toc-text">前言</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#思路"><span class="post-toc-number">2.</span> <span class="post-toc-text">思路</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#代码"><span class="post-toc-number">3.</span> <span class="post-toc-text">代码</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#结语"><span class="post-toc-number">4.</span> <span class="post-toc-text">结语</span></a></li></ol>
 
         <!--
         <li class="mdl-menu__item">
@@ -257,7 +257,7 @@
         
     
             <p class="article-headline-p">
-                13天总结
+                Java实现图片水印
             </p>
         </div>
 
@@ -276,7 +276,7 @@
     <!-- Author Name & Date -->
     <div>
         <strong>芝士君</strong>
-        <span>3月 08, 2017</span>
+        <span>3月 14, 2017</span>
     </div>
 
     <div class="section-spacer"></div>
@@ -297,7 +297,7 @@
         </button>
         <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-qrcode-button">
             <li class="mdl-menu__item">在其它设备中阅读本文章</li>
-            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPYAAAD2CAAAAADAeSUUAAACzElEQVR42u3aUVIjMQwE0Nz/0nAAitAtZSFrP39RyWQyz1Qh1PLj48r1wMbGxsbGxsbGxn5L9iNe397uy7tfP/X8ledXfveN7TNjY2Njn83+4U9/yc7xycYl10e/DGxsbOwL2M+Lyh6ZFJt8U/JnxsbGxsZu2S1sUzKxsbGxsWfs5JX8/m37gY2NjY29CWieF7BZIUy2YF8CsbGxsc9mzxqJv/35V+fb2NjY2G/Mblce6M/GtMkBoOGTY2NjYx/Kbgexq2agPHy5uQYbGxv7HnaLmT3crEzmZSyKvbCxsbEvYLeD23azZoUzKk7BdmNjY2Ofzd5ENvnxnaQQbmKsYtCLjY2NfRw7/+d+dphmdjDotQETNjY29tnsNhJq8Y/FalugIlTCxsbGPoKdNBLtEcx2I/LBwGYsgY2NjX0Du6XmY9dNodq0NNjY2Ng3sDf/3CdNQvvurBGKPoWNjY19KHtWMJJGInm3bXKS0oWNjY19J/t3oqUWsx9aYGNjY9/AbstPzhg+XDweaKMlbGxs7FPZ0bHF8uFe21TMimvRimBjY2P/5+xZgdkg83tuhhDY2NjYd7LzIGlzZd4C5Ycs68OX2NjY2Iey82LQhvWbu7XsOkvDxsbGPoLdHq9pD8cn95kVrWIjsLGxsQ9l54+eRz9FZD+KkGZFFxsbG/tsdvsQSanLx8Cb8lYMNrCxsbEvYOcRz0e8ki1LvusFRREbGxv7AvbmmE4yBp7FWLNgCxsbG/sedrvaNiNpLdp4axZjYWNjY5/K3oxs28HwPq5qNwsbGxv7HnZetDa8OtCPRxerQS82Njb2Qey8YUji/s2QeL+wsbGxsZOitRkJtNuaH+LBxsbGxt6H+PtAataQ/PAKNjY29gXsfLj7qoApiYT2gRQ2Njb2Dey8CLUtSnJlwsgPAP2T+TY2Njb2G7PvWdjY2NjY2NjY2Nhvsz4B8PTilagwLFEAAAAASUVORK5CYII=">
+            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPYAAAD2CAAAAADAeSUUAAACyUlEQVR42u3aQW7kMAwEwPn/p7MPCGB3U57AK5VOAyeQVboQbPrzc+T6YGNjY2NjY2NjY7+S/YnXzaa//vN6n+R58q78zNjY2Nh7sxNS8uTmxZfPr3d74MzY2NjYB7Cvi0p+Bfn+1+9KnhT7YGNjY2NfIvOSMys/2NjY2NjfZl/vll9Ne3HY2NjY2G05WW8b8n1y0tezNGxsbOzXs/Oh6Xt+/+l8GxsbG/vF7Ha1cf9KYJR/xBOdHBsbG3tT9gpjFhslYVD74WZ03djY2NibstuAPmlO8qM8VcaiUTQ2Njb2puw2ps8D+qdampXRLzY2NvZp7Nnhbl4W7D9rePIBMzY2NvYJ7JV4qG0VnippbcCEjY2NvSt71kLMhruzlZeoYZaGjY2NvRF7FvS0oU/buuRFqwiVsLGxsTdlt4VhvVVoBw95sazrNjY2NvZ/zp41EvnV5IUtj6jy0oWNjY19Anv24jqgD8YPye/hmbGxsbEPYOeD3pWLW2k8ZoUNGxsbe2/29aYrZWN4uDi6aqMxbGxs7HPYK7+/0VQkb4nGBtjY2Nhbs9uS0LYTbYlq94nOj42NjX0Yu/0cJy8/7YXmHwPdnAobGxt7U3YbMM0GwHlBai+xCKewsbGxD2AnpStvSFY+2Xnqr9jY2NgnsGclqo2K8sgpv8T8r9jY2NinsVci/qQo5kOCWfsxLGDY2NjYG7Hzi0iKVn4ds9alKIrY2NjYR7Jno4J8z5XhRFLwsLGxsU9gt6t9ZTtgqDHY2NjYx7OXSsIoGJoND2aXhY2NjX0OOyla+UA3R7YtTR5vFR0YNjY29kbstmFoi01yoU8tbGxsbOyV6GflavLw6IFQCRsbG/tgdjs8aEe8s4bk5gk2Njb2AeykYWjHAyuj2acCKWxsbOwT2HlTkbcBs1hq5cq+ON/GxsbGfjH7nIWNjY2NjY2NjY39mvUPal+a3QUiLUEAAAAASUVORK5CYII=">
         </ul>
     
 
@@ -309,7 +309,7 @@
     </button>
     <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
         <li class="mdl-menu__item">
-        <a class="post_tag-link" href="/tags/ife2017/">ife2017</a></li><li class="mdl-menu__item"><a class="post_tag-link" href="/tags/前端/">前端</a>
+        <a class="post_tag-link" href="/tags/java/">java</a></li><li class="mdl-menu__item"><a class="post_tag-link" href="/tags/水印/">水印</a>
     </ul>
     
 
@@ -336,7 +336,7 @@
 
     <!-- Share Weibo -->
     
-        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=13天总结&url=http://cheesekun.top//2017/03/08/cheesekun.top/ch1007/index.html&pic=&searchPic=false&style=simple" target="_blank">
+        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=Java实现图片水印&url=http://cheesekun.top//2017/03/14/cheesekun.top/ch1011/index.html&pic=&searchPic=false&style=simple" target="_blank">
             <li class="mdl-menu__item">
                 分享到微博
             </li>
@@ -348,7 +348,7 @@
 
     <!-- Share Facebook -->
     
-        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=http://cheesekun.top//2017/03/08/cheesekun.top/ch1007/index.html" target="_blank">
+        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=http://cheesekun.top//2017/03/14/cheesekun.top/ch1011/index.html" target="_blank">
             <li class="mdl-menu__item">
                 分享到 Facebook
             </li>
@@ -357,7 +357,7 @@
 
     <!-- Share Google+ -->
     
-        <a class="post_share-link" href="https://plus.google.com/share?url=http://cheesekun.top//2017/03/08/cheesekun.top/ch1007/index.html" target="_blank">
+        <a class="post_share-link" href="https://plus.google.com/share?url=http://cheesekun.top//2017/03/14/cheesekun.top/ch1011/index.html" target="_blank">
             <li class="mdl-menu__item">
                 分享到 Google+
             </li>
@@ -381,78 +381,77 @@
                 <!-- Post Content -->
                 <div id="post-content" class="markdown-Github mdl-color-text--grey-700 mdl-card__supporting-text fade out">
     
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>从2.24开始到今天3.8已经13天时间了，ife上完成了17个<a href="https://github.com/cheeseKun/baiduIFE2017" target="_blank" rel="external">普通任务</a>，做一波小总结，理清在任务中初次遇到或者之前没怎么使用的一些知识。</p>
-<blockquote>
-<p><iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=543022&auto=1&height=66"></iframe><br>前些天在看&lt;求婚大作战&gt;，特别喜欢这部片子，安利大家</p>
-</blockquote>
-<h2 id="重点"><a href="#重点" class="headerlink" title="重点"></a>重点</h2><ul>
-<li><p>transition(过渡属性)</p>
-<pre class="line-numbers language-css"><code class="language-css"><span class="token selector">div </span><span class="token punctuation">{</span> <span class="token property">transition</span><span class="token punctuation">:</span> left <span class="token number">1</span>s <span class="token number">0.4</span>s ease-in-out<span class="token punctuation">}</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<blockquote>
-<p>表示该div的<code>left</code>属性延迟1秒后会在0.4秒的时间内，以ease-in-out(以慢速开始和结束)的过渡效果进行变化<br>通常搭配<code>:hover</code>伪类使用<br>transition通常属性值都是一齐使用，所以没必要去记住子属性。<br>下面是单纯用<code>transition</code>属性实现的导航栏下划线移动效果</p>
-</blockquote>
-<p></p><p data-height="279" data-theme-id="light" data-slug-hash="gmLgEw" data-default-tab="html,result" data-user="cheesekun" data-embed-version="2" data-pen-title="anime-nav" data-preview="true" class="codepen">See the Pen <a href="http://codepen.io/cheesekun/pen/gmLgEw/" target="_blank" rel="external">anime-nav</a> by cheesekun (<a href="http://codepen.io/cheesekun" target="_blank" rel="external">@cheesekun</a>) on <a href="http://codepen.io" target="_blank" rel="external">CodePen</a>.</p><br><script async src="http://production-assets.codepen.io/assets/embed/ei.js"></script><p></p>
-<blockquote>
-<p>上述效果还使用了<code>~</code>子类选择器<br>举例: a ~ div<br>表示同个父元素下 <code>&lt;a&gt;</code>之后的所有<code>&lt;div&gt;</code>被选择</p>
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>这个星期一一言不合轮到我们小组做java的小知识点介绍，要录个几分钟的视频，<br>啊。。。一直没看java，一言不合就要录视频尼玛。<br>刚好之前想用前端弄个网页p图，<br>所以这次视频就讲下怎么用简单地用java给图片添加水印吧。。。。。</p>
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><ol>
+<li>先new个File对象来获取图片</li>
+<li>使用ImageIO对象的read方法读取图片数据</li>
+<li>再创建一个BufferedImage对象来，用来放置图片，我把它当作一个相框来看</li>
+<li>调用createGraphics方法，会返回一个Graphics2D对象，可用于图像操作，也就是对相框进行图像操作(该对象有很多对图像进行操作的方法，如放大缩小旋转)</li>
+<li>使用该对象的drawImage()方法将图片放置于其中</li>
+<li>到这一部我们就把图片放在相框中了，后面添加上水印也就是把水印图片添加到相框的相对位置上而已，不过多了一步将水印图片进行半透明化</li>
+<li>然后以相同的方法放透明化水印图片到相框</li>
+<li>添加后我们要用dispose释放内存</li>
+<li>最后write方法输出已经打上水印的图片到指定路径<blockquote>
+<p>读图片-&gt;建容器-&gt;放图片-&gt;放水印-&gt;释放内存-&gt;写出图片</p>
 </blockquote>
 </li>
-<li><p>响应式</p>
-<blockquote>
-<p>这个题目撞到挺多有趣的问题<br>主要使用了<code>@meadia</code>媒体查询属性</p>
-</blockquote>
-<pre class="line-numbers language-css"><code class="language-css">@media only screen and <span class="token punctuation">(</span><span class="token property">min-width</span><span class="token punctuation">:</span> <span class="token number">768</span>px<span class="token punctuation">)</span> and <span class="token punctuation">(</span><span class="token property">max-width</span><span class="token punctuation">:</span> <span class="token number">1024</span>px<span class="token punctuation">)</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<blockquote>
-<p>表示仅当screen(输出设备可浏览宽度)最小值为768px，最大值为1024px时实现<br></p><p data-height="265" data-theme-id="light" data-slug-hash="ZeWdKV" data-default-tab="css,result" data-user="cheesekun" data-embed-version="2" data-pen-title="响应式12栏" data-preview="true" class="codepen">See the Pen <a href="http://codepen.io/cheesekun/pen/ZeWdKV/" target="_blank" rel="external">响应式12栏</a> by cheesekun (<a href="http://codepen.io/cheesekun" target="_blank" rel="external">@cheesekun</a>) on <a href="http://codepen.io" target="_blank" rel="external">CodePen</a>.</p><p></p>
-<script async src="http://production-assets.codepen.io/assets/embed/ei.js"></script>
+</ol>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">package</span> mark<span class="token punctuation">;</span>
 
-<p>上面的例子我一开始是使用<code>inline-block</code>，后来发现<code>inline-block</code>有个弊端，会受默认字体宽度影响，并且处理方式极其奇葩，如果想实现无缝衔接<code>inline-block</code>还是算了，乖乖使用<code>float: left</code></p>
-<blockquote>
-<p>看张鑫旭大神解决<code>inline-block</code>间距的方法<a href="http://www.zhangxinxu.com/wordpress/2012/04/inline-block-space-remove-%E5%8E%BB%E9%99%A4%E9%97%B4%E8%B7%9D/" target="_blank" rel="external">链接</a></p>
-</blockquote>
-<p>并且使用了css3中的<code>calc()</code>来进行值的计算</p>
-</blockquote>
-<pre class="line-numbers language-css"><code class="language-css"><span class="token selector">div </span><span class="token punctuation">{</span><span class="token property">width</span><span class="token punctuation">:</span> <span class="token function">calc</span><span class="token punctuation">(</span><span class="token number">50%</span> - <span class="token number">40</span>em<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">}</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<blockquote>
-<blockquote>
-<p>上述<code>div</code>在我们不知道父元素的50%是多大的时候，我们可以直接使用<code>calc()</code>，将这个烦人的计算交给浏览器<br>表达式中有“+”和“-”时，其前后必须要有空格，否则报错<br>box-sizing属性特别好用</p>
-</blockquote>
-</blockquote>
-<pre class="line-numbers language-css"><code class="language-css"><span class="token punctuation">{</span> <span class="token property">box-sizing</span><span class="token punctuation">:</span> border-box<span class="token punctuation">;</span><span class="token punctuation">}</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<blockquote>
-<blockquote>
-<p>可以直接把该<code>div</code>的<code>border</code>,<code>padding</code>值直接并入到<code>width</code>,这样对布局宽度更加直观。<br><code>box-sizing: inherit</code>则表示继承自父元素 <code>box-sizing</code>值的设定</p>
-</blockquote>
-</blockquote>
-</li>
-<li><p>循环添加节点改变dom结构</p>
-<blockquote>
-<p>不要每进行一次循环创建一个元素就插入到dom，而应该使用createDocumentFrgment()创建一个文档片段,将循环的结果一个一个插入该片段，再将该片段一次插入到dom，减轻浏览器渲染负担</p>
-</blockquote>
-<pre class="line-numbers language-javascript"><code class="language-javascript"><span class="token comment" spellcheck="true">/* 打印出排序完的城市排名 */</span>
-<span class="token keyword">function</span> <span class="token function">render</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-  <span class="token keyword">var</span> fragment <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">createDocumentFragment</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-  <span class="token keyword">var</span> num <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">"一"</span><span class="token punctuation">,</span> <span class="token string">"二"</span><span class="token punctuation">,</span> <span class="token string">"三"</span><span class="token punctuation">,</span> <span class="token string">"四"</span><span class="token punctuation">,</span> <span class="token string">"五"</span><span class="token punctuation">,</span> <span class="token string">"六"</span><span class="token punctuation">,</span> <span class="token string">"七"</span><span class="token punctuation">,</span> <span class="token string">"八"</span><span class="token punctuation">,</span> <span class="token string">"九"</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-  <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">var</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> soLi<span class="token punctuation">.</span>length<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token keyword">var</span> oLi <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">createElement</span><span class="token punctuation">(</span><span class="token string">"li"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    oLi<span class="token punctuation">.</span>innerHTML <span class="token operator">=</span> <span class="token string">"第"</span> <span class="token operator">+</span> num<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">+</span> <span class="token string">"名："</span> <span class="token operator">+</span> data<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">+</span> <span class="token string">"空气质量："</span> <span class="token operator">+</span> <span class="token string">"&lt;b>"</span> <span class="token operator">+</span> data<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">+</span> <span class="token string">"&lt;/b>"</span><span class="token punctuation">;</span>
-    fragment<span class="token punctuation">.</span><span class="token function">appendChild</span><span class="token punctuation">(</span>oLi<span class="token punctuation">)</span><span class="token punctuation">;</span>
-  <span class="token punctuation">}</span>
-  reUl<span class="token punctuation">.</span><span class="token function">appendChild</span><span class="token punctuation">(</span>fragment<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> java<span class="token punctuation">.</span>awt<span class="token punctuation">.</span>AlphaComposite<span class="token punctuation">;</span>
+<span class="token keyword">import</span> java<span class="token punctuation">.</span>awt<span class="token punctuation">.</span>Graphics2D<span class="token punctuation">;</span>
+<span class="token keyword">import</span> java<span class="token punctuation">.</span>awt<span class="token punctuation">.</span>Image<span class="token punctuation">;</span>
+<span class="token keyword">import</span> java<span class="token punctuation">.</span>awt<span class="token punctuation">.</span>image<span class="token punctuation">.</span>BufferedImage<span class="token punctuation">;</span>
+<span class="token keyword">import</span> java<span class="token punctuation">.</span>io<span class="token punctuation">.</span>File<span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> javax<span class="token punctuation">.</span>imageio<span class="token punctuation">.</span>ImageIO<span class="token punctuation">;</span>
+
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">AddMark</span> <span class="token punctuation">{</span>  
+
+    <span class="token keyword">public</span> <span class="token keyword">final</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">pressImage</span><span class="token punctuation">(</span>String backImg<span class="token punctuation">,</span> String markImg<span class="token punctuation">,</span>  
+            String destImageFile<span class="token punctuation">,</span> <span class="token keyword">int</span> x <span class="token punctuation">,</span><span class="token keyword">int</span> y <span class="token punctuation">,</span> <span class="token keyword">float</span> alpha<span class="token punctuation">)</span> <span class="token punctuation">{</span>  
+        <span class="token keyword">try</span> <span class="token punctuation">{</span>  
+            File img <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">File</span><span class="token punctuation">(</span>backImg<span class="token punctuation">)</span><span class="token punctuation">;</span>  
+            Image src <span class="token operator">=</span> ImageIO<span class="token punctuation">.</span><span class="token function">read</span><span class="token punctuation">(</span>img<span class="token punctuation">)</span><span class="token punctuation">;</span>  
+            <span class="token keyword">int</span> width <span class="token operator">=</span> src<span class="token punctuation">.</span><span class="token function">getWidth</span><span class="token punctuation">(</span>null<span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">//接口对象参数，没有就写null</span>
+            <span class="token keyword">int</span> height <span class="token operator">=</span> src<span class="token punctuation">.</span><span class="token function">getHeight</span><span class="token punctuation">(</span>null<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+            <span class="token comment" spellcheck="true">//TYPE_INT_RGB常量是把底图设置为没有透明通道的图片，也就是说如果图片是半透明图片的话，会被透明部分会被填充</span>
+            BufferedImage image <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">BufferedImage</span><span class="token punctuation">(</span>width<span class="token punctuation">,</span> height<span class="token punctuation">,</span> BufferedImage<span class="token punctuation">.</span>TYPE_INT_RGB<span class="token punctuation">)</span><span class="token punctuation">;</span>  
+
+            <span class="token comment" spellcheck="true">//再创建一个Graphics2D对象，可以对图片图形或者颜色之类进行操作，相当于有一支画笔啦</span>
+            Graphics2D g <span class="token operator">=</span> image<span class="token punctuation">.</span><span class="token function">createGraphics</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+
+            <span class="token comment" spellcheck="true">//将原图放进相框中,500,500表示图片偏移相框x轴500px，y轴500px</span>
+            <span class="token comment" spellcheck="true">//null用于在构造 Image 时，接收有关 Image 信息通知的异步更新接口。</span>
+            g<span class="token punctuation">.</span><span class="token function">drawImage</span><span class="token punctuation">(</span>src<span class="token punctuation">,</span> <span class="token number">500</span><span class="token punctuation">,</span><span class="token number">500</span><span class="token punctuation">,</span> width<span class="token punctuation">,</span> height<span class="token punctuation">,</span> null<span class="token punctuation">)</span><span class="token punctuation">;</span>    
+
+            <span class="token comment" spellcheck="true">// 水印添加</span>
+            Image src_mark <span class="token operator">=</span> ImageIO<span class="token punctuation">.</span><span class="token function">read</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">File</span><span class="token punctuation">(</span>markImg<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            g<span class="token punctuation">.</span><span class="token function">setComposite</span><span class="token punctuation">(</span>AlphaComposite<span class="token punctuation">.</span><span class="token function">getInstance</span><span class="token punctuation">(</span>AlphaComposite<span class="token punctuation">.</span>SRC_ATOP<span class="token punctuation">,</span> alpha<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token comment" spellcheck="true">//设置透明度</span>
+            g<span class="token punctuation">.</span><span class="token function">drawImage</span><span class="token punctuation">(</span>src_mark<span class="token punctuation">,</span> x<span class="token punctuation">,</span>y<span class="token punctuation">,</span> null<span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">//水印的位置 相对相框定位</span>
+
+            <span class="token comment" spellcheck="true">// 水印添加结束 ,释放此图形的上下文以及它使用的所有系统资源。调用 dispose 之后，就不能再使用 Graphics 对象。</span>
+            g<span class="token punctuation">.</span><span class="token function">dispose</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+            ImageIO<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span><span class="token punctuation">(</span>BufferedImage<span class="token punctuation">)</span> image<span class="token punctuation">,</span> <span class="token string">"png"</span><span class="token punctuation">,</span> <span class="token keyword">new</span> <span class="token class-name">File</span><span class="token punctuation">(</span>destImageFile<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token comment" spellcheck="true">//将缓存的图片对象写入到指定位置</span>
+        <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">Exception</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>  
+            e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+        <span class="token punctuation">}</span>  
+    <span class="token punctuation">}</span>  
+
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>  
+        <span class="token comment" spellcheck="true">//以相框左上角为原点，距离x轴200px; y轴800px; 透明度0.5</span>
+        AddMark<span class="token punctuation">.</span><span class="token function">pressImage</span><span class="token punctuation">(</span><span class="token string">"F:/imageTest/ac.png"</span><span class="token punctuation">,</span> <span class="token string">"F:/imageTest/acLogo.git"</span><span class="token punctuation">,</span> <span class="token string">"F:/imageTest/ac111.png"</span><span class="token punctuation">,</span> <span class="token number">200</span><span class="token punctuation">,</span> <span class="token number">800</span><span class="token punctuation">,</span> <span class="token number">0.5f</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>     
+
 <span class="token punctuation">}</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-</li>
-<li>模糊匹配<blockquote>
-<p>模糊匹配这里使用了正则表达式，暂时不放总结<br>到时再做一篇来总结正则的使用吧</p>
-</blockquote>
-</li>
-</ul>
-<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>果然基础还是很薄，兴致勃勃地想去玩进阶，还是算了</p>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <blockquote>
-<p>道に 迷うこと こそ、 道を 知ることだ。<br>只有迷路了，才会知道路到底在哪里。</p>
+<p><code>Graphics2D</code> 也就是之前说的画笔，这个类有很多方法，如图片旋转，放大缩小，文字水印都有，查下api就可以用啦</p>
+</blockquote>
+<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>果然对java没什么好感呀。大概是因为自己太蠢了</p>
+<blockquote>
+<p>JAVAなんで、大嫌い</p>
 </blockquote>
 
     
@@ -522,7 +521,7 @@
 <script>
     $('.btn_click_load').click(function() {  //click to load comments
         var disqus_config = function () {
-            this.page.url = 'http://cheesekun.top/2017/03/08/cheesekun.top/ch1007/index.html';  // Replace PAGE_URL with your page's canonical URL variable
+            this.page.url = 'http://cheesekun.top/2017/03/14/cheesekun.top/ch1011/index.html';  // Replace PAGE_URL with your page's canonical URL variable
             this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
         };
         (function() { // DON'T EDIT BELOW THIS LINE
@@ -552,21 +551,13 @@
             <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
     <!-- Prev Nav -->
     
-        <a href="/2017/03/11/cheesekun.top/ch1008/" id="post_nav-newer" class="prev-content">
-            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
-                <i class="material-icons">arrow_back</i>
-            </button>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            next
-        </a>
-    
 
     <!-- Section Spacer -->
     <div class="section-spacer"></div>
 
     <!-- Next Nav -->
     
-        <a href="/2017/03/07/cheesekun.top/ch1006/" id="post_nav-older" class="next-content">
+        <a href="/2017/03/13/cheesekun.top/ch1010/" id="post_nav-older" class="next-content">
             previous
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
