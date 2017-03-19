@@ -4,7 +4,7 @@
     
     <title>
         
-            tags | 
+            JSONP跨域访问 | 
         
         cheesekun | just 涨芝士
     </title>
@@ -42,7 +42,7 @@
     <!-- The Open Graph protocol -->
     <meta property="og:url" content="http://cheesekun.top">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="tags | cheesekun | just 涨芝士">
+    <meta property="og:title" content="JSONP跨域访问 | cheesekun | just 涨芝士">
     <meta property="og:description" content="喜欢动漫，热爱日剧，自学前端，这是芝士君的小屋，欢迎米娜桑的到来。比心">
 
     <!--[if lte IE 9]>
@@ -197,60 +197,439 @@
 
                     <!-- Post TOC -->
 
+    
+    <!-- Back Button -->
+    <!--
+    <div class="material-back" id="backhome-div" tabindex="0">
+        <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"
+           href="#" onclick="window.history.back();return false;"
+           target="_self"
+           role="button"
+           data-upgraded=",MaterialButton,MaterialRipple">
+            <i class="material-icons" role="presentation">arrow_back</i>
+            <span class="mdl-button__ripple-container">
+                <span class="mdl-ripple"></span>
+            </span>
+        </a>
+    </div>
+    -->
+
+    <!-- Left aligned menu below button -->
+    <button id="post-toc-trigger-btn"
+        class="mdl-button mdl-js-button mdl-button--icon">
+        <i class="material-icons">format_list_numbered</i>
+    </button>
+
+    <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn">
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#前言"><span class="post-toc-number">1.</span> <span class="post-toc-text">前言</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#ajax"><span class="post-toc-number">2.</span> <span class="post-toc-text">ajax</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#为何浏览器不支持跨域访问"><span class="post-toc-number">3.</span> <span class="post-toc-text">为何浏览器不支持跨域访问</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#JSONP"><span class="post-toc-number">4.</span> <span class="post-toc-text">JSONP</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#结语"><span class="post-toc-number">5.</span> <span class="post-toc-text">结语</span></a></li></ol>
+
+        <!--
+        <li class="mdl-menu__item">
+            Some Action
+        </li>
+        -->
+    </ul>
+
+
+
 
 <!-- Layouts -->
 
-    <!-- Tags Cloud -->
-    <style>
-    #bottom{
-        position: relative;
-    }
+    <!-- Post Module -->
+    <div class="material-post_container">
 
-    @media screen and (max-width: 480px) {
-        .material-tagscloud{
-            margin: 6em 2em 0;
-        }
-    }
+        <div class="material-post mdl-grid">
+            <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
 
-    .material-tagscloud a{
-        text-decoration:none;
-        padding: 1px 9px;
-        margin: 9px 1px;
-        line-height: 40px;
-        white-space: nowrap;
-        transition: .6s;
-        opacity: .85;
-    }
+                <!-- Post Header(Thumbnail & Title) -->
+                
+    <!-- Paradox Post Header -->
+    
+        
+            <!-- Random Thumbnail -->
+            <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
+            <script>
+    var randomNum = Math.floor(Math.random() * 19 + 1);
 
-    .material-tagscloud a:hover{
-        transition: .6s;
-        opacity: 1;
-        background: #FAFAFA;
-        box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);
-    }
-</style>
+    $('.post_thumbnail-random').css('background-image', 'url(' + '/img/random/material-' + randomNum + '.png' + ')');
+</script>
 
-<div class=" material-tagscloud">
-    <div class="material-post mdl-grid">
-        <a href="/tags/ajax/" style="font-size: 16px; color: #757575">ajax</a> <a href="/tags/css/" style="font-size: 16px; color: #757575">css</a> <a href="/tags/flex/" style="font-size: 16px; color: #757575">flex</a> <a href="/tags/git/" style="font-size: 16px; color: #757575">git</a> <a href="/tags/hexo/" style="font-size: 16px; color: #757575">hexo</a> <a href="/tags/ife2017/" style="font-size: 20.75px; color: #606060">ife2017</a> <a href="/tags/java/" style="font-size: 16px; color: #757575">java</a> <a href="/tags/javascript/" style="font-size: 20.75px; color: #606060">javascript</a> <a href="/tags/markdown/" style="font-size: 16px; color: #757575">markdown</a> <a href="/tags/web存储/" style="font-size: 16px; color: #757575">web存储</a> <a href="/tags/前端/" style="font-size: 25.5px; color: #4b4b4b">前端</a> <a href="/tags/布局/" style="font-size: 16px; color: #757575">布局</a> <a href="/tags/心情/" style="font-size: 16px; color: #757575">心情</a> <a href="/tags/日语/" style="font-size: 35px; color: #212121">日语</a> <a href="/tags/标准日本语/" style="font-size: 30.25px; color: #363636">标准日本语</a> <a href="/tags/正则表达式/" style="font-size: 16px; color: #757575">正则表达式</a> <a href="/tags/水印/" style="font-size: 16px; color: #757575">水印</a> <a href="/tags/跨域/" style="font-size: 16px; color: #757575">跨域</a>
+        
+    
+            <p class="article-headline-p">
+                JSONP跨域访问
+            </p>
+        </div>
+
+
+
+
+
+                
+                    <!-- Paradox Post Info -->
+                    <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
+
+    <!-- Author Avatar -->
+    <div id="author-avatar">
+        <img src="/img/avatar.gif" width="44px" height="44px" alt="Author Avatar"/>
     </div>
+    <!-- Author Name & Date -->
+    <div>
+        <strong>芝士君</strong>
+        <span>3月 19, 2017</span>
+    </div>
+
+    <div class="section-spacer"></div>
+
+    <!-- Favorite -->
+    <!--
+        <button id="article-functions-like-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon btn-like">
+            <i class="material-icons" role="presentation">favorite</i>
+            <span class="visuallyhidden">favorites</span>
+        </button>
+    -->
+
+    <!-- Qrcode -->
+    
+        <button id="article-functions-qrcode-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+            <i class="material-icons" role="presentation">devices other</i>
+            <span class="visuallyhidden">devices other</span>
+        </button>
+        <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-qrcode-button">
+            <li class="mdl-menu__item">在其它设备中阅读本文章</li>
+            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPYAAAD2CAAAAADAeSUUAAAC3UlEQVR42u3aQXLkIBAEwPn/p3evvkhTBWhXhuTkGE9IJD60u5rPnyPXBxsbGxsbGxsbG/uV7E+8okf/+Ob9c5LP79/S7hkbGxt7b3aOueIlz7zc0MUn+fejPWNjY2MfwL4vKsnW78tPUmzyQ8n3jI2NjY19z05+e7+hpPxgY2NjY69lJw1GUsDG2g9sbGxs7JmApm1L8uckTct/y9KwsbGxX8/Oh6bv+fmfzrexsbGxX8xuV1JIkiFBO1TOrw1dPhkbGxt7U3ZeGNpWYWZA217cjK5sYmNjY2/NzsvD2LZmymRbFC+/g42Njb0pO2kS8mI2M3KoQ6J2aIGNjY29KTsvPDNtSV4Ok4jq/gjq+TY2Njb2Fux2uJtfvnmupNVBGDY2Nvam7LxUJC9LIqF25SVqKlTCxsbG/uXsvM0Yi4HaxmbsyOosDRsbG3sL9nMx0KoDahubwfk2NjY29kbs9kLPTHA/9t62dGFjY2Ofw07GAHmUk4DbGCspbNjY2NinsWdCpXYo22LGjv7xLA0bGxv7ZexkozPlpN5cPB5o346NjY19AjvZ4lhLMNNU5A3Sl3KIjY2NfQA7/6c/aULasGkmtIqOEhsbG3tr9kw5WRv9J3HV2B8MGxsbe2/2zFWbdjzQjmlb9lSohI2Njf0L2fkr89ioDfpnilZxENjY2NibsnPqzNbHhsF5y7QgVMLGxsbelD0W6LSj31UHuqyAYWNjY2/Bng/u88KTBEMLiiI2Njb2Aew89G+Hu2Pjh3YI8aWJwsbGxt6U3a4ZQHtwEQYbGxv7ePZMSWhLYD6EmG+KiptK2NjY2Fuw86I1A6gD/aHBw+CgFxsbG3sLdtsw5Fd88gNdtbCxsbGxxwa3q0bI+UgYGxsbG3tVARtrMPJWJzmUL59gY2NjH8BeNdxtS9HTgRQ2Njb2Cew8psmj/LwEJozkyB6cb2NjY2O/mH3OwsbGxsbGxsbGxn7N+gu5/1z/W9DvkwAAAABJRU5ErkJggg==">
+        </ul>
+    
+
+    <!-- Tags (bookmark) -->
+    
+    <button id="article-functions-viewtags-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+        <i class="material-icons" role="presentation">bookmark</i>
+        <span class="visuallyhidden">bookmark</span>
+    </button>
+    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
+        <li class="mdl-menu__item">
+        <a class="post_tag-link" href="/tags/ajax/">ajax</a></li><li class="mdl-menu__item"><a class="post_tag-link" href="/tags/javascript/">javascript</a></li><li class="mdl-menu__item"><a class="post_tag-link" href="/tags/前端/">前端</a></li><li class="mdl-menu__item"><a class="post_tag-link" href="/tags/跨域/">跨域</a>
+    </ul>
+    
+
+    <!-- Share -->
+    <button id="article-fuctions-share-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+    <i class="material-icons" role="presentation">share</i>
+    <span class="visuallyhidden">share</span>
+</button>
+<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-fuctions-share-button">
+    
+
+    
+        
+            <!-- Busuanzi Views -->
+            <a class="post_share-link" href="#">
+                <li class="mdl-menu__item">
+                    <span id="busuanzi_container_page_pv">
+                        <span id="busuanzi_value_page_pv"></span>&nbsp;  PV
+                    </span>
+                </li>
+            </a>
+        
+    
+
+    <!-- Share Weibo -->
+    
+        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=JSONP跨域访问&url=http://cheesekun.top//2017/03/19/cheesekun.top/ch1014/index.html&pic=&searchPic=false&style=simple" target="_blank">
+            <li class="mdl-menu__item">
+                分享到微博
+            </li>
+        </a>
+    
+
+    <!-- Share Twitter -->
+    
+
+    <!-- Share Facebook -->
+    
+        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=http://cheesekun.top//2017/03/19/cheesekun.top/ch1014/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Facebook
+            </li>
+        </a>
+    
+
+    <!-- Share Google+ -->
+    
+        <a class="post_share-link" href="https://plus.google.com/share?url=http://cheesekun.top//2017/03/19/cheesekun.top/ch1014/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Google+
+            </li>
+        </a>
+    
+
+    <!-- Share LinkedIn -->
+    
+
+    <!-- Share QQ -->
+    
+
+    <!-- Share Telegram -->
+    
+</ul>
+
+</div>
+
+                
+
+                <!-- Post Content -->
+                <div id="post-content" class="markdown-Github mdl-color-text--grey-700 mdl-card__supporting-text fade out">
+    
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>昨天在写一个只使用原生js的一个todolist小玩意，然后想给它添加个当地天气的小功能，<br>没想到引发我的一堆基础不牢靠</p>
+<h2 id="ajax"><a href="#ajax" class="headerlink" title="ajax"></a>ajax</h2><p>首先，我是想使用ajax的GET方法获取天气api的数据（以前使用jq获取过），可是怎么也获取不了，<br>并且<code>request.status === 0</code>,此时的我很懵逼，一直看过404，200，304，500啥的，就没看过0.<br>后来google一下，发现是跨域问题。以前也听说过跨域，但一直没去深究，并且以前使用ajax也是调用本地数据，<br>所以一直都不怎么了解。先来看看什么是跨域。。</p>
+<ul>
+<li><p>概念</p>
+<blockquote>
+<p>只要协议、域名、端口有任何一个不同，都被当作是不同的域。<br>对于端口和协议的不同，只能通过后台来解决。</p>
+</blockquote>
+</li>
+<li><p>具体来说</p>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">URL</th>
+<th style="text-align:center">说明</th>
+<th style="text-align:right">是否允许通信                           </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><a href="http://www.a.com/a.js" target="_blank" rel="external">http://www.a.com/a.js</a></td>
+<td style="text-align:center"></td>
+<td style="text-align:right"></td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="http://www.a.com/b.js" target="_blank" rel="external">http://www.a.com/b.js</a></td>
+<td style="text-align:center">同一域名下</td>
+<td style="text-align:right">允许                      </td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="http://www.a.com/lab/a.js" target="_blank" rel="external">http://www.a.com/lab/a.js</a></td>
+<td style="text-align:center"></td>
+<td style="text-align:right"></td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="http://www.a.com/script/b.js" target="_blank" rel="external">http://www.a.com/script/b.js</a></td>
+<td style="text-align:center">同一域名下不同文件夹</td>
+<td style="text-align:right">允许                    </td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="http://www.a.com:8000/a.js" target="_blank" rel="external">http://www.a.com:8000/a.js</a></td>
+<td style="text-align:center"></td>
+<td style="text-align:right"></td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="http://www.a.com/b.js" target="_blank" rel="external">http://www.a.com/b.js</a></td>
+<td style="text-align:center">同一域名，不同端口</td>
+<td style="text-align:right">不允许 </td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="http://www.a.com/a.js" target="_blank" rel="external">http://www.a.com/a.js</a></td>
+<td style="text-align:center"></td>
+<td style="text-align:right"></td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="https://www.a.com/b.js" target="_blank" rel="external">https://www.a.com/b.js</a></td>
+<td style="text-align:center">同一域名，不同协议</td>
+<td style="text-align:right">不允许                        </td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="http://www.a.com/a.js" target="_blank" rel="external">http://www.a.com/a.js</a></td>
+<td style="text-align:center"></td>
+<td style="text-align:right"></td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="http://70.32.92.74/b.js" target="_blank" rel="external">http://70.32.92.74/b.js</a></td>
+<td style="text-align:center">域名和域名对应ip</td>
+<td style="text-align:right">不允许  </td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="http://www.a.com/a.js" target="_blank" rel="external">http://www.a.com/a.js</a></td>
+<td style="text-align:center"></td>
+<td style="text-align:right"></td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="http://script.a.com/b.js" target="_blank" rel="external">http://script.a.com/b.js</a></td>
+<td style="text-align:center">主域相同，子域不同</td>
+<td style="text-align:right">不允许    </td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="http://www.a.com/a.js" target="_blank" rel="external">http://www.a.com/a.js</a></td>
+<td style="text-align:center"></td>
+<td style="text-align:right"></td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="http://a.com/b.js" target="_blank" rel="external">http://a.com/b.js</a></td>
+<td style="text-align:center">同一域名，不同二级域名（同上)</td>
+<td style="text-align:right">不允许（cookie这种情况下也不允许访问）</td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="http://www.cnblogs.com/a.js" target="_blank" rel="external">http://www.cnblogs.com/a.js</a></td>
+<td style="text-align:center"></td>
+<td style="text-align:right"></td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="http://www.a.com/b.js" target="_blank" rel="external">http://www.a.com/b.js</a></td>
+<td style="text-align:center">不同域名</td>
+<td style="text-align:right">不允许  </td>
+</tr>
+</tbody>
+</table>
+<p>所以说，一旦跨域了，就无法使用ajax来请求其他网站提供的数据(如天气api，快递api)。<br>因为以前使用了jq的<code>getJSON</code>，因为它已经封装好，所以没有意识到跨域问题<br>具体怎么使用jq跨域，看我以前写的一个<a href="cheesekun.top/fcc/weather/">天气预报</a>小demo</p>
+<h2 id="为何浏览器不支持跨域访问"><a href="#为何浏览器不支持跨域访问" class="headerlink" title="为何浏览器不支持跨域访问"></a>为何浏览器不支持跨域访问</h2><p>因为浏览器实现的同源策略的限制，XmlHttpRequest只允许请求当前源（域名、协议、端口）的资源，所以AJAX是不允许跨域的<br>举个例子，如果我在我的页面上使用<code>&lt;iframe&gt;</code>标签嵌一个银行页面，而你在我当前页面登陆那个嵌套的银行页面，在没有同源策略限制下，<br>我就可以通过js读取到你输入的银行密码和登录名，这样你就gg了。</p>
+<h2 id="JSONP"><a href="#JSONP" class="headerlink" title="JSONP"></a>JSONP</h2><p>虽然ajax不支持跨域访问，但是像<code>&lt;script&gt;</code>,<code>&lt;link&gt;</code>,<code>&lt;img&gt;</code>,<code>&lt;iframe&gt;</code>这些标签是允许跨域的，<br>你应该有使用过<code>&lt;link&gt;</code>调用过外部的css，或者<code>&lt;script&gt;</code>调用过外部的js文件。<br>所以JSONP就利用了这点来实现跨域访问<br>但是我不想使用jq，毕竟jq能解决的js爸爸也肯定能解决，所以我就来了解原生的jsonp</p>
+<ul>
+<li><p>jsonp介绍</p>
+<blockquote>
+<p>全称 JSON with Padding，用于解决AJAX跨域问题的一种方案</p>
+</blockquote>
+</li>
+<li><p>jsonp原理</p>
+<blockquote>
+<p>利用<code>&lt;script&gt;</code>标签获取到api数据，再把数据传给回调函数进行操作</p>
+</blockquote>
+<pre class="line-numbers language-javascript"><code class="language-javascript"><span class="token operator">&lt;</span>script type<span class="token operator">=</span><span class="token string">"text/javascript"</span><span class="token operator">></span>
+  <span class="token keyword">function</span> <span class="token function">dosomething</span><span class="token punctuation">(</span>jsondata<span class="token punctuation">)</span><span class="token punctuation">{</span>
+      <span class="token comment" spellcheck="true">//处理获得的json数据</span>
+  <span class="token punctuation">}</span>
+<span class="token operator">&lt;</span><span class="token operator">/</span>script<span class="token operator">></span>
+<span class="token operator">&lt;</span>script src<span class="token operator">=</span><span class="token string">"http://a.com/data.php?callback=dosomething"</span><span class="token operator">></span><span class="token operator">&lt;</span><span class="token operator">/</span>script<span class="token operator">></span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+<li>JSONP小贴士<blockquote>
+<p>js文件载入成功后会执行我们在url参数中指定的函数，并且会把我们需要的json数据作为参数传入。<br>所以JSONP是需要服务器端的页面进行相应的配合的。<br>例如<code>&lt;script src=&quot;http://a.com/data.php?callback=dosomething&amp;name=芝士君&amp;sex=man&gt;&lt;/script&gt;</code><br>我们传入的<code>name</code>和<code>sex</code>,服务器接收到该数值，要做出相应的反应，回馈相应数据</p>
+</blockquote>
+</li>
+<li>JSONP优缺点<blockquote>
+<p>优: 兼容性非常好，其原理决定了即便在非常古老的浏览器上也能够很好的被实现。<br>缺: 只能 GET 不能 POST，存在xss脚本注入的安全隐患</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>实现JSONP的人真机智，感觉就像那些钻法律空子的人。hhh贬义的比喻褒义地夸</p>
+
+    
+
+    
 </div>
 
 
-<script>
-    var adjustFooter = function() {
-        if( ($('#bottom').offset().top + $('#bottom').outerHeight() ) < $(window).height() ) {
-            var footerBottom = $(window).height() - $('#bottom').outerHeight() - $('#bottom').offset().top;
-            $('#bottom').css('bottom', '-' + footerBottom + 'px');
-        }
-    };
+                
 
-    $(document).ready(function() {
-        adjustFooter();
+                <!-- Post Comments -->
+                
+                    
+
+
+
+
+    <!-- 使用 DISQUS_CLICK -->
+    <div id="disqus-comment">   
+        <div id="disqus_thread"></div>
+<!-- include js -->
+<script src="/js/ripple.js"></script>
+
+<!-- add animation -->
+<style>
+        .ripple-container {
+        }
+        .ripple-container .ripple{
+            background-color: rgba(255,255,255,0.4);
+            animation: ripple 2s forwards cubic-bezier(0, 0, 0.2, 1);
+        }
+        @keyframes ripple {
+            0% {
+                transform: scale(0);
+                opacity: 1;
+            }
+            80% {
+                transform: scale(1);
+            }
+            100% {
+                opacity: 0;
+            }
+        }
+		.disqus_click_btn {
+            background-color: dodgerblue;
+            color: white;
+            padding: 10px 20px;
+            border:0;
+            font-size: 14px;
+            cursor: pointer
+        }
+</style>
+	
+<!-- add data-ripple attribute -->
+<div class="btn_click_load"> 
+    <button class="disqus_click_btn" data-ripple>点击 阅读评论 「请确保你可以科学地使用梯子」</button>
+</div>
+	
+<script>
+    // add effect to elements
+    Array.prototype.forEach.call(document.querySelectorAll('[data-ripple]'), function(element){
+        // find all elements and attach effect
+        new RippleEffect(element); // element is instance of javascript element node
     });
 </script>
 
+<script>
+    $('.btn_click_load').click(function() {  //click to load comments
+        var disqus_config = function () {
+            this.page.url = 'http://cheesekun.top/2017/03/19/cheesekun.top/ch1014/index.html';  // Replace PAGE_URL with your page's canonical URL variable
+            this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+        };
+        (function() { // DON'T EDIT BELOW THIS LINE
+            var d = document;
+            var s = d.createElement('script');
+            s.src = '//cheesekun-top.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', + new Date());
+            (d.head || d.body).appendChild(s);
+        })();
+        $('.btn_click_load').css('display','none');
+    });
+</script>
+  	
 
+    </div>
+    <style>
+        #disqus-comment{
+            background-color: #eee;
+            padding: 2pc;
+        }
+    </style>
+
+                
+            </div>
+
+            <!-- Post Prev & Next Nav -->
+            <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
+    <!-- Prev Nav -->
+    
+
+    <!-- Section Spacer -->
+    <div class="section-spacer"></div>
+
+    <!-- Next Nav -->
+    
+        <a href="/2017/03/16/cheesekun.top/ch1013/" id="post_nav-older" class="next-content">
+            previous
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_forward</i>
+            </button>
+        </a>
+    
+</nav>
+
+        </div>
+    </div>
 
 
 
@@ -460,6 +839,14 @@
 </aside>
 
                     
+
+                    
+                        <!-- Footer Top Button -->
+                        <div class="toTop-wrap">
+    <a href="#top" class="toTop">
+        <i class="material-icons footer_top-i">expand_less</i>
+    </a>
+</div>
 
                     
 

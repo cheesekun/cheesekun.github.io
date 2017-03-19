@@ -4,6 +4,165 @@
   
     
     <entry>
+      <title><![CDATA[JSONP跨域访问]]></title>
+      <url>http://cheesekun.top/2017/03/19/cheesekun.top/ch1014/</url>
+      <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>昨天在写一个只使用原生js的一个todolist小玩意，然后想给它添加个当地天气的小功能，<br>没想到引发我的一堆基础不牢靠</p>
+<h2 id="ajax"><a href="#ajax" class="headerlink" title="ajax"></a>ajax</h2><p>首先，我是想使用ajax的GET方法获取天气api的数据（以前使用jq获取过），可是怎么也获取不了，<br>并且<code>request.status === 0</code>,此时的我很懵逼，一直看过404，200，304，500啥的，就没看过0.<br>后来google一下，发现是跨域问题。以前也听说过跨域，但一直没去深究，并且以前使用ajax也是调用本地数据，<br>所以一直都不怎么了解。先来看看什么是跨域。。</p>
+<ul>
+<li><p>概念</p>
+<blockquote>
+<p>只要协议、域名、端口有任何一个不同，都被当作是不同的域。<br>对于端口和协议的不同，只能通过后台来解决。</p>
+</blockquote>
+</li>
+<li><p>具体来说</p>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">URL</th>
+<th style="text-align:center">说明</th>
+<th style="text-align:right">是否允许通信                           </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><a href="http://www.a.com/a.js" target="_blank" rel="external">http://www.a.com/a.js</a></td>
+<td style="text-align:center"></td>
+<td style="text-align:right"></td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="http://www.a.com/b.js" target="_blank" rel="external">http://www.a.com/b.js</a></td>
+<td style="text-align:center">同一域名下</td>
+<td style="text-align:right">允许                      </td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="http://www.a.com/lab/a.js" target="_blank" rel="external">http://www.a.com/lab/a.js</a></td>
+<td style="text-align:center"></td>
+<td style="text-align:right"></td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="http://www.a.com/script/b.js" target="_blank" rel="external">http://www.a.com/script/b.js</a></td>
+<td style="text-align:center">同一域名下不同文件夹</td>
+<td style="text-align:right">允许                    </td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="http://www.a.com:8000/a.js" target="_blank" rel="external">http://www.a.com:8000/a.js</a></td>
+<td style="text-align:center"></td>
+<td style="text-align:right"></td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="http://www.a.com/b.js" target="_blank" rel="external">http://www.a.com/b.js</a></td>
+<td style="text-align:center">同一域名，不同端口</td>
+<td style="text-align:right">不允许 </td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="http://www.a.com/a.js" target="_blank" rel="external">http://www.a.com/a.js</a></td>
+<td style="text-align:center"></td>
+<td style="text-align:right"></td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="https://www.a.com/b.js" target="_blank" rel="external">https://www.a.com/b.js</a></td>
+<td style="text-align:center">同一域名，不同协议</td>
+<td style="text-align:right">不允许                        </td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="http://www.a.com/a.js" target="_blank" rel="external">http://www.a.com/a.js</a></td>
+<td style="text-align:center"></td>
+<td style="text-align:right"></td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="http://70.32.92.74/b.js" target="_blank" rel="external">http://70.32.92.74/b.js</a></td>
+<td style="text-align:center">域名和域名对应ip</td>
+<td style="text-align:right">不允许  </td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="http://www.a.com/a.js" target="_blank" rel="external">http://www.a.com/a.js</a></td>
+<td style="text-align:center"></td>
+<td style="text-align:right"></td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="http://script.a.com/b.js" target="_blank" rel="external">http://script.a.com/b.js</a></td>
+<td style="text-align:center">主域相同，子域不同</td>
+<td style="text-align:right">不允许    </td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="http://www.a.com/a.js" target="_blank" rel="external">http://www.a.com/a.js</a></td>
+<td style="text-align:center"></td>
+<td style="text-align:right"></td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="http://a.com/b.js" target="_blank" rel="external">http://a.com/b.js</a></td>
+<td style="text-align:center">同一域名，不同二级域名（同上)</td>
+<td style="text-align:right">不允许（cookie这种情况下也不允许访问）</td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="http://www.cnblogs.com/a.js" target="_blank" rel="external">http://www.cnblogs.com/a.js</a></td>
+<td style="text-align:center"></td>
+<td style="text-align:right"></td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="http://www.a.com/b.js" target="_blank" rel="external">http://www.a.com/b.js</a></td>
+<td style="text-align:center">不同域名</td>
+<td style="text-align:right">不允许  </td>
+</tr>
+</tbody>
+</table>
+<p>所以说，一旦跨域了，就无法使用ajax来请求其他网站提供的数据(如天气api，快递api)。<br>因为以前使用了jq的<code>getJSON</code>，因为它已经封装好，所以没有意识到跨域问题<br>具体怎么使用jq跨域，看我以前写的一个<a href="cheesekun.top/fcc/weather/">天气预报</a>小demo</p>
+<h2 id="为何浏览器不支持跨域访问"><a href="#为何浏览器不支持跨域访问" class="headerlink" title="为何浏览器不支持跨域访问"></a>为何浏览器不支持跨域访问</h2><p>因为浏览器实现的同源策略的限制，XmlHttpRequest只允许请求当前源（域名、协议、端口）的资源，所以AJAX是不允许跨域的<br>举个例子，如果我在我的页面上使用<code>&lt;iframe&gt;</code>标签嵌一个银行页面，而你在我当前页面登陆那个嵌套的银行页面，在没有同源策略限制下，<br>我就可以通过js读取到你输入的银行密码和登录名，这样你就gg了。</p>
+<h2 id="JSONP"><a href="#JSONP" class="headerlink" title="JSONP"></a>JSONP</h2><p>虽然ajax不支持跨域访问，但是像<code>&lt;script&gt;</code>,<code>&lt;link&gt;</code>,<code>&lt;img&gt;</code>,<code>&lt;iframe&gt;</code>这些标签是允许跨域的，<br>你应该有使用过<code>&lt;link&gt;</code>调用过外部的css，或者<code>&lt;script&gt;</code>调用过外部的js文件。<br>所以JSONP就利用了这点来实现跨域访问<br>但是我不想使用jq，毕竟jq能解决的js爸爸也肯定能解决，所以我就来了解原生的jsonp</p>
+<ul>
+<li><p>jsonp介绍</p>
+<blockquote>
+<p>全称 JSON with Padding，用于解决AJAX跨域问题的一种方案</p>
+</blockquote>
+</li>
+<li><p>jsonp原理</p>
+<blockquote>
+<p>利用<code>&lt;script&gt;</code>标签获取到api数据，再把数据传给回调函数进行操作</p>
+</blockquote>
+<pre class="line-numbers language-javascript"><code class="language-javascript"><span class="token operator">&lt;</span>script type<span class="token operator">=</span><span class="token string">"text/javascript"</span><span class="token operator">></span>
+  <span class="token keyword">function</span> <span class="token function">dosomething</span><span class="token punctuation">(</span>jsondata<span class="token punctuation">)</span><span class="token punctuation">{</span>
+      <span class="token comment" spellcheck="true">//处理获得的json数据</span>
+  <span class="token punctuation">}</span>
+<span class="token operator">&lt;</span><span class="token operator">/</span>script<span class="token operator">></span>
+<span class="token operator">&lt;</span>script src<span class="token operator">=</span><span class="token string">"http://a.com/data.php?callback=dosomething"</span><span class="token operator">></span><span class="token operator">&lt;</span><span class="token operator">/</span>script<span class="token operator">></span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+<li>JSONP小贴士<blockquote>
+<p>js文件载入成功后会执行我们在url参数中指定的函数，并且会把我们需要的json数据作为参数传入。<br>所以JSONP是需要服务器端的页面进行相应的配合的。<br>例如<code>&lt;script src=&quot;http://a.com/data.php?callback=dosomething&amp;name=芝士君&amp;sex=man&gt;&lt;/script&gt;</code><br>我们传入的<code>name</code>和<code>sex</code>,服务器接收到该数值，要做出相应的反应，回馈相应数据</p>
+</blockquote>
+</li>
+<li>JSONP优缺点<blockquote>
+<p>优: 兼容性非常好，其原理决定了即便在非常古老的浏览器上也能够很好的被实现。<br>缺: 只能 GET 不能 POST，存在xss脚本注入的安全隐患</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>实现JSONP的人真机智，感觉就像那些钻法律空子的人。hhh贬义的比喻褒义地夸</p>
+]]></content>
+      
+        <categories>
+            
+            <category> 前端 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> 前端 </tag>
+            
+            <tag> javascript </tag>
+            
+            <tag> ajax </tag>
+            
+            <tag> 跨域 </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[「标日·初2-1」森さんは　7時に　起きます]]></title>
       <url>http://cheesekun.top/2017/03/16/cheesekun.top/ch1013/</url>
       <content type="html"><![CDATA[<h2 id="词汇"><a href="#词汇" class="headerlink" title="词汇"></a>词汇</h2><ul>

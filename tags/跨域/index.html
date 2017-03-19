@@ -4,7 +4,7 @@
     
     <title>
         
-            tags | 
+            标签: 跨域 | 
         
         cheesekun | just 涨芝士
     </title>
@@ -42,7 +42,7 @@
     <!-- The Open Graph protocol -->
     <meta property="og:url" content="http://cheesekun.top">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="tags | cheesekun | just 涨芝士">
+    <meta property="og:title" content="标签: 跨域 | cheesekun | just 涨芝士">
     <meta property="og:description" content="喜欢动漫，热爱日剧，自学前端，这是芝士君的小屋，欢迎米娜桑的到来。比心">
 
     <!--[if lte IE 9]>
@@ -195,63 +195,93 @@
                         </button>
                     
 
-                    <!-- Post TOC -->
+                    <!-- Index Module -->
+<div class="material-index mdl-grid">
+    
+    <div class="locate-thumbnail-symbol"></div>
 
+    <!-- Pin on top -->
+    
 
-<!-- Layouts -->
+    <!-- Normal Post -->
+    
+        
+        
+            <!-- Paradox Thumbnail -->
+            <div class="post_entry-module mdl-card mdl-cell mdl-cell--12-col fade out">
+    <!-- Post Thumbnail -->
+    
+        
+            <!-- Random Thumbnail -->
+            <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
+        
+    
 
-    <!-- Tags Cloud -->
-    <style>
-    #bottom{
-        position: relative;
-    }
+        <!-- Post Title -->
+        <p class="article-headline-p"><a href="/2017/03/19/cheesekun.top/ch1014/">JSONP跨域访问</a></p>
+    </div>
 
-    @media screen and (max-width: 480px) {
-        .material-tagscloud{
-            margin: 6em 2em 0;
-        }
-    }
+    <!-- Post Excerpt -->
+    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
+        
+            前言昨天在写一个只...
+        
+        &nbsp;&nbsp;&nbsp;
+        <span>
+            <a href="/2017/03/19/cheesekun.top/ch1014/" target="_self">继续阅读</a>
+        </span>
+    </div>
+    <!-- Post_entry Info-->
+    <div id="post_entry-info">
+        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
+            <!-- Author Avatar -->
+            <div id="author-avatar">
+                <img src="/img/avatar.gif" width="44px" height="44px" alt="芝士君's avatar">
+            </div>
+            <div>
+                <strong>芝士君</strong>
+                <span>3月 19, 2017</span>
+            </div>
+        </div>
+        <div id="post_entry-right-info">
+            <!-- Category -->
+            <span class="post_entry-category">
+                <a class="post_category-link" href="/categories/前端/">前端</a>
+            </span>
 
-    .material-tagscloud a{
-        text-decoration:none;
-        padding: 1px 9px;
-        margin: 9px 1px;
-        line-height: 40px;
-        white-space: nowrap;
-        transition: .6s;
-        opacity: .85;
-    }
+            
 
-    .material-tagscloud a:hover{
-        transition: .6s;
-        opacity: 1;
-        background: #FAFAFA;
-        box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);
-    }
-</style>
-
-<div class=" material-tagscloud">
-    <div class="material-post mdl-grid">
-        <a href="/tags/ajax/" style="font-size: 16px; color: #757575">ajax</a> <a href="/tags/css/" style="font-size: 16px; color: #757575">css</a> <a href="/tags/flex/" style="font-size: 16px; color: #757575">flex</a> <a href="/tags/git/" style="font-size: 16px; color: #757575">git</a> <a href="/tags/hexo/" style="font-size: 16px; color: #757575">hexo</a> <a href="/tags/ife2017/" style="font-size: 20.75px; color: #606060">ife2017</a> <a href="/tags/java/" style="font-size: 16px; color: #757575">java</a> <a href="/tags/javascript/" style="font-size: 20.75px; color: #606060">javascript</a> <a href="/tags/markdown/" style="font-size: 16px; color: #757575">markdown</a> <a href="/tags/web存储/" style="font-size: 16px; color: #757575">web存储</a> <a href="/tags/前端/" style="font-size: 25.5px; color: #4b4b4b">前端</a> <a href="/tags/布局/" style="font-size: 16px; color: #757575">布局</a> <a href="/tags/心情/" style="font-size: 16px; color: #757575">心情</a> <a href="/tags/日语/" style="font-size: 35px; color: #212121">日语</a> <a href="/tags/标准日本语/" style="font-size: 30.25px; color: #363636">标准日本语</a> <a href="/tags/正则表达式/" style="font-size: 16px; color: #757575">正则表达式</a> <a href="/tags/水印/" style="font-size: 16px; color: #757575">水印</a> <a href="/tags/跨域/" style="font-size: 16px; color: #757575">跨域</a>
+            <!-- Post Views -->
+            <span class="post_entry-views">
+            </span>
+        </div>
     </div>
 </div>
 
+        
+        
+        
+    
 
-<script>
-    var adjustFooter = function() {
-        if( ($('#bottom').offset().top + $('#bottom').outerHeight() ) < $(window).height() ) {
-            var footerBottom = $(window).height() - $('#bottom').outerHeight() - $('#bottom').offset().top;
-            $('#bottom').css('bottom', '-' + footerBottom + 'px');
-        }
-    };
+    
 
-    $(document).ready(function() {
-        adjustFooter();
-    });
+    
+        <script>
+    var randomNum;
+
+    var locatePost = $('.locate-thumbnail-symbol').next();
+    for(var i = 0; i < 5; i++) {
+        randomNum = Math.floor(Math.random() * 19 + 1);
+
+        locatePost.children('.post_thumbnail-random').attr('id', 'random_thumbnail-'+randomNum);
+        locatePost.children('.post_thumbnail-random').css('background-image', 'url(' + '/img/random/material-' + randomNum + '.png' + ')')
+
+        locatePost = locatePost.next();
+    }
 </script>
 
-
-
+    
+</div>
 
 
                     
