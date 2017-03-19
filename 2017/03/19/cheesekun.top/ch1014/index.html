@@ -483,7 +483,7 @@
 </tr>
 </tbody>
 </table>
-<p>所以说，一旦跨域了，就无法使用ajax来请求其他网站提供的数据(如天气api，快递api)。<br>因为以前使用了jq的<code>getJSON</code>，因为它已经封装好，所以没有意识到跨域问题<br>具体怎么使用jq跨域，看我以前写的一个<a href="cheesekun.top/fcc/weather/">天气预报</a>小demo</p>
+<p>所以说，一旦跨域了，就无法使用ajax来请求其他网站提供的数据(如天气api，快递api)。<br>因为以前使用了jq的<code>getJSON</code>，因为它已经封装好，所以没有意识到跨域问题<br>具体怎么使用jq跨域，看我以前写的一个<a href="http://cheesekun.top/fcc/weather/">天气预报</a>小demo</p>
 <h2 id="为何浏览器不支持跨域访问"><a href="#为何浏览器不支持跨域访问" class="headerlink" title="为何浏览器不支持跨域访问"></a>为何浏览器不支持跨域访问</h2><p>因为浏览器实现的同源策略的限制，XmlHttpRequest只允许请求当前源（域名、协议、端口）的资源，所以AJAX是不允许跨域的<br>举个例子，如果我在我的页面上使用<code>&lt;iframe&gt;</code>标签嵌一个银行页面，而你在我当前页面登陆那个嵌套的银行页面，在没有同源策略限制下，<br>我就可以通过js读取到你输入的银行密码和登录名，这样你就gg了。</p>
 <h2 id="JSONP"><a href="#JSONP" class="headerlink" title="JSONP"></a>JSONP</h2><p>虽然ajax不支持跨域访问，但是像<code>&lt;script&gt;</code>,<code>&lt;link&gt;</code>,<code>&lt;img&gt;</code>,<code>&lt;iframe&gt;</code>这些标签是允许跨域的，<br>你应该有使用过<code>&lt;link&gt;</code>调用过外部的css，或者<code>&lt;script&gt;</code>调用过外部的js文件。<br>所以JSONP就利用了这点来实现跨域访问<br>但是我不想使用jq，毕竟jq能解决的js爸爸也肯定能解决，所以我就来了解原生的jsonp</p>
 <ul>
