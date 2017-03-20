@@ -9,13 +9,11 @@
       <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>昨天在写一个只使用原生js的一个todolist小玩意，然后想给它添加个当地天气的小功能，<br>没想到引发我的一堆基础不牢靠</p>
 <h2 id="ajax"><a href="#ajax" class="headerlink" title="ajax"></a>ajax</h2><p>首先，我是想使用ajax的GET方法获取天气api的数据（以前使用jq获取过），可是怎么也获取不了，<br>并且<code>request.status === 0</code>,此时的我很懵逼，一直看过404，200，304，500啥的，就没看过0.<br>后来google一下，发现是跨域问题。以前也听说过跨域，但一直没去深究，并且以前使用ajax也是调用本地数据，<br>所以一直都不怎么了解。先来看看什么是跨域。。</p>
 <ul>
-<li><p>概念</p>
-<blockquote>
+<li>概念<blockquote>
 <p>只要协议、域名、端口有任何一个不同，都被当作是不同的域。<br>对于端口和协议的不同，只能通过后台来解决。</p>
 </blockquote>
 </li>
-<li><p>具体来说</p>
-</li>
+<li>具体来说</li>
 </ul>
 <table>
 <thead>
@@ -112,23 +110,23 @@
 <h2 id="为何浏览器不支持跨域访问"><a href="#为何浏览器不支持跨域访问" class="headerlink" title="为何浏览器不支持跨域访问"></a>为何浏览器不支持跨域访问</h2><p>因为浏览器实现的同源策略的限制，XmlHttpRequest只允许请求当前源（域名、协议、端口）的资源，所以AJAX是不允许跨域的<br>举个例子，如果我在我的页面上使用<code>&lt;iframe&gt;</code>标签嵌一个银行页面，而你在我当前页面登陆那个嵌套的银行页面，在没有同源策略限制下，<br>我就可以通过js读取到你输入的银行密码和登录名，这样你就gg了。</p>
 <h2 id="JSONP"><a href="#JSONP" class="headerlink" title="JSONP"></a>JSONP</h2><p>虽然ajax不支持跨域访问，但是像<code>&lt;script&gt;</code>,<code>&lt;link&gt;</code>,<code>&lt;img&gt;</code>,<code>&lt;iframe&gt;</code>这些标签是允许跨域的，<br>你应该有使用过<code>&lt;link&gt;</code>调用过外部的css，或者<code>&lt;script&gt;</code>调用过外部的js文件。<br>所以JSONP就利用了这点来实现跨域访问<br>但是我不想使用jq，毕竟jq能解决的js爸爸也肯定能解决，所以我就来了解原生的jsonp</p>
 <ul>
-<li><p>jsonp介绍</p>
-<blockquote>
+<li>jsonp介绍<blockquote>
 <p>全称 JSON with Padding，用于解决AJAX跨域问题的一种方案</p>
 </blockquote>
 </li>
-<li><p>jsonp原理</p>
-<blockquote>
+<li>jsonp原理<blockquote>
 <p>利用<code>&lt;script&gt;</code>标签获取到api数据，再把数据传给回调函数进行操作</p>
 </blockquote>
-<pre class="line-numbers language-javascript"><code class="language-javascript"><span class="token operator">&lt;</span>script type<span class="token operator">=</span><span class="token string">"text/javascript"</span><span class="token operator">></span>
-  <span class="token keyword">function</span> <span class="token function">dosomething</span><span class="token punctuation">(</span>jsondata<span class="token punctuation">)</span><span class="token punctuation">{</span>
-      <span class="token comment" spellcheck="true">//处理获得的json数据</span>
-  <span class="token punctuation">}</span>
-<span class="token operator">&lt;</span><span class="token operator">/</span>script<span class="token operator">></span>
-<span class="token operator">&lt;</span>script src<span class="token operator">=</span><span class="token string">"http://a.com/data.php?callback=dosomething"</span><span class="token operator">></span><span class="token operator">&lt;</span><span class="token operator">/</span>script<span class="token operator">></span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 </li>
+</ul>
+<pre class="line-numbers language-javascript"><code class="language-javascript"> <span class="token operator">&lt;</span>script type<span class="token operator">=</span><span class="token string">"text/javascript"</span><span class="token operator">></span>
+    <span class="token keyword">function</span> <span class="token function">dosomething</span><span class="token punctuation">(</span>jsondata<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token comment" spellcheck="true">//处理获得的json数据</span>
+    <span class="token punctuation">}</span>
+ <span class="token operator">&lt;</span><span class="token operator">/</span>script<span class="token operator">></span>
+ <span class="token operator">&lt;</span>script src<span class="token operator">=</span><span class="token string">"http://a.com/data.php?callback=dosomething"</span><span class="token operator">></span><span class="token operator">&lt;</span><span class="token operator">/</span>script<span class="token operator">></span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<ul>
 <li>JSONP小贴士<blockquote>
 <p>js文件载入成功后会执行我们在url参数中指定的函数，并且会把我们需要的json数据作为参数传入。<br>所以JSONP是需要服务器端的页面进行相应的配合的。<br>例如<code>&lt;script src=&quot;http://a.com/data.php?callback=dosomething&amp;name=芝士君&amp;sex=man&gt;&lt;/script&gt;</code><br>我们传入的<code>name</code>和<code>sex</code>,服务器接收到该数值，要做出相应的反应，回馈相应数据</p>
 </blockquote>
@@ -460,15 +458,12 @@ storage<span class="token punctuation">.</span><span class="token function">getI
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 <h2 id="json格式存储"><a href="#json格式存储" class="headerlink" title="json格式存储"></a>json格式存储</h2><p>由于storage只能存储字符串，所以我们需要先存储json字符串，<br>使用时再把json字符串转化为json对象，再获取键值</p>
 <ul>
-<li><p>json小介绍</p>
-<ul>
-<li><p>json对象</p>
-<blockquote>
+<li>json小介绍<ul>
+<li>json对象<blockquote>
 <p><code>var str1 = { &quot;name&quot;: &quot;cheesekun&quot;, &quot;age&quot;: 19 }</code>;<br>转化为json字符串: <code>var obj = JSON.stringify(str1);</code></p>
 </blockquote>
 </li>
-<li><p>json字符串</p>
-<blockquote>
+<li>json字符串<blockquote>
 <p><code>var str2 = &#39;{ &quot;name&quot;: &quot;cheesekun&quot;, &quot;age&quot;: 19 }&#39;</code>;<br>转化为json对象: <code>var obj = JSON.parse(str2);</code></p>
 </blockquote>
 </li>
@@ -770,7 +765,8 @@ console<span class="token punctuation">.</span><span class="token function">log<
 <p>匹配 ‘x’ 并且记住匹配项<br>在正则表达式的匹配环节，要使用 \1, \2, \n 这样的语法<br>如<code>/(cheesekun)(kun)\1\2/</code> 等价于 <code>/cheesekuncheesekun/</code><br>在正则表达式的<a href="#1">替换环节</a>，则要使用像 $1、$2、$n 这样的语法<br>如<code>&quot;cheesekun&quot;.replace(/(cheese)(kun)/,&#39;$2$1&#39;)</code>,会返回 “kuncheese”</p>
 </blockquote>
 </li>
-<li>(?:x)<blockquote>
+<li><p>(?:x)</p>
+<blockquote>
 <p>匹配 ‘x’ 但是不记住匹配项<br><code>/cheese{1,2}kun/ {1,2}</code>只能对 e 起作用<br><code>/(?:cheese){1,2}kun/</code> {1,2}则对cheesekun 起作用，可匹配 “cheesecheesekun”，而不记录匹配项，则不能使用 \1或者 $1<br>如<code>&quot;cheesekun&quot;.replace(/(cheese)(kun)/,&#39;$2$1&#39;)</code>,会返回 “$2kun”</p>
 </blockquote>
 </li>
@@ -821,7 +817,7 @@ console<span class="token punctuation">.</span><span class="token function">log<
 <ul>
 <li><p>test </p>
 <blockquote>
-<p>在字符串中测试是否匹配的RegExp方法，它返回true或false</p>
+<p>在字符串中测试是否匹配的RegExp方法，它返回true或false </p>
 </blockquote>
 <pre class="line-numbers language-javascript"><code class="language-javascript"><span class="token regex">/che+sekun/</span><span class="token punctuation">.</span><span class="token function">test</span><span class="token punctuation">(</span><span class="token string">"cheeeeesekun"</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// true</span>
 <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>

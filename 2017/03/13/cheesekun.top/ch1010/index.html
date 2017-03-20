@@ -445,15 +445,12 @@ storage<span class="token punctuation">.</span><span class="token function">getI
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 <h2 id="json格式存储"><a href="#json格式存储" class="headerlink" title="json格式存储"></a>json格式存储</h2><p>由于storage只能存储字符串，所以我们需要先存储json字符串，<br>使用时再把json字符串转化为json对象，再获取键值</p>
 <ul>
-<li><p>json小介绍</p>
-<ul>
-<li><p>json对象</p>
-<blockquote>
+<li>json小介绍<ul>
+<li>json对象<blockquote>
 <p><code>var str1 = { &quot;name&quot;: &quot;cheesekun&quot;, &quot;age&quot;: 19 }</code>;<br>转化为json字符串: <code>var obj = JSON.stringify(str1);</code></p>
 </blockquote>
 </li>
-<li><p>json字符串</p>
-<blockquote>
+<li>json字符串<blockquote>
 <p><code>var str2 = &#39;{ &quot;name&quot;: &quot;cheesekun&quot;, &quot;age&quot;: 19 }&#39;</code>;<br>转化为json对象: <code>var obj = JSON.parse(str2);</code></p>
 </blockquote>
 </li>

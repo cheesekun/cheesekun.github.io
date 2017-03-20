@@ -448,7 +448,8 @@
 <p>匹配 ‘x’ 并且记住匹配项<br>在正则表达式的匹配环节，要使用 \1, \2, \n 这样的语法<br>如<code>/(cheesekun)(kun)\1\2/</code> 等价于 <code>/cheesekuncheesekun/</code><br>在正则表达式的<a href="#1">替换环节</a>，则要使用像 $1、$2、$n 这样的语法<br>如<code>&quot;cheesekun&quot;.replace(/(cheese)(kun)/,&#39;$2$1&#39;)</code>,会返回 “kuncheese”</p>
 </blockquote>
 </li>
-<li>(?:x)<blockquote>
+<li><p>(?:x)</p>
+<blockquote>
 <p>匹配 ‘x’ 但是不记住匹配项<br><code>/cheese{1,2}kun/ {1,2}</code>只能对 e 起作用<br><code>/(?:cheese){1,2}kun/</code> {1,2}则对cheesekun 起作用，可匹配 “cheesecheesekun”，而不记录匹配项，则不能使用 \1或者 $1<br>如<code>&quot;cheesekun&quot;.replace(/(cheese)(kun)/,&#39;$2$1&#39;)</code>,会返回 “$2kun”</p>
 </blockquote>
 </li>
@@ -499,7 +500,7 @@
 <ul>
 <li><p>test </p>
 <blockquote>
-<p>在字符串中测试是否匹配的RegExp方法，它返回true或false</p>
+<p>在字符串中测试是否匹配的RegExp方法，它返回true或false </p>
 </blockquote>
 <pre class="line-numbers language-javascript"><code class="language-javascript"><span class="token regex">/che+sekun/</span><span class="token punctuation">.</span><span class="token function">test</span><span class="token punctuation">(</span><span class="token string">"cheeeeesekun"</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// true</span>
 <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
