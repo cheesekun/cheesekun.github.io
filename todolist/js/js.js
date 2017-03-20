@@ -38,7 +38,7 @@ function appendTask() {
   }
   var mould = document.createElement("div");
   mould.className = "task";
-  mould.innerHTML = '<div class="task-content">' + '<input type="checkbox" />' + '<p contenteditable>' + value + '</p>' + '</div>' +
+  mould.innerHTML = '<div class="task-content">' + '<input type="checkbox" />' + '<p>' + value + '</p>' + '</div>' +
     '<button class="btn btn-5 btn-5a icon-remove"><span>Delete</span></button>';
   $("list").appendChild(mould);
   value = value.replace(/^\s*/, "").replace(/\s*$/, "");
@@ -57,7 +57,7 @@ function todolistDOM(todos) {
   for (var i = 0; i < todos.length; i++) {
     var mould = document.createElement("div");
     mould.className = "task";
-    mould.innerHTML = '<div class="task-content">' + '<input type="checkbox" />' + '<p contenteditable>' + todos[i] + '</p>' + '</div>' +
+    mould.innerHTML = '<div class="task-content">' + '<input type="checkbox" />' + '<p>' + todos[i] + '</p>' + '</div>' +
       '<button class="btn btn-5 btn-5a icon-remove"><span>Delete</span></button>';
     $("list").appendChild(mould);
   }

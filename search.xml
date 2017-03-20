@@ -4,6 +4,93 @@
   
     
     <entry>
+      <title><![CDATA[无框架版TodoList]]></title>
+      <url>http://cheesekun.top/2017/03/21/cheesekun.top/ch1015/</url>
+      <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>花了两天终于撸完todolist这个玩意了，<br>效果看:<a href="http://cheesekun.top/todolist/">TodoList</a><br>感觉学习到和意识到一些东西</p>
+<h2 id="前前言"><a href="#前前言" class="headerlink" title="前前言"></a>前前言</h2><p>身为个前端萌新，很多时候都不知道拿什么练手<br>而很多时候，大多数人都推荐做个TodoList<br>网上大部分人做的例子都是使用了各种框架各种库<br>作为打基础，还是手撸个原生的TodoList比较好<br>(其实是不会用框架，😱)</p>
+<h2 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h2><ul>
+<li><code>localStorage</code>存储获取task数据</li>
+<li><code>JSONP()</code>跨域获取api数据</li>
+<li><code>Animate</code>CSS3小动画</li>
+<li><del>contenteditable</del></li>
+</ul>
+<h2 id="localStorage存储获取task"><a href="#localStorage存储获取task" class="headerlink" title="localStorage存储获取task"></a>localStorage存储获取task</h2><p>这个使用到上次我发的那个<code>localStorage</code>来操纵数据<br>不了解的先跳转: <a href="http://cheesekun.top/2017/03/13/cheesekun.top/ch1010/">localStorage</a></p>
+<blockquote>
+<p>fench()函数先获取浏览器上”todolist”的数据，若没有，就用todos作为数组存储数据并转化为json<br>save()函数将获取到数据转化为json字符串，在存入到STORAGE_KEY中</p>
+</blockquote>
+<pre class="line-numbers language-javascript"><code class="language-javascript"><span class="token keyword">var</span> STORAGE_KEY <span class="token operator">=</span> <span class="token string">"todolist"</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> todoStorage <span class="token operator">=</span> <span class="token punctuation">{</span>
+  fetch<span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">var</span> todos <span class="token operator">=</span> JSON<span class="token punctuation">.</span><span class="token function">parse</span><span class="token punctuation">(</span>localStorage<span class="token punctuation">.</span><span class="token function">getItem</span><span class="token punctuation">(</span>STORAGE_KEY<span class="token punctuation">)</span> <span class="token operator">||</span> <span class="token string">'[]'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> todos<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  save<span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span>todos<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    localStorage<span class="token punctuation">.</span><span class="token function">setItem</span><span class="token punctuation">(</span>STORAGE_KEY<span class="token punctuation">,</span> JSON<span class="token punctuation">.</span><span class="token function">stringify</span><span class="token punctuation">(</span>todos<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> todos <span class="token operator">=</span> todoStorage<span class="token punctuation">.</span><span class="token function">fetch</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="JSONP跨域获取api数据"><a href="#JSONP跨域获取api数据" class="headerlink" title="JSONP跨域获取api数据"></a>JSONP跨域获取api数据</h2><p>这个我之前也总结过一篇<br>具体见<a href="http://cheesekun.top/2017/03/19/cheesekun.top/ch1014/">getJSONP跨域</a><br>这里面使用到一个天气api和一个地图api</p>
+<h2 id="CSS3小动画"><a href="#CSS3小动画" class="headerlink" title="CSS3小动画"></a>CSS3小动画</h2><p>很少使用css3动画，不过一旦使用效果拔群，至少有点小动画，整体页面也不会特别单调<br>不过兼容性还是需要解决的</p>
+<blockquote>
+<p>先建一个动画帧<br>再将帧名加入<code>animate</code>参数中<br><code>animation: name duration timing-function delay iteration-count direction play-state;</code><br>分别为 帧名，动画完成时间，运动周期曲线，延迟时间，执行次数，是否往返播放动画，暂停或运行</p>
+</blockquote>
+<pre class="line-numbers language-css"><code class="language-css"><span class="token atrule"><span class="token rule">@keyframes</span> swing</span> <span class="token punctuation">{</span>
+  <span class="token selector">20% </span><span class="token punctuation">{</span>
+    <span class="token property">-webkit-transform</span><span class="token punctuation">:</span> rotate<span class="token number">3</span><span class="token function">d</span><span class="token punctuation">(</span><span class="token number">0</span>, <span class="token number">0</span>, <span class="token number">1</span>, <span class="token number">15</span>deg<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token property">transform</span><span class="token punctuation">:</span> rotate<span class="token number">3</span><span class="token function">d</span><span class="token punctuation">(</span><span class="token number">0</span>, <span class="token number">0</span>, <span class="token number">1</span>, <span class="token number">15</span>deg<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token selector">40% </span><span class="token punctuation">{</span>
+    <span class="token property">-webkit-transform</span><span class="token punctuation">:</span> rotate<span class="token number">3</span><span class="token function">d</span><span class="token punctuation">(</span><span class="token number">0</span>, <span class="token number">0</span>, <span class="token number">1</span>, -<span class="token number">10</span>deg<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token property">transform</span><span class="token punctuation">:</span> rotate<span class="token number">3</span><span class="token function">d</span><span class="token punctuation">(</span><span class="token number">0</span>, <span class="token number">0</span>, <span class="token number">1</span>, -<span class="token number">10</span>deg<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token selector">60% </span><span class="token punctuation">{</span>
+    <span class="token property">-webkit-transform</span><span class="token punctuation">:</span> rotate<span class="token number">3</span><span class="token function">d</span><span class="token punctuation">(</span><span class="token number">0</span>, <span class="token number">0</span>, <span class="token number">1</span>, <span class="token number">5</span>deg<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token property">transform</span><span class="token punctuation">:</span> rotate<span class="token number">3</span><span class="token function">d</span><span class="token punctuation">(</span><span class="token number">0</span>, <span class="token number">0</span>, <span class="token number">1</span>, <span class="token number">5</span>deg<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token selector">80% </span><span class="token punctuation">{</span>
+    <span class="token property">-webkit-transform</span><span class="token punctuation">:</span> rotate<span class="token number">3</span><span class="token function">d</span><span class="token punctuation">(</span><span class="token number">0</span>, <span class="token number">0</span>, <span class="token number">1</span>, -<span class="token number">5</span>deg<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token property">transform</span><span class="token punctuation">:</span> rotate<span class="token number">3</span><span class="token function">d</span><span class="token punctuation">(</span><span class="token number">0</span>, <span class="token number">0</span>, <span class="token number">1</span>, -<span class="token number">5</span>deg<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token selector">to </span><span class="token punctuation">{</span>
+    <span class="token property">-webkit-transform</span><span class="token punctuation">:</span> rotate<span class="token number">3</span><span class="token function">d</span><span class="token punctuation">(</span><span class="token number">0</span>, <span class="token number">0</span>, <span class="token number">1</span>, <span class="token number">0</span>deg<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token property">transform</span><span class="token punctuation">:</span> rotate<span class="token number">3</span><span class="token function">d</span><span class="token punctuation">(</span><span class="token number">0</span>, <span class="token number">0</span>, <span class="token number">1</span>, <span class="token number">0</span>deg<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token property">animation</span><span class="token punctuation">:</span> swing <span class="token number">5</span>s infinite<span class="token punctuation">;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="contenteditable"><a href="#contenteditable" class="headerlink" title="contenteditable"></a>contenteditable</h2><p>一个神奇的属性<br><code>&lt;p contenteditable&gt;123&lt;p&gt;</code><br>添加到文本标签上居然就可以在页面上编辑 p标签了，突然了解到，不过我在todolist里面并没有使用它</p>
+<h2 id="就在刚刚"><a href="#就在刚刚" class="headerlink" title="就在刚刚"></a>就在刚刚</h2><p>发现数组居然是json的一种，一直以为像对象这种键值对的存在才是json<br>没想到维基百科说数组也是</p>
+<blockquote>
+<p>值的有序列表（Array）：一个或者多个值用,分区后，使用[，]括起来就形成了这样的列表，形如：<br>[collection, collection]</p>
+</blockquote>
+<p>具体看维基百科对JSON的定义L: <a href="https://zh.wikipedia.org/wiki/JSON#WEB.E5.BC.80.E5.8F.91" target="_blank" rel="external">JSON</a></p>
+<h2 id="感想"><a href="#感想" class="headerlink" title="感想"></a>感想</h2><p>一开始只是想不使用任何的框架和库来做个TodoList<br>不过在做的过程中想添加个天气预报，添加个随机语句，添加个css动画<br>都可以拓展出很多自己很少或者未曾去了解的知识<br>而且学习起来更有趣<br>之前有花了一段时间去了解的vue，es6类似的新知识，但是没使用到，渐渐地就遗忘了<br>十分消耗时间成本<br>发现去寻找制作一个东西，再在此基础上进行新的拓展，比起刻意去学习新知识，获益更多</p>
+<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>虽然没有使用封装，闭包，原型之类的知识，但是效果能实现已经是很大的勉励了<br>说到底就是自己太水了，继续加油</p>
+]]></content>
+      
+        <categories>
+            
+            <category> 前端 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> 前端 </tag>
+            
+            <tag> javascript </tag>
+            
+            <tag> todolist </tag>
+            
+            <tag> API </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[JSONP跨域访问]]></title>
       <url>http://cheesekun.top/2017/03/19/cheesekun.top/ch1014/</url>
       <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>昨天在写一个只使用原生js的一个todolist小玩意，然后想给它添加个当地天气的小功能，<br>没想到引发我的一堆基础不牢靠</p>
