@@ -163,7 +163,7 @@ body {
 footer {
   width: 450px;
   text-align: center;
-  margin: 100px auto;
+  margin: 100px auto 0;
   font-size: 0.8em;
   color: #333;
 }

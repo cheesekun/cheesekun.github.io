@@ -120,9 +120,24 @@ for (var i = 0; i < colorP.length; i++) {
   colorP[i].style.backgroundColor = color[i];
 }
 
+/* 随机语句 */
+function randomSentence() {
+  var random = ["今日份的任务，完成了吗?",
+    "也快要，大学毕业了吧",
+    "比你聪明的人，比你更努力地完成任务！",
+    "完成任务很累是吧，想想没钱的时候",
+    "多为爸妈想想，努力不止为自己",
+    "希望明天的你，不会埋怨今天的自己",
+    "别忘了，你只不过是个二本大学生"
+  ];
+  var i = Math.ceil(6 * Math.random());
+  $("sentence").innerHTML = random[i];
+}
+
 window.onload = function() {
   todolistDOM(todos);
   removeNode();
+  randomSentence();
   $("task_input").addEventListener("keyup", function(e) {
     if (e.keyCode === 13) {
       appendTask();
