@@ -150,8 +150,13 @@ students<span class="token punctuation">.</span><span class="token function">put
   <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="例子下载"><a href="#例子下载" class="headerlink" title="例子下载"></a>例子下载</h2><a href="http://img.mukewang.com/down/5419379b0001d08f00000000.rar" target="_blank" rel="external">ArrayList</a><br><a href="http://img.mukewang.com/down/54193863000156ac00000000.rar" target="_blank" rel="external">HashMap</a><br>本节总结是从慕课网上看视频整理的: <a href="http://www.imooc.com/learn/110" target="_blank" rel="external">传送门</a><h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2>其实这玩意查api文档就行了<br>整理起来也是因为懒得去翻吧hhh</li>
+</li>
 </ul>
+<h2 id="例子下载"><a href="#例子下载" class="headerlink" title="例子下载"></a>例子下载</h2><blockquote>
+<p><a href="http://img.mukewang.com/down/5419379b0001d08f00000000.rar" target="_blank" rel="external">ArrayList</a><br><a href="http://img.mukewang.com/down/54193863000156ac00000000.rar" target="_blank" rel="external">HashMap</a></p>
+</blockquote>
+<p>本节总结是从慕课网上看视频整理的: <a href="http://www.imooc.com/learn/110" target="_blank" rel="external">传送门</a></p>
+<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>其实这玩意查api文档就行了<br>整理起来也是因为懒得去翻吧hhh</p>
 ]]></content>
       
         <categories>
