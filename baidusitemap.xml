@@ -4,8 +4,32 @@
 
     
   <url>
+    <loc>http://cheesekun.top/2017/03/28/cheesekun.top/ch1019/</loc>
+    <lastmod>2017-03-28T13:18:03.987Z</lastmod>
+    <data>
+        <display>
+        <title>ES6 第一弹</title>
+        <pubTime>2017-03-28T02:10:10.000Z</pubTime>
+        
+        <tag>javascript</tag>
+         
+        <tag>前端</tag>
+         
+        <tag>ES6</tag>
+         
+         
+           
+             
+              <breadCrumb title="前端" url="http://cheesekun.top/categories/%E5%89%8D%E7%AB%AF/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://cheesekun.top/2017/03/25/cheesekun.top/ch1018/</loc>
-    <lastmod>2017-03-24T15:53:07.125Z</lastmod>
+    <lastmod>2017-03-28T12:54:54.051Z</lastmod>
     <data>
         <display>
         <title>「标日·初2-3」李さんは　毎日　コービーな　のみます</title>
@@ -55,9 +79,9 @@
         <title>无框架版TodoList</title>
         <pubTime>2017-03-21T02:10:10.000Z</pubTime>
         
-        <tag>前端</tag>
-         
         <tag>javascript</tag>
+         
+        <tag>前端</tag>
          
         <tag>todolist</tag>
          
@@ -103,9 +127,9 @@
         <title>13天总结</title>
         <pubTime>2017-03-08T02:10:10.000Z</pubTime>
         
-        <tag>ife2017</tag>
-         
         <tag>前端</tag>
+         
+        <tag>ife2017</tag>
          
          
            
@@ -125,9 +149,9 @@
         <title>一波正则表达式</title>
         <pubTime>2017-03-11T02:10:10.000Z</pubTime>
         
-        <tag>正则表达式</tag>
-         
         <tag>javascript</tag>
+         
+        <tag>正则表达式</tag>
          
          
            
@@ -169,9 +193,9 @@
         <title>JSONP跨域访问</title>
         <pubTime>2017-03-19T02:10:10.000Z</pubTime>
         
-        <tag>前端</tag>
-         
         <tag>javascript</tag>
+         
+        <tag>前端</tag>
          
         <tag>ajax</tag>
          
@@ -329,9 +353,9 @@
         <title>百度 ife2017</title>
         <pubTime>2017-03-01T02:10:10.000Z</pubTime>
         
-        <tag>ife2017</tag>
-         
         <tag>前端</tag>
+         
+        <tag>ife2017</tag>
          
          
            

@@ -4,7 +4,7 @@
     
     <title>
         
-            「标日·初1-1」李さんは　中国人です | 
+            ES6 第一弹 | 
         
         cheesekun | just 涨芝士
     </title>
@@ -42,7 +42,7 @@
     <!-- The Open Graph protocol -->
     <meta property="og:url" content="http://cheesekun.top">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="「标日·初1-1」李さんは　中国人です | cheesekun | just 涨芝士">
+    <meta property="og:title" content="ES6 第一弹 | cheesekun | just 涨芝士">
     <meta property="og:description" content="喜欢动漫，热爱日剧，自学前端，这是芝士君的小屋，欢迎米娜桑的到来。比心">
 
     <!--[if lte IE 9]>
@@ -221,7 +221,7 @@
     </button>
 
     <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn">
-        <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#词汇"><span class="post-toc-number">1.</span> <span class="post-toc-text">词汇</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#语法"><span class="post-toc-number">2.</span> <span class="post-toc-text">语法</span></a></li></ol>
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#前言"><span class="post-toc-number">1.</span> <span class="post-toc-text">前言</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#let-和-const"><span class="post-toc-number">2.</span> <span class="post-toc-text">let 和 const</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#解构赋值"><span class="post-toc-number">3.</span> <span class="post-toc-text">解构赋值</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#模板字符串"><span class="post-toc-number">4.</span> <span class="post-toc-text">模板字符串</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Number的变化"><span class="post-toc-number">5.</span> <span class="post-toc-text">Number的变化</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Array的拓展"><span class="post-toc-number">6.</span> <span class="post-toc-text">Array的拓展</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#for-of"><span class="post-toc-number">7.</span> <span class="post-toc-text">for-of</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#结语"><span class="post-toc-number">8.</span> <span class="post-toc-text">结语</span></a></li></ol>
 
         <!--
         <li class="mdl-menu__item">
@@ -257,7 +257,7 @@
         
     
             <p class="article-headline-p">
-                「标日·初1-1」李さんは　中国人です
+                ES6 第一弹
             </p>
         </div>
 
@@ -276,7 +276,7 @@
     <!-- Author Name & Date -->
     <div>
         <strong>芝士君</strong>
-        <span>2月 23, 2017</span>
+        <span>3月 28, 2017</span>
     </div>
 
     <div class="section-spacer"></div>
@@ -297,7 +297,7 @@
         </button>
         <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-qrcode-button">
             <li class="mdl-menu__item">在其它设备中阅读本文章</li>
-            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPYAAAD2CAAAAADAeSUUAAAC30lEQVR42u3a0W7bQAwEwPz/T7evBYrIu6Sd2LrRU9Aq1o0MlCWXX3+OvL6wsbGxsbGxsbGx35L9FV//3n/98/+ffP0n+d/OzoyNjY19AvvBP/3BPdcH+u7Trl/Nd8+dnRkbGxv7BHZetJJjbV5BW0Sv78HGxsbGTo6bNCT5J7dPx8bGxsaesWdDn+u24fq52NjY2Nj7odJ1U5HcmRw3jwp+aJaGjY2N/fbs5wa9P/Pz2+Xb2NjY2L/EftpqYznKn0XIqxNiY2Nj35SdD3GS0X9ebNomJ2o2NrM0bGxs7A9nb1Yw26Wc5Oj5iyu+JGxsbOybstsxzSYGSJqKdj1oGPRiY2Nj34jdNgb54XJwu9bzwqESNjY29geyZwUs+d222WhLWt3kYGNjY9+UvSkY+YOTuLdtM+qYARsbG/swdt5mtKP8zRplUkRXBQwbGxv7Y9mborI/+iYwWBUwbGxs7Nux8w+aBQD5KGoWIdSpCDY2Nvbt2LM2owUkA6n25UYtEDY2NvZN2Xkxy4c7eXiQwPLyWefb2NjY2MewZ4Xnue1Ei3zQimBjY2Mfw968iPygyZ3tyg42Njb2Oew8cG2ps/D4FV8GNjY29r3ZScPQxgB7Xvtl1MuX2NjY2Ldjz8b9+XB/00IkX0ZUdLGxsbEPYLekB//1j9eAZjFz3ixhY2Njn8bO24l2dWbTVGBjY2NjX8cDs9YiGRhtVjZXsS42Njb2Mez2AfuQYFa69gtA2NjY2HdlRxFp2ajUTULZosxCAmxsbOy7sttrH8fOilD7W/WmEjY2NvbHstslyzY2eNarmcXD2NjY2OewZ81DHhXMAoZ2nISNjY2NPWse8iFUMvRvlzhXszRsbGxs7HIhMila7Z2roRI2Njb2kew84t2Ex0mJqu/HxsbGPoC9WbLZlKLnBrp1K4KNjY19C/Ys6N3EvXmIO2t7XphvY2NjY78Z+5wLGxsbGxsbGxsb+22uv9jkUyWr9yu9AAAAAElFTkSuQmCC">
+            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPYAAAD2CAAAAADAeSUUAAAC0klEQVR42u3aUU7EMAwFwL3/peEAqNlnu4u6yfRrVaDNBImH7bx+jrxe2NjY2NjY2NjY2I9kv+Lr709dfb66U71/CeitGRsbG3tr9ps//Uv21YLyr17dyb8/WjM2Njb2Aex1qPQ+58GTb3F1zdjY2NjYOW8NnsQPNjY2Nva97ByfPL9afmBjY2NjTxo0c3YehDnp4700bGxs7Mez86Hpcz7/63wbGxsb+8Hs6jU5vlNtGOWHeKKVY2NjY2/KzoMhaQBVS5TkUGbve7CxsbFPY1cP0OQjhF7wVGMsOjCEjY2NvSm7+rJ5kNzWJKqWQNjY2Nhbs3uPrrac1u9dP7N66BMbGxv7THa1DFi3e3J8L9LKjTBsbGzsTdnJI/J//fNxwuSoUDVEsbGxsfdm5xHVC5JeKPbWdnNTCRsbG/ur2JNR62SEkGxQPu5tDnqxsbGxt2CvA6BaluSN+3wkMIkubGxs7L3Zd0VIdUjQa10loYuNjY19Gjsfu+at+d6hyfywTjXYsLGxsfdmJ82gQuNm+eJocfGIotwUw8bGxt6UnURFcj+PwGpRkTe83qwHGxsbe1P2JE7y0UI1ovLBc2ErsbGxsTdlz5s4vQ2qlkO9iMXGxsY+gZ0j822662mToggbGxsbO1lQEjlJo38SWoW3Y2NjY2/NngRDb9ybFyfJe0e9NGxsbOwt2L1io9rcrz6n9ysp5zY2Njb2Rux5A6gaLXlY3hCK2NjY2Aew8yCZj4pzZLKqKESxsbGxN2VXr94RyXVpkcOSCMTGxsY+jT2JhPmQIC8qepuFjY2NfQ47bwxVi4r1FlSbSqP2FjY2NvYB7LxgmGxB/vbJhY2NjY2d/Os/ibp8K6sRiI2NjY2dB1gyyu2NeHsFyZs72NjY2Aewk4IhHwbMR7P5tmJjY2Nj522aaKTaKmbmW/bB+TY2Njb2g9nnXNjY2NjY2NjY2NiPuX4BRY9yFE1JlXEAAAAASUVORK5CYII=">
         </ul>
     
 
@@ -309,7 +309,7 @@
     </button>
     <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
         <li class="mdl-menu__item">
-        <a class="post_tag-link" href="/tags/日语/">日语</a></li><li class="mdl-menu__item"><a class="post_tag-link" href="/tags/标准日本语/">标准日本语</a>
+        <a class="post_tag-link" href="/tags/ES6/">ES6</a></li><li class="mdl-menu__item"><a class="post_tag-link" href="/tags/javascript/">javascript</a></li><li class="mdl-menu__item"><a class="post_tag-link" href="/tags/前端/">前端</a>
     </ul>
     
 
@@ -336,7 +336,7 @@
 
     <!-- Share Weibo -->
     
-        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=「标日·初1-1」李さんは　中国人です&url=http://cheesekun.top//2017/02/23/cheesekun.top/ch1002/index.html&pic=&searchPic=false&style=simple" target="_blank">
+        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=ES6 第一弹&url=http://cheesekun.top//2017/03/28/cheesekun.top/ch1019/index.html&pic=&searchPic=false&style=simple" target="_blank">
             <li class="mdl-menu__item">
                 分享到微博
             </li>
@@ -348,7 +348,7 @@
 
     <!-- Share Facebook -->
     
-        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=http://cheesekun.top//2017/02/23/cheesekun.top/ch1002/index.html" target="_blank">
+        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=http://cheesekun.top//2017/03/28/cheesekun.top/ch1019/index.html" target="_blank">
             <li class="mdl-menu__item">
                 分享到 Facebook
             </li>
@@ -357,7 +357,7 @@
 
     <!-- Share Google+ -->
     
-        <a class="post_share-link" href="https://plus.google.com/share?url=http://cheesekun.top//2017/02/23/cheesekun.top/ch1002/index.html" target="_blank">
+        <a class="post_share-link" href="https://plus.google.com/share?url=http://cheesekun.top//2017/03/28/cheesekun.top/ch1019/index.html" target="_blank">
             <li class="mdl-menu__item">
                 分享到 Google+
             </li>
@@ -381,72 +381,152 @@
                 <!-- Post Content -->
                 <div id="post-content" class="markdown-Github mdl-color-text--grey-700 mdl-card__supporting-text fade out">
     
-        <h2 id="词汇"><a href="#词汇" class="headerlink" title="词汇"></a>词汇</h2><ul>
-<li>先生 (せんせい)   老师<blockquote>
-<p>老师，医生和律师<br>大学の先生　-&gt; 大学老师</p>
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>其实之前有稍微得了解到ES6，但是自己ES5都写的不好，所以将它放了一段时间<br>之后写JS就都使用ES6的语法了，毕竟好用<br>完整的ES6语法可以看阮一峰老师的<a href="http://es6.ruanyifeng.com/" target="_blank" rel="external">ECMAScript 6 入门</a><br>我就码下一些觉得比较有用的小知识点</p>
+<h2 id="let-和-const"><a href="#let-和-const" class="headerlink" title="let 和 const"></a>let 和 const</h2><blockquote>
+<p>let定义变量，const定义常量<br>让ES6增加了块级作用域</p>
 </blockquote>
-</li>
-<li>社员 (しゃいん)   职员<blockquote>
-<p>某一公司的人，<span class="red">使用前会出现较明确的所属公司</span><br>旅行会社の社员  -&gt; 旅行社的职员</p>
-</blockquote>
-</li>
-<li>会社员 (かいしゃいん)　公司职员<blockquote>
-<p>笼统概念，表示一种职业<br>兄は会社员ではあぃません　　-&gt; 我哥不是公司职员</p>
-</blockquote>
-</li>
-<li>父 (ちち)　　(我)父亲<blockquote>
-<p>在与外人谈论自己父亲时使用，已包含 我的ちち，所以直接代表我的父亲，不需要加　私の父<br>父は中国人です　-&gt; 我父亲是日本人</p>
-</blockquote>
-</li>
-<li>あの人 (あのひと)  那个人<blockquote>
-<p>表示第三人称， 不强调性别<br>あの人は田中さんですか．　-&gt; 那人是田中君吗？</p>
-</blockquote>
-</li>
-<li>私　（わたし）　我<blockquote>
-<p>第一人称， 男女通用，<span class="red">会话中多被省略</span><br>私は学生です。 -&gt; 我是学生</p>
-</blockquote>
-</li>
-<li>あなた　　　　你<blockquote>
-<p>第二人称， 不知道对方姓名但必须称呼对方时使用<br><span class="red">老婆称呼老公，也会使用</span><br>あなたはせん先生ですか　　-&gt; 你是老师吗？</p>
-</blockquote>
-</li>
-<li>どうも　　　「副」非常，很<blockquote>
-<p>一般用在表示道歉或感谢。<span class="red">当关系特别好时，どうも就可以直接表示感谢或道歉</span><br>どうもすみません　　　-&gt; 实在对不起</p>
-</blockquote>
-</li>
-<li>あつ　　　「叹」哎 哎呀<blockquote>
-<p>吃惊或情急下发出的声音<br>あつ、すみません。　　-&gt; 呀，对不起</p>
-</blockquote>
-</li>
-<li>ちがいます　　不是<blockquote>
-<p>针对一般疑问句所做出的否定回答<br>A: あの人は教授ですか　-&gt; 那人是教授吗<br>B: いいえ、ちがいます　-&gt; 不，不是的</p>
-</blockquote>
-</li>
-</ul>
-<h2 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h2><ul>
-<li>肯定句<ul>
-<li>名は名です   ..是..<blockquote>
-<p>用于现在时或将来时<br>明日は雨です　　-&gt; 明天下雨</p>
-</blockquote>
-</li>
-<li>名1は名2では(じや)あぃません   ..不是..<blockquote>
-<p>仅适用与二者都是名词的情况<br>口语使用<span class="red">通常把 では　换成　じや</span><br>明日は日曜日じやあぃません　-&gt; 明天不是星期天</p>
-</blockquote>
-</li>
-</ul>
-</li>
-<li>疑问句及应答<ul>
-<li>名1は名2ですか  ..是..吗?<blockquote>
-<p>助词表示疑问。日语问句在句末不使用“?”<br>A: あの人は田中さんですか  -&gt; 那个人是田中吗?</p>
-</blockquote>
-</li>
-<li>はい、そうです　-&gt; 是，是的</li>
-<li>いいえ、ちがいます　-&gt;　不，不是的</li>
-<li>分(わ)かぃません   -&gt;  不知道</li>
-</ul>
-</li>
-</ul>
+<ul>
+<li>let<pre class="line-numbers language-javascript"><code class="language-javascript"><span class="token punctuation">{</span>
+<span class="token keyword">var</span> a <span class="token operator">=</span> <span class="token number">5</span><span class="token punctuation">;</span>
+<span class="token keyword">let</span> b <span class="token operator">=</span> <span class="token number">5</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+a  <span class="token comment" spellcheck="true">// ReferenceError: a is not defined.</span>
+b  <span class="token comment" spellcheck="true">// 5</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+let 不能重复声明<br>并且let定义的值拥有块级作用域，不会污染到全局变量</li>
+<li><p>const</p>
+<pre class="line-numbers language-javascript"><code class="language-javascript"><span class="token keyword">const</span> a <span class="token operator">=</span> <span class="token number">5</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> cheesekun <span class="token operator">=</span> <span class="token punctuation">{</span> name<span class="token punctuation">:</span> cheesekun<span class="token punctuation">,</span> sex<span class="token punctuation">:</span> man<span class="token punctuation">}</span><span class="token punctuation">;</span>
 
+a <span class="token operator">=</span> <span class="token number">6</span><span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">// Assignment to constant variable</span>
+cheesekun<span class="token punctuation">.</span>name <span class="token operator">=</span> <span class="token string">"kuncheese"</span><span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">//"kuncheese"</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><code>const</code> 定义的常量不能修改，但是定义的对象的属性值可以修改</p>
+<h2 id="解构赋值"><a href="#解构赋值" class="headerlink" title="解构赋值"></a>解构赋值</h2><p><em>从数组和对象(或者其他可便利对象，如字符串)中提取值，对变量进行赋值</em></p>
+</li>
+</ul>
+<pre class="line-numbers language-javascript"><code class="language-javascript"><span class="token comment" spellcheck="true">// 给变量赋值</span>
+<span class="token keyword">let</span> <span class="token punctuation">[</span>a<span class="token punctuation">,</span> b<span class="token punctuation">,</span> c<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">;</span> 
+<span class="token keyword">let</span> <span class="token punctuation">[</span>x<span class="token punctuation">,</span>y<span class="token punctuation">,</span>z<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">"kun"</span><span class="token punctuation">;</span>
+<span class="token keyword">let</span> <span class="token punctuation">{</span>age<span class="token punctuation">,</span> name<span class="token punctuation">}</span> <span class="token operator">=</span> <span class="token punctuation">{</span>name<span class="token punctuation">:</span><span class="token string">"cheesekun"</span><span class="token punctuation">,</span> age<span class="token punctuation">:</span> <span class="token number">19</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+a  <span class="token comment" spellcheck="true">//1</span>
+x  <span class="token comment" spellcheck="true">//"k"</span>
+name <span class="token comment" spellcheck="true">//"cheesekun"</span>
+
+<span class="token comment" spellcheck="true">//数值交换</span>
+<span class="token keyword">let</span> <span class="token punctuation">[</span>i<span class="token punctuation">,</span>j<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token punctuation">[</span>i<span class="token punctuation">,</span>j<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">[</span>j<span class="token punctuation">,</span> i<span class="token punctuation">]</span><span class="token punctuation">;</span>
+i  <span class="token comment" spellcheck="true">//5</span>
+
+<span class="token comment" spellcheck="true">//函数传参</span>
+<span class="token keyword">function</span> <span class="token function">f</span><span class="token punctuation">(</span><span class="token punctuation">[</span>x<span class="token punctuation">,</span> y<span class="token punctuation">,</span> z<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token operator">...</span> <span class="token punctuation">}</span>
+<span class="token function">f</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">//快速获取JSON数据</span>
+<span class="token keyword">let</span> jsonData <span class="token operator">=</span> <span class="token punctuation">{</span>
+  id<span class="token punctuation">:</span> <span class="token number">42</span><span class="token punctuation">,</span>
+  status<span class="token punctuation">:</span> <span class="token string">"OK"</span><span class="token punctuation">,</span>
+  data<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token number">867</span><span class="token punctuation">,</span> <span class="token number">5309</span><span class="token punctuation">]</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword">let</span> <span class="token punctuation">{</span> id<span class="token punctuation">,</span> status<span class="token punctuation">,</span> data<span class="token punctuation">:</span> number <span class="token punctuation">}</span> <span class="token operator">=</span> jsonData<span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>id<span class="token punctuation">,</span> status<span class="token punctuation">,</span> number<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">// 42, "OK", [867, 5309]</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="模板字符串"><a href="#模板字符串" class="headerlink" title="模板字符串"></a>模板字符串</h2><p><em>用反引号 ` 标识。它可以当作普通字符串使用，也可以用来定义多行字符串，或者在字符串中嵌入变量。</em><br>我们以前写大段的<code>innerHTML</code>都是使用 + 号连接，<br>现在有模板字符串，无须 + ，并且可以回车排版</p>
+<pre class="line-numbers language-javascript"><code class="language-javascript"><span class="token keyword">const</span> name <span class="token operator">=</span> <span class="token string">"cheessekun"</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token template-string"><span class="token string">`
+  我是</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>name<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">,
+  我居然可以换行 
+`</span></span><span class="token punctuation">)</span>             <span class="token comment" spellcheck="true">//cons出来的也是有换行的</span>
+
+<span class="token comment" spellcheck="true">//大段innerHTML</span>
+<span class="token keyword">let</span> a <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">createElement</span><span class="token punctuation">(</span><span class="token string">"a"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+a<span class="token punctuation">.</span>innerHTML <span class="token operator">=</span> <span class="token template-string"><span class="token string">`
+  &lt;strong>我是</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>name<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">,&lt;/strong>
+  &lt;i>我居然可以换行&lt;/i> 
+`</span></span>
+a<span class="token punctuation">.</span><span class="token function">setAttribute</span><span class="token punctuation">(</span><span class="token string">"href"</span><span class="token punctuation">,</span><span class="token string">"cheesekun.top"</span><span class="token punctuation">)</span>
+
+<span class="token comment" spellcheck="true">// 调用函数</span>
+<span class="token keyword">function</span> fn <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token string">'llo Wor'</span>
+<span class="token punctuation">}</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token template-string"><span class="token string">`He</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span><span class="token function">fn</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">ld.`</span></span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// Hello World</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="Number的变化"><a href="#Number的变化" class="headerlink" title="Number的变化"></a>Number的变化</h2><p><em>之前许多全局的方法都移植到了原生 <code>Number</code> 对象方法，不使用全局变量</em></p>
+<pre class="line-numbers language-javascript"><code class="language-javascript"><span class="token comment" spellcheck="true">// 原有写法,还是可以使用，但要避免使用</span>
+<span class="token function">parseInt</span><span class="token punctuation">(</span><span class="token string">'12.34'</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// 12</span>
+<span class="token function">parseFloat</span><span class="token punctuation">(</span><span class="token string">'123.45#'</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// 123.45</span>
+<span class="token function">isFinite</span><span class="token punctuation">(</span><span class="token number">25</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// true</span>
+<span class="token function">isNaN</span><span class="token punctuation">(</span><span class="token number">NaN</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// true</span>
+
+<span class="token comment" spellcheck="true">// ES6 的写法</span>
+Number<span class="token punctuation">.</span><span class="token function">parseInt</span><span class="token punctuation">(</span><span class="token string">'12.34'</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// 12</span>
+Number<span class="token punctuation">.</span><span class="token function">parseFloat</span><span class="token punctuation">(</span><span class="token string">'123.45#'</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// 123.45</span>
+Number<span class="token punctuation">.</span><span class="token function">isFinite</span><span class="token punctuation">(</span><span class="token number">25</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// true</span>
+Number<span class="token punctuation">.</span><span class="token function">isNaN</span><span class="token punctuation">(</span><span class="token number">NaN</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// true</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p> <em>Math.sign()方法。判断一个数是正数，负数，还是0；</em></p>
+<pre class="line-numbers language-javascript"><code class="language-javascript"> Math<span class="token punctuation">.</span><span class="token function">sign</span><span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">5</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// -1</span>
+ Math<span class="token punctuation">.</span><span class="token function">sign</span><span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// +1</span>
+ Math<span class="token punctuation">.</span><span class="token function">sign</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// +0</span>
+ Math<span class="token punctuation">.</span><span class="token function">sign</span><span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">0</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// -0</span>
+ Math<span class="token punctuation">.</span><span class="token function">sign</span><span class="token punctuation">(</span><span class="token string">'foo'</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// NaN</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="Array的拓展"><a href="#Array的拓展" class="headerlink" title="Array的拓展"></a>Array的拓展</h2><blockquote>
+<p>from()</p>
+<blockquote>
+<p>把类数组对象(有length属性)/可遍历对象转化为数组</p>
+</blockquote>
+<p>find()和findIndex()</p>
+<blockquote>
+<p>找出第一个符合条件的数组成员, 和下标，参数是一个回调函数</p>
+</blockquote>
+<p>includes()</p>
+<blockquote>
+<p>返回一个布尔值，表示某个数组是否包含给定的值,和字符串的<code>includes()</code>方法类似</p>
+</blockquote>
+</blockquote>
+<pre class="line-numbers language-javascript"><code class="language-javascript"><span class="token comment" spellcheck="true">//Array.from()</span>
+<span class="token keyword">let</span> arrayLike <span class="token operator">=</span> <span class="token punctuation">{</span>
+    <span class="token string">'0'</span><span class="token punctuation">:</span> <span class="token string">'a'</span><span class="token punctuation">,</span>
+    <span class="token string">'1'</span><span class="token punctuation">:</span> <span class="token string">'b'</span><span class="token punctuation">,</span>
+    <span class="token string">'2'</span><span class="token punctuation">:</span> <span class="token string">'c'</span><span class="token punctuation">,</span>
+    length<span class="token punctuation">:</span> <span class="token number">3</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token keyword">let</span> arr2 <span class="token operator">=</span> Array<span class="token punctuation">.</span><span class="token keyword">from</span><span class="token punctuation">(</span>arrayLike<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// ['a', 'b', 'c']</span>
+
+<span class="token comment" spellcheck="true">//Array.find()  参数有[值]，[下标]，[数组]</span>
+<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">find</span><span class="token punctuation">(</span><span class="token punctuation">(</span>n<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> n <span class="token operator">&lt;</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">// -5</span>
+
+<span class="token comment" spellcheck="true">//Array.findIndex()</span>
+<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">,</span> <span class="token number">15</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">findIndex</span><span class="token punctuation">(</span><span class="token punctuation">(</span>value<span class="token punctuation">,</span> index<span class="token punctuation">,</span> arr<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> value <span class="token operator">></span> <span class="token number">9</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>   <span class="token comment" spellcheck="true">// 2</span>
+
+<span class="token comment" spellcheck="true">//Array.includes()</span>
+<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">includes</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span>  <span class="token comment" spellcheck="true">//true</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="for-of"><a href="#for-of" class="headerlink" title="for-of"></a>for-of</h2><blockquote>
+<p>Array, Map, Set, String, TypedArray，arguments 对象等等<br>不能遍历普通对象<br><code>for-in</code>遍历所有可枚举的属性, 不推荐用来遍历数组，防止迭代次序出错<br><code>for-of</code>遍历可迭代对象的属性值</p>
+</blockquote>
+<pre class="line-numbers language-javascript"><code class="language-javascript"><span class="token keyword">let</span> a <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">5</span><span class="token punctuation">,</span><span class="token number">9</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+a<span class="token punctuation">.</span>name <span class="token operator">=</span> <span class="token string">"Array"</span><span class="token punctuation">;</span>
+<span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">let</span> i <span class="token keyword">in</span> a<span class="token punctuation">)</span><span class="token punctuation">{</span>console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">}</span>  <span class="token comment" spellcheck="true">//0,1,2,3,4,name</span>
+<span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">let</span> i <span class="token keyword">of</span> a<span class="token punctuation">)</span><span class="token punctuation">{</span>console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">}</span>  <span class="token comment" spellcheck="true">//1,2,5,9,2</span>
+<span class="token keyword">let</span> b <span class="token operator">=</span> <span class="token punctuation">{</span>name<span class="token punctuation">:</span><span class="token string">"whs"</span><span class="token punctuation">,</span>age<span class="token punctuation">:</span><span class="token number">18</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">let</span> i <span class="token keyword">in</span> b<span class="token punctuation">)</span><span class="token punctuation">{</span>console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">}</span>  <span class="token comment" spellcheck="true">//name,age  </span>
+<span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">let</span> i <span class="token keyword">of</span> b<span class="token punctuation">)</span><span class="token punctuation">{</span>console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">}</span>  <span class="token comment" spellcheck="true">//Uncaught TypeError</span>
+
+<span class="token comment" spellcheck="true">//遍历NodeList对象</span>
+<span class="token keyword">let</span> nodeList<span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelectorAll</span><span class="token punctuation">(</span><span class="token string">"article > p"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> node <span class="token keyword">of</span> nodeList<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  node<span class="token punctuation">.</span>className <span class="token operator">=</span> <span class="token string">"read"</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2>
     
 
     
@@ -514,7 +594,7 @@
 <script>
     $('.btn_click_load').click(function() {  //click to load comments
         var disqus_config = function () {
-            this.page.url = 'http://cheesekun.top/2017/02/23/cheesekun.top/ch1002/index.html';  // Replace PAGE_URL with your page's canonical URL variable
+            this.page.url = 'http://cheesekun.top/2017/03/28/cheesekun.top/ch1019/index.html';  // Replace PAGE_URL with your page's canonical URL variable
             this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
         };
         (function() { // DON'T EDIT BELOW THIS LINE
@@ -544,21 +624,13 @@
             <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
     <!-- Prev Nav -->
     
-        <a href="/2017/02/24/cheesekun.top/ch1003/" id="post_nav-newer" class="prev-content">
-            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
-                <i class="material-icons">arrow_back</i>
-            </button>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            next
-        </a>
-    
 
     <!-- Section Spacer -->
     <div class="section-spacer"></div>
 
     <!-- Next Nav -->
     
-        <a href="/2017/02/22/cheesekun.top/ch1001/" id="post_nav-older" class="next-content">
+        <a href="/2017/03/25/cheesekun.top/ch1018/" id="post_nav-older" class="next-content">
             previous
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
