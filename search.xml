@@ -11,14 +11,16 @@
 <p>let定义变量，const定义常量<br>让ES6增加了块级作用域</p>
 </blockquote>
 <ul>
-<li>let<pre class="line-numbers language-javascript"><code class="language-javascript"><span class="token punctuation">{</span>
-<span class="token keyword">var</span> a <span class="token operator">=</span> <span class="token number">5</span><span class="token punctuation">;</span>
-<span class="token keyword">let</span> b <span class="token operator">=</span> <span class="token number">5</span><span class="token punctuation">;</span>
+<li><p>let</p>
+<pre class="line-numbers language-javascript"><code class="language-javascript"><span class="token punctuation">{</span>
+ <span class="token keyword">var</span> a <span class="token operator">=</span> <span class="token number">5</span><span class="token punctuation">;</span>
+ <span class="token keyword">let</span> b <span class="token operator">=</span> <span class="token number">5</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 a  <span class="token comment" spellcheck="true">// ReferenceError: a is not defined.</span>
 b  <span class="token comment" spellcheck="true">// 5</span>
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-let 不能重复声明<br>并且let定义的值拥有块级作用域，不会污染到全局变量</li>
+<p>let 不能重复声明<br>并且let定义的值拥有块级作用域，不会污染到全局变量</p>
+</li>
 <li><p>const</p>
 <pre class="line-numbers language-javascript"><code class="language-javascript"><span class="token keyword">const</span> a <span class="token operator">=</span> <span class="token number">5</span><span class="token punctuation">;</span>
 <span class="token keyword">const</span> cheesekun <span class="token operator">=</span> <span class="token punctuation">{</span> name<span class="token punctuation">:</span> cheesekun<span class="token punctuation">,</span> sex<span class="token punctuation">:</span> man<span class="token punctuation">}</span><span class="token punctuation">;</span>
@@ -27,9 +29,9 @@ a <span class="token operator">=</span> <span class="token number">6</span><span
 cheesekun<span class="token punctuation">.</span>name <span class="token operator">=</span> <span class="token string">"kuncheese"</span><span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">//"kuncheese"</span>
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p><code>const</code> 定义的常量不能修改，但是定义的对象的属性值可以修改</p>
-<h2 id="解构赋值"><a href="#解构赋值" class="headerlink" title="解构赋值"></a>解构赋值</h2><p><em>从数组和对象(或者其他可便利对象，如字符串)中提取值，对变量进行赋值</em></p>
 </li>
 </ul>
+<h2 id="解构赋值"><a href="#解构赋值" class="headerlink" title="解构赋值"></a>解构赋值</h2><p><em>从数组和对象(或者其他可便利对象，如字符串)中提取值，对变量进行赋值</em></p>
 <pre class="line-numbers language-javascript"><code class="language-javascript"><span class="token comment" spellcheck="true">// 给变量赋值</span>
 <span class="token keyword">let</span> <span class="token punctuation">[</span>a<span class="token punctuation">,</span> b<span class="token punctuation">,</span> c<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">;</span> 
 <span class="token keyword">let</span> <span class="token punctuation">[</span>x<span class="token punctuation">,</span>y<span class="token punctuation">,</span>z<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">"kun"</span><span class="token punctuation">;</span>
@@ -151,7 +153,8 @@ a<span class="token punctuation">.</span>name <span class="token operator">=</sp
   node<span class="token punctuation">.</span>className <span class="token operator">=</span> <span class="token string">"read"</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2>]]></content>
+<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>第一弹结束。更重要的箭头函数，class留下一弹吧</p>
+]]></content>
       
         <categories>
             
