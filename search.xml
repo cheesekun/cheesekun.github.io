@@ -4,31 +4,123 @@
   
     
     <entry>
-      <title><![CDATA[Js阶段性小笔记[1]]]></title>
-      <url>http://cheesekun.top/2017/03/30/cheesekun.top/ch1020/</url>
-      <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>每隔一段时间，就会了解到一些js之前没怎么注意，或者一些坑的知识点。<br>做个阶段性的笔记，以后翻到又会有一番意识。</p>
-<h2 id="基本类型，引用类型"><a href="#基本类型，引用类型" class="headerlink" title="基本类型，引用类型"></a>基本类型，引用类型</h2><ul>
-<li><p>基本类型</p>
-<blockquote>
-<p>保存在栈内存中的简单数据段，这种值完全保存在内存中的一个位置<br><code>Undefined</code>、<code>Null</code>、<code>Boolean</code>、<code>Number</code>、<code>String</code>、<code>Symbol</code> (new in ES 6)</p>
+      <title><![CDATA[「标日·初2-4」李さんは　日本語で　手紙を　書きます]]></title>
+      <url>http://cheesekun.top/2017/03/31/cheesekun.top/ch1021/</url>
+      <content type="html"><![CDATA[<h2 id="词汇"><a href="#词汇" class="headerlink" title="词汇"></a>词汇</h2><ul>
+<li>プレゼンと　　礼物</li>
+<li>お金（おかね）　　钱</li>
+<li>名前（なまえ）　　姓名</li>
+<li>箸（はし）　　筷子</li>
+<li>航空便（こうくうびん）　　航空邮件<blockquote>
+<p>外来语「エアメール」　airmail<br>この手紙（てがみ）、航空便お願いします　　-&gt;请麻烦帮我把这封信寄航空邮件吧</p>
 </blockquote>
 </li>
-<li><p>引用类型</p>
-<blockquote>
-<p>保存在堆内存中的对象，<br>JavaScript不允许直接访问堆内存空间中的位置和操作堆内存空间，只能通过操作对象在栈内存中的引用地址。所以引用类型的数据，在栈内存中保存的实际上是对象在堆内存中的引用地址。通过这个引用地址可以快速查找到保存在堆内存中的对象。</p>
+<li>件（けん）　　事件<blockquote>
+<p>某件事情，一般指对方已知的<br>レの件話（わ）どうしましたか　　-&gt;那件事怎么样了？</p>
+</blockquote>
+</li>
+<li>送ります（おくります）　寄<blockquote>
+<p>可以理解为送东西给某人，也可以解释为寄<br>友達の誕生日にプレゼントを送りました　　-&gt; 朋友生日的时候送了礼物</p>
+</blockquote>
+</li>
+<li>作ります（つくります）　　制造<blockquote>
+<p>木（き）で机（つくえ）を<br>ります　　-&gt; 用木材做桌子</p>
+</blockquote>
+</li>
+<li>出します（だします）　　寄<blockquote>
+<p>一般解释为拿出，寄出，也可以表示寄信的寄<br>手（て）をだします　　-&gt; 伸出手来<br>家へ手紙を出します　　-&gt; 给家里寄信</p>
+</blockquote>
+</li>
+<li>届きます（とどきます）　　收到，送到<blockquote>
+<p>送到对方处<br>誕生日に娘から絵が届きます　　-&gt; 生日时收到了女儿的信</p>
+</blockquote>
+</li>
+<li>貸します（かします）　　借给，借出<blockquote>
+<p>相当于英语的”lend”<br>借给谁，谁来借，都用动词「に」<br>友達にお金を貸しました　　-&gt; 借给朋友钱了</p>
+</blockquote>
+</li>
+<li>習います（ならいます）　　学习<blockquote>
+<p>学习某样技能，也可以指练习<br>向谁学习，使用组词「に」<br>李さんに日本語を習います　　-&gt; 跟小李学习日语</p>
+</blockquote>
+</li>
+<li>かけます　　打(电话)<blockquote>
+<p>有很多意思，初级掌握”打电话”<br>给某人打电话，助词「へ」「に」都可以使用<br>昨日（きのう）母へ電話をかけました　　-&gt; 昨天他给妈妈打电话了</p>
+</blockquote>
+</li>
+<li>借ります（かります）　　(向别人)借<blockquote>
+<p>相当于英语的”borrow”<br>使用助词「に」或「から」<br>先月（せんげつ）図書館から本を借りました　　-&gt;上个月我去图书馆借了书</p>
+</blockquote>
+</li>
+<li>教えます（おしえます）　　教<blockquote>
+<p>教授技能，或者教某人<br>あの先生は歴史（れきし）を教えます　　-&gt; 那位老师是教历史的</p>
+</blockquote>
+</li>
+<li>さっき　　刚才<blockquote>
+<p>さっきの客（きゃく）は誰ですか。　　-&gt; 刚才那个客人是谁啊?<br>さっきはごめんね　　-&gt; 刚才对不起了</p>
 </blockquote>
 </li>
 </ul>
-<h2 id="浅拷贝，深拷贝"><a href="#浅拷贝，深拷贝" class="headerlink" title="浅拷贝，深拷贝"></a>浅拷贝，深拷贝</h2><p><em>由于引用类型的值存储在堆内存中，值会被共用，所以出现了两种拷贝方式</em></p>
-<ul>
-<li><p>浅拷贝（shallow copy）</p>
-<blockquote>
-<p>拷贝原对象的引用</p>
+<h2 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h2><ul>
+<li>名【工具】＋で动词　　用…做（某事）<blockquote>
+<p>除了接<strong>交通工具</strong>的名词外，还可以可以借表示<strong>工具，原材料或其他手段</strong>的名词<br>李さんは日本語で手紙を書きます　　-&gt; 小李用日语写信<br>何でうどんを作（つく）りました　　-&gt; 用什么做乌冬面<br>中国人は箸でご飯を食べます　　-&gt; 中国人用筷子吃饭</p>
 </blockquote>
+</li>
+<li>名1【人】は名2【人】に名3【物】をあげます　　（某人）给（某人）某物<blockquote>
+<p><strong>给</strong>,名2不可以用第一人称<br>私は李さんにお土産（みやげ）をあげます　　-&gt; 我给李先生一件礼物<br>弟は李さんに花をあげました　　-&gt; 弟弟送花给小李</p>
+</blockquote>
+</li>
+<li>名1【人】は名2【人】に/から名3【物】をもらいます　　（某人）从（某人）处得到（某物）<blockquote>
+<p><strong>得</strong> 名2通常用「に」，但如果授予方为组织或团体，多使用「から」<br>私は李さんに辞書（じしょ）をもらいました　　-&gt; 我从小李那得到一本词典</p>
+</blockquote>
+</li>
+<li>名【人】に会（あ）います　　见（某人），遇见（某人）<blockquote>
+<p><strong>特殊</strong>，遇到某人不能用「を」，特殊动宾关系，用「に」<br>私は駅で李さんにありました　　-&gt; 我在车站遇见了小李<br>今日は誰と会いましたか　　-&gt; 今天和谁见面了?</p>
+</blockquote>
+</li>
+<li>よ　　表示提醒<blockquote>
+<p>用于句末，多表示告知，轻微警告的语气<br>A: すみません、李さんはいますか　　-&gt; 请问，小李在吗?<br>B: もう帰りましたよ　　-&gt; 已经回去了<br>太り（ふとり）ますよ　　-&gt; 那你要变胖的</p>
+</blockquote>
+</li>
+<li>もう　　已经<blockquote>
+<p>使用总是跟过去时「～ました」，表示动作已完。<br>表示时间晚时，如「もう９時です」，已经9点了，不需要用过去时<br>A： 昼ご飯（ひるごはん）を食べましたか　　-&gt; 你吃过午饭了吗?　　<br>B： ええ、もう食べ（たべ）ました 　　-&gt; 是的，我已经吃过了</p>
+</blockquote>
+</li>
+</ul>
+]]></content>
+      
+        <categories>
+            
+            <category> 日语 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> 日语 </tag>
+            
+            <tag> 标准日本语 </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Js阶段性小笔记[1]]]></title>
+      <url>http://cheesekun.top/2017/03/31/cheesekun.top/ch1020/</url>
+      <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>每隔一段时间，就会了解到一些js之前没怎么注意，或者一些坑的知识点。<br>做个阶段性的笔记，以后翻到又会有一番意识。</p>
+<h2 id="基本类型，引用类型"><a href="#基本类型，引用类型" class="headerlink" title="基本类型，引用类型"></a>基本类型，引用类型</h2><h3 id="基本类型"><a href="#基本类型" class="headerlink" title="基本类型"></a>基本类型</h3><blockquote>
+<p>保存在栈内存中的简单数据段，这种值完全保存在内存中的一个位置<br><code>Undefined</code>、<code>Null</code>、<code>Boolean</code>、<code>Number</code>、<code>String</code>、<code>Symbol</code> (new in ES 6)</p>
+</blockquote>
+<h3 id="引用类型"><a href="#引用类型" class="headerlink" title="引用类型"></a>引用类型</h3><blockquote>
+<p>保存在堆内存中的对象，<br>JavaScript不允许直接访问堆内存空间中的位置和操作堆内存空间，只能通过操作对象在栈内存中的引用地址。所以引用类型的数据，在栈内存中保存的实际上是对象在堆内存中的引用地址。通过这个引用地址可以快速查找到保存在堆内存中的对象。</p>
+</blockquote>
+<h2 id="浅拷贝，深拷贝"><a href="#浅拷贝，深拷贝" class="headerlink" title="浅拷贝，深拷贝"></a>浅拷贝，深拷贝</h2><p><em>由于引用类型的值存储在堆内存中，值会被共用，所以出现了两种拷贝方式</em></p>
+<h3 id="浅拷贝（shallow-copy）"><a href="#浅拷贝（shallow-copy）" class="headerlink" title="浅拷贝（shallow copy）"></a>浅拷贝（shallow copy）</h3><p><em>拷贝原对象的引用</em></p>
 <pre class="line-numbers language-javascript"><code class="language-javascript"><span class="token comment" spellcheck="true">// 修改copy会改变原对象的值</span>
 <span class="token keyword">let</span> cheesekun <span class="token operator">=</span> <span class="token punctuation">{</span>
-  name<span class="token punctuation">:</span> <span class="token string">"cheesekun"</span><span class="token punctuation">,</span> 
-  age<span class="token punctuation">:</span> <span class="token number">19</span><span class="token punctuation">,</span>
+    name<span class="token punctuation">:</span> <span class="token string">"cheesekun"</span><span class="token punctuation">,</span> 
+    age<span class="token punctuation">:</span> <span class="token number">19</span><span class="token punctuation">,</span>
 <span class="token punctuation">}</span>
 <span class="token keyword">let</span> copyCheesekun <span class="token operator">=</span> cheesekun<span class="token punctuation">;</span>
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
@@ -38,69 +130,56 @@
 copyCheesekun<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">.</span>age <span class="token operator">=</span> <span class="token number">20</span><span class="token punctuation">;</span>
 console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>cheesekun<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">.</span>age<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 20, 引用类型拷贝的是引用，会互相影响</span>
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-</li>
-<li><p>深拷贝（deep copy）</p>
-<blockquote>
-<p>深拷贝也就是拷贝出一个新的实例，新的实例和之前的实例互不影响</p>
-</blockquote>
+<h3 id="深拷贝（deep-copy）"><a href="#深拷贝（deep-copy）" class="headerlink" title="深拷贝（deep copy）"></a>深拷贝（deep copy）</h3><p><em>深拷贝也就是拷贝出一个新的实例，新的实例和之前的实例互不影响</em></p>
 <pre class="line-numbers language-javascript"><code class="language-javascript"><span class="token comment" spellcheck="true">// 利用JSON序列化实现一个深拷贝</span>
-<span class="token keyword">let</span> <span class="token function">deepClone</span><span class="token punctuation">(</span>source<span class="token punctuation">)</span><span class="token punctuation">{</span>
-<span class="token keyword">return</span> JSON<span class="token punctuation">.</span><span class="token function">parse</span><span class="token punctuation">(</span>JSON<span class="token punctuation">.</span><span class="token function">stringify</span><span class="token punctuation">(</span>source<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
+<span class="token keyword">let</span> deepClone <span class="token operator">=</span> <span class="token punctuation">(</span>source<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> JSON<span class="token punctuation">.</span><span class="token function">parse</span><span class="token punctuation">(</span>JSON<span class="token punctuation">.</span><span class="token function">stringify</span><span class="token punctuation">(</span>source<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token keyword">let</span> cheesekun <span class="token operator">=</span> <span class="token punctuation">{</span>
-  arr<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
-  obj<span class="token punctuation">:</span> <span class="token punctuation">{</span>
-      age<span class="token punctuation">:</span> <span class="token number">19</span>
-  <span class="token punctuation">}</span><span class="token punctuation">,</span>
-  <span class="token function">func</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-      <span class="token keyword">return</span> <span class="token number">1</span><span class="token punctuation">;</span>
-  <span class="token punctuation">}</span>
+    arr<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+    obj<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+        age<span class="token punctuation">:</span> <span class="token number">19</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token function">func</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token number">1</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
 <span class="token keyword">let</span> copyCheesekun <span class="token operator">=</span> <span class="token function">deepClone</span><span class="token punctuation">(</span>cheesekun<span class="token punctuation">)</span><span class="token punctuation">;</span>
 console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>o2<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// => {arr: [1,2,3], obj: {age: 19}}</span>
 copyCheesekun<span class="token punctuation">.</span>obj<span class="token punctuation">.</span>age <span class="token operator">=</span> <span class="token number">20</span><span class="token punctuation">;</span>
 console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>cheesekun<span class="token punctuation">.</span>obj<span class="token punctuation">.</span>age<span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">//19 两个完全不同的实例，不会相互影响</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-</li>
-</ul>
-<h2 id="几个好用数组方法"><a href="#几个好用数组方法" class="headerlink" title="几个好用数组方法"></a>几个好用数组方法</h2><ul>
-<li><p>map<br><em>创建一个新数组，数组中的每个元素调用回调函数</em></p>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="几个好用数组方法"><a href="#几个好用数组方法" class="headerlink" title="几个好用数组方法"></a>几个好用数组方法</h2><h3 id="map"><a href="#map" class="headerlink" title="map"></a>map</h3><p><em>创建一个新数组，数组中的每个元素调用回调函数</em></p>
 <blockquote>
 <p><code>arr.map(callback,[thisArg])</code><br>回调函数3参数：[当前元素]，[当前索引]，[调用数组]<br>[thisArg] 可选的。执行 callback 函数时 使用的this 值。</p>
 </blockquote>
 <pre class="line-numbers language-javascript"><code class="language-javascript"><span class="token keyword">let</span> numbers <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">,</span> <span class="token number">15</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
 numbers<span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span>x<span class="token operator">=</span><span class="token operator">></span> x<span class="token operator">*</span>x<span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">// [1, 25, 100, 225]</span>
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-</li>
-<li><p>filter<br><em>创建一个包含所有通过测试的元素的新数组</em></p>
+<h3 id="filter"><a href="#filter" class="headerlink" title="filter"></a>filter</h3><p><em>创建一个包含所有通过测试的元素的新数组</em></p>
 <blockquote>
 <p><code>arr.filter(callback,[thisArg])</code><br>回调函数3参数：[当前元素]，[当前索引]，[调用数组]<br>[thisArg] 可选的。执行 callback 函数时 使用的this 值。</p>
 </blockquote>
 <pre class="line-numbers language-javascript"><code class="language-javascript"><span class="token punctuation">[</span><span class="token number">12</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">8</span><span class="token punctuation">,</span> <span class="token number">130</span><span class="token punctuation">,</span> <span class="token number">44</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">filter</span><span class="token punctuation">(</span>x<span class="token operator">=</span><span class="token operator">></span> x <span class="token operator">></span> <span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">// [12, 130, 44]</span>
 <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-</li>
-<li><p>reduce<br><em>一个用来累加的函数</em></p>
+<h3 id="reduce"><a href="#reduce" class="headerlink" title="reduce"></a>reduce</h3><p><em>一个用来累加的函数</em></p>
 <blockquote>
 <p><code>arr.reduce(callback,[initialValue])</code><br>回调函数3参数：[上一次回调的值/初始值]，[正在处理的值]，[正在处理的值的索引]<br>[initialValue]初始值。如果提供了 initialValue ，索引值从0开始；否则从1开始</p>
 </blockquote>
 <pre class="line-numbers language-javascript"><code class="language-javascript"><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token number">4</span><span class="token punctuation">,</span><span class="token number">5</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">reduce</span><span class="token punctuation">(</span><span class="token punctuation">(</span>prev<span class="token punctuation">,</span> next<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> prev<span class="token operator">+</span>next<span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">//15</span>
 <span class="token punctuation">[</span>
-<span class="token punctuation">{</span>
-  <span class="token string">"subject"</span><span class="token punctuation">:</span> <span class="token string">"math"</span><span class="token punctuation">,</span>
-  <span class="token string">"score"</span><span class="token punctuation">:</span> <span class="token number">88</span>
-  <span class="token punctuation">}</span><span class="token punctuation">,</span>
-<span class="token punctuation">{</span>
-  <span class="token string">"subject"</span><span class="token punctuation">:</span> <span class="token string">"chinese"</span><span class="token punctuation">,</span>
-  <span class="token string">"score"</span><span class="token punctuation">:</span> <span class="token number">95</span>
-<span class="token punctuation">}</span><span class="token punctuation">,</span>
-<span class="token punctuation">{</span>
-  <span class="token string">"subject"</span><span class="token punctuation">:</span> <span class="token string">"english"</span><span class="token punctuation">,</span>
-  <span class="token string">"score"</span><span class="token punctuation">:</span> <span class="token number">80</span>
-<span class="token punctuation">}</span>
+ <span class="token punctuation">{</span>
+    <span class="token string">"subject"</span><span class="token punctuation">:</span> <span class="token string">"math"</span><span class="token punctuation">,</span>
+    <span class="token string">"score"</span><span class="token punctuation">:</span> <span class="token number">88</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+ <span class="token punctuation">{</span>
+    <span class="token string">"subject"</span><span class="token punctuation">:</span> <span class="token string">"chinese"</span><span class="token punctuation">,</span>
+    <span class="token string">"score"</span><span class="token punctuation">:</span> <span class="token number">95</span>
+ <span class="token punctuation">}</span><span class="token punctuation">,</span>
+ <span class="token punctuation">{</span>
+    <span class="token string">"subject"</span><span class="token punctuation">:</span> <span class="token string">"english"</span><span class="token punctuation">,</span>
+    <span class="token string">"score"</span><span class="token punctuation">:</span> <span class="token number">80</span>
+  <span class="token punctuation">}</span>
 <span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">reduce</span><span class="token punctuation">(</span><span class="token punctuation">(</span>prev<span class="token punctuation">,</span>next<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> prev <span class="token operator">+</span> next<span class="token punctuation">.</span>score<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">//263</span>
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-</li>
-</ul>
 <h2 id="对象中的function"><a href="#对象中的function" class="headerlink" title="对象中的function"></a>对象中的function</h2><p><em>对象中，方法内如果还有函数，该函数this指向全局</em></p>
 <pre class="line-numbers language-javascript"><code class="language-javascript"><span class="token keyword">var</span> name <span class="token operator">=</span> <span class="token string">"noCheesekun"</span><span class="token punctuation">;</span>
 <span class="token keyword">let</span> age <span class="token operator">=</span> <span class="token number">20</span><span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">//let有自己的块级作用域，所以不是window.age</span>
