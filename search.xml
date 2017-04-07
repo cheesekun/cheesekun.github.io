@@ -4,6 +4,89 @@
   
     
     <entry>
+      <title><![CDATA[Yarn]]></title>
+      <url>http://cheesekun.top/2017/04/07/cheesekun.top/ch1022/</url>
+      <content type="html"><![CDATA[<p><img src="http://oha7s5kdd.bkt.clouddn.com/yarn.png" alt=""></p>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>facebook 新推出的包管理工具，用来代替 npm ，<br>npm 我都没怎么使用，索性直接 yarn 先</p>
+<h2 id="命令行集合"><a href="#命令行集合" class="headerlink" title="命令行集合"></a>命令行集合</h2><pre class="line-numbers language-git"><code class="language-git">yarn -h 查看yarn的命令集合
+
+> mkdir yarn-project
+> cd yarn-project
+
+yarn init  // 初始化项目
+yarn add &lt;package name>  // 安装包
+yarn add &lt;package name> --offline  // 离线安装本地包
+> yarn add webpack  // 安装一个 webpack 包，`npm install webpack`
+
+yarn remove &lt;package name>  // 移除不需要的包
+
+yarn upgrade &lt;package name>  // 升级包版本
+> yarn upgrade webpack  // 升级webpack，`npm update webpack`
+
+yarn cache ls  // 查看本地缓存的所有yarn包
+yarn cache dir // 查看本地缓存包的存放路径
+yarn cache clean  // 将本地的所有缓存包移除
+
+yarn global ls  // 查看全局安装的包
+yarn list  // 查看根目录下安装的包
+
+yarn config list  // 给出 yarn 和 npm 的设置(包括远端地址)
+yarn config set  // 修改 config
+> yarn config set registry registry.npm.taobao.org  // 将 yarn 访问路径修改为淘宝路径
+
+yarn info  //查看包的信息(远程的包)
+> yarn info vue
+> 查看 vue 的各种信息
+
+yarn self-update  // 更新 yarn 自己
+
+yarn why &lt;package name>  // 分析为啥项目需要这个包
+> yarn why webpack  // 分析 webpack
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><strong>yarn run    // 执行 package.json 的scripts</strong></p>
+<blockquote>
+<p>yarn run create-dir    // 执行 create-dir 这个命令</p>
+</blockquote>
+<pre class="line-numbers language-json"><code class="language-json">// package.json
+<span class="token punctuation">{</span>
+  <span class="token property">"name"</span><span class="token operator">:</span> <span class="token string">"yarn-project"</span><span class="token punctuation">,</span>
+  <span class="token property">"version"</span><span class="token operator">:</span> <span class="token string">"1.0.0"</span><span class="token punctuation">,</span>
+  <span class="token property">"main"</span><span class="token operator">:</span> <span class="token string">"index.js"</span><span class="token punctuation">,</span>
+  <span class="token property">"author"</span><span class="token operator">:</span> <span class="token string">"cheesekun"</span><span class="token punctuation">,</span>
+  <span class="token property">"license"</span><span class="token operator">:</span> <span class="token string">"MIT"</span><span class="token punctuation">,</span>
+  <span class="token property">"dependencies"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">"webpack"</span><span class="token operator">:</span> <span class="token string">"^2.3.3"</span><span class="token punctuation">,</span>
+    <span class="token property">"wide-align"</span><span class="token operator">:</span> <span class="token string">"^1.1.0"</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token property">"scripts"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+      <span class="token property">"create-dir"</span><span class="token operator">:</span> <span class="token string">"mkdir demo"</span><span class="token punctuation">,</span>
+      <span class="token property">"rm-dir"</span><span class="token operator">:</span> <span class="token string">"rm -rf demo"</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>前端工具实在是太多了，任重道远<br>还有最心酸的webpack<br>啊<br>。。。</p>
+]]></content>
+      
+        <categories>
+            
+            <category> 前端 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> 前端 </tag>
+            
+            <tag> 工具 </tag>
+            
+            <tag> Yarn </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[「标日·初2-4」李さんは　日本語で　手紙を　書きます]]></title>
       <url>http://cheesekun.top/2017/03/31/cheesekun.top/ch1021/</url>
       <content type="html"><![CDATA[<h2 id="词汇"><a href="#词汇" class="headerlink" title="词汇"></a>词汇</h2><ul>
@@ -107,7 +190,7 @@
     
     <entry>
       <title><![CDATA[Js阶段性小笔记[1]]]></title>
-      <url>http://cheesekun.top/2017/03/31/cheesekun.top/ch1020/</url>
+      <url>http://cheesekun.top/2017/03/30/cheesekun.top/ch1020/</url>
       <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>每隔一段时间，就会了解到一些js之前没怎么注意，或者一些坑的知识点。<br>做个阶段性的笔记，以后翻到又会有一番意识。</p>
 <h2 id="基本类型，引用类型"><a href="#基本类型，引用类型" class="headerlink" title="基本类型，引用类型"></a>基本类型，引用类型</h2><h3 id="基本类型"><a href="#基本类型" class="headerlink" title="基本类型"></a>基本类型</h3><blockquote>
 <p>保存在栈内存中的简单数据段，这种值完全保存在内存中的一个位置<br><code>Undefined</code>、<code>Null</code>、<code>Boolean</code>、<code>Number</code>、<code>String</code>、<code>Symbol</code> (new in ES 6)</p>
@@ -180,7 +263,7 @@ numbers<span class="token punctuation">.</span><span class="token function">map<
   <span class="token punctuation">}</span>
 <span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">reduce</span><span class="token punctuation">(</span><span class="token punctuation">(</span>prev<span class="token punctuation">,</span>next<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> prev <span class="token operator">+</span> next<span class="token punctuation">.</span>score<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">//263</span>
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="对象中的function"><a href="#对象中的function" class="headerlink" title="对象中的function"></a>对象中的function</h2><p><em>对象中，方法内如果还有函数，该函数this指向全局</em></p>
+<h2 id="对象中的function"><a href="#对象中的function" class="headerlink" title="对象中的function"></a>对象中的function</h2><p><em>对象中，方法内如果还有普通函数，该函数this指向全局，若箭头函数，看上下文</em></p>
 <pre class="line-numbers language-javascript"><code class="language-javascript"><span class="token keyword">var</span> name <span class="token operator">=</span> <span class="token string">"noCheesekun"</span><span class="token punctuation">;</span>
 <span class="token keyword">let</span> age <span class="token operator">=</span> <span class="token number">20</span><span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">//let有自己的块级作用域，所以不是window.age</span>
 <span class="token keyword">let</span> cheesekun <span class="token operator">=</span> <span class="token punctuation">{</span>
@@ -206,9 +289,9 @@ cheesekun<span class="token punctuation">.</span><span class="token function">sa
         
         <tags>
             
-            <tag> javascript </tag>
-            
             <tag> 前端 </tag>
+            
+            <tag> javascript </tag>
             
             <tag> 小总结系列 </tag>
             
@@ -378,9 +461,9 @@ a<span class="token punctuation">.</span>name <span class="token operator">=</sp
         
         <tags>
             
-            <tag> javascript </tag>
-            
             <tag> 前端 </tag>
+            
+            <tag> javascript </tag>
             
             <tag> ES6 </tag>
             
@@ -860,9 +943,9 @@ students<span class="token punctuation">.</span><span class="token function">put
         
         <tags>
             
-            <tag> javascript </tag>
-            
             <tag> 前端 </tag>
+            
+            <tag> javascript </tag>
             
             <tag> todolist </tag>
             
@@ -1017,9 +1100,9 @@ students<span class="token punctuation">.</span><span class="token function">put
         
         <tags>
             
-            <tag> javascript </tag>
-            
             <tag> 前端 </tag>
+            
+            <tag> javascript </tag>
             
             <tag> ajax </tag>
             
@@ -1869,9 +1952,9 @@ str2<span class="token punctuation">.</span><span class="token function">match</
         
         <tags>
             
-            <tag> 前端 </tag>
-            
             <tag> ife2017 </tag>
+            
+            <tag> 前端 </tag>
             
         </tags>
         
@@ -2027,9 +2110,9 @@ str2<span class="token punctuation">.</span><span class="token function">match</
         
         <tags>
             
-            <tag> 前端 </tag>
-            
             <tag> ife2017 </tag>
+            
+            <tag> 前端 </tag>
             
         </tags>
         
