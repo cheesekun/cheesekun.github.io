@@ -4,7 +4,7 @@
   
     
     <entry>
-      <title><![CDATA[Yarn]]></title>
+      <title><![CDATA[包管理工具 Yarn]]></title>
       <url>http://cheesekun.top/2017/04/07/cheesekun.top/ch1022/</url>
       <content type="html"><![CDATA[<p><img src="http://oha7s5kdd.bkt.clouddn.com/yarn.png" alt=""></p>
 <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>facebook 新推出的包管理工具，用来代替 npm ，<br>npm 我都没怎么使用，索性直接 yarn 先</p>
