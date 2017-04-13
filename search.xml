@@ -8,19 +8,22 @@
       <url>http://cheesekun.top/2017/04/07/cheesekun.top/ch1022/</url>
       <content type="html"><![CDATA[<p><img src="http://oha7s5kdd.bkt.clouddn.com/yarn.png" alt=""></p>
 <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>facebook 新推出的包管理工具，用来代替 npm ，<br>npm 我都没怎么使用，索性直接 yarn 先</p>
-<h2 id="命令行集合"><a href="#命令行集合" class="headerlink" title="命令行集合"></a>命令行集合</h2><pre class="line-numbers language-git"><code class="language-git">yarn -h 查看yarn的命令集合
+<h2 id="命令行集合"><a href="#命令行集合" class="headerlink" title="命令行集合"></a>命令行集合</h2><pre class="line-numbers language-shell"><code class="language-shell">yarn -h 查看yarn的命令集合
 
 > mkdir yarn-project
 > cd yarn-project
 
 yarn init  // 初始化项目
-yarn add &lt;package name>  // 安装包
-yarn add &lt;package name> --offline  // 离线安装本地包
+yarn install  // 安装package.json内的包
+
+yarn add <package name>  // 安装包
+yarn add global <package name>  // 全局安装包
+yarn add <package name> --offline  // 离线安装本地包
 > yarn add webpack  // 安装一个 webpack 包，`npm install webpack`
 
-yarn remove &lt;package name>  // 移除不需要的包
+yarn remove <package name>  // 移除不需要的包
 
-yarn upgrade &lt;package name>  // 升级包版本
+yarn upgrade <package name>  // 升级包版本
 > yarn upgrade webpack  // 升级webpack，`npm update webpack`
 
 yarn cache ls  // 查看本地缓存的所有yarn包
@@ -40,9 +43,9 @@ yarn info  //查看包的信息(远程的包)
 
 yarn self-update  // 更新 yarn 自己
 
-yarn why &lt;package name>  // 分析为啥项目需要这个包
+yarn why <package name>  // 分析为啥项目需要这个包
 > yarn why webpack  // 分析 webpack
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p><strong>yarn run    // 执行 package.json 的scripts</strong></p>
 <blockquote>
 <p>yarn run create-dir    // 执行 create-dir 这个命令</p>
