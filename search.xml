@@ -4,6 +4,70 @@
   
     
     <entry>
+      <title><![CDATA[vue好棒]]></title>
+      <url>http://cheesekun.top/2017/04/16/cheesekun.top/ch1023/</url>
+      <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>前些天ES6看得差不多了，就想着捡起以前学了一点点的<code>vue</code>。<br>不学不要紧。连带得把<code>yarn</code>,<code>webpack</code>给学了。<br><code>yarn</code>的话是一个比<code>npm</code>强大的包管理工具，很简单使用<br><code>webpack</code>是一个前端资源模块化管理和打包工具，十分强大，但配置起来很要命</p>
+<h2 id="vue成绩录入小例子"><a href="#vue成绩录入小例子" class="headerlink" title="vue成绩录入小例子"></a>vue成绩录入小例子</h2><p>学什么都要弄点小玩意练练手，所以用vue写了个<code>java</code>实训的成绩录入<br>示例: <a href="http://cheesekun.top/score-enter">demo</a><br>源码: <a href="https://github.com/cheeseKun/vue-list" target="_blank" rel="external">github</a></p>
+<h3 id="铲掉重写"><a href="#铲掉重写" class="headerlink" title="铲掉重写"></a>铲掉重写</h3><p><code>vue</code>有一个特别棒的功能就是组件(conpenent)，能把页面上的各部分进行拆分，<br>再利用ES6的<code>import</code>，<code>export</code>导入导出。<br>一开始觉得特别棒，所以边看文档边弄实例。<br>结果gg了，因为如果拆分的组件涉及到复杂的数据传输，就会特别麻烦。<br>不过也由于这个失误，知道了怎么进行父子组件的传参。</p>
+<h3 id="简单父子传参"><a href="#简单父子传参" class="headerlink" title="简单父子传参"></a>简单父子传参</h3><ul>
+<li>父向子组件传参<pre class="line-numbers language-javascript"><code class="language-javascript">父：<span class="token operator">&lt;</span>componentA msgFromFather<span class="token operator">=</span><span class="token string">"from father"</span><span class="token operator">></span><span class="token operator">&lt;</span><span class="token operator">/</span>componentA<span class="token operator">></span>  <span class="token comment" spellcheck="true">//如果msgFromFather是动态的，可以:msgFromFather.</span>
+子：<span class="token operator">&lt;</span>button @cllick<span class="token operator">=</span><span class="token string">"consoleInfo"</span><span class="token operator">></span><span class="token operator">&lt;</span><span class="token operator">/</span>button<span class="token operator">></span>
+props<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">"msgFromFather"</span><span class="token punctuation">]</span><span class="token punctuation">,</span>  <span class="token comment" spellcheck="true">//先声明调用父组件的变量</span>
+methods<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+  <span class="token function">consoleInfo</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>msgFromFather<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+<li><p>子向父组件传参</p>
+<blockquote>
+<p>使用 $on(eventName) 监听事件<br>使用 $emit(eventName) 触发事件</p>
+</blockquote>
+<pre class="line-numbers language-javascript"><code class="language-javascript">父：<span class="token operator">&lt;</span>course v<span class="token operator">-</span>on<span class="token punctuation">:</span>child<span class="token operator">=</span><span class="token string">"showScore"</span><span class="token operator">></span><span class="token operator">&lt;</span><span class="token operator">/</span>course<span class="token operator">></span>
+<span class="token function">子：setCBgColor</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>nowSelected <span class="token operator">=</span> x<span class="token punctuation">;</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">$emit</span><span class="token punctuation">(</span><span class="token string">'child'</span><span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">.</span>nowSelected<span class="token punctuation">.</span>scores<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 第一个参数为父组件函数绑定的自定义事件，剩余参数为传参</span>
+  <span class="token punctuation">}</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+</ul>
+<h3 id="vue脚手架"><a href="#vue脚手架" class="headerlink" title="vue脚手架"></a>vue脚手架</h3><blockquote>
+<p><code>vue-cli</code>, vue 提供的一个脚手架工具</p>
+</blockquote>
+<p>里面已经配置好webpack，可以直接利用它来写一个<code>单页spa</code></p>
+<pre class="line-numbers language-shell"><code class="language-shell">yarn add global vue-cli   // 全局安装vue脚手架
+vue init webpack vue-todolist  // 创建一个webpack模板的新项目
+cd vue-todolist
+yarn install  安装所需依赖
+yarn run dev  监听8080端口index.html
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>神奇的 MVVM 框架，对那些之前很懵懂的前端模块化，组件化，工程化<br>有了一个大概的认识，😝</p>
+<blockquote>
+<p>素晴らしい</p>
+</blockquote>
+]]></content>
+      
+        <categories>
+            
+            <category> 前端 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> 前端 </tag>
+            
+            <tag> javascript </tag>
+            
+            <tag> vue </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[包管理工具 Yarn]]></title>
       <url>http://cheesekun.top/2017/04/07/cheesekun.top/ch1022/</url>
       <content type="html"><![CDATA[<p><img src="http://oha7s5kdd.bkt.clouddn.com/yarn.png" alt=""></p>
