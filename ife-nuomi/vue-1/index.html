@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>动态数据绑定（一）</title>
+<link rel="stylesheet" href="/css/prism-solarizedlight.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+<body>
+	<p>请打开console</p>
+<script>
+Object.prototype.data = {};
+class Vue {
+  constructor(obj) {
+    this.walk(obj)
+  }
+  walk(obj) {
+    Object.keys(obj).forEach(key => {
+      if (typeof obj[key] === "object") {
+        return Vue.prototype.walk(obj[key])
+      }
+      Object.defineProperty(data, key, {
+        get: () => obj[key],
+        set: newValue => obj[key] = newValue,
+      })
+    })
+  }
+}
+
+let vue = new Vue({
+  name: "cheesekun",
+  age: 18,
+  hobbys: {
+    sport: "badminton",
+    watch: "animation",
+  },
+});
+
+console.log(vue.data.name);
+console.log(vue.data.hobbys);	
+</script>
+</body>
+</html>
