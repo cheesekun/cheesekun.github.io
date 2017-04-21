@@ -19,12 +19,27 @@ class Vue {
         return Vue.prototype.walk(obj[key])
       }
       Object.defineProperty(data, key, {
-        get: () => obj[key],
-        set: newValue => obj[key] = newValue,
+        get: () => {
+          console.log("你访问了get");
+          return obj[key];
+        },
+        set: newValue => {
+          console.log("你访问了set");
+          obj[key] = newValue;
+        },
       })
     })
   }
 }
+
+let vue = new Vue({
+  name: "cheesekun",
+  age: 18,
+  hobbys: {
+    sport: "badminton",
+    watch: "animation",
+  },
+});
 
 let vue = new Vue({
   name: "cheesekun",

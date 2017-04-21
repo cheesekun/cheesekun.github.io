@@ -4,6 +4,185 @@
   
     
     <entry>
+      <title><![CDATA[MongDB 初体验]]></title>
+      <url>http://cheesekun.top/2017/04/21/cheesekun.top/ch1024/</url>
+      <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>最近了解了下 <code>MongoDB</code>，发现是一个特别棒的 <code>nosql</code> 数据库<br>使用 <code>json</code> 数据存储，可以使用 js 语句<br>简直就是为前端走全栈使用的<br><img src="http://oksbjk6b9.bkt.clouddn.com/mongodb-logo.png" alt=""></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">SQL术语/概念</th>
+<th style="text-align:center">MongoDB术语/概念</th>
+<th style="text-align:right">解释/说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">database</td>
+<td style="text-align:center">database</td>
+<td style="text-align:right">数据库</td>
+</tr>
+<tr>
+<td style="text-align:left">table</td>
+<td style="text-align:center">collection</td>
+<td style="text-align:right">数据库表/集合</td>
+</tr>
+<tr>
+<td style="text-align:left">row</td>
+<td style="text-align:center">document</td>
+<td style="text-align:right">数据记录行/文档</td>
+</tr>
+<tr>
+<td style="text-align:left">column</td>
+<td style="text-align:center">field</td>
+<td style="text-align:right">数据字段/域</td>
+</tr>
+<tr>
+<td style="text-align:left">index</td>
+<td style="text-align:center">index</td>
+<td style="text-align:right">索引</td>
+</tr>
+<tr>
+<td style="text-align:left">table</td>
+<td style="text-align:center">joins</td>
+<td style="text-align:right">表连接,MongoDB不支持</td>
+</tr>
+<tr>
+<td style="text-align:left">primary key</td>
+<td style="text-align:center">primary key</td>
+<td style="text-align:right">主键,MongoDB自动将_id字段设置为主键</td>
+</tr>
+</tbody>
+</table>
+<h2 id="数据库操作"><a href="#数据库操作" class="headerlink" title="数据库操作"></a>数据库操作</h2><pre class="line-numbers language-javascript"><code class="language-javascript">show dbs   <span class="token comment" spellcheck="true">// 查看当前系统有多少数据库</span>
+use <span class="token punctuation">[</span>dbs name<span class="token punctuation">]</span>  <span class="token comment" spellcheck="true">// 切换数据库，若没有当前数据库，db会在适当时候生成</span>
+db<span class="token punctuation">.</span><span class="token function">dropDatabase</span><span class="token punctuation">(</span><span class="token punctuation">)</span>  <span class="token comment" spellcheck="true">// 删除当前数据库</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<h2 id="集合操作"><a href="#集合操作" class="headerlink" title="集合操作"></a>集合操作</h2><p><em>集合(collections) 也就相当于 sql 中的 表(table)</em></p>
+<h3 id="数据插入"><a href="#数据插入" class="headerlink" title="数据插入"></a>数据插入</h3><blockquote>
+<p>db.info.insert({json})    // 向 info 集合插入json数据<br>db.info.insert([{},{}])      // 向 info 集合插入多条json数据</p>
+</blockquote>
+<pre class="line-numbers language-javascript"><code class="language-javascript"><span class="token comment" spellcheck="true">// 可使用js'语句</span>
+<span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">var</span> i <span class="token operator">=</span> <span class="token number">3</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token number">20</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    db<span class="token punctuation">.</span>info<span class="token punctuation">.</span><span class="token function">insert</span><span class="token punctuation">(</span><span class="token punctuation">{</span>x<span class="token punctuation">:</span> i<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="数据删除"><a href="#数据删除" class="headerlink" title="数据删除"></a>数据删除</h3><pre class="line-numbers language-javascript"><code class="language-javascript">db<span class="token punctuation">.</span>info<span class="token punctuation">.</span><span class="token function">remove</span><span class="token punctuation">(</span><span class="token punctuation">{</span>y<span class="token punctuation">:</span> <span class="token number">999</span><span class="token punctuation">}</span><span class="token punctuation">,</span><span class="token boolean">false</span><span class="token punctuation">)</span>  <span class="token comment" spellcheck="true">// 将所有 {y: 999} 的数据移除, true只删除第一个，默认false</span>
+db<span class="token punctuation">.</span>info<span class="token punctuation">.</span><span class="token function">drop</span><span class="token punctuation">(</span><span class="token punctuation">)</span>  <span class="token comment" spellcheck="true">// 删除info集合(表)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<h3 id="数据更新"><a href="#数据更新" class="headerlink" title="数据更新"></a>数据更新</h3><pre class="line-numbers language-javascript"><code class="language-javascript"><span class="token punctuation">{</span>x<span class="token punctuation">:</span> <span class="token number">3</span><span class="token punctuation">,</span> y<span class="token punctuation">:</span> <span class="token number">3</span><span class="token punctuation">,</span> z<span class="token punctuation">:</span> <span class="token number">3</span><span class="token punctuation">}</span>
+db<span class="token punctuation">.</span>info<span class="token punctuation">.</span><span class="token function">update</span><span class="token punctuation">(</span><span class="token punctuation">{</span>x<span class="token punctuation">:</span> <span class="token number">3</span><span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>x<span class="token punctuation">:</span> <span class="token number">666</span><span class="token punctuation">}</span><span class="token punctuation">)</span>  <span class="token comment" spellcheck="true">// 将 x:3 的字段用 x: 666 覆盖</span>
+db<span class="token punctuation">.</span>info<span class="token punctuation">.</span><span class="token function">find</span><span class="token punctuation">(</span><span class="token punctuation">{</span>x<span class="token punctuation">:</span> <span class="token number">666</span><span class="token punctuation">}</span><span class="token punctuation">)</span>   <span class="token comment" spellcheck="true">// {x: 666, _id: ...}  完全覆盖</span>
+
+<span class="token comment" spellcheck="true">// 只修改 x， 而不覆盖y，z</span>
+db<span class="token punctuation">.</span>info<span class="token punctuation">.</span><span class="token function">update</span><span class="token punctuation">(</span><span class="token punctuation">{</span>x<span class="token punctuation">:</span><span class="token number">3</span><span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>$<span class="token keyword">set</span><span class="token punctuation">:</span><span class="token punctuation">{</span>x<span class="token punctuation">:</span> <span class="token number">666</span><span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token punctuation">)</span>  
+db<span class="token punctuation">.</span>info<span class="token punctuation">.</span><span class="token function">find</span><span class="token punctuation">(</span><span class="token punctuation">{</span>x<span class="token punctuation">:</span> <span class="token number">666</span><span class="token punctuation">}</span><span class="token punctuation">)</span>   <span class="token comment" spellcheck="true">// {x: 3, y: 3, z: 3, _id:...}</span>
+
+<span class="token comment" spellcheck="true">//更新不存在数据时插入数据</span>
+db<span class="token punctuation">.</span>info<span class="token punctuation">.</span><span class="token function">update</span><span class="token punctuation">(</span><span class="token punctuation">{</span>y<span class="token punctuation">:</span> <span class="token number">100</span><span class="token punctuation">}</span><span class="token punctuation">,</span><span class="token punctuation">{</span>y<span class="token punctuation">:</span> <span class="token number">999</span><span class="token punctuation">}</span>， <span class="token boolean">true</span><span class="token punctuation">)</span>  <span class="token comment" spellcheck="true">// true表示若该数据不存在，则自动创建插入数据</span>
+
+<span class="token comment" spellcheck="true">//更新多条数据，默认只更新第一条</span>
+db<span class="token punctuation">.</span>info<span class="token punctuation">.</span><span class="token function">update</span><span class="token punctuation">(</span><span class="token punctuation">{</span>y<span class="token punctuation">:</span> <span class="token number">100</span><span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>$<span class="token keyword">set</span><span class="token punctuation">:</span><span class="token punctuation">{</span>y<span class="token punctuation">:</span> <span class="token number">999</span><span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token boolean">false</span><span class="token punctuation">,</span> <span class="token boolean">true</span><span class="token punctuation">)</span>  <span class="token comment" spellcheck="true">// 第4个参数true表示将所有{y: 100} 的数据更新为{y: 999}</span>
+若不需要写<span class="token number">4</span>个参数，可指定参数，第三个参数为<span class="token punctuation">{</span>upsert<span class="token punctuation">:</span> boolean<span class="token punctuation">}</span><span class="token punctuation">,</span> 第四个参数为<span class="token punctuation">{</span>multi<span class="token punctuation">:</span> boolean<span class="token punctuation">}</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="数据查询"><a href="#数据查询" class="headerlink" title="数据查询"></a>数据查询</h3><blockquote>
+<p>show collections  // 查看当前数据库的所有集合<br>db.info.find()  // 查看当前集合的所有字段<br>条件集</p>
+<ol>
+<li>大于($gt)</li>
+<li>大于等于($gte)</li>
+<li>小于($lt)</li>
+<li>小于等于($lte)</li>
+<li>不等于($ne)</li>
+<li>包含于($in)</li>
+<li>不包含于($nin)</li>
+</ol>
+</blockquote>
+<pre class="line-numbers language-javascript"><code class="language-javascript">db<span class="token punctuation">.</span>info<span class="token punctuation">.</span><span class="token function">find</span><span class="token punctuation">(</span>过滤条件<span class="token punctuation">)</span>
+db<span class="token punctuation">.</span>info<span class="token punctuation">.</span><span class="token function">find</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">count</span><span class="token punctuation">(</span><span class="token punctuation">)</span>  <span class="token comment" spellcheck="true">// 查看条数</span>
+db<span class="token punctuation">.</span>info<span class="token punctuation">.</span><span class="token function">find</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">skip</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">limit</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">sort</span><span class="token punctuation">(</span><span class="token punctuation">{</span>x<span class="token punctuation">:</span> <span class="token number">1</span><span class="token punctuation">}</span><span class="token punctuation">)</span>  <span class="token comment" spellcheck="true">// 过滤前3条数据，只保存前两条，用x正序排序，倒叙-1</span>
+db<span class="token punctuation">.</span>info<span class="token punctuation">.</span><span class="token function">find</span><span class="token punctuation">(</span> <span class="token punctuation">{</span> <span class="token string">'tags.0'</span> <span class="token punctuation">:</span> <span class="token string">'fruit'</span> <span class="token punctuation">}</span> <span class="token punctuation">)</span>  <span class="token comment" spellcheck="true">// 特定元素匹配，tags值数组的第一个元素</span>
+
+db<span class="token punctuation">.</span>person<span class="token punctuation">.</span><span class="token function">find</span><span class="token punctuation">(</span><span class="token punctuation">{</span>$and<span class="token punctuation">:</span><span class="token punctuation">[</span><span class="token punctuation">{</span>age<span class="token punctuation">:</span><span class="token punctuation">{</span>$gt<span class="token punctuation">:</span><span class="token number">30</span><span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token punctuation">,</span><span class="token punctuation">{</span>name<span class="token punctuation">:</span><span class="token string">"Lucy"</span><span class="token punctuation">}</span><span class="token punctuation">]</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">// age>30 且 name="Lucy"</span>
+db<span class="token punctuation">.</span>person<span class="token punctuation">.</span><span class="token function">find</span><span class="token punctuation">(</span><span class="token punctuation">{</span>$or<span class="token punctuation">:</span><span class="token punctuation">[</span><span class="token punctuation">{</span>status<span class="token punctuation">:</span><span class="token string">"A"</span><span class="token punctuation">}</span><span class="token punctuation">,</span><span class="token punctuation">{</span>age<span class="token punctuation">:</span><span class="token number">30</span><span class="token punctuation">}</span><span class="token punctuation">]</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">// age=30 且 status="A"</span>
+db<span class="token punctuation">.</span>person<span class="token punctuation">.</span><span class="token function">find</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>name<span class="token punctuation">:</span><span class="token number">1</span><span class="token punctuation">}</span><span class="token punctuation">)</span>  <span class="token comment" spellcheck="true">// 显示含有name的数据</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="索引操作"><a href="#索引操作" class="headerlink" title="索引操作"></a>索引操作</h2><p><em>索引通常能够极大的提高查询的效率</em><br><em>在系统中使用查询时，应该考虑建立相关的索引</em></p>
+<h3 id="创建索引"><a href="#创建索引" class="headerlink" title="创建索引"></a>创建索引</h3><p><strong>索引应该在数据库一开始创建好</strong></p>
+<pre class="line-numbers language-javascript"><code class="language-javascript">db<span class="token punctuation">.</span>info<span class="token punctuation">.</span><span class="token function">getIndexes</span><span class="token punctuation">(</span><span class="token punctuation">)</span>  <span class="token comment" spellcheck="true">// 查看当前集合的索引</span>
+db<span class="token punctuation">.</span>info<span class="token punctuation">.</span><span class="token function">ensureIndex</span><span class="token punctuation">(</span><span class="token punctuation">{</span>x<span class="token punctuation">:</span> <span class="token number">1</span><span class="token punctuation">}</span><span class="token punctuation">)</span>  <span class="token comment" spellcheck="true">// 创建索引，1为正向排序</span>
+db<span class="token punctuation">.</span>info<span class="token punctuation">.</span><span class="token function">ensureIndex</span><span class="token punctuation">(</span><span class="token punctuation">{</span>x<span class="token punctuation">:</span> <span class="token number">1</span><span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>name<span class="token punctuation">:</span> <span class="token string">"normal_index"</span><span class="token punctuation">}</span><span class="token punctuation">)</span>  <span class="token comment" spellcheck="true">// 将索引命名为 normal_index</span>
+db<span class="token punctuation">.</span>info<span class="token punctuation">.</span><span class="token function">ensureIndex</span><span class="token punctuation">(</span><span class="token punctuation">{</span>x<span class="token punctuation">:</span> <span class="token number">1</span><span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>unique<span class="token punctuation">:</span> <span class="token boolean">true</span><span class="token punctuation">}</span><span class="token punctuation">)</span>  <span class="token comment" spellcheck="true">// 设置唯一索引，集合不能插入相同索引值</span>
+db<span class="token punctuation">.</span>info<span class="token punctuation">.</span><span class="token function">dropIndex</span><span class="token punctuation">(</span><span class="token string">"normal_index"</span><span class="token punctuation">)</span>  <span class="token comment" spellcheck="true">// 删除 normal_index 索引</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="索引的种类"><a href="#索引的种类" class="headerlink" title="索引的种类"></a>索引的种类</h3><ol>
+<li>_id索引<blockquote>
+<p>MongoDB 默认为每一字段生成 _id</p>
+</blockquote>
+</li>
+<li>单键索引<blockquote>
+<p>{x: 1}</p>
+</blockquote>
+</li>
+<li>多键索引<blockquote>
+<p>{x: [1,2,3,4,5]}</p>
+</blockquote>
+</li>
+<li>复合索引<blockquote>
+<p>{x:1, y:1}</p>
+</blockquote>
+</li>
+<li><p>过期索引</p>
+<blockquote>
+<p>在一段时间之后会过期的索引，过期后相应数据会被删除<br>适合存储一段时间之后会失效的用户的登录信息，存储的日志<br>存在时间误差，最小删除时间为 30s</p>
+</blockquote>
+<pre class="line-numbers language-javascript"><code class="language-javascript">db<span class="token punctuation">.</span>info<span class="token punctuation">.</span><span class="token function">ensuerIndex</span><span class="token punctuation">(</span><span class="token punctuation">{</span>time<span class="token punctuation">:</span><span class="token number">1</span><span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>expireAfterSeconds<span class="token punctuation">:</span> <span class="token number">30</span><span class="token punctuation">}</span><span class="token punctuation">)</span>  <span class="token comment" spellcheck="true">// 30s 后删除 {time: 1}索引 </span>
+db<span class="token punctuation">.</span>info<span class="token punctuation">.</span><span class="token function">insert</span><span class="token punctuation">(</span><span class="token punctuation">{</span>time<span class="token punctuation">:</span> <span class="token keyword">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">}</span><span class="token punctuation">)</span>  <span class="token comment" spellcheck="true">// 必须是ISODate 或者 ISODate数组，否则不会自动删除，ISODate数组会以其中的最小时间进行删除</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+</li>
+</ol>
+<hr>
+<h3 id="全文索引"><a href="#全文索引" class="headerlink" title="全文索引"></a>全文索引</h3><p>只允许创建一个全文索引<br>db.info.ensureIndex({article: “text”})  // 与其他索引不同，全文索引的 value 不是排序的 1，-1， 而是一个固定的字符串<br>使用全文索引就可以避免去写那些繁琐的匹配函数了</p>
+<pre class="line-numbers language-javascript"><code class="language-javascript">db<span class="token punctuation">.</span>info<span class="token punctuation">.</span><span class="token function">ensureIndex</span><span class="token punctuation">(</span><span class="token punctuation">{</span>article<span class="token punctuation">:</span> <span class="token string">"text"</span><span class="token punctuation">}</span><span class="token punctuation">)</span>
+db<span class="token punctuation">.</span>info<span class="token punctuation">.</span><span class="token function">insert</span><span class="token punctuation">(</span><span class="token punctuation">{</span>article<span class="token punctuation">:</span> <span class="token string">"aa bb cc dd ee ff"</span><span class="token punctuation">}</span><span class="token punctuation">)</span>
+db<span class="token punctuation">.</span>info<span class="token punctuation">.</span><span class="token function">insert</span><span class="token punctuation">(</span><span class="token punctuation">{</span>article<span class="token punctuation">:</span> <span class="token string">"aa cc dd ee ff"</span><span class="token punctuation">}</span><span class="token punctuation">)</span>
+db<span class="token punctuation">.</span>info<span class="token punctuation">.</span><span class="token function">insert</span><span class="token punctuation">(</span><span class="token punctuation">{</span>article<span class="token punctuation">:</span> <span class="token string">"aa cc dd e"</span><span class="token punctuation">}</span><span class="token punctuation">)</span>
+db<span class="token punctuation">.</span>info<span class="token punctuation">.</span><span class="token function">insert</span><span class="token punctuation">(</span><span class="token punctuation">{</span>article<span class="token punctuation">:</span> <span class="token string">"aa cc dd uu ii ww ee ff"</span><span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+db<span class="token punctuation">.</span>info<span class="token punctuation">.</span><span class="token function">find</span><span class="token punctuation">(</span><span class="token punctuation">{</span>$text<span class="token punctuation">:</span> <span class="token punctuation">{</span>$search<span class="token punctuation">:</span> <span class="token string">"aa"</span><span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token punctuation">)</span>  <span class="token comment" spellcheck="true">// 检索字段中 article 键值含有"aa"的所有字段</span>
+db<span class="token punctuation">.</span>info<span class="token punctuation">.</span><span class="token function">find</span><span class="token punctuation">(</span><span class="token punctuation">{</span>$text<span class="token punctuation">:</span> <span class="token punctuation">{</span>$search<span class="token punctuation">:</span> <span class="token string">"aa bb cc"</span><span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token punctuation">)</span>  <span class="token comment" spellcheck="true">// 检索字段中 article 键值含有 "aa" 或者 "bb" 或者 "cc"的所有字段</span>
+db<span class="token punctuation">.</span>info<span class="token punctuation">.</span><span class="token function">find</span><span class="token punctuation">(</span><span class="token punctuation">{</span>$text<span class="token punctuation">:</span> <span class="token punctuation">{</span>$search<span class="token punctuation">:</span> <span class="token string">"aa bb -cc"</span><span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token punctuation">)</span>  <span class="token comment" spellcheck="true">// 检索字段中 article 键值含有 "aa" 或者 "bb" 并且不包含 "cc" 的所有字段</span>
+db<span class="token punctuation">.</span>info<span class="token punctuation">.</span><span class="token function">find</span><span class="token punctuation">(</span><span class="token punctuation">{</span>$text<span class="token punctuation">:</span> <span class="token punctuation">{</span>$search<span class="token punctuation">:</span> <span class="token string">"\"aa\" \"bb\" \"cc\""</span><span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token punctuation">)</span>  <span class="token comment" spellcheck="true">// 检索字段中 article 键值含有 "aa", "bb" 和 "cc"的字段</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h4 id="全文索引相似度"><a href="#全文索引相似度" class="headerlink" title="全文索引相似度"></a>全文索引相似度</h4><pre class="line-numbers language-javascript"><code class="language-javascript">使用 $meta 来获取索引的相似度数值
+db<span class="token punctuation">.</span>info<span class="token punctuation">.</span><span class="token function">find</span><span class="token punctuation">(</span><span class="token punctuation">{</span>$text<span class="token punctuation">:</span> <span class="token punctuation">{</span>$search<span class="token punctuation">:</span> <span class="token string">"aa bb"</span><span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>score<span class="token punctuation">:</span> <span class="token punctuation">{</span>$meta<span class="token punctuation">:</span> <span class="token string">"textScore"</span><span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token punctuation">)</span>  <span class="token comment" spellcheck="true">// </span>
+检索<span class="token string">"aa bb"</span><span class="token punctuation">,</span>计算出相似值
+db<span class="token punctuation">.</span>info<span class="token punctuation">.</span><span class="token function">find</span><span class="token punctuation">(</span><span class="token punctuation">{</span>$text<span class="token punctuation">:</span> <span class="token punctuation">{</span>$search<span class="token punctuation">:</span> <span class="token string">"aa bb"</span><span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>score<span class="token punctuation">:</span> <span class="token punctuation">{</span>$meta<span class="token punctuation">:</span> <span class="token string">"textScore"</span><span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">sort</span><span class="token punctuation">(</span>score<span class="token punctuation">:</span> <span class="token punctuation">{</span>$meta<span class="token punctuation">:</span> <span class="token string">"textScore"</span><span class="token punctuation">}</span><span class="token punctuation">)</span>  <span class="token comment" spellcheck="true">// </span>
+检索<span class="token string">"aa bb"</span><span class="token punctuation">,</span>计算出相似值<span class="token punctuation">,</span>并利用相似值进行排序
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h4 id="全局索引限制"><a href="#全局索引限制" class="headerlink" title="全局索引限制"></a>全局索引限制</h4><blockquote>
+<p>每次查询，只能指定一个 <code>$text</code> 查询，并且 <code>$text</code> 不能出现在 <code>$nor</code> 查询中<br>全文索引不支持中文</p>
+</blockquote>
+<h3 id="地理位置索引"><a href="#地理位置索引" class="headerlink" title="地理位置索引"></a>地理位置索引</h3><p>略</p>
+<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>用起来很舒服的一个数据库<br>就决定是你了，MongoDB。<br>😀</p>
+]]></content>
+      
+        <categories>
+            
+            <category> 数据库 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> 数据库 </tag>
+            
+            <tag> MongDB </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[vue好棒]]></title>
       <url>http://cheesekun.top/2017/04/16/cheesekun.top/ch1023/</url>
       <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>前些天ES6看得差不多了，就想着捡起以前学了一点点的<code>vue</code>。<br>不学不要紧。连带得把<code>yarn</code>,<code>webpack</code>给学了。<br><code>yarn</code>的话是一个比<code>npm</code>强大的包管理工具，很简单使用<br><code>webpack</code>是一个前端资源模块化管理和打包工具，十分强大，但配置起来很要命</p>
