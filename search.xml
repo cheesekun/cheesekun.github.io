@@ -4,6 +4,139 @@
   
     
     <entry>
+      <title><![CDATA[Mongoose]]></title>
+      <url>http://cheesekun.top/2017/04/23/cheesekun.top/ch1025/</url>
+      <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>学数据库肯定需要知道怎么连接后台<br><code>Mongoose</code> 是用来方便连接 <code>MongoDB</code> 与 <code>node</code> 的一个工具包<br>是时候学习一波</p>
+<h2 id="nodejs连接MongoDB"><a href="#nodejs连接MongoDB" class="headerlink" title="nodejs连接MongoDB"></a>nodejs连接MongoDB</h2><p>连接数据库前需要先打开数据库 MongoDB</p>
+<pre class="line-numbers language-git"><code class="language-git">yarn add mongoose  // 安装 mongoose 依赖
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-javascript"><code class="language-javascript"><span class="token keyword">let</span> mongoose <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">"mongoose"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">let</span> db <span class="token operator">=</span> mongoose<span class="token punctuation">.</span><span class="token function">connect</span><span class="token punctuation">(</span><span class="token string">"mongodb://127.0.0.1t:27107/test"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+db<span class="token punctuation">.</span>connection<span class="token punctuation">.</span><span class="token function">on</span><span class="token punctuation">(</span><span class="token string">"error"</span><span class="token punctuation">,</span> <span class="token keyword">function</span> <span class="token punctuation">(</span>error<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"数据库连接失败："</span> <span class="token operator">+</span> error<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+db<span class="token punctuation">.</span>connection<span class="token punctuation">.</span><span class="token function">on</span><span class="token punctuation">(</span><span class="token string">"open"</span><span class="token punctuation">,</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"------数据库连接成功！------"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="操纵数据"><a href="#操纵数据" class="headerlink" title="操纵数据"></a>操纵数据</h2><ol>
+<li>Schema：数据库集合的模型骨架，或者是数据属性模型传统意义的表结构。</li>
+<li>Model ：通过Schema构造而成，除了具有Schema定义的数据库骨架以外，还可以具体的操作数据库。</li>
+<li>Entity：通过Model创建的实体，它也可以操作数据库。<blockquote>
+<p>但Model比Entity更具操作性。</p>
+</blockquote>
+</li>
+</ol>
+<pre class="line-numbers language-javascript"><code class="language-javascript"><span class="token keyword">let</span> mongoose <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">"mongoose"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">let</span> db <span class="token operator">=</span> mongoose<span class="token punctuation">.</span><span class="token function">connect</span><span class="token punctuation">(</span><span class="token string">"mongodb://127.0.0.1:27017/test"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">let</span> TestSchema <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">mongoose<span class="token punctuation">.</span>Schema</span><span class="token punctuation">(</span><span class="token punctuation">{</span>  <span class="token comment" spellcheck="true">// 使用 Schema 创建集合结构(表结构)</span>
+    name <span class="token punctuation">:</span> <span class="token punctuation">{</span> type<span class="token punctuation">:</span>String <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    age  <span class="token punctuation">:</span> <span class="token punctuation">{</span> type<span class="token punctuation">:</span>Number<span class="token punctuation">,</span> <span class="token keyword">default</span><span class="token punctuation">:</span><span class="token number">0</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    email<span class="token punctuation">:</span> <span class="token punctuation">{</span> type<span class="token punctuation">:</span>String <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    time <span class="token punctuation">:</span> <span class="token punctuation">{</span> type<span class="token punctuation">:</span>Date<span class="token punctuation">,</span> <span class="token keyword">default</span><span class="token punctuation">:</span>Date<span class="token punctuation">.</span>now <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">let</span> TestModel <span class="token operator">=</span> db<span class="token punctuation">.</span><span class="token function">model</span><span class="token punctuation">(</span><span class="token string">"test1"</span><span class="token punctuation">,</span> TestSchema <span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">// test1 集合使用 Schema 结构，若不存在 test1 集合，则创建</span>
+<span class="token keyword">let</span> TestEntity <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">TestModel</span><span class="token punctuation">(</span><span class="token punctuation">{</span>  <span class="token comment" spellcheck="true">// 使用 TestModel 新建一个数据</span>
+    name <span class="token punctuation">:</span> <span class="token string">"helloworld"</span><span class="token punctuation">,</span>
+    age  <span class="token punctuation">:</span> <span class="token number">28</span><span class="token punctuation">,</span>
+    email<span class="token punctuation">:</span> <span class="token string">"helloworld@qq.com"</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+TestEntity<span class="token punctuation">.</span><span class="token function">save</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span>error<span class="token punctuation">,</span>doc<span class="token punctuation">)</span><span class="token punctuation">{</span>  <span class="token comment" spellcheck="true">// 保存数据于 test1 </span>
+  <span class="token keyword">if</span><span class="token punctuation">(</span>error<span class="token punctuation">)</span><span class="token punctuation">{</span>
+     console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"error :"</span> <span class="token operator">+</span> error<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token keyword">else</span><span class="token punctuation">{</span>
+     console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>doc<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="Model增删查改"><a href="#Model增删查改" class="headerlink" title="Model增删查改"></a>Model增删查改</h2><pre class="line-numbers language-javascript"><code class="language-javascript"><span class="token keyword">let</span> TestSchema <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">mongoose<span class="token punctuation">.</span>Schema</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    name <span class="token punctuation">:</span> <span class="token punctuation">{</span> type<span class="token punctuation">:</span>String <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    age  <span class="token punctuation">:</span> <span class="token punctuation">{</span> type<span class="token punctuation">:</span>Number<span class="token punctuation">,</span> <span class="token keyword">default</span><span class="token punctuation">:</span><span class="token number">0</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    email<span class="token punctuation">:</span> <span class="token punctuation">{</span> type<span class="token punctuation">:</span>String <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    time <span class="token punctuation">:</span> <span class="token punctuation">{</span> type<span class="token punctuation">:</span>Date<span class="token punctuation">,</span> <span class="token keyword">default</span><span class="token punctuation">:</span>Date<span class="token punctuation">.</span>now <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">let</span> TestModel <span class="token operator">=</span> db<span class="token punctuation">.</span><span class="token function">model</span><span class="token punctuation">(</span><span class="token string">"test1"</span><span class="token punctuation">,</span> TestSchema<span class="token punctuation">)</span><span class="token punctuation">;</span>  
+<span class="token comment" spellcheck="true">// let TestModel = db.model("test1", new mongoose.Schema());</span>
+<span class="token comment" spellcheck="true">// 集合结构为空的话，不能插入数据</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="增"><a href="#增" class="headerlink" title="增"></a>增</h3><ul>
+<li>Model方法 create<pre class="line-numbers language-javacript"><code class="language-javacript">TestModel.create({ name:"model_create", age:26}, function(error,doc){
+  if(error) {
+      console.log(error);
+  } else {
+      console.log(doc);
+  }
+});
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+<li>entity方法 save<pre class="line-numbers language-javascript"><code class="language-javascript"><span class="token keyword">let</span> Entity <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">TestModel</span><span class="token punctuation">(</span><span class="token punctuation">{</span>name<span class="token punctuation">:</span><span class="token string">"entity_save"</span><span class="token punctuation">,</span>age<span class="token punctuation">:</span> <span class="token number">27</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+Entity<span class="token punctuation">.</span><span class="token function">save</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span>error<span class="token punctuation">,</span>doc<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">if</span><span class="token punctuation">(</span>error<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>error<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+      console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>doc<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+</ul>
+<h3 id="删"><a href="#删" class="headerlink" title="删"></a>删</h3><p>Model.remove(查询条件,callback);</p>
+<pre class="line-numbers language-javascript"><code class="language-javascript"><span class="token keyword">let</span> conditions <span class="token operator">=</span> <span class="token punctuation">{</span>name<span class="token punctuation">:</span> <span class="token string">'helloworld'</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+TestModel<span class="token punctuation">.</span><span class="token function">remove</span><span class="token punctuation">(</span>conditions<span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span>error<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>error<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>error<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'Delete success!'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="改"><a href="#改" class="headerlink" title="改"></a>改</h3><p>Model.update(查询条件,更新对象,callback)</p>
+<pre class="line-numbers language-javascript"><code class="language-javascript"><span class="token keyword">var</span> conditions <span class="token operator">=</span> <span class="token punctuation">{</span>name <span class="token punctuation">:</span> <span class="token string">'test_update'</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> update <span class="token operator">=</span> <span class="token punctuation">{</span>$<span class="token keyword">set</span> <span class="token punctuation">:</span> <span class="token punctuation">{</span> age <span class="token punctuation">:</span> <span class="token number">16</span> <span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">// $set 表示只修改 age，否则全覆盖</span>
+TestModel<span class="token punctuation">.</span><span class="token function">update</span><span class="token punctuation">(</span>conditions<span class="token punctuation">,</span> update<span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span>error<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>error<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>error<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'Update success!'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="查"><a href="#查" class="headerlink" title="查"></a>查</h3><p>Model.find({}, function(error, docs));<br>若第一个参数为空对象，则 <code>docs</code> 为所有数据</p>
+<pre class="line-numbers language-javascript"><code class="language-javascript">TestModel<span class="token punctuation">.</span><span class="token function">find</span><span class="token punctuation">(</span><span class="token punctuation">{</span> <span class="token string">"age"</span><span class="token punctuation">:</span> <span class="token number">28</span> <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token keyword">function</span> <span class="token punctuation">(</span>error<span class="token punctuation">,</span> docs<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">if</span><span class="token punctuation">(</span>error<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"error :"</span> <span class="token operator">+</span> error<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token keyword">else</span><span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>docs<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//docs: age为28的所有文档</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>学习源： <a href="http://www.hubwiz.com/course/543b2e7788dba02718b5a4bd/" target="_blank" rel="external">Mongoose</a><br>真是通俗易懂的操作呀<br>MongoDB 好感度 up up up<br>😂</p>
+]]></content>
+      
+        <categories>
+            
+            <category> 数据库 </category>
+            
+            <category> 后台 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> 数据库 </tag>
+            
+            <tag> MongDB </tag>
+            
+            <tag> Mongoose </tag>
+            
+            <tag> node </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[MongDB 初体验]]></title>
       <url>http://cheesekun.top/2017/04/21/cheesekun.top/ch1024/</url>
       <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>最近了解了下 <code>MongoDB</code>，发现是一个特别棒的 <code>nosql</code> 数据库<br>使用 <code>json</code> 数据存储，可以使用 js 语句<br>简直就是为前端走全栈使用的<br><img src="http://oksbjk6b9.bkt.clouddn.com/mongodb-logo.png" alt=""></p>
