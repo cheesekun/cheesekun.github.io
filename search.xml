@@ -4,6 +4,151 @@
   
     
     <entry>
+      <title><![CDATA[全栈初体验]]></title>
+      <url>http://cheesekun.top/2017/04/25/cheesekun.top/ch1025/</url>
+      <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>据说现在不会点后台的前端都找不到工作了<br>吓得我这几天看起了<code>Nodejs</code>和<code>MongoDB</code><br>并且做了一个应该算是最简单的前后端例子，如图<br><img src="http://old5ohki5.bkt.clouddn.com/fullstack01.gif" alt=""><br>输入账户密码，提交表单，保存信息到数据库<br>再重定向到 showInfo 页面获取数据库中的信息，渲染在浏览器上<br>具体代码： <a href="https://github.com/cheeseKun/fullStack/tree/master/infoSave" target="_blank" rel="external">github</a></p>
+<h2 id="主要技术"><a href="#主要技术" class="headerlink" title="主要技术"></a>主要技术</h2><blockquote>
+<p>前端模板： jade<br>后台框架： express-generator<br>数据库连接： mongoose</p>
+</blockquote>
+<p>默认电脑已安装<code>nodejs</code>,<code>yarn</code>或者<code>npm</code>,<code>MongoDB</code></p>
+<h2 id="前期"><a href="#前期" class="headerlink" title="前期"></a>前期</h2><pre class="line-numbers language-shell"><code class="language-shell">yarn add express-generator  // 
+express infoSave  // 创建生成 express 项目
+
+cd infoSave 
+
+yarn install  // 安装依赖包
+yarn start  // 可以到 localhost:3000 看到运行界面
+
+yarn add mongoose  // 安装 mongoose，不需要安装jade，express-generator自动安装了
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="中期"><a href="#中期" class="headerlink" title="中期"></a>中期</h2><p>cd views<br>将 index.jade 文件内容修改为</p>
+<pre class="line-numbers language-html"><code class="language-html">extends layout
+block content
+  h1= title
+  p Welcome to #{title}
+  form(method="post", action="/")
+    babel(for="user") 用户名
+      input(type="text",name="user",id="user")
+    br
+    babel(for="passwd") 密码
+      input(type="password",name="passwd",id="passwd")
+    br
+    input(type="submit",value="提交")
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>touch showInfo.jade</p>
+<pre class="line-numbers language-html"><code class="language-html">extends layout
+block content
+  h1= title
+  p Welcome to #{title}
+  ul
+   each info, i in infos
+     li
+       span.user 账户： #{info.user}
+       &amp;nbsp&amp;nbsp&amp;nbsp&amp;nbsp
+       span.passwd 密码： #{info.passwd}
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>这两个jade是我们 / 和 /showInfo 两个路由所渲染的页面</p>
+<p>cd index.js<br>修改为</p>
+<pre class="line-numbers language-javascript"><code class="language-javascript">router<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">'/'</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span>req<span class="token punctuation">,</span> res<span class="token punctuation">,</span> next<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  res<span class="token punctuation">.</span><span class="token function">render</span><span class="token punctuation">(</span><span class="token string">'index'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span> title<span class="token punctuation">:</span> <span class="token string">'infoSave'</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>添加</p>
+<pre class="line-numbers language-javascript"><code class="language-javascript">router<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">'/showInfo'</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span>req<span class="token punctuation">,</span> res<span class="token punctuation">,</span> next<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  infos<span class="token punctuation">.</span><span class="token function">find</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span>err<span class="token punctuation">,</span> docs<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      res<span class="token punctuation">.</span><span class="token function">render</span><span class="token punctuation">(</span><span class="token string">'showInfo'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span> title<span class="token punctuation">:</span> <span class="token string">'showInfo'</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token keyword">else</span> <span class="token punctuation">{</span>
+      res<span class="token punctuation">.</span><span class="token function">render</span><span class="token punctuation">(</span><span class="token string">'showInfo'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+      title<span class="token punctuation">:</span> <span class="token string">'showInfo'</span><span class="token punctuation">,</span>
+      infos<span class="token punctuation">:</span> docs
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>public文件夹中的stylesheets文件夹新建一个css文件form.css</p>
+<pre class="line-numbers language-css"><code class="language-css"><span class="token selector">form </span><span class="token punctuation">{</span>
+  <span class="token property">width</span><span class="token punctuation">:</span> <span class="token number">300</span>px<span class="token punctuation">;</span>
+  <span class="token property">height</span><span class="token punctuation">:</span> <span class="token number">300</span>px<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token selector">babel </span><span class="token punctuation">{</span>
+  <span class="token property">display</span><span class="token punctuation">:</span> block<span class="token punctuation">;</span>
+  <span class="token property">font-size</span><span class="token punctuation">:</span> <span class="token number">20</span>px<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token selector">input<span class="token pseudo-class">:not([type="submit"])</span> </span><span class="token punctuation">{</span>
+  <span class="token property">box-sizing</span><span class="token punctuation">:</span> border-box<span class="token punctuation">;</span>
+  <span class="token property">padding</span><span class="token punctuation">:</span> <span class="token number">5</span>px<span class="token punctuation">;</span>
+  <span class="token property">width</span><span class="token punctuation">:</span> <span class="token number">200</span>px<span class="token punctuation">;</span>
+  <span class="token property">font-size</span><span class="token punctuation">:</span> <span class="token number">15</span>px<span class="token punctuation">;</span>
+  <span class="token property">float</span><span class="token punctuation">:</span> right<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token selector">input<span class="token attribute">[type="submit"]</span> </span><span class="token punctuation">{</span>
+  <span class="token property">float</span><span class="token punctuation">:</span> right<span class="token punctuation">;</span>
+  <span class="token property">width</span><span class="token punctuation">:</span> <span class="token number">100</span>px<span class="token punctuation">;</span>
+  <span class="token property">padding</span><span class="token punctuation">:</span> <span class="token number">5</span>px<span class="token punctuation">;</span>
+  <span class="token property">background</span><span class="token punctuation">:</span> <span class="token hexcode">#79f</span><span class="token punctuation">;</span>
+  <span class="token property">cursor</span><span class="token punctuation">:</span> pointer<span class="token punctuation">;</span>
+  <span class="token property">font-size</span><span class="token punctuation">:</span> <span class="token number">15</span>px<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>此时 <code>yarn start</code> 会发现 localhost:3000 可以加载<br>localhost:3000/showInfo 会报错，<br>因为我们还没有进行数据的交互</p>
+<h2 id="后期"><a href="#后期" class="headerlink" title="后期"></a>后期</h2><p>在  infoSave 目录下，创建两个文件夹<br>schemas文件夹存放数据库集合的模型骨架<br>models文件夹存放Schema构造实例进行数据操作</p>
+<p>文件夹schemas, 在里面创建文件 info.js,内容为</p>
+<pre class="line-numbers language-js"><code class="language-js"><span class="token keyword">let</span> mongoose <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'mongoose'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">let</span> InfoSchema <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">mongoose<span class="token punctuation">.</span>Schema</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  user<span class="token punctuation">:</span> String<span class="token punctuation">,</span>
+  passwd<span class="token punctuation">:</span> String
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+<span class="token comment" spellcheck="true">// 导出InfoSchema模式</span>
+module<span class="token punctuation">.</span>exports <span class="token operator">=</span> InfoSchema<span class="token punctuation">;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>文件夹models，创建文件 info.js，内容为</p>
+<pre class="line-numbers language-js"><code class="language-js"><span class="token keyword">let</span> mongoose <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'mongoose'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">let</span> infoSchema <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'../schemas/info.js'</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//引入'../schemas/info.js'导出的模式模块</span>
+
+<span class="token comment" spellcheck="true">// 编译生成info模型</span>
+<span class="token keyword">let</span> infos <span class="token operator">=</span> mongoose<span class="token punctuation">.</span><span class="token function">model</span><span class="token punctuation">(</span><span class="token string">'userInfo'</span><span class="token punctuation">,</span> infoSchema<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">// 将info模型[构造函数]导出</span>
+module<span class="token punctuation">.</span>exports <span class="token operator">=</span> infos<span class="token punctuation">;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>app.js文件添加</p>
+<pre class="line-numbers language-javascript"><code class="language-javascript"><span class="token comment" spellcheck="true">// 连接MongoDB中的 infoDB 数据库，若没有则自动生成</span>
+<span class="token keyword">var</span> mongoose <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'mongoose'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+mongoose<span class="token punctuation">.</span><span class="token function">connect</span><span class="token punctuation">(</span><span class="token string">'mongodb://127.0.0.1:27017/infosDB'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>到此，我们的工程结束了，<br><code>yarn start</code>试试看，记得先开启MongoDB</p>
+<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>啊，有一种搬代码，没有写教程的感觉<br>hhh<br>第一次自己搭建运行前后端环境，真是愉悦呀<br>继续加油。。。<br>🙃</p>
+]]></content>
+      
+        <categories>
+            
+            <category> 全栈 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> nodejs </tag>
+            
+            <tag> MongoDB </tag>
+            
+            <tag> jade </tag>
+            
+            <tag> express </tag>
+            
+            <tag> mongoose </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[Mongoose]]></title>
       <url>http://cheesekun.top/2017/04/23/cheesekun.top/ch1025/</url>
       <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>学数据库肯定需要知道怎么连接后台<br><code>Mongoose</code> 是用来方便连接 <code>MongoDB</code> 与 <code>node</code> 的一个工具包<br>是时候学习一波</p>
