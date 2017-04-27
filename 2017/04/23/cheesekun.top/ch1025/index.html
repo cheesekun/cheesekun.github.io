@@ -221,7 +221,7 @@
     </button>
 
     <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn">
-        <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#前言"><span class="post-toc-number">1.</span> <span class="post-toc-text">前言</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#nodejs连接MongoDB"><span class="post-toc-number">2.</span> <span class="post-toc-text">nodejs连接MongoDB</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#操纵数据"><span class="post-toc-number">3.</span> <span class="post-toc-text">操纵数据</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Model增删查改"><span class="post-toc-number">4.</span> <span class="post-toc-text">Model增删查改</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#增"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">增</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#删"><span class="post-toc-number">4.2.</span> <span class="post-toc-text">删</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#改"><span class="post-toc-number">4.3.</span> <span class="post-toc-text">改</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#查"><span class="post-toc-number">4.4.</span> <span class="post-toc-text">查</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#结语"><span class="post-toc-number">5.</span> <span class="post-toc-text">结语</span></a></li></ol>
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#前言"><span class="post-toc-number">1.</span> <span class="post-toc-text">前言</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#nodejs连接MongoDB"><span class="post-toc-number">2.</span> <span class="post-toc-text">nodejs连接MongoDB</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#操纵数据"><span class="post-toc-number">3.</span> <span class="post-toc-text">操纵数据</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Model增删查改"><span class="post-toc-number">4.</span> <span class="post-toc-text">Model增删查改</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#增"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">增</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#删"><span class="post-toc-number">4.2.</span> <span class="post-toc-text">删</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#改"><span class="post-toc-number">4.3.</span> <span class="post-toc-text">改</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#查"><span class="post-toc-number">4.4.</span> <span class="post-toc-text">查</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#深海巨坑"><span class="post-toc-number">4.5.</span> <span class="post-toc-text">深海巨坑</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#结语"><span class="post-toc-number">5.</span> <span class="post-toc-text">结语</span></a></li></ol>
 
         <!--
         <li class="mdl-menu__item">
@@ -485,6 +485,12 @@ TestModel<span class="token punctuation">.</span><span class="token function">up
   <span class="token punctuation">}</span>
 <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="深海巨坑"><a href="#深海巨坑" class="headerlink" title="深海巨坑"></a>深海巨坑</h3><p>使用 <code>mongoose</code> 时，发现<code>mongoose</code>会自动帮你把 <code>model</code>中的集合名改为复数，<br>也就是说。如果你设置</p>
+<pre class="line-numbers language-javascript"><code class="language-javascript"><span class="token keyword">let</span> model <span class="token operator">=</span> mongoose<span class="token punctuation">.</span><span class="token function">model</span><span class="token punctuation">(</span>table<span class="token punctuation">,</span> schema<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">// 你在数据库中想创建的 table 集合会变成 table</span>
+<span class="token comment" spellcheck="true">// 如果你的数据库中的集合名不是复数 s ，那么基本操作不了</span>
+<span class="token comment" spellcheck="true">// 也就是说，你最好把你要使用`mongoose`操作的集合名设置为复数 s</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 <h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>学习源： <a href="http://www.hubwiz.com/course/543b2e7788dba02718b5a4bd/" target="_blank" rel="external">Mongoose</a><br>真是通俗易懂的操作呀<br>MongoDB 好感度 up up up<br>😂</p>
 
     
@@ -697,7 +703,7 @@ TestModel<span class="token punctuation">.</span><span class="token function">up
         </a>
         <ul class="dropdown-menu">
             <li>
-            <a class="sidebar_archives-link" href="/archives/2017/04/">四月 2017<span class="sidebar_archives-count">5</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/03/">三月 2017<span class="sidebar_archives-count">17</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/02/">二月 2017<span class="sidebar_archives-count">5</span></a>
+            <a class="sidebar_archives-link" href="/archives/2017/04/">四月 2017<span class="sidebar_archives-count">6</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/03/">三月 2017<span class="sidebar_archives-count">17</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/02/">二月 2017<span class="sidebar_archives-count">5</span></a>
         </ul>
     </li>
 
@@ -711,7 +717,7 @@ TestModel<span class="token punctuation">.</span><span class="token function">up
             </a>
             <ul class="dropdown-menu">
                 <li>
-                <a class="sidebar_archives-link" href="/categories/全栈/">全栈<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/前端/">前端<span class="sidebar_archives-count">11</span></a></li><li><a class="sidebar_archives-link" href="/categories/博客/">博客<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/后台/">后台<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/数据库/">数据库<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/日语/">日语<span class="sidebar_archives-count">9</span></a></li><li><a class="sidebar_archives-link" href="/categories/生活/">生活<span class="sidebar_archives-count">1</span></a>
+                <a class="sidebar_archives-link" href="/categories/全栈/">全栈<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/前端/">前端<span class="sidebar_archives-count">11</span></a></li><li><a class="sidebar_archives-link" href="/categories/博客/">博客<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/后台/">后台<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/数据库/">数据库<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/categories/日语/">日语<span class="sidebar_archives-count">9</span></a></li><li><a class="sidebar_archives-link" href="/categories/生活/">生活<span class="sidebar_archives-count">1</span></a>
             </ul>
         </li>
     
@@ -772,7 +778,7 @@ TestModel<span class="token punctuation">.</span><span class="token function">up
     <li>
         <a href="/archives">
             文章总数
-            <span class="sidebar-badge">27</span>
+            <span class="sidebar-badge">28</span>
         </a>
     </li>
     <li style="background:#eee;">
