@@ -4,6 +4,51 @@
   
     
     <entry>
+      <title><![CDATA[羞羞的node爬虫]]></title>
+      <url>http://cheesekun.top/2017/05/30/cheesekun.top/ch1020/</url>
+      <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>学了一阵子<code>node</code>，除了用 <code>express</code> 写东西，就没怎么做过东西<br>突然就想写个 爬虫 来玩一玩，而且还是爬一些羞羞的东西</p>
+<h2 id="使用模块"><a href="#使用模块" class="headerlink" title="使用模块"></a>使用模块</h2><p><a href="https://cnodejs.org/topic/5378720ed6e2d16149fa16bd" target="_blank" rel="external">SuperAgent</a><br><a href="https://cnodejs.org/topic/5203a71844e76d216a727d2e" target="_blank" rel="external">cheerio</a><br>fs<br>superagent-logger</p>
+<h2 id="流程"><a href="#流程" class="headerlink" title="流程"></a>流程</h2><p>首先，我们要爬取得网址是 ： <a href="http://www.hacg.wiki/wp/anime.html" target="_blank" rel="external">http://www.hacg.wiki/wp/anime.html</a><br>其次，我们要爬取得目标： 以以下格式保存在 <code>txt</code> 中<br><img src="http://old5ohki5.bkt.clouddn.com/llssInfo.png" alt=""><br>再其次，分析我们要爬取的内容分布 ：  打开控制台</p>
+<blockquote>
+<p>title, id, tags 如下<br>爬取地址是： “<a href="http://www.hacg.wiki/wp/anime.html/page/" target="_blank" rel="external">http://www.hacg.wiki/wp/anime.html/page/</a>“ + i</p>
+</blockquote>
+<p><img src="http://old5ohki5.bkt.clouddn.com/llssarticle.png" alt=""></p>
+<blockquote>
+<p>time, seed 如下<br>爬取地址是： ‘<a href="http://www.hacg.wiki/wp/" target="_blank" rel="external">http://www.hacg.wiki/wp/</a>‘ + id + ‘.html’</p>
+</blockquote>
+<p><img src="http://old5ohki5.bkt.clouddn.com/llssseed.png" alt=""></p>
+<p>再再其次，我们可以从上面看出，要爬 time 和 seed 前提是把前边的 id 爬取到，<br>因此要先爬取 id ，再利用 id 拼凑 seed 所在的 url</p>
+<p>最后， 可以来愉快地爬取了</p>
+<h2 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h2><p>还是有复习到一些知识<br>具体<code>superagent</code>,<code>cheerio</code>看上面我提供的 api模块文档链接</p>
+<h3 id="利用promise管理异步函数"><a href="#利用promise管理异步函数" class="headerlink" title="利用promise管理异步函数"></a>利用promise管理异步函数</h3><p>当我第一次按正常同步思维用 <code>superagent</code> 先爬取 id 所在 url，<br>再调用下面使用 <code>superagent</code> 的函数获取 seed时，<br>我发现获取的 <code>seed</code> 一直是空的。<br>后来才意识到这是异步函数，不会按顺序进行。<br>因此我使用了 <code>ES6</code> 的 <code>promise</code> 控制先执行 爬取 id<br>爬取完 id 再爬取 seed</p>
+<h3 id="用正则表达式获取seed"><a href="#用正则表达式获取seed" class="headerlink" title="用正则表达式获取seed"></a>用正则表达式获取seed</h3><p>如果你有逛过该网站，你会发现他的 seed 是放得毫无规律的，<br>并不是存放在一个固定的 x标签 中，<br>因此我的做法是 把存放 seed 的整一个 <code>$(&#39;.entry-content&#39;)</code> 获取到，<br>再利用正则表达式整块文本进行匹配获取</p>
+<h2 id="坑点"><a href="#坑点" class="headerlink" title="坑点"></a>坑点</h2><p>神坑啊神坑，小问题费了我好长时间</p>
+<h3 id="磁力链接的大坑"><a href="#磁力链接的大坑" class="headerlink" title="磁力链接的大坑"></a>磁力链接的大坑</h3><p>一开始我以为 磁力链接 这玩意长度为 40 ，都是 大写字母 + 数字 的组合。<br>后来在爬取不到 seed ,让我一度怀疑人生的时候<br>巧合下，发现 磁力链接 有 小写字母，有 32长度 的，有 42长度 的。。<br>我一直以为是 重定向 问题， 哎，花了好几个钟在这上面纠结<br>不过也让我小小得重新了解了下 <code>http</code></p>
+<h2 id="运行效果"><a href="#运行效果" class="headerlink" title="运行效果"></a>运行效果</h2><p><img src="http://old5ohki5.bkt.clouddn.com/llss.gif" alt=""><br>结果爬取行数有： 2700行、<br>爬取seed数： 450</p>
+<h2 id="代码地址"><a href="#代码地址" class="headerlink" title="代码地址"></a>代码地址</h2><p>github: <a href="https://github.com/cheeseKun/llss-crawler" target="_blank" rel="external">llss-crawler</a><br>具体注释都在代码里，有需要的小伙伴可以去 github 下下来，跑一下<br>感受有趣的爬虫</p>
+<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>第一次写爬虫，感觉很有趣，一个很自动化，一种互联网啥都 get 得到的感觉<br>😅（纯洁）</p>
+]]></content>
+      
+        <categories>
+            
+            <category> 后台 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> 后台 </tag>
+            
+            <tag> 爬虫 </tag>
+            
+            <tag> node </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[「图解HTTP」]]></title>
       <url>http://cheesekun.top/2017/05/27/cheesekun.top/ch1028/</url>
       <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>最近在看<code>nodejs</code>，发现需要很多<code>http</code>相关的知识，就去找了本<code>「图解HTTP」</code>看，<br>记录下自己觉得比较重要的知识点</p>
@@ -245,7 +290,7 @@
             
             <tag> http协议 </tag>
             
-            <tag> 图解「HTTP」 </tag>
+            <tag> 图解HTTP </tag>
             
         </tags>
         
