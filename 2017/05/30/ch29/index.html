@@ -4,7 +4,7 @@
     
     <title>
         
-            归档: 2017 | 
+            羞羞的node爬虫 | 
         
         cheesekun | just 涨芝士
     </title>
@@ -42,7 +42,7 @@
     <!-- The Open Graph protocol -->
     <meta property="og:url" content="http://cheesekun.top">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="归档: 2017 | cheesekun | just 涨芝士">
+    <meta property="og:title" content="羞羞的node爬虫 | cheesekun | just 涨芝士">
     <meta property="og:description" content="喜欢动漫，热爱日剧，自学前端，这是芝士君的小屋，欢迎米娜桑的到来。比心">
 
     <!--[if lte IE 9]>
@@ -195,325 +195,330 @@
                         </button>
                     
 
-                    <!-- Index Module -->
-<div class="material-index mdl-grid">
-    
-    <div class="locate-thumbnail-symbol"></div>
+                    <!-- Post TOC -->
 
-    <!-- Pin on top -->
     
+    <!-- Back Button -->
+    <!--
+    <div class="material-back" id="backhome-div" tabindex="0">
+        <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"
+           href="#" onclick="window.history.back();return false;"
+           target="_self"
+           role="button"
+           data-upgraded=",MaterialButton,MaterialRipple">
+            <i class="material-icons" role="presentation">arrow_back</i>
+            <span class="mdl-button__ripple-container">
+                <span class="mdl-ripple"></span>
+            </span>
+        </a>
+    </div>
+    -->
 
-    <!-- Normal Post -->
-    
-        
-        
-            <!-- Paradox Thumbnail -->
-            <div class="post_entry-module mdl-card mdl-cell mdl-cell--12-col fade out">
-    <!-- Post Thumbnail -->
+    <!-- Left aligned menu below button -->
+    <button id="post-toc-trigger-btn"
+        class="mdl-button mdl-js-button mdl-button--icon">
+        <i class="material-icons">format_list_numbered</i>
+    </button>
+
+    <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn">
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#前言"><span class="post-toc-number">1.</span> <span class="post-toc-text">前言</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#使用模块"><span class="post-toc-number">2.</span> <span class="post-toc-text">使用模块</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#流程"><span class="post-toc-number">3.</span> <span class="post-toc-text">流程</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#知识点"><span class="post-toc-number">4.</span> <span class="post-toc-text">知识点</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#利用promise管理异步函数"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">利用promise管理异步函数</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#用正则表达式获取seed"><span class="post-toc-number">4.2.</span> <span class="post-toc-text">用正则表达式获取seed</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#坑点"><span class="post-toc-number">5.</span> <span class="post-toc-text">坑点</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#磁力链接的大坑"><span class="post-toc-number">5.1.</span> <span class="post-toc-text">磁力链接的大坑</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#运行效果"><span class="post-toc-number">6.</span> <span class="post-toc-text">运行效果</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#代码地址"><span class="post-toc-number">7.</span> <span class="post-toc-text">代码地址</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#结语"><span class="post-toc-number">8.</span> <span class="post-toc-text">结语</span></a></li></ol>
+
+        <!--
+        <li class="mdl-menu__item">
+            Some Action
+        </li>
+        -->
+    </ul>
+
+
+
+
+<!-- Layouts -->
+
+    <!-- Post Module -->
+    <div class="material-post_container">
+
+        <div class="material-post mdl-grid">
+            <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
+
+                <!-- Post Header(Thumbnail & Title) -->
+                
+    <!-- Paradox Post Header -->
     
         
             <!-- Random Thumbnail -->
             <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
-        
-    
+            <script>
+    var randomNum = Math.floor(Math.random() * 19 + 1);
 
-        <!-- Post Title -->
-        <p class="article-headline-p"><a href="/2017/05/30/ch29/">羞羞的node爬虫</a></p>
-    </div>
-
-    <!-- Post Excerpt -->
-    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
-        
-            前言学了一阵子
-        
-        &nbsp;&nbsp;&nbsp;
-        <span>
-            <a href="/2017/05/30/ch29/" target="_self">继续阅读</a>
-        </span>
-    </div>
-    <!-- Post_entry Info-->
-    <div id="post_entry-info">
-        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
-            <!-- Author Avatar -->
-            <div id="author-avatar">
-                <img src="/img/avatar.gif" width="44px" height="44px" alt="芝士君's avatar">
-            </div>
-            <div>
-                <strong>芝士君</strong>
-                <span>5月 30, 2017</span>
-            </div>
-        </div>
-        <div id="post_entry-right-info">
-            <!-- Category -->
-            <span class="post_entry-category">
-                <a class="post_category-link" href="/categories/后台/">后台</a>
-            </span>
-
-            
-
-            <!-- Post Views -->
-            <span class="post_entry-views">
-            </span>
-        </div>
-    </div>
-</div>
-
-        
-        
-        
-    
-        
-        
-            <!-- Paradox Thumbnail -->
-            <div class="post_entry-module mdl-card mdl-cell mdl-cell--12-col fade out">
-    <!-- Post Thumbnail -->
-    
-        
-            <!-- Random Thumbnail -->
-            <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
-        
-    
-
-        <!-- Post Title -->
-        <p class="article-headline-p"><a href="/2017/05/27/cheesekun.top/ch1028/">「图解HTTP」</a></p>
-    </div>
-
-    <!-- Post Excerpt -->
-    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
-        
-            前言最近在看
-        
-        &nbsp;&nbsp;&nbsp;
-        <span>
-            <a href="/2017/05/27/cheesekun.top/ch1028/" target="_self">继续阅读</a>
-        </span>
-    </div>
-    <!-- Post_entry Info-->
-    <div id="post_entry-info">
-        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
-            <!-- Author Avatar -->
-            <div id="author-avatar">
-                <img src="/img/avatar.gif" width="44px" height="44px" alt="芝士君's avatar">
-            </div>
-            <div>
-                <strong>芝士君</strong>
-                <span>5月 27, 2017</span>
-            </div>
-        </div>
-        <div id="post_entry-right-info">
-            <!-- Category -->
-            <span class="post_entry-category">
-                <a class="post_category-link" href="/categories/后台/">后台</a>
-            </span>
-
-            
-
-            <!-- Post Views -->
-            <span class="post_entry-views">
-            </span>
-        </div>
-    </div>
-</div>
-
-        
-        
-        
-    
-        
-        
-            <!-- Paradox Thumbnail -->
-            <div class="post_entry-module mdl-card mdl-cell mdl-cell--12-col fade out">
-    <!-- Post Thumbnail -->
-    
-        <!-- Custom Thumbnail -->
-        <div class="post_thumbnail-custom mdl-card__media mdl-color-text--grey-50" style="background-image:url(http://oksbjk6b9.bkt.clouddn.com/wzry.jpg)">
-    
-
-        <!-- Post Title -->
-        <p class="article-headline-p"><a href="/2017/05/09/cheesekun.top/ch1027/">第几次卸载农药</a></p>
-    </div>
-
-    <!-- Post Excerpt -->
-    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
-        
-            啊，第几次卸载王者荣耀了啊，好费时间啊，好多坑b小学生啊，已经5月了
-前些天看到 路人甲 的
-        
-        &nbsp;&nbsp;&nbsp;
-        <span>
-            <a href="/2017/05/09/cheesekun.top/ch1027/" target="_self">继续阅读</a>
-        </span>
-    </div>
-    <!-- Post_entry Info-->
-    <div id="post_entry-info">
-        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
-            <!-- Author Avatar -->
-            <div id="author-avatar">
-                <img src="/img/avatar.gif" width="44px" height="44px" alt="芝士君's avatar">
-            </div>
-            <div>
-                <strong>芝士君</strong>
-                <span>5月 09, 2017</span>
-            </div>
-        </div>
-        <div id="post_entry-right-info">
-            <!-- Category -->
-            <span class="post_entry-category">
-                <a class="post_category-link" href="/categories/生活/">生活</a>
-            </span>
-
-            
-
-            <!-- Post Views -->
-            <span class="post_entry-views">
-            </span>
-        </div>
-    </div>
-</div>
-
-        
-        
-        
-    
-        
-        
-            <!-- Paradox Thumbnail -->
-            <div class="post_entry-module mdl-card mdl-cell mdl-cell--12-col fade out">
-    <!-- Post Thumbnail -->
-    
-        
-            <!-- Random Thumbnail -->
-            <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
-        
-    
-
-        <!-- Post Title -->
-        <p class="article-headline-p"><a href="/2017/04/28/cheesekun.top/ch1026/">「MongoDB权威指南」01</a></p>
-    </div>
-
-    <!-- Post Excerpt -->
-    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
-        
-            前言由于
-        
-        &nbsp;&nbsp;&nbsp;
-        <span>
-            <a href="/2017/04/28/cheesekun.top/ch1026/" target="_self">继续阅读</a>
-        </span>
-    </div>
-    <!-- Post_entry Info-->
-    <div id="post_entry-info">
-        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
-            <!-- Author Avatar -->
-            <div id="author-avatar">
-                <img src="/img/avatar.gif" width="44px" height="44px" alt="芝士君's avatar">
-            </div>
-            <div>
-                <strong>芝士君</strong>
-                <span>4月 28, 2017</span>
-            </div>
-        </div>
-        <div id="post_entry-right-info">
-            <!-- Category -->
-            <span class="post_entry-category">
-                <a class="post_category-link" href="/categories/数据库/">数据库</a>
-            </span>
-
-            
-
-            <!-- Post Views -->
-            <span class="post_entry-views">
-            </span>
-        </div>
-    </div>
-</div>
-
-        
-        
-        
-    
-        
-        
-            <!-- Paradox Thumbnail -->
-            <div class="post_entry-module mdl-card mdl-cell mdl-cell--12-col fade out">
-    <!-- Post Thumbnail -->
-    
-        
-            <!-- Random Thumbnail -->
-            <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
-        
-    
-
-        <!-- Post Title -->
-        <p class="article-headline-p"><a href="/2017/04/25/cheesekun.top/ch1025/">全栈初体验</a></p>
-    </div>
-
-    <!-- Post Excerpt -->
-    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
-        
-            前言据说现在不会点...
-        
-        &nbsp;&nbsp;&nbsp;
-        <span>
-            <a href="/2017/04/25/cheesekun.top/ch1025/" target="_self">继续阅读</a>
-        </span>
-    </div>
-    <!-- Post_entry Info-->
-    <div id="post_entry-info">
-        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
-            <!-- Author Avatar -->
-            <div id="author-avatar">
-                <img src="/img/avatar.gif" width="44px" height="44px" alt="芝士君's avatar">
-            </div>
-            <div>
-                <strong>芝士君</strong>
-                <span>4月 25, 2017</span>
-            </div>
-        </div>
-        <div id="post_entry-right-info">
-            <!-- Category -->
-            <span class="post_entry-category">
-                <a class="post_category-link" href="/categories/全栈/">全栈</a>
-            </span>
-
-            
-
-            <!-- Post Views -->
-            <span class="post_entry-views">
-            </span>
-        </div>
-    </div>
-</div>
-
-        
-        
-        
-    
-
-    
-    <!-- Index nav -->
-        <nav class="material-nav mdl-cell mdl-cell--12-col">
-            <span class="page-number current">1</span><a class="page-number" href="/archives/2017/page/2/">2</a><a class="page-number" href="/archives/2017/page/3/">3</a><a class="page-number" href="/archives/2017/page/7/">7</a><a class="extend next" rel="next" href="/archives/2017/page/2/"><button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"><i class="material-icons" role="presentation">arrow_forward</i></button></a>
-        </nav>
-    
-
-    
-        <script>
-    var randomNum;
-
-    var locatePost = $('.locate-thumbnail-symbol').next();
-    for(var i = 0; i < 5; i++) {
-        randomNum = Math.floor(Math.random() * 19 + 1);
-
-        locatePost.children('.post_thumbnail-random').attr('id', 'random_thumbnail-'+randomNum);
-        locatePost.children('.post_thumbnail-random').css('background-image', 'url(' + '/img/random/material-' + randomNum + '.png' + ')')
-
-        locatePost = locatePost.next();
-    }
+    $('.post_thumbnail-random').css('background-image', 'url(' + '/img/random/material-' + randomNum + '.png' + ')');
 </script>
 
+        
+    
+            <p class="article-headline-p">
+                羞羞的node爬虫
+            </p>
+        </div>
+
+
+
+
+
+                
+                    <!-- Paradox Post Info -->
+                    <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
+
+    <!-- Author Avatar -->
+    <div id="author-avatar">
+        <img src="/img/avatar.gif" width="44px" height="44px" alt="Author Avatar"/>
+    </div>
+    <!-- Author Name & Date -->
+    <div>
+        <strong>芝士君</strong>
+        <span>5月 30, 2017</span>
+    </div>
+
+    <div class="section-spacer"></div>
+
+    <!-- Favorite -->
+    <!--
+        <button id="article-functions-like-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon btn-like">
+            <i class="material-icons" role="presentation">favorite</i>
+            <span class="visuallyhidden">favorites</span>
+        </button>
+    -->
+
+    <!-- Qrcode -->
+    
+        <button id="article-functions-qrcode-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+            <i class="material-icons" role="presentation">devices other</i>
+            <span class="visuallyhidden">devices other</span>
+        </button>
+        <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-qrcode-button">
+            <li class="mdl-menu__item">在其它设备中阅读本文章</li>
+            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACa0lEQVR42u3aQW7DMAwEwPz/0+0DgjhLUpKNYHwyWjfh+CCqK77+fvp64eHh4eHh4eHhPYz3iq9Pf5X//P3+0zOj2vDw8PCO8L4stZfl5gUlL2JBbXh4eHgHeZ8Kun4mZyTPT2rDw8PDez4vaRtJS8jv8fDw8H6Jl2y7k434QxsDHh4e3uAf/skmuBrm3pC14OHh4cW8PDI4f3/0fA8PDw8v4JVHmuLFOt9kJ5Fuc+gKDw8PbwMvX4irG+4ksEiChnI9eHh4eJt5ydcn4ULePJJwtnd4hoeHh3eSV2X0BlKrQ6vNNoOHh4e3mZcv7vMt8rxJNFNqPDw8vKW8ZCmvNoDkBeUvLokq8PDw8O7iXW9kk9/mjSEpt/f5eHh4eGd4q+LUPAiekL48iYeHh3eElxxc5aFAb/y0OkZQGB3Aw8PDW8rLS0wAk9cxGdjCw8PDO8lbe3A1OTzrbdzx8PDwzvPyIGByVJaMAuTRQ3lLjYeHh7eUlx/2VwOCPIaojhSMhq7w8PDwFvGqpeRjAdVFP6nny9YcDw8PbzMviR6qowBJ0b2N+yilxsPDw1vKq7aEtYFCHoJER2J4eHh4x3mr2kM+wjVpP3h4eHj38q4DhVVXjml+Ah4eHt5m3rwNzBf6/HVHkQceHh7eZl5vQe+NBSSjV5PwAg8PD+8kL48M8tKrUWx1AAsPDw/vCbx8ge5Ft8kwwcasBQ8PD+9WXq95VGFJCxkNXeHh4eE9hlfdEE+azQ2NAQ8PD681GjWJXKttY8vQFR4eHt6Y1zvEysOC5DOvD9sKwTEeHh7eZt7vXXh4eHh4eHh4eA+4/gE9i8Rw/76qkwAAAABJRU5ErkJggg==">
+        </ul>
+    
+
+    <!-- Tags (bookmark) -->
+    
+    <button id="article-functions-viewtags-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+        <i class="material-icons" role="presentation">bookmark</i>
+        <span class="visuallyhidden">bookmark</span>
+    </button>
+    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
+        <li class="mdl-menu__item">
+        <a class="post_tag-link" href="/tags/node/">node</a></li><li class="mdl-menu__item"><a class="post_tag-link" href="/tags/后台/">后台</a></li><li class="mdl-menu__item"><a class="post_tag-link" href="/tags/爬虫/">爬虫</a>
+    </ul>
+    
+
+    <!-- Share -->
+    <button id="article-fuctions-share-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+    <i class="material-icons" role="presentation">share</i>
+    <span class="visuallyhidden">share</span>
+</button>
+<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-fuctions-share-button">
+    
+
+    
+        
+            <!-- Busuanzi Views -->
+            <a class="post_share-link" href="#">
+                <li class="mdl-menu__item">
+                    <span id="busuanzi_container_page_pv">
+                        <span id="busuanzi_value_page_pv"></span>&nbsp;  PV
+                    </span>
+                </li>
+            </a>
+        
+    
+
+    <!-- Share Weibo -->
+    
+        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=羞羞的node爬虫&url=http://cheesekun.top//2017/05/30/ch29/index.html&pic=&searchPic=false&style=simple" target="_blank">
+            <li class="mdl-menu__item">
+                分享到微博
+            </li>
+        </a>
+    
+
+    <!-- Share Twitter -->
+    
+
+    <!-- Share Facebook -->
+    
+        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=http://cheesekun.top//2017/05/30/ch29/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Facebook
+            </li>
+        </a>
+    
+
+    <!-- Share Google+ -->
+    
+        <a class="post_share-link" href="https://plus.google.com/share?url=http://cheesekun.top//2017/05/30/ch29/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Google+
+            </li>
+        </a>
+    
+
+    <!-- Share LinkedIn -->
+    
+
+    <!-- Share QQ -->
+    
+
+    <!-- Share Telegram -->
+    
+</ul>
+
+</div>
+
+                
+
+                <!-- Post Content -->
+                <div id="post-content" class="markdown-Github mdl-color-text--grey-700 mdl-card__supporting-text fade out">
+    
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>学了一阵子<code>node</code>，除了用 <code>express</code> 写东西，就没怎么做过东西<br>突然就想写个 爬虫 来玩一玩，而且还是爬一些羞羞的东西</p>
+<h2 id="使用模块"><a href="#使用模块" class="headerlink" title="使用模块"></a>使用模块</h2><p><a href="https://cnodejs.org/topic/5378720ed6e2d16149fa16bd" target="_blank" rel="external">SuperAgent</a> 是个 http 方面的库，可以发起 get 或 post 请求。<br><a href="https://cnodejs.org/topic/5203a71844e76d216a727d2e" target="_blank" rel="external">cheerio</a> 大家可以理解成一个 Node.js 版的 jquery，用来从网页中以 css selector 取数据，使用方式跟 jquery 一样一样的<br><a href="http://nodejs.cn/api/fs.html" target="_blank" rel="external">fs</a> 用于读写文件的一个依赖包<br><a href="https://www.npmjs.com/package/superagent-logger" target="_blank" rel="external">superagent-logger</a> 用来打印http请求信息</p>
+<h2 id="流程"><a href="#流程" class="headerlink" title="流程"></a>流程</h2><p>首先，我们要爬取得网址是 ： <a href="http://www.hacg.wiki/wp/anime.html" target="_blank" rel="external">http://www.hacg.wiki/wp/anime.html</a><br>其次，我们要爬取得目标： 以以下格式保存在 <code>txt</code> 中<br><img src="http://old5ohki5.bkt.clouddn.com/llssInfo.png" alt=""><br>再其次，分析我们要爬取的内容分布 ：  打开控制台</p>
+<blockquote>
+<p>title, id, tags 如下<br>爬取地址是： “<a href="http://www.hacg.wiki/wp/anime.html/page/" target="_blank" rel="external">http://www.hacg.wiki/wp/anime.html/page/</a>“ + i</p>
+</blockquote>
+<p><img src="http://old5ohki5.bkt.clouddn.com/llssarticle.png" alt=""></p>
+<blockquote>
+<p>time, seed 如下<br>爬取地址是： ‘<a href="http://www.hacg.wiki/wp/" target="_blank" rel="external">http://www.hacg.wiki/wp/</a>‘ + id + ‘.html’</p>
+</blockquote>
+<p><img src="http://old5ohki5.bkt.clouddn.com/llssseed.png" alt=""></p>
+<p>再再其次，我们可以从上面看出，要爬 time 和 seed 前提是把前边的 id 爬取到，<br>因此要先爬取 id ，再利用 id 拼凑 seed 所在的 url</p>
+<p>最后， 可以来愉快地爬取了</p>
+<h2 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h2><p>还是有复习到一些知识<br>具体<code>superagent</code>,<code>cheerio</code>看上面我提供的 api模块文档链接</p>
+<h3 id="利用promise管理异步函数"><a href="#利用promise管理异步函数" class="headerlink" title="利用promise管理异步函数"></a>利用promise管理异步函数</h3><p>当我第一次按正常同步思维用 <code>superagent</code> 先爬取 id 所在 url，<br>再调用下面使用 <code>superagent</code> 的函数获取 seed时，<br>我发现获取的 <code>seed</code> 一直是空的。<br>后来才意识到这是异步函数，不会按顺序进行。<br>因此我使用了 <code>ES6</code> 的 <code>promise</code> 控制先执行 爬取 id<br>爬取完 id 再爬取 seed</p>
+<h3 id="用正则表达式获取seed"><a href="#用正则表达式获取seed" class="headerlink" title="用正则表达式获取seed"></a>用正则表达式获取seed</h3><p>如果你有逛过该网站，你会发现他的 seed 是放得毫无规律的，<br>并不是存放在一个固定的 x标签 中，<br>因此我的做法是 把存放 seed 的整一个 <code>$(&#39;.entry-content&#39;)</code> 获取到，<br>再利用正则表达式整块文本进行匹配获取</p>
+<h2 id="坑点"><a href="#坑点" class="headerlink" title="坑点"></a>坑点</h2><p>神坑啊神坑，小问题费了我好长时间</p>
+<h3 id="磁力链接的大坑"><a href="#磁力链接的大坑" class="headerlink" title="磁力链接的大坑"></a>磁力链接的大坑</h3><p>一开始我以为 磁力链接 这玩意长度为 40 ，都是 大写字母 + 数字 的组合。<br>后来在爬取不到 seed ,让我一度怀疑人生的时候<br>巧合下，发现 磁力链接 有 小写字母，有 32长度 的，有 42长度 的。。<br>我一直以为是 重定向 问题， 哎，花了好几个钟在这上面纠结<br>不过也让我小小得重新了解了下 <code>http</code></p>
+<h2 id="运行效果"><a href="#运行效果" class="headerlink" title="运行效果"></a>运行效果</h2><p><img src="http://old5ohki5.bkt.clouddn.com/llss.gif" alt=""><br>结果爬取行数有： 2700行、<br>爬取seed数： 450</p>
+<h2 id="代码地址"><a href="#代码地址" class="headerlink" title="代码地址"></a>代码地址</h2><p>github: <a href="https://github.com/cheeseKun/llss-crawler" target="_blank" rel="external">llss-crawler</a><br>具体注释都在代码里，有需要的小伙伴可以去 github 下下来，跑一下<br>感受有趣的爬虫</p>
+<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>第一次写爬虫，感觉很有趣，一个很自动化，一种互联网啥都 get 得到的感觉<br>😅（纯洁）</p>
+
+    
+
     
 </div>
+
+
+                
+
+                <!-- Post Comments -->
+                
+                    
+
+
+
+
+    <!-- 使用 DISQUS_CLICK -->
+    <div id="disqus-comment">   
+        <div id="disqus_thread"></div>
+<!-- include js -->
+<script src="/js/ripple.js"></script>
+
+<!-- add animation -->
+<style>
+        .ripple-container {
+        }
+        .ripple-container .ripple{
+            background-color: rgba(255,255,255,0.4);
+            animation: ripple 2s forwards cubic-bezier(0, 0, 0.2, 1);
+        }
+        @keyframes ripple {
+            0% {
+                transform: scale(0);
+                opacity: 1;
+            }
+            80% {
+                transform: scale(1);
+            }
+            100% {
+                opacity: 0;
+            }
+        }
+		.disqus_click_btn {
+            background-color: dodgerblue;
+            color: white;
+            padding: 10px 20px;
+            border:0;
+            font-size: 14px;
+            cursor: pointer
+        }
+</style>
+	
+<!-- add data-ripple attribute -->
+<div class="btn_click_load"> 
+    <button class="disqus_click_btn" data-ripple>点击 阅读评论 「请确保你可以科学地使用梯子」</button>
+</div>
+	
+<script>
+    // add effect to elements
+    Array.prototype.forEach.call(document.querySelectorAll('[data-ripple]'), function(element){
+        // find all elements and attach effect
+        new RippleEffect(element); // element is instance of javascript element node
+    });
+</script>
+
+<script>
+    $('.btn_click_load').click(function() {  //click to load comments
+        var disqus_config = function () {
+            this.page.url = 'http://cheesekun.top/2017/05/30/ch29/index.html';  // Replace PAGE_URL with your page's canonical URL variable
+            this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+        };
+        (function() { // DON'T EDIT BELOW THIS LINE
+            var d = document;
+            var s = d.createElement('script');
+            s.src = '//cheesekun-top.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', + new Date());
+            (d.head || d.body).appendChild(s);
+        })();
+        $('.btn_click_load').css('display','none');
+    });
+</script>
+  	
+
+    </div>
+    <style>
+        #disqus-comment{
+            background-color: #eee;
+            padding: 2pc;
+        }
+    </style>
+
+                
+            </div>
+
+            <!-- Post Prev & Next Nav -->
+            <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
+    <!-- Prev Nav -->
+    
+
+    <!-- Section Spacer -->
+    <div class="section-spacer"></div>
+
+    <!-- Next Nav -->
+    
+        <a href="/2017/05/27/cheesekun.top/ch1028/" id="post_nav-older" class="next-content">
+            previous
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_forward</i>
+            </button>
+        </a>
+    
+</nav>
+
+        </div>
+    </div>
+
 
 
                     
