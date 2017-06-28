@@ -4,6 +4,26 @@
   
     
     <entry>
+      <title><![CDATA[test]]></title>
+      <url>http://cheesekun.top/2017/06/28/cheesekun.top/ch1030/</url>
+      <content type="html"><![CDATA[<h2 id="test一下"><a href="#test一下" class="headerlink" title="test一下"></a>test一下</h2>]]></content>
+      
+        <categories>
+            
+            <category> test </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> test </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[羞羞的node爬虫]]></title>
       <url>http://cheesekun.top/2017/05/30/cheesekun.top/ch1029/</url>
       <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>学了一阵子<code>node</code>，除了用 <code>express</code> 写东西，就没怎么做过东西<br>突然就想写个 爬虫 来玩一玩，而且还是爬一些羞羞的东西</p>
