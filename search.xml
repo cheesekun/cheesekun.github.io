@@ -4,6 +4,279 @@
   
     
     <entry>
+      <title><![CDATA[bilibili壁纸爬虫--node]]></title>
+      <url>http://cheesekun.top/2017/08/22/cheesekun.top/ch1032/</url>
+      <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>之前初学<code>node</code>的时候，有用爬虫爬过一些磁力链接<br>详情见<a href="https://segmentfault.com/a/1190000009598820" target="_blank" rel="external">羞羞的node爬虫</a><br>但是没有并发，没有代理，那时也对异步不是很了解<br>所以这次又写了个爬虫，爬取<a href="http://h.bilibili.com/wallpaper?action=list" target="_blank" rel="external">bilibili壁纸站</a>的所有壁纸<br>并且爬取<a href="http://www.kxdaili.com/dailiip/1/1.html#ip" target="_blank" rel="external">开心代理</a>的100条ip，并将有用的ip存进json文件中</p>
+<h2 id="用到的模块"><a href="#用到的模块" class="headerlink" title="用到的模块"></a>用到的模块</h2><ol>
+<li>async  （控制并发）</li>
+<li>cheerio  （解析DOM）</li>
+<li>superagent  （http库）</li>
+<li>superagent-proxy  （使用代理）</li>
+<li>fs  （读写文件）</li>
+</ol>
+<p>其中<code>cheerio</code>, <code>superagent</code>的具体用法见我之前的 <a href="https://segmentfault.com/a/1190000009598820" target="_blank" rel="external">羞羞的node爬虫</a><br>不过之前初学，代码写得很难看就对了</p>
+<h2 id="爬取代理ip"><a href="#爬取代理ip" class="headerlink" title="爬取代理ip"></a>爬取代理ip</h2><blockquote>
+<p>代理ip是干嘛的</p>
+</blockquote>
+<p>我们访问互联网资源时，都是用我们自己的ip（身份证）去访问的<br>而爬虫得频繁地去获取互联网资源<br>因此如果你在某个时间点频繁地访问某网站的某资源<br>造成该网站的服务器压力<br>就有可能被网站管理者禁ip， 从而访问不了该网站<br>代理ip就是伪造身份去访问</p>
+<blockquote>
+<p>怎么检验ip的可用性</p>
+</blockquote>
+<p>这里面就使用到了 <code>superagent</code> 的一个拓展 <code>superagent-proxy</code><br>然后用其去访问<a href="http://ip.chinaz.com/getip.aspx" target="_blank" rel="external">http://ip.chinaz.com/getip.aspx</a><br>若 3s 内能返回值，则证明该 ip 可用</p>
+<pre class="line-numbers language-javascript"><code class="language-javascript"><span class="token keyword">const</span> superagent <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'superagent'</span><span class="token punctuation">)</span>
+<span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'superagent-proxy'</span><span class="token punctuation">)</span><span class="token punctuation">(</span>superagent<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">// 写上你先要测试的 ip，下面仅为测试ip</span>
+<span class="token keyword">let</span> testIp <span class="token operator">=</span> <span class="token string">'http://61.178.238.122:63000'</span><span class="token punctuation">;</span>
+
+<span class="token punctuation">(</span><span class="token keyword">async</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  superagent<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">'http://ip.chinaz.com/getip.aspx'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">proxy</span><span class="token punctuation">(</span>testIp<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">timeout</span><span class="token punctuation">(</span><span class="token number">3000</span><span class="token punctuation">)</span>
+  <span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">(</span>err<span class="token punctuation">,</span> res<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>res <span class="token operator">===</span> undefined<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'挂了'</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+      <span class="token keyword">return</span> 
+    <span class="token punctuation">}</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'报错啦'</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'成功： '</span> <span class="token operator">+</span> res<span class="token punctuation">.</span>text<span class="token punctuation">)</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<blockquote>
+<p>爬取ip并存储</p>
+</blockquote>
+<p>首先我们先看下我们要爬取的<a href="http://www.kxdaili.com/dailiip/1/1.html" target="_blank" rel="external">开心代理</a>的DOM<br><img src="http://old5ohki5.bkt.clouddn.com/pc1.png" alt=""></p>
+<p>我们要爬取得ip地址放在tr 标签的第一个td上<br>并且点击第二页时，链接变为<code>http://www.kxdaili.com/dailiip/1/2.html#ip</code><br>链接上的数组表示得是页数，也就是说我们只要改变链接上数字的值<br>就可以获取到其他页的html</p>
+<p>代码如下：</p>
+<pre class="line-numbers language-javascript"><code class="language-javascript"><span class="token keyword">const</span> superagent <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'superagent'</span><span class="token punctuation">)</span>
+<span class="token keyword">const</span> cheerio <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'cheerio'</span><span class="token punctuation">)</span>
+<span class="token keyword">const</span> fs <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'fs'</span><span class="token punctuation">)</span>
+<span class="token keyword">const</span> apiFunc <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'../common/apiFunc'</span><span class="token punctuation">)</span>  <span class="token comment" spellcheck="true">// 封装的一些读写api</span>
+
+<span class="token comment" spellcheck="true">// 爬取开心代理的 ip</span>
+<span class="token keyword">const</span> website <span class="token operator">=</span> <span class="token string">'http://www.kxdaili.com'</span>
+<span class="token keyword">let</span> url <span class="token operator">=</span> website <span class="token operator">+</span> <span class="token string">'/dailiip/1/'</span>
+
+<span class="token comment" spellcheck="true">// 总执行函数</span>
+<span class="token keyword">let</span> getIp <span class="token operator">=</span> <span class="token keyword">async</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment" spellcheck="true">// promise 存放的数组</span>
+  <span class="token keyword">let</span> tasks <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+
+  <span class="token comment" spellcheck="true">// 读取 ip.js 本身存储的ip</span>
+  <span class="token keyword">let</span> ips <span class="token operator">=</span> <span class="token keyword">await</span> apiFunc<span class="token punctuation">.</span><span class="token function">readFile</span><span class="token punctuation">(</span><span class="token string">'./ip.js'</span><span class="token punctuation">)</span>
+  ips <span class="token operator">=</span> JSON<span class="token punctuation">.</span><span class="token function">parse</span><span class="token punctuation">(</span>ips<span class="token punctuation">)</span>
+
+  <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">let</span> page <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> page <span class="token operator">&lt;=</span> <span class="token number">10</span><span class="token punctuation">;</span> page<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">let</span> res <span class="token operator">=</span> <span class="token keyword">await</span> superagent<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span>url <span class="token operator">+</span> page <span class="token operator">+</span><span class="token string">'.html'</span><span class="token punctuation">)</span>
+    <span class="token keyword">let</span> $ <span class="token operator">=</span> cheerio<span class="token punctuation">.</span><span class="token function">load</span><span class="token punctuation">(</span>res<span class="token punctuation">.</span>text<span class="token punctuation">)</span>
+    <span class="token keyword">let</span> tr <span class="token operator">=</span> <span class="token function">$</span><span class="token punctuation">(</span><span class="token string">'tbody>tr'</span><span class="token punctuation">)</span>
+
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">let</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> tr<span class="token punctuation">.</span>length<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">let</span> td <span class="token operator">=</span> <span class="token function">$</span><span class="token punctuation">(</span>tr<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">children</span><span class="token punctuation">(</span><span class="token string">'td'</span><span class="token punctuation">)</span>
+      <span class="token keyword">let</span> proxy <span class="token operator">=</span> <span class="token string">'http://'</span> <span class="token operator">+</span> <span class="token function">$</span><span class="token punctuation">(</span>td<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">text</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">':'</span> <span class="token operator">+</span> <span class="token function">$</span><span class="token punctuation">(</span>td<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">text</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+      <span class="token keyword">let</span> pro <span class="token operator">=</span> apiFunc<span class="token punctuation">.</span><span class="token function">filterIp</span><span class="token punctuation">(</span>proxy<span class="token punctuation">)</span>
+
+      <span class="token comment" spellcheck="true">// 将所有的IP过滤Promise存入一个tasks数组中</span>
+      tasks<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>pro<span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token comment" spellcheck="true">// 使用 all 等待所有ip过滤完毕后执行 写入 ip.js过程</span>
+  Promise<span class="token punctuation">.</span><span class="token function">all</span><span class="token punctuation">(</span>tasks<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token punctuation">(</span>arr<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">// 过滤掉返回值为 undefined 的数据</span>
+    <span class="token keyword">let</span> usefulIp <span class="token operator">=</span> arr<span class="token punctuation">.</span><span class="token function">filter</span><span class="token punctuation">(</span><span class="token punctuation">(</span>item<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+      <span class="token keyword">return</span> <span class="token punctuation">(</span>item <span class="token operator">!==</span> undefined<span class="token punctuation">)</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span>
+    ips <span class="token operator">=</span> JSON<span class="token punctuation">.</span><span class="token function">stringify</span><span class="token punctuation">(</span>ips<span class="token punctuation">.</span><span class="token function">concat</span><span class="token punctuation">(</span>usefulIp<span class="token punctuation">)</span><span class="token punctuation">)</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>ips<span class="token punctuation">)</span>
+    apiFunc<span class="token punctuation">.</span><span class="token function">writeFile</span><span class="token punctuation">(</span><span class="token string">'./ip.js'</span><span class="token punctuation">,</span> ips<span class="token punctuation">)</span>   
+  <span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+<span class="token function">getIp</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+module<span class="token punctuation">.</span>exports <span class="token operator">=</span> getIp
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="爬取bilibili壁纸站"><a href="#爬取bilibili壁纸站" class="headerlink" title="爬取bilibili壁纸站"></a>爬取bilibili壁纸站</h2><p>我们先进入<a href="http://h.bilibili.com/wallpaper?action=list" target="_blank" rel="external">bilibili壁纸站</a><br><img src="http://old5ohki5.bkt.clouddn.com/pc2.png" alt=""></p>
+<p>发现有一个点击加载更多的按钮<br>如果有对前端有了解的话，我们应该知道这是通过 <code>ajax</code> 请求来异步获取数据<br>因此我们打开开发者的<code>NetWork</code><br><img src="http://old5ohki5.bkt.clouddn.com/pc3.png" alt=""></p>
+<p>果然在 <code>XHR</code> 这一栏发现了一个api<br>里面返回的是存储了当前页面所有壁纸缩略图信息的json文件<br>仅依靠这个json文件，我们便可以爬取所有壁纸的缩略图<br>可我们要的可是高清大图啊<br><img src="http://ww1.sinaimg.cn/large/9150e4e5gw1faqlx49hqjj205i05imxb.jpg" alt=""></p>
+<p>于是我们随意点击一张缩略图<br><img src="http://old5ohki5.bkt.clouddn.com/pc4.png" alt=""><br>发现它的url的参数（il_id, width, height）都来自我们之前获取的json内的数据<br>也就是说我们可以拼接该链接来获取到该高清图片的链接，再利用<code>cheerio</code>来解析DOM获取图片地址就ok了<br>！！！<br>！！！<br>！！！<br>然而，哈哈哈哈哈哈哈哈哈哈哈哈<br>当我们获取到该网页的html后，发现该<code>&lt;img&gt;</code>标签内的<code>src</code>是空的<br>也就是说该<code>&lt;img&gt;</code>也是js赋值，所以下意识又去看了<code>NetWork</code>的<code>XHR</code><br>果然发现了另一个api<br><img src="http://old5ohki5.bkt.clouddn.com/pc5.png" alt=""></p>
+<p>而高清图片的url就是该<code>api</code>返回的json数据中的<code>il_file</code></p>
+<p>因此我们只需要拼接该api链接，再用<code>superagent</code>请求就可以获取到高清图片的<code>url</code></p>
+<blockquote>
+<p>理下思路</p>
+</blockquote>
+<ol>
+<li>获取缩略图api返回的包含高清图片数据的json</li>
+<li>将1的json数据拼接到高清图片api链接上，并将所有api链接存入数组</li>
+<li>并发获取2数组中的api， 获取所有的图片url，并将url存入数组</li>
+<li>并发下载数组中的图片url， 存进本地文件夹</li>
+</ol>
+<p>结果在爬取<code>bilibili壁纸站</code>时，是不需要解析DOM的，也就是不需要使用<code>cheerio</code>模块啦</p>
+<p>代码如下：</p>
+<pre class="line-numbers language-javascript"><code class="language-javascript"><span class="token keyword">const</span> superagent <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'superagent'</span><span class="token punctuation">)</span>
+<span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'superagent-proxy'</span><span class="token punctuation">)</span><span class="token punctuation">(</span>superagent<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> fs <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'fs'</span><span class="token punctuation">)</span>
+<span class="token keyword">const</span> cheerio <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'cheerio'</span><span class="token punctuation">)</span>
+<span class="token keyword">const</span> <span class="token keyword">async</span> <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'async'</span><span class="token punctuation">)</span>
+
+<span class="token comment" spellcheck="true">// 获取bilibili API的json数据</span>
+<span class="token keyword">let</span> jsonUrl <span class="token operator">=</span> <span class="token string">'http://h.bilibili.com/wallpaperApi?action=getOptions&amp;page=1'</span>
+<span class="token keyword">let</span> proxy <span class="token operator">=</span> <span class="token string">"http://218.201.98.196:3128"</span>
+
+<span class="token keyword">let</span> getPicJson <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">Promise</span><span class="token punctuation">(</span><span class="token punctuation">(</span>resolve<span class="token punctuation">,</span> reject<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+    superagent
+      <span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span>jsonUrl<span class="token punctuation">)</span>
+      <span class="token punctuation">.</span><span class="token function">proxy</span><span class="token punctuation">(</span>proxy<span class="token punctuation">)</span>
+      <span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">(</span>err<span class="token punctuation">,</span> res<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>err<span class="token punctuation">)</span> console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'代理出错啦'</span><span class="token punctuation">)</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>res <span class="token operator">===</span> undefined<span class="token punctuation">)</span> <span class="token keyword">return</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>res<span class="token punctuation">.</span>statusCode <span class="token operator">==</span> <span class="token number">200</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+          <span class="token keyword">let</span> json <span class="token operator">=</span> JSON<span class="token punctuation">.</span><span class="token function">parse</span><span class="token punctuation">(</span>res<span class="token punctuation">.</span>text<span class="token punctuation">)</span>
+          <span class="token function">resolve</span><span class="token punctuation">(</span>json<span class="token punctuation">)</span>
+        <span class="token punctuation">}</span>
+      <span class="token punctuation">}</span><span class="token punctuation">)</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment" spellcheck="true">// 获取高清图片api的json数据</span>
+<span class="token keyword">let</span> dealHd <span class="token operator">=</span> <span class="token keyword">async</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">let</span> picHd <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+  <span class="token keyword">let</span> picJson <span class="token operator">=</span> <span class="token keyword">await</span> <span class="token function">getPicJson</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token keyword">let</span> picLength <span class="token operator">=</span> picJson<span class="token punctuation">.</span>length
+
+  <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> i <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> picLength<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">let</span> item <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+    <span class="token comment" spellcheck="true">// let width = picJson[i].detail[0].width</span>
+    <span class="token comment" spellcheck="true">// let height = picJson[i].detail[0].height</span>
+    <span class="token keyword">let</span> il_id <span class="token operator">=</span> picJson<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>detail<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>il_id
+    item<span class="token punctuation">.</span>title <span class="token operator">=</span> picJson<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>detail<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>title
+    item<span class="token punctuation">.</span>url <span class="token operator">=</span> <span class="token template-string"><span class="token string">`http://h.bilibili.com/wallpaperApi?action=getDetail&amp;il_id=</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>il_id<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">`</span></span>
+    picHd<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>item<span class="token punctuation">)</span>
+    <span class="token comment" spellcheck="true">// item.url = `http://h.bilibili.com/wallpaper?action=detail&amp;il_id=${il_id}&amp;type=Bilibili&amp;width=${width}&amp;height=${height}`</span>
+    <span class="token comment" spellcheck="true">// picHtmlJson.push(item)</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">return</span> picHd
+<span class="token punctuation">}</span>
+
+<span class="token comment" spellcheck="true">// 获取高清图片的url ===== queue</span>
+<span class="token keyword">let</span> dealPicJson <span class="token operator">=</span> <span class="token keyword">async</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'获取高清图片url，开始执行....'</span><span class="token punctuation">)</span>
+  <span class="token keyword">var</span> concurrencyCount <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+  <span class="token keyword">let</span> result <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+  <span class="token keyword">let</span> hdJson <span class="token operator">=</span> <span class="token keyword">await</span> <span class="token function">dealHd</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">Promise</span><span class="token punctuation">(</span><span class="token punctuation">(</span>resolve<span class="token punctuation">,</span> reject<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+
+    <span class="token keyword">let</span> q <span class="token operator">=</span> <span class="token keyword">async</span><span class="token punctuation">.</span><span class="token function">queue</span><span class="token punctuation">(</span><span class="token punctuation">(</span>hDJson<span class="token punctuation">,</span> callback<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+      <span class="token keyword">var</span> delay <span class="token operator">=</span> <span class="token function">parseInt</span><span class="token punctuation">(</span><span class="token punctuation">(</span>Math<span class="token punctuation">.</span><span class="token function">random</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token number">30000000</span><span class="token punctuation">)</span> <span class="token operator">%</span> <span class="token number">1000</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">//设置延时并发爬取</span>
+      concurrencyCount<span class="token operator">++</span><span class="token punctuation">;</span>
+      console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'现在的并发数是'</span><span class="token punctuation">,</span> concurrencyCount<span class="token punctuation">,</span> <span class="token string">'，正在获取的是'</span><span class="token punctuation">,</span> hDJson<span class="token punctuation">.</span>title<span class="token punctuation">,</span> <span class="token string">'延迟'</span><span class="token punctuation">,</span> delay<span class="token punctuation">,</span> <span class="token string">'毫秒'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+      superagent<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span>hDJson<span class="token punctuation">.</span>url<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">proxy</span><span class="token punctuation">(</span>proxy<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">(</span>err<span class="token punctuation">,</span> res<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>err<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+          console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span><span class="token punctuation">;</span>
+          <span class="token function">callback</span><span class="token punctuation">(</span><span class="token keyword">null</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+          <span class="token comment" spellcheck="true">// let $ = cheerio.load(res.text)</span>
+          <span class="token comment" spellcheck="true">// let hdUrl = $('#wallpaper').attr('id')</span>
+          <span class="token comment" spellcheck="true">// console.log('链接是' + hdUrl)</span>
+          <span class="token keyword">let</span> pic <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+          pic<span class="token punctuation">.</span>title <span class="token operator">=</span> hDJson<span class="token punctuation">.</span>title
+          pic<span class="token punctuation">.</span>url <span class="token operator">=</span> res<span class="token punctuation">.</span>body<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>detail<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>il_file
+          pic<span class="token punctuation">.</span>format <span class="token operator">=</span> pic<span class="token punctuation">.</span>url<span class="token punctuation">.</span><span class="token function">match</span><span class="token punctuation">(</span><span class="token regex">/.{3}$/</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span>
+          <span class="token comment" spellcheck="true">// console.log(result)</span>
+
+          result<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>pic<span class="token punctuation">)</span>
+          concurrencyCount <span class="token operator">--</span>
+          <span class="token function">callback</span><span class="token punctuation">(</span><span class="token keyword">null</span><span class="token punctuation">)</span>
+        <span class="token punctuation">}</span>
+      <span class="token punctuation">}</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">)</span>
+    q<span class="token punctuation">.</span>drain <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token function">resolve</span><span class="token punctuation">(</span>result<span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+
+    q<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>hdJson<span class="token punctuation">)</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+
+<span class="token comment" spellcheck="true">// 下载HD图片</span>
+<span class="token keyword">let</span> downloadImg <span class="token operator">=</span> <span class="token keyword">async</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'开始下载图片...'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token comment" spellcheck="true">// let folder = `Data/img-${Config.currentImgType}-${Config.startPage}-${Config.endPage}`;</span>
+  <span class="token comment" spellcheck="true">// fs.mkdirSync(folder);</span>
+  <span class="token keyword">let</span> downloadCount <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+  <span class="token keyword">var</span> concurrencyCount <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+  <span class="token keyword">let</span> q <span class="token operator">=</span> <span class="token keyword">async</span><span class="token punctuation">.</span><span class="token function">queue</span><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span>image<span class="token punctuation">,</span> callback<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">// console.log('正在下载 : ' + image.title);</span>
+    <span class="token keyword">var</span> delay <span class="token operator">=</span> <span class="token function">parseInt</span><span class="token punctuation">(</span><span class="token punctuation">(</span>Math<span class="token punctuation">.</span><span class="token function">random</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token number">30000000</span><span class="token punctuation">)</span> <span class="token operator">%</span> <span class="token number">1000</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">//设置延时并发爬取</span>
+    concurrencyCount<span class="token operator">++</span><span class="token punctuation">;</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'现在的并发数是'</span><span class="token punctuation">,</span> concurrencyCount<span class="token punctuation">,</span> <span class="token string">'，正在抓取的是'</span><span class="token punctuation">,</span> image<span class="token punctuation">.</span>title<span class="token punctuation">,</span> <span class="token string">'延迟'</span><span class="token punctuation">,</span> delay<span class="token punctuation">,</span> <span class="token string">'毫秒'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    superagent<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span>image<span class="token punctuation">.</span>url<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">proxy</span><span class="token punctuation">(</span>proxy<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span>err<span class="token punctuation">,</span> res<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span>err<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">callback</span><span class="token punctuation">(</span><span class="token keyword">null</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+        downloadCount<span class="token operator">++</span><span class="token punctuation">;</span>
+        fs<span class="token punctuation">.</span><span class="token function">writeFile</span><span class="token punctuation">(</span><span class="token template-string"><span class="token string">`./picture/</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>downloadCount<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">-</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>image<span class="token punctuation">.</span>title<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">.</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>image<span class="token punctuation">.</span>format<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">`</span></span><span class="token punctuation">,</span> res<span class="token punctuation">.</span>body<span class="token punctuation">,</span> <span class="token keyword">function</span> <span class="token punctuation">(</span>err<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+          <span class="token keyword">if</span> <span class="token punctuation">(</span>err<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span><span class="token punctuation">;</span>
+          <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+            console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"图片下载成功"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+          <span class="token punctuation">}</span>
+          <span class="token function">setTimeout</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+            concurrencyCount<span class="token operator">--</span><span class="token punctuation">;</span>
+            <span class="token function">callback</span><span class="token punctuation">(</span><span class="token keyword">null</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+          <span class="token punctuation">}</span><span class="token punctuation">,</span> delay<span class="token punctuation">)</span>
+        <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token comment" spellcheck="true">// 当所有任务都执行完以后，将调用该函数</span>
+  q<span class="token punctuation">.</span>drain <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'All img download'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">let</span> imgList <span class="token operator">=</span> <span class="token keyword">await</span> <span class="token function">dealPicJson</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  q<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>imgList<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//将所有任务加入队列</span>
+<span class="token punctuation">}</span>
+
+<span class="token function">downloadImg</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="async控制并发"><a href="#async控制并发" class="headerlink" title="async控制并发"></a>async控制并发</h2><p>控制并发我通常是用<code>async.maplimit</code>，因为最早接触<br>不过看到一篇文章介绍了<code>async.queue</code>，我就试了下<br>区别在于， <code>mapLimit</code>会返回所有并发任务结束后的结果数组<br>而<code>queue</code>是没有的，因此要自己定个变量来存放每一个并发任务返回的结果<br>具体api用法见： <a href="http://blog.csdn.net/marujunyy/article/details/8695205" target="_blank" rel="external">async常用api</a></p>
+<h2 id="运行结果"><a href="#运行结果" class="headerlink" title="运行结果"></a>运行结果</h2><p><img src="http://old5ohki5.bkt.clouddn.com/pc7.png" alt=""><br><img src="http://old5ohki5.bkt.clouddn.com/pc6.png" alt=""></p>
+<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>github代码： <a href="https://github.com/cheeseKun/bilibili-wallpaper-crawler" target="_blank" rel="external">bilibili壁纸站爬虫</a><br>里面有一些必要注释<br>有4个可以跑的js</p>
+<ol>
+<li>./aboutIp/getIp.js （用来抓并存有用的代理ip）</li>
+<li>./aboutIp/ipTest.js （测试ip可不可用）</li>
+<li>app-thumbnails.js （用来爬壁纸的缩略图）</li>
+<li>app-hd.js （用来爬壁纸的高清图）</li>
+</ol>
+<p>虽然懂得很浅，但能渐渐感受到爬虫的魅力了😁</p>
+]]></content>
+      
+        <categories>
+            
+            <category> 后台 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> node </tag>
+            
+            <tag> 爬虫 </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[又要做这件蠢事了。]]></title>
       <url>http://cheesekun.top/2017/07/05/cheesekun.top/ch1031/</url>
       <content type="html"><![CDATA[<p>现在是2017-7-5 1:55<br>就在昨天下午考完<code>Java</code>后， 大二的暑假开始了</p>
@@ -109,9 +382,9 @@
             
             <tag> 后台 </tag>
             
-            <tag> 爬虫 </tag>
-            
             <tag> node </tag>
+            
+            <tag> 爬虫 </tag>
             
         </tags>
         
