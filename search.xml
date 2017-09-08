@@ -4,6 +4,229 @@
   
     
     <entry>
+      <title><![CDATA[萌新的全栈之旅 | 登录]]></title>
+      <url>http://cheesekun.top/2017/09/09/cheesekun.top/ch1033/</url>
+      <content type="html"><![CDATA[<h2 id="前篇"><a href="#前篇" class="headerlink" title="前篇"></a>前篇</h2><p><a href="http://www.jianshu.com/p/6ad9d5977ab7" target="_blank" rel="external">萌新的全栈之旅</a></p>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>首先要记录的是登录模块<br><img src="http://ovw3h8zud.bkt.clouddn.com/loading.gif" alt=""><br>这里使用的是<code>mysql+JsonWebToken</code></p>
+<h2 id="koa2环境搭建"><a href="#koa2环境搭建" class="headerlink" title="koa2环境搭建"></a>koa2环境搭建</h2><blockquote>
+<p>图省事可以直接使用<a href="https://github.com/17koa/koa-generator" target="_blank" rel="external">koa-generator</a>直接生成koa脚手架</p>
+</blockquote>
+<p>首先使用<code>vue-cli</code>搭建vue脚手架<br>在<code>cli</code>根目录下新建<code>server</code>目录，用来放置服务端的代码<br>并在<code>cli</code>根目录下新建<code>app.js</code>文件，用来启动koa<br>在<code>server</code>文件夹内新建以下文件夹及文件</p>
+<pre><code>// 使用`tree /f`命令行生成文档树
+// `tree /f &gt; tree.txt`保存文档树
+├─config  // 各类配置的文件夹
+│      db.js
+│      
+├─controllers  // 控制器
+│      user.js
+│      
+├─models  // 模型
+│      user.js
+│      
+├─routes  // 路由
+│      user.js
+│      
+├─schema  // 数据库表结构
+│      user.js
+│      
+└─sql
+       user.sql
+</code></pre><h3 id="koa组件"><a href="#koa组件" class="headerlink" title="koa组件"></a>koa组件</h3><pre class="line-numbers language-javascript"><code class="language-javascript">  <span class="token string">"koa"</span><span class="token punctuation">:</span> <span class="token string">"^2.3.0"</span><span class="token punctuation">,</span>
+  <span class="token string">"koa-bodyparser"</span><span class="token punctuation">:</span> <span class="token string">"^4.2.0"</span><span class="token punctuation">,</span>  <span class="token comment" spellcheck="true">// 将post数据存入ctx.request.body</span>
+  <span class="token string">"koa-json"</span><span class="token punctuation">:</span> <span class="token string">"^2.0.2"</span><span class="token punctuation">,</span>  <span class="token comment" spellcheck="true">// 美观的输出JSON response</span>
+  <span class="token string">"koa-logger"</span><span class="token punctuation">:</span> <span class="token string">"^3.0.1"</span><span class="token punctuation">,</span>  <span class="token comment" spellcheck="true">// 打印http请求</span>
+  <span class="token string">"koa-router"</span><span class="token punctuation">:</span> <span class="token string">"^7.2.1"</span><span class="token punctuation">,</span>  <span class="token comment" spellcheck="true">// 路由</span>
+  <span class="token string">"koa-static"</span><span class="token punctuation">:</span> <span class="token string">"^4.0.1"</span><span class="token punctuation">,</span>  <span class="token comment" spellcheck="true">// 静态文件服务</span>
+  <span class="token string">"koa2-history-api-fallback"</span><span class="token punctuation">:</span> <span class="token string">"^0.0.5"</span>  <span class="token comment" spellcheck="true">// 解决vue前端路由与后端路由的冲突</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="mysql建表"><a href="#mysql建表" class="headerlink" title="mysql建表"></a>mysql建表</h3><p>（具体建库建表代码见<a href="https://github.com/cheeseKun/cheeseSite/blob/master/server/sql/user.sql" target="_blank" rel="external"></a>）<br>先在自己的<code>mysql</code>数据库<code>website</code>创建一个数据库和表<code>user</code><br><code>user</code>内包含字段<code>account</code>和<code>passwd</code><br>并且<code>insert</code>自己的账户密码（mysql基础不解释）</p>
+<h3 id="Sequelize"><a href="#Sequelize" class="headerlink" title="Sequelize"></a>Sequelize</h3><p>后台为了更方便得和数据库进行联系，这里使用<code>Sequelize</code>模块进行增删改查操作，<br><code>sequelize</code>也支持<code>promise</code><br><code>sequelize-auto</code>模块可以将我们的数据库的表结构导出来</p>
+<pre class="line-numbers language-git"><code class="language-git">// 安装模块
+npm i sequelize-auto &amp;&amp; npm i sequelize mysql
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>进入server的目录，执行如下语句<code>sequelize-auto -o &quot;./schema&quot; -d website -h 127.0.0.1 -u root -p 3306 -x XXXXX -e mysql</code>，（其中 -o 参数后面的是输出的文件夹目录， -d 参数后面的是数据库名， -h 参数后面是数据库地址， -u 参数后面是数据库用户名， -p 参数后面是端口号， -x 参数后面是数据库密码，这个要根据自己的数据库密码来！ -e 参数后面指定数据库为mysql）</p>
+<p>执行完就会在<code>schema</code>文件夹中生成<code>user.js</code>文件(user数据表结构)</p>
+<h3 id="sequelize-auto报错？"><a href="#sequelize-auto报错？" class="headerlink" title="sequelize-auto报错？"></a>sequelize-auto报错？</h3><p>没有报错者请无视这条<br>若在window环境下使用<code>sequelize-auto</code>报错<br>就直接在<code>sequelize-auto</code>模块的<code>\bin</code>目录下执行<br><code>sequelize-auto -o &quot;./schema&quot; -d website -h 127.0.0.1 -u root -p 3306 -x XXXXX -e mysql</code><br>再将生成的<code>user.js</code>复制到<code>schema</code>文件夹内<br><img src="http://oksbjk6b9.bkt.clouddn.com/sequelize-auto.png" alt=""></p>
+<h3 id="初始化数据库配置"><a href="#初始化数据库配置" class="headerlink" title="初始化数据库配置"></a>初始化数据库配置</h3><p>在<code>server</code>目录下的<code>config</code>目录下我们新建一个<code>db.js</code>，用于初始化<code>Sequelize</code>和数据库的连接。</p>
+<pre class="line-numbers language-javascript"><code class="language-javascript"><span class="token comment" spellcheck="true">// db.js</span>
+<span class="token keyword">const</span> Sequelize <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'sequelize'</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 引入sequelize</span>
+<span class="token comment" spellcheck="true">// 使用url连接的形式进行连接，注意将root: 后面的XXXX改成自己数据库的密码</span>
+<span class="token keyword">const</span> Website <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Sequelize</span><span class="token punctuation">(</span><span class="token string">'mysql://root:XXXX@localhost/website'</span><span class="token punctuation">,</span><span class="token punctuation">{</span>
+  define<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+    timestamps<span class="token punctuation">:</span> <span class="token boolean">false</span> <span class="token comment" spellcheck="true">// 取消Sequelzie自动给数据表加入时间戳（createdAt以及updatedAt）</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span> 
+module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">{</span>
+  Website <span class="token comment" spellcheck="true">// 将Todolist暴露出接口方便Model调用</span>
+<span class="token punctuation">}</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="建立model模型"><a href="#建立model模型" class="headerlink" title="建立model模型"></a>建立model模型</h3><pre class="line-numbers language-javascript"><code class="language-javascript"><span class="token comment" spellcheck="true">// models/user.js</span>
+<span class="token keyword">const</span> db <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'../config/db.js'</span><span class="token punctuation">)</span>
+<span class="token keyword">const</span> userModel <span class="token operator">=</span> <span class="token string">'../schema/user.js'</span>
+<span class="token keyword">const</span> WebsiteDb <span class="token operator">=</span> db<span class="token punctuation">.</span>Website <span class="token comment" spellcheck="true">// 引入数据库</span>
+<span class="token keyword">const</span> User <span class="token operator">=</span> WebsiteDb<span class="token punctuation">.</span><span class="token keyword">import</span><span class="token punctuation">(</span>userModel<span class="token punctuation">)</span>  <span class="token comment" spellcheck="true">// 导入数据模型</span>
+
+<span class="token comment" spellcheck="true">// 返回匹配到的user信息</span>
+<span class="token keyword">const</span> getUserByAccount <span class="token operator">=</span> <span class="token keyword">async</span> <span class="token punctuation">(</span>account<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> userInfo <span class="token operator">=</span> <span class="token keyword">await</span> User<span class="token punctuation">.</span><span class="token function">findOne</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    where<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+      account<span class="token punctuation">:</span> account
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+  <span class="token keyword">return</span> userInfo
+<span class="token punctuation">}</span>
+
+module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">{</span>
+  getUserByAccount
+<span class="token punctuation">}</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="controller控制器"><a href="#controller控制器" class="headerlink" title="controller控制器"></a>controller控制器</h3><pre class="line-numbers language-javascript"><code class="language-javascript"><span class="token comment" spellcheck="true">// controllers/user.js</span>
+<span class="token keyword">const</span> jwt <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'jsonwebtoken'</span><span class="token punctuation">)</span>
+<span class="token keyword">const</span> user <span class="token operator">=</span> require <span class="token punctuation">(</span><span class="token string">'../models/user.js'</span><span class="token punctuation">)</span>
+
+<span class="token comment" spellcheck="true">// 执行model方法返回user表匹配信息，并对信息进行jwt操作并返回</span>
+<span class="token keyword">const</span> postSingin <span class="token operator">=</span> <span class="token keyword">async</span> <span class="token punctuation">(</span>ctx<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> data <span class="token operator">=</span> ctx<span class="token punctuation">.</span>request<span class="token punctuation">.</span>body
+  <span class="token keyword">const</span> userInfo <span class="token operator">=</span> <span class="token keyword">await</span> user<span class="token punctuation">.</span><span class="token function">getUserByAccount</span><span class="token punctuation">(</span>data<span class="token punctuation">.</span>account<span class="token punctuation">)</span>
+
+  <span class="token keyword">if</span><span class="token punctuation">(</span>userInfo <span class="token operator">!==</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>data<span class="token punctuation">.</span>passwd <span class="token operator">!==</span> userInfo<span class="token punctuation">.</span>passwd<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      ctx<span class="token punctuation">.</span>body <span class="token operator">=</span> <span class="token punctuation">{</span>
+        success<span class="token punctuation">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+        info<span class="token punctuation">:</span> <span class="token string">'密码错误'</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+      <span class="token keyword">const</span> userToken <span class="token operator">=</span> <span class="token punctuation">{</span>
+        name<span class="token punctuation">:</span> userInfo<span class="token punctuation">.</span>account<span class="token punctuation">,</span>
+        id<span class="token punctuation">:</span> userInfo<span class="token punctuation">.</span>id
+      <span class="token punctuation">}</span>
+      <span class="token keyword">const</span> secret <span class="token operator">=</span> <span class="token string">'cheesekun-website'</span>
+      <span class="token keyword">const</span> token <span class="token operator">=</span> jwt<span class="token punctuation">.</span><span class="token function">sign</span><span class="token punctuation">(</span>userToken<span class="token punctuation">,</span> secret<span class="token punctuation">)</span>
+
+      ctx<span class="token punctuation">.</span>body <span class="token operator">=</span> <span class="token punctuation">{</span>
+        success<span class="token punctuation">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+        token<span class="token punctuation">:</span> token
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token keyword">else</span> <span class="token punctuation">{</span>
+    ctx<span class="token punctuation">.</span>body <span class="token operator">=</span> <span class="token punctuation">{</span>
+      success<span class="token punctuation">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+      info<span class="token punctuation">:</span> <span class="token string">'用户不存在'</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">{</span>
+  postSingin
+<span class="token punctuation">}</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="定义路由"><a href="#定义路由" class="headerlink" title="定义路由"></a>定义路由</h3><pre class="line-numbers language-javascript"><code class="language-javascript"><span class="token comment" spellcheck="true">// routes/user.js</span>
+<span class="token keyword">const</span> user <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'../controllers/user.js'</span><span class="token punctuation">)</span>
+<span class="token keyword">const</span> router <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'koa-router'</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+router<span class="token punctuation">.</span><span class="token function">post</span><span class="token punctuation">(</span><span class="token string">'/user'</span><span class="token punctuation">,</span> user<span class="token punctuation">.</span>postSingin<span class="token punctuation">)</span>
+
+module<span class="token punctuation">.</span>exports <span class="token operator">=</span> router
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="app-js入口配置"><a href="#app-js入口配置" class="headerlink" title="app.js入口配置"></a>app.js入口配置</h3><pre class="line-numbers language-javascript"><code class="language-javascript"><span class="token keyword">const</span> Koa <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'koa'</span><span class="token punctuation">)</span>
+<span class="token keyword">const</span> Router <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'koa-router'</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token keyword">const</span> json <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'koa-json'</span><span class="token punctuation">)</span>
+<span class="token keyword">const</span> logger <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'koa-logger'</span><span class="token punctuation">)</span>
+<span class="token keyword">const</span> bodyParser <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'koa-bodyparser'</span><span class="token punctuation">)</span>
+<span class="token keyword">const</span> <span class="token keyword">static</span> <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'koa-static'</span><span class="token punctuation">)</span>
+<span class="token keyword">const</span> historyApiFallback <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'koa2-history-api-fallback'</span><span class="token punctuation">)</span>
+<span class="token keyword">const</span> path <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'path'</span><span class="token punctuation">)</span>
+<span class="token keyword">const</span> app <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Koa</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token keyword">const</span> user <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'./server/routes/user.js'</span><span class="token punctuation">)</span>
+
+app<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span><span class="token function">bodyParser</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+app<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span><span class="token function">json</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>  <span class="token comment" spellcheck="true">// 美化返回的 json</span>
+app<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span><span class="token function">logger</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+app<span class="token punctuation">.</span><span class="token function">on</span><span class="token punctuation">(</span><span class="token string">'error'</span><span class="token punctuation">,</span> <span class="token keyword">async</span><span class="token punctuation">(</span>err<span class="token punctuation">,</span> ctx<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'server error'</span><span class="token punctuation">,</span> err<span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+Router<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span><span class="token string">'/api'</span><span class="token punctuation">,</span> user<span class="token punctuation">.</span><span class="token function">routes</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+app<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span>Router<span class="token punctuation">.</span><span class="token function">routes</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+app<span class="token punctuation">.</span><span class="token function">listen</span><span class="token punctuation">(</span><span class="token number">8889</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'koa2 server in 8889'</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="vue登陆模块"><a href="#vue登陆模块" class="headerlink" title="vue登陆模块"></a>vue登陆模块</h2><p>样式没什么好说的，使用了<code>ElementUI</code><br>请求方面使用了<code>axios</code></p>
+<pre class="line-numbers language-javascript"><code class="language-javascript"><span class="token comment" spellcheck="true">// src/main.js</span>
+<span class="token keyword">import</span> axios <span class="token keyword">from</span> <span class="token string">'axios'</span>
+<span class="token comment" spellcheck="true">// ... 省略</span>
+Vue<span class="token punctuation">.</span>config<span class="token punctuation">.</span>productionTip <span class="token operator">=</span> <span class="token boolean">false</span>
+
+<span class="token comment" spellcheck="true">// 将axios给vue实例</span>
+<span class="token comment" spellcheck="true">// 之后在vue中就可以直接使用`this.$http`来代替引入axios</span>
+Vue<span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>$http <span class="token operator">=</span> axios
+
+<span class="token comment" spellcheck="true">/* eslint-disable no-new */</span>
+<span class="token keyword">new</span> <span class="token class-name">Vue</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  el<span class="token punctuation">:</span> <span class="token string">'#app'</span><span class="token punctuation">,</span>
+  router<span class="token punctuation">,</span>
+  template<span class="token punctuation">:</span> <span class="token string">'&lt;App/>'</span><span class="token punctuation">,</span>
+  components<span class="token punctuation">:</span> <span class="token punctuation">{</span> App <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><code>this.$message</code>是<code>ElementUI</code>的一个组件用法，具体可看<a href="http://element.eleme.io/#/zh-CN/component/installation" target="_blank" rel="external">ElementUI</a></p>
+<pre class="line-numbers language-javascript"><code class="language-javascript"><span class="token comment" spellcheck="true">// src/components/signin/signin.vue</span>
+<span class="token function">signin</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">const</span> signinObj <span class="token operator">=</span> <span class="token punctuation">{</span>
+          account<span class="token punctuation">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span>account<span class="token punctuation">,</span>
+          passwd<span class="token punctuation">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span>passwd
+        <span class="token punctuation">}</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>$http<span class="token punctuation">.</span><span class="token function">post</span><span class="token punctuation">(</span><span class="token string">'/api/user'</span><span class="token punctuation">,</span> signinObj<span class="token punctuation">)</span>
+        <span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token punctuation">(</span>res<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+          <span class="token keyword">if</span><span class="token punctuation">(</span>res<span class="token punctuation">.</span>data<span class="token punctuation">.</span>success<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            sessionStorage<span class="token punctuation">.</span><span class="token function">setItem</span><span class="token punctuation">(</span><span class="token string">'token'</span><span class="token punctuation">,</span> res<span class="token punctuation">.</span>data<span class="token punctuation">.</span>token<span class="token punctuation">)</span>  <span class="token comment" spellcheck="true">// 将jwt存入sessionStorage</span>
+            <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">$message</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+              type<span class="token punctuation">:</span> <span class="token string">'success'</span><span class="token punctuation">,</span>
+              message<span class="token punctuation">:</span> <span class="token string">'登录成功'</span>
+            <span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+            <span class="token keyword">this</span><span class="token punctuation">.</span>$router<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token punctuation">{</span>path<span class="token punctuation">:</span> <span class="token string">'/music'</span><span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+          <span class="token punctuation">}</span><span class="token keyword">else</span> <span class="token punctuation">{</span>
+            <span class="token keyword">this</span><span class="token punctuation">.</span>$message<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span>res<span class="token punctuation">.</span>data<span class="token punctuation">.</span>info<span class="token punctuation">)</span>
+            sessionStorage<span class="token punctuation">.</span><span class="token function">setItem</span><span class="token punctuation">(</span><span class="token string">'token'</span><span class="token punctuation">,</span> <span class="token keyword">null</span><span class="token punctuation">)</span>
+          <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span><span class="token punctuation">)</span>
+        <span class="token punctuation">.</span><span class="token keyword">catch</span><span class="token punctuation">(</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+          <span class="token keyword">this</span><span class="token punctuation">.</span>$message<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span><span class="token string">'请求错误！'</span><span class="token punctuation">)</span>
+          sessionStorage<span class="token punctuation">.</span><span class="token function">setItem</span><span class="token punctuation">(</span><span class="token string">'token'</span><span class="token punctuation">,</span> <span class="token keyword">null</span><span class="token punctuation">)</span>
+        <span class="token punctuation">}</span><span class="token punctuation">)</span>
+      <span class="token punctuation">}</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>登陆模块仅仅将jwt存储在<code>sessionStorage</code><br>以此来判断该用户有无登陆过该网站<br>并没有密码加密和使用其他类似于会话之类<br>这个只能之后了解到相关的用法再进行升级了</p>
+<h2 id="结语2"><a href="#结语2" class="headerlink" title="结语2"></a>结语2</h2><p>这是一篇要配合<a href="https://github.com/cheeseKun/cheeseSite" target="_blank" rel="external">github</a>代码才能看得明白的文章<br>有种像是写个自己看的感觉orz</p>
+]]></content>
+      
+        <categories>
+            
+            <category> 全栈 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> vue </tag>
+            
+            <tag> node </tag>
+            
+            <tag> mysql </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[bilibili壁纸爬虫--node]]></title>
       <url>http://cheesekun.top/2017/08/22/cheesekun.top/ch1032/</url>
       <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>之前初学<code>node</code>的时候，有用爬虫爬过一些磁力链接<br>详情见<a href="https://segmentfault.com/a/1190000009598820" target="_blank" rel="external">羞羞的node爬虫</a><br>但是没有并发，没有代理，那时也对异步不是很了解<br>所以这次又写了个爬虫，爬取<a href="http://h.bilibili.com/wallpaper?action=list" target="_blank" rel="external">bilibili壁纸站</a>的所有壁纸<br>并且爬取<a href="http://www.kxdaili.com/dailiip/1/1.html#ip" target="_blank" rel="external">开心代理</a>的100条ip，并将有用的ip存进json文件中</p>
