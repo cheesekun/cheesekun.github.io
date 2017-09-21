@@ -421,7 +421,7 @@ npm i sequelize-auto &amp;&amp; npm i sequelize mysql
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 <p>进入server的目录，执行如下语句<code>sequelize-auto -o &quot;./schema&quot; -d website -h 127.0.0.1 -u root -p 3306 -x XXXXX -e mysql</code>，（其中 -o 参数后面的是输出的文件夹目录， -d 参数后面的是数据库名， -h 参数后面是数据库地址， -u 参数后面是数据库用户名， -p 参数后面是端口号， -x 参数后面是数据库密码，这个要根据自己的数据库密码来！ -e 参数后面指定数据库为mysql）</p>
 <p>执行完就会在<code>schema</code>文件夹中生成<code>user.js</code>文件(user数据表结构)</p>
-<h3 id="sequelize-auto报错？"><a href="#sequelize-auto报错？" class="headerlink" title="sequelize-auto报错？"></a>sequelize-auto报错？</h3><p>没有报错者请无视这条<br>若在window环境下使用<code>sequelize-auto</code>报错<br>就直接在<code>sequelize-auto</code>模块的<code>\bin</code>目录下执行<br><code>sequelize-auto -o &quot;./schema&quot; -d website -h 127.0.0.1 -u root -p 3306 -x XXXXX -e mysql</code><br>再将生成的<code>user.js</code>复制到<code>schema</code>文件夹内<br><img src="http://oksbjk6b9.bkt.clouddn.com/sequelize-auto.png" alt=""></p>
+<h3 id="sequelize-auto报错？"><a href="#sequelize-auto报错？" class="headerlink" title="sequelize-auto报错？"></a>sequelize-auto报错？</h3><p>没有报错者请无视这条<br>若在window环境下使用<code>sequelize-auto</code>报错<br>就直接在<code>sequelize-auto</code>模块的<code>\bin</code>目录下执行<br><code>node sequelize-auto -o &quot;./schema&quot; -d website -h 127.0.0.1 -u root -p 3306 -x XXXXX -e mysql</code><br>再将生成的<code>user.js</code>复制到<code>schema</code>文件夹内<br><img src="http://oksbjk6b9.bkt.clouddn.com/sequelize-auto.png" alt=""></p>
 <h3 id="初始化数据库配置"><a href="#初始化数据库配置" class="headerlink" title="初始化数据库配置"></a>初始化数据库配置</h3><p>在<code>server</code>目录下的<code>config</code>目录下我们新建一个<code>db.js</code>，用于初始化<code>Sequelize</code>和数据库的连接。</p>
 <pre class="line-numbers language-javascript"><code class="language-javascript"><span class="token comment" spellcheck="true">// db.js</span>
 <span class="token keyword">const</span> Sequelize <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'sequelize'</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 引入sequelize</span>
@@ -678,6 +678,14 @@ Vue<span class="token punctuation">.</span>prototype<span class="token punctuati
             <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
     <!-- Prev Nav -->
     
+        <a href="/2017/09/22/cheesekun.top/ch1034/" id="post_nav-newer" class="prev-content">
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_back</i>
+            </button>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            next
+        </a>
+    
 
     <!-- Section Spacer -->
     <div class="section-spacer"></div>
@@ -783,7 +791,7 @@ Vue<span class="token punctuation">.</span>prototype<span class="token punctuati
         </a>
         <ul class="dropdown-menu">
             <li>
-            <a class="sidebar_archives-link" href="/archives/2017/09/">九月 2017<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/08/">八月 2017<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/07/">七月 2017<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/06/">六月 2017<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/05/">五月 2017<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/04/">四月 2017<span class="sidebar_archives-count">6</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/03/">三月 2017<span class="sidebar_archives-count">17</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/02/">二月 2017<span class="sidebar_archives-count">5</span></a>
+            <a class="sidebar_archives-link" href="/archives/2017/09/">九月 2017<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/08/">八月 2017<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/07/">七月 2017<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/06/">六月 2017<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/05/">五月 2017<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/04/">四月 2017<span class="sidebar_archives-count">6</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/03/">三月 2017<span class="sidebar_archives-count">17</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/02/">二月 2017<span class="sidebar_archives-count">5</span></a>
         </ul>
     </li>
 
@@ -797,7 +805,7 @@ Vue<span class="token punctuation">.</span>prototype<span class="token punctuati
             </a>
             <ul class="dropdown-menu">
                 <li>
-                <a class="sidebar_archives-link" href="/categories/全栈/">全栈<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/前端/">前端<span class="sidebar_archives-count">11</span></a></li><li><a class="sidebar_archives-link" href="/categories/博客/">博客<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/后台/">后台<span class="sidebar_archives-count">5</span></a></li><li><a class="sidebar_archives-link" href="/categories/数据库/">数据库<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/categories/日语/">日语<span class="sidebar_archives-count">9</span></a></li><li><a class="sidebar_archives-link" href="/categories/生活/">生活<span class="sidebar_archives-count">4</span></a>
+                <a class="sidebar_archives-link" href="/categories/全栈/">全栈<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/前端/">前端<span class="sidebar_archives-count">12</span></a></li><li><a class="sidebar_archives-link" href="/categories/博客/">博客<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/后台/">后台<span class="sidebar_archives-count">5</span></a></li><li><a class="sidebar_archives-link" href="/categories/数据库/">数据库<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/categories/日语/">日语<span class="sidebar_archives-count">9</span></a></li><li><a class="sidebar_archives-link" href="/categories/生活/">生活<span class="sidebar_archives-count">4</span></a>
             </ul>
         </li>
     
@@ -858,7 +866,7 @@ Vue<span class="token punctuation">.</span>prototype<span class="token punctuati
     <li>
         <a href="/archives">
             文章总数
-            <span class="sidebar-badge">35</span>
+            <span class="sidebar-badge">36</span>
         </a>
     </li>
     <li style="background:#eee;">
