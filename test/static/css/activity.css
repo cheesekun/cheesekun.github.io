@@ -40,24 +40,22 @@ img {
 
 .selector {
   position: absolute;
-  top: 8rem;
-  left: calc(50% - 2.67rem);
+  top: 7.6rem;
+  left: calc(50% - 2.97rem);
   z-index: 10;
   display: -webkit-box;
   display: -ms-flexbox;
-  display: flex; }
+  display: flex;
+  height: 2.56rem; }
 
-.selector .hat_nangua .hat {
-  width: 1.71rem;
-  float: left; }
-
-.selector .hat_nangua .nangua {
-  width: 1.5rem;
+.selector .hat_nangua {
+  width: 3.42rem;
   float: left; }
 
 .selector .mofa_water {
   width: 2.13rem;
-  float: right; }
+  float: right;
+  margin-top: .35rem; }
 
 .btns {
   position: absolute;
