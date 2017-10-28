@@ -1,0 +1,91 @@
+html {
+  font-size: 50px;
+  margin: 0 auto;
+  padding: 0; }
+
+body {
+  margin: 0 auto;
+  padding: 0; }
+
+img {
+  vertical-align: bottom;
+  display: block;
+  max-width: 100%; }
+
+.container {
+  position: relative;
+  top: 0;
+  margin: 0 auto;
+  width: 7.5rem;
+  height: 21.98rem; }
+
+.bg-top {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 7.5rem;
+  height: 11.91rem; }
+
+.bg-middle {
+  position: absolute;
+  top: 11.91rem;
+  width: 7.5rem;
+  height: 1.26rem; }
+
+.bg-bottom {
+  position: absolute;
+  top: 13.17rem;
+  width: 7.5rem;
+  height: 8.81rem; }
+
+.selector {
+  position: absolute;
+  top: 8rem;
+  left: calc(50% - 2.67rem);
+  z-index: 10;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex; }
+
+.selector .hat_nangua .hat {
+  width: 1.71rem;
+  float: left; }
+
+.selector .hat_nangua .nangua {
+  width: 1.5rem;
+  float: left; }
+
+.selector .mofa_water {
+  width: 2.13rem;
+  float: right; }
+
+.btns {
+  position: absolute;
+  top: 10.2rem;
+  width: 4.44rem;
+  left: calc(50% - 2.22rem);
+  z-index: 20;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between; }
+  .btns .gongxian {
+    width: 2.02rem; }
+  .btns .meili {
+    width: 2.02rem; }
+
+table {
+  border-collapse: collapse;
+  font-size: .4rem;
+  position: absolute;
+  width: 6.1rem;
+  left: calc(50% - 3.05rem);
+  top: 11.5rem;
+  z-index: 30; }
+  table tr {
+    height: 1rem;
+    line-height: 1; }
+    table tr:nth-child(odd) {
+      background-image: url("../img/1.jpg"); }
