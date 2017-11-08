@@ -403,9 +403,9 @@
 <h3 id="POST"><a href="#POST" class="headerlink" title="POST"></a>POST</h3><pre class="line-numbers language-javascript"><code class="language-javascript"><span class="token function">fetch</span><span class="token punctuation">(</span><span class="token string">'/api/user'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
   method<span class="token punctuation">:</span> <span class="token string">'POST'</span><span class="token punctuation">,</span>
   headers<span class="token punctuation">:</span> <span class="token punctuation">{</span>
-   <span class="token string">'Content-Type'</span><span class="token punctuation">:</span> <span class="token string">'application/json;charset=UTF-8'</span><span class="token punctuation">,</span>
-    credentials<span class="token punctuation">:</span> <span class="token string">'include'</span>  <span class="token comment" spellcheck="true">// 用来让fetch携带cookie</span>
+   <span class="token string">'Content-Type'</span><span class="token punctuation">:</span> <span class="token string">'application/json;charset=UTF-8'</span>
   <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  credentials<span class="token punctuation">:</span> <span class="token string">'include'</span><span class="token punctuation">,</span>  <span class="token comment" spellcheck="true">// 用来让fetch携带cookie</span>
   body<span class="token punctuation">:</span> JSON<span class="token punctuation">.</span><span class="token function">stringify</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
     account<span class="token punctuation">:</span> <span class="token string">'cheesekun'</span><span class="token punctuation">,</span>
     passwd<span class="token punctuation">:</span> <span class="token string">'cheesekun'</span>
@@ -536,7 +536,12 @@ btn_photo<span class="token punctuation">.</span><span class="token function">ad
 <h2 id="fetch坑点"><a href="#fetch坑点" class="headerlink" title="fetch坑点"></a>fetch坑点</h2><blockquote>
 <p>fetch 在发送请求时默认不会带上 Cookie</p>
 </blockquote>
-<p>所以请求头要加上<code>credentials: &#39;include&#39;</code></p>
+<p>所以请求参数要加上<code>credentials: &#39;include&#39;</code></p>
+<pre class="line-numbers language-javascript"><code class="language-javascript"><span class="token punctuation">{</span>
+  headers<span class="token punctuation">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+  credentials<span class="token punctuation">:</span> <span class="token string">'include'</span>  <span class="token comment" spellcheck="true">// 用来让fetch携带cookie, 不是写在请求头</span>
+<span class="token punctuation">}</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 <blockquote>
 <p>fetch 只有在遇到网络错误的时候才会 reject 这个 promise，比如用户断网或请求地址的域名无法解析等。只要服务器能够返回 HTTP 响应（甚至只是 CORS preflight 的 OPTIONS 响应），promise 一定是 resolved 的状态。</p>
 </blockquote>
