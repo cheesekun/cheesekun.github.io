@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>脱单报名</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      font-size: 50px;
+      margin: 0 auto;
+      padding: 0;
+    }
+
+    body {
+      position: relative;
+    }
+
+    img {
+      width: 7.5rem;
+      vertical-align: bottom;
+      display: block;
+      max-width: 100%;
+      margin: 0 auto;
+    }
+
+    .href {
+      display: block;
+      position: absolute;
+      left: 50%;
+      bottom: 1rem;
+      margin-left: -2.225rem;
+      width: 4.45rem;
+      height: 1.57rem;
+    }
+
+    .href img {
+      width: 100%;
+      height: 100%;
+    }
+  </style>
+<link rel="stylesheet" href="/css/prism-solarizedlight.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+
+<body>
+  <img src="./static/img/activitypage/1.jpg" alt="">
+  <img src="./static/img/activitypage/2.jpg" alt="">
+  <img src="./static/img/activitypage/3.jpg" alt="">
+  <a href="https://www.wjx.cn/jq/17860422.aspx" class="href">
+    <img src="./static/img/activitypage/双十一活动_06.min.jpg" alt="">
+  </a>
+  <script>
+  (function (doc, win) {
+  var docEl = doc.documentElement,
+    resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+    recalc = function () {
+      if (window.navigator.appVersion.indexOf('Android') >= 0 ||
+        window.navigator.appVersion.indexOf('iPhone') >= 0 ||
+        window.navigator.appVersion.indexOf('iPad') >= 0) {
+        var clientWidth = docEl.clientWidth;
+        if (!clientWidth) return;
+        docEl.style.fontSize = 100 * (clientWidth / 750) + 'px';
+      }
+      else {
+        docEl.style.fontSize = '55px';
+      }
+    };
+  recalc();
+  if (!doc.addEventListener) return;
+  win.addEventListener(resizeEvt, recalc, false);
+  doc.addEventListener('DOMContentLoaded', recalc, false);
+})(document, window);
+  </script>
+</body>
+
+</html>
