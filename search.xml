@@ -4,6 +4,42 @@
   
     
     <entry>
+      <title><![CDATA[常用windows应用（防重装）]]></title>
+      <url>http://cheesekun.top/2017/12/25/cheesekun.top/ch1035/</url>
+      <content type="html"><![CDATA[<p>这阵子用了一些很好用的 windows 应用，</p>
+<p>怕以后重装系统或者换新电脑忘了，</p>
+<p>打个笔记记一下。</p>
+<h2 id="好用的windows小插件"><a href="#好用的windows小插件" class="headerlink" title="好用的windows小插件"></a>好用的windows小插件</h2><h3 id="wox"><a href="#wox" class="headerlink" title="wox"></a><a href="http://www.getwox.com/" target="_blank" rel="external">wox</a></h3><p><em>快捷启动工具</em></p>
+<h3 id="TranslucentTB"><a href="#TranslucentTB" class="headerlink" title="TranslucentTB"></a><a href="https://github.com/TranslucentTB/TranslucentTB" target="_blank" rel="external">TranslucentTB</a></h3><p><em>状态栏透明显示</em></p>
+<h3 id="WGestures"><a href="#WGestures" class="headerlink" title="WGestures"></a><a href="https://github.com/yingDev/WGestures" target="_blank" rel="external">WGestures</a></h3><p><em>桌面手势</em></p>
+<h3 id="f-lux"><a href="#f-lux" class="headerlink" title="f.lux"></a><a href="https://justgetflux.com/" target="_blank" rel="external">f.lux</a></h3><p><em>屏幕暖色调</em></p>
+<h3 id="QTranslate"><a href="#QTranslate" class="headerlink" title="QTranslate"></a><a href="https://quest-app.appspot.com/" target="_blank" rel="external">QTranslate</a></h3><p><em>桌面翻译</em></p>
+<h3 id="Everything"><a href="#Everything" class="headerlink" title="Everything"></a><a href="https://www.voidtools.com/" target="_blank" rel="external">Everything</a></h3><p><em>全局文件检索</em></p>
+<h2 id="好用的windows应用"><a href="#好用的windows应用" class="headerlink" title="好用的windows应用"></a>好用的windows应用</h2><h3 id="Typora"><a href="#Typora" class="headerlink" title="Typora"></a><a href="https://typora.io/" target="_blank" rel="external">Typora</a></h3><p><em>md编辑器</em></p>
+<h3 id="Picasa-3"><a href="#Picasa-3" class="headerlink" title="Picasa 3"></a><a href="https://picasa.google.com/" target="_blank" rel="external">Picasa 3</a></h3><p><em>图片浏览</em></p>
+<h3 id="幕布"><a href="#幕布" class="headerlink" title="幕布"></a><a href="https://mubu.com/" target="_blank" rel="external">幕布</a></h3><p><em>思维导图生成</em></p>
+<h3 id="LICEcap"><a href="#LICEcap" class="headerlink" title="LICEcap"></a><a href="https://www.cockos.com/licecap/" target="_blank" rel="external">LICEcap</a></h3><p><em>屏幕gif录制</em></p>
+<h3 id="Postman"><a href="#Postman" class="headerlink" title="Postman"></a><a href="https://www.getpostman.com/" target="_blank" rel="external">Postman</a></h3><p><em>http操作</em></p>
+]]></content>
+      
+        <categories>
+            
+            <category> 生活 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> 工具 </tag>
+            
+            <tag> windows </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[ajax接班人 => fetch]]></title>
       <url>http://cheesekun.top/2017/09/22/cheesekun.top/ch1034/</url>
       <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>emmmm，由于学习<code>node</code>异步的时候研究了一波<code>promise</code><br>因此对于使用<code>promise</code>的<code>fetch</code>产生了极大的兴趣<br>（忘了原生ajax的写法orz）<br>小小总结一下<code>fetch</code>的用法<br>基本api翻翻 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API" target="_blank" rel="external">MDN</a> 就ok了</p>
