@@ -4,6 +4,123 @@
   
     
     <entry>
+      <title><![CDATA[GitHub01 开发总结]]></title>
+      <url>http://cheesekun.top/2018/08/12/cheesekun.top/ch1034/</url>
+      <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>最近有点闲，想起关注已久的<code>mpvue</code>写小程序，所以稍微肝了半个多月写了个<code>github</code>版的微信小程序，已上线。现在总结一下遇到的坑。</p>
+<p><strong>扫码体验、</strong></p>
+<p><img src="http://pc9p4qsb2.bkt.clouddn.com/wx-github.jpg" alt=""></p>
+<p><strong>项目地址、</strong></p>
+<p><a href="https://github.com/cheesekun/wx-github" target="_blank" rel="external">cheesekun/wx-github</a></p>
+<p><img src="http://pc9p4qsb2.bkt.clouddn.com/wx-github.gif" alt=""></p>
+<h2 id="mina坑"><a href="#mina坑" class="headerlink" title="mina坑"></a>mina坑</h2><h3 id="scroll-view-高度"><a href="#scroll-view-高度" class="headerlink" title="scroll-view 高度"></a>scroll-view 高度</h3><blockquote>
+<p>可滚动视图区域。</p>
+<p>使用竖向滚动时，需要给<code>&lt;scroll-view/&gt;</code>一个固定高度，通过 WXSS 设置 height。</p>
+</blockquote>
+<p>小程序提供的<code>scroll-view</code>组件，想让他能滚动，就要给他提供一个固定的高度。</p>
+<p>我们一般需求是，上一块区域固定，下一块区域可滚动，我的处理方法是，拿到机型的可视高度，减去上一块固定区域的高度，动态赋值<code>scroll-view</code>最终高度。</p>
+<pre class="line-numbers language-javascript"><code class="language-javascript"><span class="token comment" spellcheck="true">// 以 search 页为例</span>
+<span class="token comment" spellcheck="true">// 滚动区域高度 = 总高度 - 搜索框高度 - tabs 高度</span>
+onLoad <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  wx<span class="token punctuation">.</span><span class="token function">getSystemInfo</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    success<span class="token punctuation">:</span> <span class="token punctuation">(</span>res<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+      <span class="token keyword">this</span><span class="token punctuation">.</span>height <span class="token operator">=</span> res<span class="token punctuation">.</span>windowHeight <span class="token comment" spellcheck="true">// 获取机型可视高度</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+  <span class="token keyword">let</span> query <span class="token operator">=</span> wx<span class="token punctuation">.</span><span class="token function">createSelectorQuery</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token comment" spellcheck="true">// 选择id</span>
+  query<span class="token punctuation">.</span><span class="token function">select</span><span class="token punctuation">(</span><span class="token string">'#search'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">boundingClientRect</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+  query<span class="token punctuation">.</span><span class="token function">exec</span><span class="token punctuation">(</span>res <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+    <span class="token keyword">let</span> searchH <span class="token operator">=</span> res<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>height <span class="token comment" spellcheck="true">// 获取search框高度</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>height <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>height <span class="token operator">-</span> searchH <span class="token operator">-</span> <span class="token keyword">this</span><span class="token punctuation">.</span>tabsH
+  <span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><strong>坑点：</strong><code>wx.createSelectorQuery()</code>获取不了<code>display: none</code>的元素高度。</p>
+<p>我的解决方法是：在<code>trending</code>页获取到<code>tabs</code>组件的高度，再存放到<code>vuex</code>中，给<code>search</code>页使用</p>
+<h3 id="生命周期（同一page携带不用参数）"><a href="#生命周期（同一page携带不用参数）" class="headerlink" title="生命周期（同一page携带不用参数）"></a>生命周期（同一page携带不用参数）</h3><p><a href="https://segmentfault.com/a/1190000010874608" target="_blank" rel="external">小程序生命周期</a></p>
+<p>当我们从一个页面①进入页面②时，我们一般在<code>onLoad</code>进行初始数据的获取，</p>
+<p>从页面②返回到页面①时，若两个页面是不同的page，如<strong>①为page/info</strong>，</p>
+<p><strong>②为page/repo</strong>，那没问题，①页面<code>unOnLoad</code>，②页面<code>onShow</code>。</p>
+<p>但是若<strong>①为page/info?user=a</strong>，<strong>②为page/info?user=b</strong>，那gg了，从页面②返回到页面①，页面①的数据会变成页面②的数据</p>
+<p>为了避免这种情况，我一开始使用<code>onShow</code>代替<code>onLoad</code>，也就是在<code>onShow</code>的时候获取页面的初始数据。但是这个情况就有点可怕了，我们知道<code>onShow</code>很多情况都会触发到，切换前后台，从一个页面返回到另一个，都会触发<code>onShow</code>，这就导致会触发很多不必要的请求，而且用户体验极差。</p>
+<p>可我很多需求就是类似从<strong>①为page/info?user=a</strong>到<strong>②为page/info?user=b</strong>，因此曲线救国想出用<code>vuex</code>维护有相关需求页面的路由栈。</p>
+<p>页面<code>onLoad</code>的时候，推入query参数到栈中，<code>onShow</code>时，若当前页面的参数和栈中最后一个元素相同，则不重新加载数据。当页面被销毁，则在<code>onUnload</code>中把相应的页面栈推出。这样就可以避免很多无谓的<code>onShow</code>请求</p>
+<pre class="line-numbers language-javascript"><code class="language-javascript"> onLoad <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">reset</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token keyword">const</span> options <span class="token operator">=</span> <span class="token function">getQuery</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    user <span class="token operator">=</span> options<span class="token punctuation">.</span>login
+    <span class="token comment" spellcheck="true">// vuex</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>reposStack<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>options<span class="token punctuation">)</span>
+
+    <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">getRepos</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  onShow <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> options <span class="token operator">=</span> <span class="token function">getQuery</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token comment" spellcheck="true">// vuex</span>
+    <span class="token keyword">let</span> reposStack <span class="token operator">=</span> JSON<span class="token punctuation">.</span><span class="token function">parse</span><span class="token punctuation">(</span>JSON<span class="token punctuation">.</span><span class="token function">stringify</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>reposStack<span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token keyword">let</span> len <span class="token operator">=</span> reposStack<span class="token punctuation">.</span>length
+    <span class="token keyword">let</span> endStack <span class="token operator">=</span> reposStack<span class="token punctuation">[</span>len <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>JSON<span class="token punctuation">.</span><span class="token function">stringify</span><span class="token punctuation">(</span>endStack<span class="token punctuation">)</span> <span class="token operator">===</span> JSON<span class="token punctuation">.</span><span class="token function">stringify</span><span class="token punctuation">(</span>options<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">return</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">reset</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    user <span class="token operator">=</span> options<span class="token punctuation">.</span>login
+    <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">getRepos</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  onUnload <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">// vuex</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>reposStack<span class="token punctuation">.</span><span class="token function">slice</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="mpvue坑"><a href="#mpvue坑" class="headerlink" title="mpvue坑"></a>mpvue坑</h2><h3 id="query参数"><a href="#query参数" class="headerlink" title="query参数"></a>query参数</h3><p><code>mpvue</code>可以通过 <code>this.$root.$mp.query</code> 在所有页面的组件内获取路径参数。</p>
+<p>如果以<code>mina</code>来说的话，我们是通过在生命周期<code>onLoad(options)</code>，拿到<code>options</code>上携带的路径参数，<code>mpvue</code>提供了<code>this.$root.$mp.query</code> ,我们可以所有生命周期上使用。</p>
+<p>但是我们知道，当我们从当前页返回到上一页时，上一页并不会执行<code>onLoad()</code>,</p>
+<p>假设当前页和上一页是同个<code>page</code>，只是携带参数不同的话，此时回退到上一页，</p>
+<p>上一页的<code>this.$root.$mp.query</code>不会变成自己的<code>query</code>，还是会变成当前页的<code>query</code></p>
+<p><strong>举例：①page/info?a=1 =&gt; ②page/info?b=2</strong></p>
+<p><strong>当我从②返回到①时，①的<code>this.$root.$mp.query</code>会变成<code>{b:2}</code></strong></p>
+<p>我猜<code>mpvue</code>的<code>this.$root.$mp.query</code>是通过<code>onLoad(options)</code>获取到<code>options</code>，再赋值。但是遇到小程序页面返回不会执行<code>onLoad</code></p>
+<p>为了避免麻烦，我直接使用了小程序的api <code>getCurrentPages()</code>，获取路由栈中最后一个路由的参数</p>
+<blockquote>
+<p><code>getCurrentPages()</code> 函数用于获取当前页面栈的实例，以数组形式按栈的顺序给出，第一个元素为首页，最后一个元素为当前页面。</p>
+</blockquote>
+<pre class="line-numbers language-javascript"><code class="language-javascript"><span class="token comment" spellcheck="true">/**
+ * 获取当前路径参数
+ * 不用mpvue提供的this.$root.$mp.query
+ * 因为其进入同一页面，参数不会变化
+*/</span>
+<span class="token keyword">export</span> <span class="token keyword">function</span> getQuery <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token operator">/</span><span class="token operator">*</span> 获取当前路由栈数组 <span class="token operator">*</span>
+  <span class="token keyword">const</span> pages <span class="token operator">=</span> <span class="token function">getCurrentPages</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token keyword">const</span> currentPage <span class="token operator">=</span> pages<span class="token punctuation">[</span>pages<span class="token punctuation">.</span>length <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span>
+  <span class="token keyword">const</span> options <span class="token operator">=</span> currentPage<span class="token punctuation">.</span>options
+
+  <span class="token keyword">return</span> options
+<span class="token punctuation">}</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>前面几个问题是我初次使用<code>mpvue</code>开发小程序遇到的最大的坑了吧。（好久没有写东西了，写得好烂。）不过确实使用<code>mpvue</code>开发小程序，能组件化，支持<code>npm</code>，比原生开发舒服很多。体验还是很好的。<br>小程序现在是真的太火了。感觉是个前端都要去玩一下。</p>
+]]></content>
+      
+        <categories>
+            
+            <category> 前端 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> 小程序 </tag>
+            
+            <tag> mpvue </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[常用windows应用（防重装）]]></title>
       <url>http://cheesekun.top/2017/12/25/cheesekun.top/ch1035/</url>
       <content type="html"><![CDATA[<p>这阵子用了一些很好用的 windows 应用，</p>
@@ -31,9 +148,9 @@
         
         <tags>
             
-            <tag> 工具 </tag>
-            
             <tag> windows </tag>
+            
+            <tag> 工具 </tag>
             
         </tags>
         
@@ -718,9 +835,9 @@ module<span class="token punctuation">.</span>exports <span class="token operato
         
         <tags>
             
-            <tag> node </tag>
-            
             <tag> 爬虫 </tag>
+            
+            <tag> node </tag>
             
         </tags>
         
@@ -832,9 +949,9 @@ module<span class="token punctuation">.</span>exports <span class="token operato
             
             <tag> 后台 </tag>
             
-            <tag> node </tag>
-            
             <tag> 爬虫 </tag>
+            
+            <tag> node </tag>
             
         </tags>
         
@@ -1778,9 +1895,9 @@ yarn run dev  监听8080端口index.html
         
         <tags>
             
-            <tag> javascript </tag>
-            
             <tag> 前端 </tag>
+            
+            <tag> javascript </tag>
             
             <tag> vue </tag>
             
@@ -2077,9 +2194,9 @@ cheesekun<span class="token punctuation">.</span><span class="token function">sa
         
         <tags>
             
-            <tag> javascript </tag>
-            
             <tag> 前端 </tag>
+            
+            <tag> javascript </tag>
             
             <tag> 小总结系列 </tag>
             
@@ -2249,9 +2366,9 @@ a<span class="token punctuation">.</span>name <span class="token operator">=</sp
         
         <tags>
             
-            <tag> javascript </tag>
-            
             <tag> 前端 </tag>
+            
+            <tag> javascript </tag>
             
             <tag> ES6 </tag>
             
@@ -2731,9 +2848,9 @@ students<span class="token punctuation">.</span><span class="token function">set
         
         <tags>
             
-            <tag> javascript </tag>
-            
             <tag> 前端 </tag>
+            
+            <tag> javascript </tag>
             
             <tag> todolist </tag>
             
@@ -2888,9 +3005,9 @@ students<span class="token punctuation">.</span><span class="token function">set
         
         <tags>
             
-            <tag> javascript </tag>
-            
             <tag> 前端 </tag>
+            
+            <tag> javascript </tag>
             
             <tag> ajax </tag>
             
@@ -3740,9 +3857,9 @@ str2<span class="token punctuation">.</span><span class="token function">match</
         
         <tags>
             
-            <tag> 前端 </tag>
-            
             <tag> ife2017 </tag>
+            
+            <tag> 前端 </tag>
             
         </tags>
         
@@ -3898,9 +4015,9 @@ str2<span class="token punctuation">.</span><span class="token function">match</
         
         <tags>
             
-            <tag> 前端 </tag>
-            
             <tag> ife2017 </tag>
+            
+            <tag> 前端 </tag>
             
         </tags>
         
