@@ -1,6 +1,6 @@
 ---
 title: 「图解HTTP」
-permalink: cheesekun.top/ch1028
+permalink: ch1028
 date: 2017-5-27 10:10:10
 categories:
 - 后台

@@ -1,6 +1,6 @@
 ---
 title: 「MongoDB权威指南」01
-permalink: cheesekun.top/ch1026
+permalink: ch1026
 date: 2017-4-28 10:10:10
 categories:
 - 数据库

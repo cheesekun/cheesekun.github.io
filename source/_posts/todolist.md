@@ -1,6 +1,6 @@
 ---
 title: 无框架版TodoList
-permalink: cheesekun.top/ch1015
+permalink: ch1015
 date: 2017-3-21 10:10:10
 categories:
 - 前端

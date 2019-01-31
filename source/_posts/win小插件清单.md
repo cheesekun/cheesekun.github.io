@@ -2,7 +2,7 @@
 
 title: 常用windows应用（防重装） 
 
-permalink: cheesekun.top/ch1035
+permalink: ch1035
 
 date: 2017-12-25 10:10:10
 

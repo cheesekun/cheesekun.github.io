@@ -1,6 +1,6 @@
 ---
 title: flex布局
-permalink: cheesekun.top/ch1003
+permalink: ch1003
 date: 2017-2-24 15:15:15
 categories: 
 - 前端

@@ -1,6 +1,6 @@
 ---
 title: Mongoose
-permalink: cheesekun.top/ch1025
+permalink: ch1025
 date: 2017-4-23 10:10:10
 categories:
 - 数据库

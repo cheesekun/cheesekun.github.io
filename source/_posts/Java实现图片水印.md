@@ -1,6 +1,6 @@
 ---
 title: Java实现图片水印
-permalink: cheesekun.top/ch1011
+permalink: ch1011
 date: 2017-3-14 10:10:10
 categories:
 - 后台

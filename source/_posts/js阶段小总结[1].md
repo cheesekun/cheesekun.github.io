@@ -1,6 +1,6 @@
 ---
 title: Js阶段性小笔记[1]
-permalink: cheesekun.top/ch1020
+permalink: ch1020
 date: 2017-3-30 10:10:10
 categories:
 - 前端

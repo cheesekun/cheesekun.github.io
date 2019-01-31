@@ -1,6 +1,6 @@
 ---
 title: vue好棒
-permalink: cheesekun.top/ch1023
+permalink: ch1023
 date: 2017-4-16 10:10:10
 categories:
 - 前端

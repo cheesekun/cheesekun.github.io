@@ -1,6 +1,6 @@
 ---
 title: 羞羞的node爬虫
-permalink: cheesekun.top/ch1029
+permalink: ch1029
 date: 2017-5-30 10:10:10
 categories:
 - 后台

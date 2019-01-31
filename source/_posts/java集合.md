@@ -1,6 +1,6 @@
 ---
 title: java容器---集合
-permalink: cheesekun.top/ch1017
+permalink: ch1017
 date: 2017-3-24 10:10:10
 categories:
 - 后台

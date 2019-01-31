@@ -1,6 +1,6 @@
 ---
 title: web存储---Storage
-permalink: cheesekun.top/ch1010
+permalink: ch1010
 date: 2017-3-13 10:10:10
 categories:
 - 前端

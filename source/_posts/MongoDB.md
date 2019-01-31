@@ -1,6 +1,6 @@
 ---
 title: MongDB 初体验
-permalink: cheesekun.top/ch1024
+permalink: ch1024
 date: 2017-4-21 10:10:10
 categories:
 - 数据库

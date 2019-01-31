@@ -1,6 +1,6 @@
 ---
 title: JSONP跨域访问
-permalink: cheesekun.top/ch1014
+permalink: ch1014
 date: 2017-3-19 10:10:10
 categories:
 - 前端

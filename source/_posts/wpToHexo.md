@@ -1,6 +1,6 @@
 ---
 title: 终究到 hexo
-permalink: cheesekun.top/ch1000
+permalink: ch1000
 date: 2017-2-21
 categories: 
 - 博客

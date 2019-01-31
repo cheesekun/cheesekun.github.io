@@ -1,6 +1,6 @@
 ---
 title: 百度 ife2017
-permalink: cheesekun.top/ch1005
+permalink: ch1005
 date: 2017-3-1 10:10:10
 categories:
 - 前端

@@ -1,6 +1,6 @@
 ---
 title: 全栈初体验
-permalink: cheesekun.top/ch1025
+permalink: ch1025
 date: 2017-4-25 10:10:10
 categories:
 - 全栈

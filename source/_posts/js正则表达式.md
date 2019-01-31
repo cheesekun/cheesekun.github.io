@@ -1,6 +1,6 @@
 ---
 title:  一波正则表达式
-permalink: cheesekun.top/ch1008
+permalink: ch1008
 date: 2017-3-11 10:10:10
 categories:
 - 前端

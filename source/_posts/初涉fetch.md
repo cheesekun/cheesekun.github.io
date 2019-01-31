@@ -1,6 +1,6 @@
 ---
 title: ajax接班人 => fetch
-permalink: cheesekun.top/ch1034
+permalink: ch1034
 date: 2017-9-22 10:10:10
 categories:
 - 前端

@@ -1,6 +1,6 @@
 ---
 title: 包管理工具 Yarn
-permalink: cheesekun.top/ch1022
+permalink: ch1022
 date: 2017-4-07 10:10:10
 categories:
 - 前端
