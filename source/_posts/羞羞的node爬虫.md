@@ -22,17 +22,18 @@ tags:
 ## 流程
 首先，我们要爬取得网址是 ： http://www.hacg.wiki/wp/anime.html
 其次，我们要爬取得目标： 以以下格式保存在 `txt` 中
-![](http://old5ohki5.bkt.clouddn.com/llssInfo.png)
+![](https://s2.ax1x.com/2019/01/31/k16vCV.png)
 再其次，分析我们要爬取的内容分布 ：  打开控制台
+
 > title, id, tags 如下
 > 爬取地址是： "http://www.hacg.wiki/wp/anime.html/page/" + i
 
-![](http://old5ohki5.bkt.clouddn.com/llssarticle.png)
+![](https://s2.ax1x.com/2019/01/31/k1yowR.md.png)
 
 > time, seed 如下
 > 爬取地址是： 'http://www.hacg.wiki/wp/' + id + '.html'
 
-![](http://old5ohki5.bkt.clouddn.com/llssseed.png)
+![](https://s2.ax1x.com/2019/01/31/k1yhy4.md.png)
 
 再再其次，我们可以从上面看出，要爬 time 和 seed 前提是把前边的 id 爬取到，
 因此要先爬取 id ，再利用 id 拼凑 seed 所在的 url
@@ -67,7 +68,7 @@ tags:
 不过也让我小小得重新了解了下 `http`
 
 ## 运行效果
-![](http://old5ohki5.bkt.clouddn.com/llss.gif)
+![](https://s2.ax1x.com/2019/01/31/k1yHFx.md.gif)
 结果爬取行数有： 2700行、
 爬取seed数： 450
 

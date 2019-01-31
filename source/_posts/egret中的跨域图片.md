@@ -16,7 +16,11 @@ tags:
 - canvas
 ---
 
-## <img>标签能显示的原因：
+## 前言
+
+导师用egret开发小游戏，遇到了一个问题：两张不同外链的图片，一张可以显示，另一张却不能显示，让我去想想。谷歌了一波，发现了这跨域图片在`canvas`和`webgl`的两种情况。
+
+## img标签 跨域图片：
 
 1. 跨域是浏览器的行为
 2. `img src` 两张图片都可以显示的原因是`<img>`标签本身是允许跨域的
@@ -51,3 +55,4 @@ egret.ImageLoader.crossOrigin = 'anonymous'(匿名)
       > access-control-allow-origin: *
 
 2. 第二张fb的图片可以在webgl显示，是因为这张图片的服务器本身启用了`access-control-allow-origin: *`，允许了任何所有的其他域访问
+
