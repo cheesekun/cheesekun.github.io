@@ -88,5 +88,5 @@ baidu_url_submit:
 
 prism_plugin:
   mode: 'preprocess'    # realtime/preprocess
-  theme: 'solarizedlight'
+  theme: 'default'
   line_number: true    # default false
